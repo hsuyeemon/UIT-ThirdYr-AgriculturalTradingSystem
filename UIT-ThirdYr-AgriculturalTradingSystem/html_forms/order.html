@@ -1,0 +1,51 @@
+<html>
+<head>
+	<script type="text/javascript">
+		public void onEditClick(var item){
+
+			
+			var a = document.getElementById(item);
+			a.removeAttribute('disabled');
+
+
+		}
+	</script>
+</head>
+<body>
+	<h2>Order Item</h2>
+	<hr>
+
+	<form name="order_form" id="order" action="" method="">
+	<label for="phone">Phone NO.</label><br>
+	<input type="text" id = "phone" name="phone" value="09448500348" disabled="disabled">
+	<button onclick="onEditClick('phone')">edit</button>
+	<br><br>
+	<label for="email">Email.</label><br>
+	<input type="email" id = "email" name="email" value ="abc@def.xyz" disabled="disabled">
+	<button onclick="onEditClick('email')">edit</button>
+	<br><br>
+
+	<label for="address">Address</label><br>
+	
+	<table>
+		<tr>
+		<td><input type="text" name="Street Address" placeholder ="Street Address"></td>
+		<td><input type="text" name="city" placeholder ="city"></td>
+		<td><input type="text" name="state" placeholder ="state or region"></td>
+	</tr>
+	<tr>
+		<td><small>Street Address</small><br></td>
+		<td><small>city</small></td>
+		<td><small>State/region Address</small></td>
+	</tr>
+	</table>
+	<br>
+	
+	<input type="hidden" name="username" value="username">
+	<input type="hidden" name="orderdate" value="date">
+
+	<button>ORDER</button>
+
+	</form>
+</body>
+</html>
