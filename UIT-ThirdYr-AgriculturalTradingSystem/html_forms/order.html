@@ -1,28 +1,20 @@
 <html>
 <head>
-	<script type="text/javascript">
-		public void onEditClick(var item){
-
-			
-			var a = document.getElementById(item);
-			a.removeAttribute('disabled');
-
-
-		}
-	</script>
 </head>
 <body>
 	<h2>Order Item</h2>
 	<hr>
 
 	<form name="order_form" id="order" action="" method="">
+
 	<label for="phone">Phone NO.</label><br>
-	<input type="text" id = "phone" name="phone" value="09448500348" disabled="disabled">
-	<button onclick="onEditClick('phone')">edit</button>
+	<input type="text" id="phoneNum" name="phone" value="09448500348">
+	<button onclick="onEditClick()">edit</button>
+
 	<br><br>
 	<label for="email">Email.</label><br>
-	<input type="email" id = "email" name="email" value ="abc@def.xyz" disabled="disabled">
-	<button onclick="onEditClick('email')">edit</button>
+	<input type="email" id = "email" title="email" value ="abc@def.xyz">
+	<button onclick="onEditClick()">edit</button>
 	<br><br>
 
 	<label for="address">Address</label><br>
@@ -47,5 +39,16 @@
 	<button>ORDER</button>
 
 	</form>
+
+	
+	<script type="text/javascript">
+		function onEditClick(){
+			var a = document.getElementById("order");
+			var b = a.elements.namedItem("phone");
+			//b.setAttribute("disabled", "true");
+		}
+	</script>
+	
+
 </body>
 </html>
