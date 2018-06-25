@@ -13,29 +13,37 @@
 
     <body>
 
-                <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+      <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" style="padding: 32px;>
+  <div class="modal-dialog">
 
-      <!--Review--->
       <h2>Review</h2>
-     <input type="textarea" name="Review"/></br><br>
+
+     <div class="row">
+    <div class="input-field col s12">
+      <!--If not used prefix class the icon overflow the textarea-->
+      <i class="material-icons prefix">comment</i>
+      <textarea id="txta1" class="materialize-textarea" maxlength="400"></textarea>
+      <label for="txta1">Textarea</label>
+
+    </div>
+     <input type="submit" class="btn btn-success right" value="Submit" id="review"  onclick=""/>
+  </div>
       
       <!--Rating-->
 
       <div class="row">
-        <div class="col s4">
-          <h2>Rate our site!</h2>
+        <div class="col s5">
+          <h2>Rate this product!</h2>
           <p>My rating: <input type="number" id="rating-empty-clearable" 
             class="rating" data-clearable/> </p>
           <input type="submit" class="btn btn-success" value="Submit" id="ratingSubmit"  onclick="rating();"/>
 
         </div>
-        <div class="col s8">
+        <div class="col s7">
           <div class="col-lg-6">
             <div class="well well-sm">
               <div class="row">
@@ -116,30 +124,32 @@
   
             </div>
           </div>
-        </div>  
+        </div>        
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+
   </div>
 </div>
+
+
      
-      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  
-                <script type="text/javascript" src="js/materialize.min.js"></script>
-                <script src="js/materialize.js"></script>
-                <script src="js/init.js"></script>   
-        <script src="bootstrap/bootstrap-rating-input.js"></script>
-    <script src="bootstrap/rating.js"></script>
+
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>   
+<script src="bootstrap/bootstrap-rating-input.js"></script>
+<script src="bootstrap/rating.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.modal').modal();
+  });
+</script>
 
-                <script type="text/javascript">
-                  $(document).ready(function(){
-                  $('.modal').modal();
-                  });
-      
-                </script>
-    </body>
-    </html>
+</body>
+</html>
