@@ -1,0 +1,207 @@
+<html>
+<head>
+	 <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style type="text/css" class="green darken 3">
+   #frame {
+  height: 900px;
+  width: 750px;
+  color:  green ;
+  box-shadow: 10px 10px 50px 50px rgba(0,0,0,0.3);
+  border-radius: 25px;
+  background:
+ no-repeat center;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  .row{
+  	padding: 16px;
+  }
+
+
+}
+  
+</style>
+</head>
+<body>
+
+
+	 <!---Navigation------------------------------------->
+  <!-- Dropdown Structure -->
+  <ul id="font" class="dropdown-content">
+    <li><a href="#!">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">English</a></li>
+  </ul>
+  <ul id="authentication" class="dropdown-content">
+  	    <li><a href="#!">User Name</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Logout</a></li>
+  </ul>
+    <ul id="product" class="dropdown-content">
+
+    <li><a href="#!">All Products</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">My Products</a></li>
+  </ul>
+
+  <nav style="margin-bottom: 0px;padding: 0;">
+    <div class="nav-wrapper green darken-3">
+      <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="font">Font<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="product">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="authentication">My Account
+          <i class="material-icons right">arrow_drop_down</i></a></li>  
+      </ul>
+    </div>
+  </nav>
+
+
+  <!------------------Middle Section----------------->
+
+   
+   
+ <!-- for form -->
+
+   	
+ 	<div class="row" style="padding: 32px;">
+
+ 	<!---Items--------------------------->
+    <form class="col s6" action="" method="" onsubmit="return show_alert()">
+	<h4>Your Items</h4>
+	  <div class="row">
+        
+        <div class="input-field col s5 ">
+          <input id="pname" type="text" class="validate" disabled="disabled">
+          <label for="pname">Product name</label>
+        </div>
+        <div class="input-field col s5 ">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div>
+        <div class="input-field col s2">
+        	<a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a>  
+        </div>
+      </div>
+      <div class="row" >
+        
+        <div class="input-field col s5 ">
+          <input id="pname" type="text" class="validate" disabled="disabled">
+          <label for="pname">Product name</label>
+        </div>
+        <div class="input-field col s5 ">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div>
+        <div class="input-field col s2">
+        	<a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a>  
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="input-field col s5 ">
+          <input id="pname" type="text" class="validate" disabled="disabled">
+          <label for="pname">Product name</label>
+        </div>
+        <div class="input-field col s5 ">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div>
+        <div class="input-field col s2">
+        	<a href="#" class="btn btn-default waves-effect white
+         green-text"><i class="material-icons">delete</i></a>  
+        </div>
+         <div class="col s12">
+         <p class="divider green"></p>
+        </div>
+      </div>
+
+ 		<!--Cost-------------->
+ 		<div class="row" >
+  		<div class="input-field col s6">
+     	 <input id="cost" type="number" value="100000" disabled="delivered" 
+           >
+          <label for="quantity">Total Cost</label>
+		</div>
+		
+      <!--Cash -------------->
+  		<div class="col s6">
+     	<label>Payment Method</label>
+  		<select class="browser-default">
+    	<option value="1" >Cash On Delivery</option>
+    	</select>
+		</div>
+	</div>
+
+
+
+      <div class="row">
+        <button class="btn green darken-3" type="submit" name="action" 
+         onclick="show_alert()";>Order
+    	<i class="material-icons right">send</i>
+  		</button>
+  	</form>
+  	</div>
+  	<div class="col s1"></div>
+       <div class="col s5">
+	<h4>Delivery</h4>
+	<p>This section will appear after you confirmed order.</p>
+	<div id="qrsection" style="display:none;">
+	<p>This is the code for delivery man</p>
+	<!--form name = "delivered" action="" method="">
+		<input type="text" name = "dCode" placeholder="Delivery Man's ID">
+		<br>
+		<select>
+		<option class="delivery status" value="pending">Pending....</option>
+		<option class ="delivery status" value="delivered">Delivered!!!</option>
+	</select>
+	<input type="button" id="delivery_done" value="DONE"/>
+	</form-->
+	<img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" />
+	</div></div>
+
+	<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+
+   <script>
+	function show_alert() {
+   	if (confirm("Are you sure to confirm the order?")) {
+    var doc = document.getElementById('qrsection');
+    doc.style.display="block";
+    return true;
+	}
+	return false;
+	}
+
+
+    //drop dowm
+    $(document).ready(function(){
+    $(".dropdown-trigger").dropdown({ hover: true });
+    }); 
+</script>
+</body>
+</html>
