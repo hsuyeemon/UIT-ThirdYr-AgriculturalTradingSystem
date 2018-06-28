@@ -1,0 +1,275 @@
+<html>
+<head>
+	 <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style type="text/css" class="green darken 3">
+    
+  #frame {
+  height: 900px;
+  width: 750px;
+  color:  green ;
+  box-shadow: 10px 10px 50px 50px rgba(0,0,0,0.3);
+  border-radius: 25px;
+  background:
+ no-repeat center;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  .row{
+  	padding: 16px;
+  }
+
+
+
+}
+
+
+</style>
+</head>
+<body class="green lighten-4">
+
+
+	 <!---Navigation------------------------------------->
+  <!-- Dropdown Structure -->
+  <ul id="font" class="dropdown-content">
+    <li><a href="#!">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">English</a></li>
+  </ul>
+  <ul id="authentication" class="dropdown-content">
+  	    <li><a href="#!">User Name</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Logout</a></li>
+  </ul>
+    <ul id="product" class="dropdown-content">
+
+    <li><a href="#!">All Products</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">My Products</a></li>
+  </ul>
+
+  <nav style="margin-bottom: 0px;padding: 0;">
+    <div class="nav-wrapper green darken-3">
+      <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="font">Font<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="product">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="authentication">My Account
+          <i class="material-icons right">arrow_drop_down</i></a></li>  
+      </ul>
+    </div>
+  </nav>  <!--h4 style="padding: 16px;">
+  Products/Categories/ProductName</h4-->
+  <br>
+  <div style="padding: 16px;">
+  <a href="#">Category/</a>
+  <a href="#">SubCategory/</a>
+  <a href="#">ProductName/</a>
+  </div>
+  <br>
+<div class="container" style="padding: 32px;">
+
+  <div class="row">
+    <div class="col s3">
+      <img src="images/fertilizer.jpg" height="200px" width="200px">
+    </div>
+    <div class="col s5">
+      <h4 id="productName">Fertilizer</h4>
+      <p id="productVendor">Myanma Awba</p>
+      <p id="productPrice">7000 Kyats per item</p>
+       <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
+     <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Add to Cart<i class="material-icons right">send</i></a>
+   </div>
+   <div class="col s4">
+    </div>
+  </div>
+  <p id="productDescription">In this study, six local wholesalers were interviewed to determine the fertilizer marketing functions and marketing channels in Tatkon Township. Business sizes of local wholesalers were distinguished according to the annual sale amounts of fertilizers (Table 1). In the fertilizer market, Tatkon Township, local wholesalers were marketing only registered urea fertilizers, and additional selling of both registered and unregistered compound fertilizers. Based on the survey data, the amounts of total </p>
+  </div>
+  <hr class="green">
+  
+      <!-----------------Rating------------------>
+
+              <div class="row text-center">
+                 <div class="col s2">
+                </div>
+                <div class="col s2">
+                   <h1 class="rating-num" id="rating-num" 
+                   style="padding-top:64px;">
+      4.0</h1>
+                </div>
+                <div class="col s2">
+                  <div class="rating" id="rating-star"style="padding-top:64px;">
+                  <span class="glyphicon glyphicon-star" id="rating-star-1">
+                  </span>
+                  <span class="glyphicon glyphicon-star" id="rating-star-2">
+                  </span><span class="glyphicon glyphicon-star" id="rating-star-3">
+                  </span><span class="glyphicon glyphicon-star" id="rating-star-4">
+                  </span><span class="glyphicon glyphicon-star-empty" id="rating-star-5"></span>
+                </div>
+                <div id="totalP">
+                  <span class="glyphicon glyphicon-user"></span> 1,050,008 total
+                </div>
+                </div>
+                <div class="col s2">
+                  <div class="row rating-desc">
+                    <div class="col s2 text-right">
+                      <span class="glyphicon glyphicon-star"></span>5
+                    </div>
+                    <div class="col s10">
+                      <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="fivestar" style="width: 80%">
+                          <span class="sr-only">80%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s2 text-right">
+                      <span class="glyphicon glyphicon-star"></span>4
+                    </div>
+                    <div class="col s10">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" 1aria-valuemin="0" aria-valuemax="100" id="fourstar" style="width: 60%">
+                          <span class="sr-only">60%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s2 text-right">
+                      <span class="glyphicon glyphicon-star"></span>3
+                    </div>
+                    <div class="col s10">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="threestar" style="width: 40%">
+                          <span class="sr-only">40%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s2 text-right">
+                      <span class="glyphicon glyphicon-star"></span>2
+                    </div>
+                    <div class="col s10">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="twostar" style="width: 20%">
+                          <span class="sr-only">20%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s2 text-right">
+                      <span class="glyphicon glyphicon-star"></span>1
+                    </div>
+                    <div class="col s10">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" id="onestar" style="width: 15%">
+                          <span class="sr-only">15%</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+                 <div class="col s2">
+                   
+                </div>
+              </div>
+  <hr>
+  <!----------------Review Hightlight----------------->
+  <div class="container" style="padding: 32px;">
+    <h4 style="text-align: center;">Review Highlights</h4>
+  <ul class="collection">
+    <li class="green lighten-3 collection-item avatar">
+      <img src="images/Equipments.jpg" alt="" class="circle">
+      <span class="title">Hsu Yee Mon</span>
+      <p>17/6/2018</p><br>
+      <p>Nice!!!!or what?</p>
+      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+    </li>
+    <li class="green lighten-3 collection-item avatar">
+      <img src="images/Equipments.jpg" alt="" class="circle">
+      <span class="title">Hsu Yee Mon</span>
+      <p>17/6/2018</p><br>
+      <p>Nice!!!!or what?</p>
+      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+    </li>
+  </ul>
+            
+            </div>
+
+
+
+<!---Footer-------------------------------------------------->
+ <footer class="page-footer green darken-3">
+             <div class="row">
+              <div class="col s4" style="padding-left: 32px;">
+                <h5 class="white-text">About Us</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col s4">
+                <h5 class="white-text">Services</h5>
+              </div>
+              <div class="col s4">
+                <h5 class="white-text">Contact Us</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            </div>
+          </div>
+        </footer>
+
+
+
+	<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>   
+
+<script src="bootstrap/bootstrap-rating-input.js"></script>
+<script src="bootstrap/rating.js"></script>
+
+
+
+   <script>
+	function show_alert() {
+   	if (confirm("Are you sure to confirm the order?")) {
+    var doc = document.getElementById('qrsection');
+    doc.style.display="block";
+    $('#ff').prop("disabled", true);
+    return true;
+	}
+	return false;
+	}
+
+    //drop dowm
+    $(document).ready(function(){
+    $(".dropdown-trigger").dropdown({ hover: true });
+    $('.modal').modal();
+    $('select').formSelect();
+  });
+  
+</script>
+</body>
+</html>
