@@ -31,7 +31,7 @@
   
 </style>
 </head>
-<body>
+<body class="green lighten-4">
 
 
 	 <!---Navigation------------------------------------->
@@ -81,8 +81,9 @@
  	<div class="row" style="padding: 32px;">
 
  	<!---Items--------------------------->
-    <form class="col s6" action="" method="" onsubmit="return show_alert()">
+    <div class="col s6" action="" method="">
 	<h4>Your Items</h4>
+  <div id="ff">
 	  <div class="row">
         
         <div class="input-field col s5 ">
@@ -151,16 +152,79 @@
     	</select>
 		</div>
 	</div>
-
-
-
-      <div class="row">
-        <button class="btn green darken-3" type="submit" name="action" 
+ <div class="row">
+        <!--button class="btn green darken-3" type="submit" name="action" 
          onclick="show_alert()";>Order
-    	<i class="material-icons right">send</i>
-  		</button>
-  	</form>
-  	</div>
+      <i class="material-icons right">send</i> </button-->
+      <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
+     
+     <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="padding: 48px;">
+  <h4>Order Your Items</h4>
+  
+  <!---Items--------------------------->
+    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
+  
+    <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
+          <label for="phoneno">PhoneNo</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+     
+    <div class="row">
+      <div class="input-field col s4 ">
+          <input id="street" type="text" class="validate" required="required">
+          <label for="street">Street Address</label>
+        </div>
+
+        <div class="input-field col s4 ">
+          <input id="city" type="text" class="validate" required="required">
+          <label for="city">City</label>
+        </div>
+        <div class="input-field col s4" required="required">
+    <select id="state">
+      <option value="1">Yangon</option>
+      <option value="2">Manadalay</option>
+      <option value="3">Magway</option>
+    </select>
+    <label for="state">State/Region</label>
+  </div>
+    </div>
+     <div class="row">
+        <button class="modal-close btn green darken-3" type="submit" name="action"
+         onclick="show_alert()";>Confirm Order
+      <i class="material-icons right">send</i>
+      </button>
+      <button class="modal-close btn green darken-3" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      </button>
+
+      </div>
+    </form>
+
+    <!--div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div--></div>
+
+    </div>
+
+
+</div></div></div>
+     
   	<div class="col s1"></div>
        <div class="col s5">
 	<h4>Delivery</h4>
@@ -178,13 +242,23 @@
 	</form-->
 	<img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" />
 	</div></div>
-
+<div id="md1" class="modal">
+        <div class="modal-content">
+            <h4>Please Confirm</h4>
+            <p>Are you sure to proceed?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="waves-effect waves-red btn-flat" onclick="$('#md1').closeModal(); return false;">Cancel</a>
+            <a href="#" class="waves-effect waves-green btn-flat" id="md1_YesBtn">Yes</a>
+       </div>
+    </div>
 	<!-----Script to Import---------------------->
 
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/init.js"></script>   
+
 
 
    <script>
@@ -192,16 +266,19 @@
    	if (confirm("Are you sure to confirm the order?")) {
     var doc = document.getElementById('qrsection');
     doc.style.display="block";
+    $('#ff').prop("disabled", true);
     return true;
 	}
 	return false;
 	}
 
-
     //drop dowm
     $(document).ready(function(){
     $(".dropdown-trigger").dropdown({ hover: true });
-    }); 
+    $('.modal').modal();
+    $('select').formSelect();
+  });
+  
 </script>
 </body>
 </html>

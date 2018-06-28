@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+
+      <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="padding: 48px;">
+	<h4>Order Your Items</h4>
+	
+ 	<!---Items--------------------------->
+    <form class="col" action="" method="" onsubmit="return show_alert()">
+	
+	  <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
+          <label for="phoneno">PhoneNo</label>
+        </div>
+        <div class="input-field col s2">
+        	<a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s2">
+        	<a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+     
+  	<div class="row">
+  		<div class="input-field col s4 ">
+          <input id="street" type="text" class="validate">
+          <label for="street">Street Address</label>
+        </div>
+
+        <div class="input-field col s4 ">
+          <input id="city" type="text" class="validate">
+          <label for="city">City</label>
+        </div>
+        <div class="input-field col s4">
+    <select id="state">
+      <option value="1">Yangon</option>
+      <option value="2">Manadalay</option>
+      <option value="3">Magway</option>
+    </select>
+    <label for="state">State/Region</label>
+  </div>
+  	</div>
+  	 <div class="row">
+        <button class="btn green darken-3" type="submit" name="action"
+         onclick="show_alert()";>Order
+    	<i class="material-icons right">send</i>
+  		</button>
+  	</div>
+  	</form>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div></div>
+
+
+
+     
+
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>   
+<script src="bootstrap/bootstrap-rating-input.js"></script>
+<script src="bootstrap/rating.js"></script>
+<script src="bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.modal').modal();
+   $('select').formSelect();
+  });
+</script>
+
+</body>
+</html>
