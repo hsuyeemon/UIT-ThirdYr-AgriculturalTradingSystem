@@ -2,11 +2,7 @@
 @import url('font-awesome.css');
 
 
-/* ==== Feature=======*/
-.feature {
-	padding-right: 32px;
-	padding-left: 32px;
-}
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 
 .text-center i {
 	font-size:40px;
@@ -18,19 +14,59 @@
 	border-radius:50%;
 }
 
-.text-center h2 {
+.text-center h6{
 	margin-top:20px;
 	margin-bottom:20px;
 	text-transform:uppercase;
-	font-size:18px;
-	color: #1BBD36;
+	color: #33454d;
 }
 
-.hi-icon-effect i.fa:hover {
-	background:#fff;
-	color: green darken-3;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+
+
+body{
+	background:;
 }
+
+.hero-shot{
+    background-image: url("../images/Myanmar-42A9805-Agriculture-LIFT-John-Rae.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;opacity: 0.8;
+    filter: alpha(opacity=50);
+
+}
+
+
+
+.padding-normal{
+	padding:48px;
+}
+
+.header{
+	color:#33454d;
+}
+.product-category{
+	height: 240px;
+}
+
+.input-field label {color: green;}
+
+
+
+#frame {
+  height: 900px;
+  width: 750px;
+  color:  green ;
+  box-shadow: 10px 10px 50px 50px rgba(0,0,0,0.3);
+  border-radius: 25px;
+  background:
+ no-repeat center;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  .row{
+  	padding: 16px;
+  }

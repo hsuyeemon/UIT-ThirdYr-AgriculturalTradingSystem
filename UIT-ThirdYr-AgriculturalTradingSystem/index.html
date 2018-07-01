@@ -11,43 +11,34 @@
 
       <link href="css/style.css" rel="stylesheet" />  
 
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  
-      <style type="text/css" class="green darken 3">
-      	.iris {
-    background-image: url("images/Rice_IRRI_Image_01.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: auto;opacity: 0.8;
-    filter: alpha(opacity=50);
-
-}
- .input-field label {color: green;}
-      </style>
 </head>
 
-<body class="#dcedc8 light-green lighten-4">
+<body class="#ccff90 light-green accent-1">
 
   <!---Navigation------------------------------------->
+  
   <!-- Dropdown Structure -->
-  <ul id="font" class="dropdown-content">
-    <li><a href="#!">ျမန္မာစာ</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">English</a></li>
-  </ul>
-  <ul id="authentication" class="dropdown-content">
-    <li><a href="#myModal1" class="modal-trigger ">Login</a></li>
-    <li class="divider"></li>
-    <li><a href="#myModal2" class="modal-trigger ">Sign Up</a></li>
-  </ul>
-  <div id="myModal1" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="padding: 48px;">
- <form class="col s12">
 
-            <!-- for name -->
-<br><br>
+  <!--Language------------------>
+  <ul id="font" class="dropdown-content">
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
+  </ul>
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger ">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
+  </ul>
+
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+
       <div class="row ">
-        
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
           <input id="email" type="text" class="validate">
@@ -55,43 +46,41 @@
         </div>
       </div>
       <div class="row ">
-        
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="email" type="text" class="validate">
-          <label for="email">Password</label>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
         </div>
         <label style='float: right;'>
-    <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-    </label>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
       </div>
       <div>
-      <p>
-    <label>
-      <input class="with-gap" name="group3" type="radio" checked />
-      <span>User Account</span>
-    </label>
-  </p>
-  <p>
-    <label>
-      <input class="with-gap" name="group3" type="radio" />
-      <span>Admin Account</span>
-    </label>
-  </p>
-</div>
-<br>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" checked />
+            <span>User Account</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
       <button type="submit" class="btn btn-primary green darken-3">Login</button>
-</form>
+    </form>
+    </div>
   </div>
-</div>
- <div id="myModal2" class="modal fade" role="dialog">
 
-  <div class="modal-dialog" style="padding: 48px;">
-        <form class="col s12">
-      <br><br>
-      <div class="row">
-    
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
       
+      <div class="row">      
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate">
@@ -103,7 +92,6 @@
           <label for="icon_telephone">Telephone</label>
         </div>
       </div>
-    
 
       <div class="row">
         <div class="input-field col s12">
@@ -112,13 +100,15 @@
           <label for="email">Email</label>
         </div>
       </div>
-    <div class="row">
+    
+      <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">home</i>
           <input id="email" type="email" class="validate">
           <label for="email">Address</label>
         </div>
       </div>
+
      <div class="row">
         <div class="input-field col s12">
           <input id="email" type="email" class="validate">
@@ -126,7 +116,6 @@
         </div>
       </div>
       
-
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
@@ -134,7 +123,8 @@
           <label for="password">Password</label>
         </div>
       </div>
-       <div class="row">
+
+      <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
           <input id="email" type="email" class="validate">
@@ -142,8 +132,7 @@
         </div>
       </div>
      
-   
-     <div class="row">
+      <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
         <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
@@ -152,163 +141,177 @@
       </div>
 
       <div class="file-field input-field">
-      <div class="btn green darken-3">
-        <span>File</span>
-        <input type="file" multiple>
+        <div class="btn green darken-3">
+          <span>File</span>
+          <input type="file" multiple>
 
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
     <div>
-      <br>
-      <p>
-    <label>
-      <input class="with-gap" name="group3" type="radio" checked />
-      <span>User Account</span>
-    </label>
-  </p>
-  <p>
-    <label>
-      <input class="with-gap" name="group3" type="radio" />
-      <span>Admin Account</span>
-    </label>
-  </p>
-</div>
     <br>
-   <button type="submit" class="btn btn-primary green darken-3">Sign Up</button>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" checked />
+        <span>User Account</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" />
+        <span>Admin Account</span>
+      </label>
+    </p>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green darken-3">Sign Up</button>
   </form>
   </div>
 </div>
 
-  <nav style="margin-bottom: 0px;padding: 0;">
-    <div class="nav-wrapper green darken-3">
-      <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="dropdown-trigger" href="#!" data-target="font">Font<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#Products ">Products</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
-          <i class="material-icons right">arrow_drop_down</i></a></li>  
-      </ul>
-    </div>
-  </nav>
+<!---------------------Navigation--------------------->
+<nav style="margin-bottom: 0px;padding: 0;">
+  <div class="nav-wrapper green darken-3">
+    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#Products ">Products</a></li>
+      <!--li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li-->
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+        <i class="material-icons right">arrow_drop_down</i></a></li>  
+    </ul>
+  </div>
+</nav>
 
 
-  <!-- HeroShot & HeadLine-------------------------------->
-<div class = "iris">
-   <div class = "transparent">
-   	<div class="white-text center-align" style="height: 300px;
+<!-- HeroShot & HeadLine-------------------------------->
+<div class = "hero-shot">
+  <div class = "transparent">
+   	<div class="white-text center-align" style="height: 320px;
         padding: 64px;margin: 0px;">
    		 <h4 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
-         ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ </h4><br><br>
+         ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ </h4>
+         <br><br>
          <a href="#" class="btn btn-default waves-effect pulse white
          green-text">View how it works</a>
-   	</div>
-       
+   	</div>   
    </div>
 </div>
 
           
 <!--Products---------------------------------------------------------------->
   
-      <div class="row" id="Products">
-        <h5 class="green-text text-darken-3" style="padding: 32px 32px 0 32px;margin-top: 0px;">Our Products</h5>
+<div id="Products" class="padding-normal center-align">
+ <h3 class="center-align header">Our products</h3>
+ <p class="center-align">Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta</p>
 
-         <!-- card for agricultural products --------------------------------->
+  <div class="row"  style="padding-top: 16px;">
+   
+  <!-- card for agricultural products --------------------------------->
 
-      <div class="col s4" style="padding: 24px;">
-        
-        <div class="card hoverable ">
-    <div class="card-image waves-effect waves-block waves-light" style="height: 240px;>
+  <a href="products.html">
+    <div class="col s4" >
+    <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/2446.jpg"  height="240px"-->
       <div class="slider" >
-  <ul class="slides" >
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-    <li>
-      <img src="images/Equipments.jpg">
-    </li>
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-  </ul>
-</div>   
-    </div>
+        <ul class="slides carousel-fixed-item center" >
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+          <li>
+            <img src="images/Equipments.jpg">
+          </li>
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+        </ul> 
+      </div>   
+    </div></a>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
-       <ul class="collection">
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-  </ul>
+       <div class="collection">
+        <div class="collection-item">
+            <div class="row collection-item avatar">
+              <div class="col s2">
+              <img src="images/Equipments.jpg" alt="" class="circle">
+              </div>
+              <div class="col s4">
+                <p class="title">SubCategory Name</p>
+              </div>
+
+            </div>
+            <div class="row">
+            <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
+            </div> 
+        </div>
+        <div class="collection-item">
+            <div class="row collection-item avatar">
+              <div class="col s2">
+              <img src="images/Equipments.jpg" alt="" class="circle">
+              </div>
+              <div class="col s4">
+                <p class="title">SubCategory Name</p>
+              </div>
+
+            </div>
+            <!--div class="row">
+            <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
+            </div--> 
+        </div>
+        <div class="collection-item">
+            <div class="row collection-item avatar">
+              <div class="col s2">
+              <img src="images/Equipments.jpg" alt="" class="circle">
+              </div>
+              <div class="col s4">
+                <p class="title">SubCategory Name</p>
+              </div>
+
+            </div>
+            <!--div class="row">
+            <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
+            </div--> 
+        </div>
+         
+        </div>
     </div>
-  </div>
-      </div>
+    </div>
+    </div>
 
 
-              <!-- card for fertilizers products ------------------------------->
+<!-- card for fertilizers products ------------------------------->
 
-      <div class="col s4" style="padding: 24px;">
-        
-        <div class="card hoverable">
-    <div class="card-image waves-effect waves-block waves-light" style="height: 240px;>
+    <div class="col s4">
+    <div class="card hoverable">
+    <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/fertilizer.jpg"  height="240px"-->
       <div class="slider">
-  <ul class="slides">
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-    <li>
-      <img src="images/Equipments.jpg">
-    </li>
-    <li>
-      <img src="images/2446.jpg">
-    </li>
-  </ul>
-</div>   
+        <ul class="slides">
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+          <li>
+            <img src="images/Equipments.jpg">
+          </li>
+          <li>
+            <img src="images/2446.jpg">
+          </li>
+        </ul>
+      </div>   
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Fertilizers<i class="material-icons right">more_vert</i></span>
@@ -316,67 +319,65 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Fertilizers<i class="material-icons right">close</i></span>
        <ul class="collection">
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-  </ul>
+          <li class="collection-item avatar">
+            <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price  
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+           <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+           <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+        </ul>
     </div>
-  </div>
-      </div>
+    </div>
+    </div>
 
-      
-      <!-- card for equipments products --------------->
+  <!-- card for equipments products --------------->
 
-      <div class="col s4" style="padding: 24px;">
-        
-        <div class="card hoverable"">
-    <div class="card-image waves-effect waves-block waves-light " style="height: 240px;>
+    <div class="col s4">    
+    <div class="card hoverable"">
+    <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/equipments.jpg"  height="240px"-->
       <div class="slider" height="240px">
-  <ul class="slides">
-    <li>
-      <img src="images/equipments.jpg">
-    </li>
-    <li>
-      <img src="images/equipments.jpg">
-    </li>
-    <li>
-      <img src="images/equipments.jpg">
-    </li>
-    <li>
-      <img src="images/equipments.jpg">
-    </li>
-  </ul>
-</div>   
+        <ul class="slides">
+          <li>
+            <img src="images/equipments.jpg">
+          </li>
+          <li>
+            <img src="images/equipments.jpg">
+          </li>
+          <li>
+            <img src="images/equipments.jpg">
+          </li>
+          <li>
+            <img src="images/equipments.jpg">
+          </li>
+        </ul>
+      </div>   
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Equipments<i class="material-icons right">more_vert</i></span>
@@ -384,55 +385,50 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Equipments<i class="material-icons right">close</i></span>
        <ul class="collection">
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-      <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-    <li class="collection-item avatar">
-     <img src="images/Equipments.jpg" alt="" class="circle">
-      <span class="title">Title</span>
-      <p>Seller<br>
-         Price
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
-    </li>
-  </ul>
+          <li class="collection-item avatar">
+            <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+           <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+          <li class="collection-item avatar">
+           <img src="images/Equipments.jpg" alt="" class="circle">
+            <span class="title">Title</span>
+            <p>Seller<br>
+               Price
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+          </li>
+        </ul>
     </div>
+    </div>
+    </div>
+
   </div>
-      </div>
-    </div>
-
-
-
-
-    <!--Introduction--------------------------------------------------------------> 
-    <!--div class="card white" style="padding: 70px 100px 70px 100px;">
-       <p class="green-text center-align valign-wrapper">"ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ အဂၤလိပ္စာသင္တန္းတက္လိုလွ်င္ျဖစ္ေစ၊ စာေမးပြဲေျဖဆိုရန္ျဖစ္ေစ၊ ယူေကတြင္ပညာသင္ရန္ျဖစ္ေစ၊ ကၽြနု္ပ္တို႕ျပဳလုပ္မည့္ လႈပ္ရွားမႈမ်ား၊ ေဟာေျပာပြဲမ်ားအေၾကာင္းသိလိုလွ်င္ျဖစ္ေစ ဤေနရာတြင္စတင္ေလ့လာႏိုင္ပါသည္။"</p>
-        </div-->
+</div>
         
-       <!----Slider------------------------->
-         <div class="slider" style="height: 400px;width: 100%;margin:64px 0px 16px 0px;">
-  <ul class="slides" style="margin: 0px;">
+       
+<!----Slider------------------------->
+<div class="slider" style="height: 400px;width: 100%;margin-bottom: 8px;">
+  <ul class="slides">
     <li>
       <img src="images/Screenshot (214).png">
     </li>
@@ -443,74 +439,77 @@
       <img src="images/dummy.jpg">
     </li>
   </ul>
-</div>   
+</div>
+
+
 <!------Features------------------------->
-  <div class="feature">
-        <div class="row text-center">
-        <div class="col s3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" >
-            <i class="fa fa-book"></i>  
-            <h2>Full Responsive</h2>
-            <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-          </div>
-        </div>
-        <div class="col s3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" >
-            <i class="fa fa-laptop"></i>  
-            <h2>Retina Ready</h2>
-            <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-          </div>
-        </div>
-        <div class="col s3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" >
-            <i class="fa fa-heart-o"></i> 
-            <h2>Full Responsive</h2>
-            <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-          </div>
-        </div>
-        <div class="col s3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms" >
-            <i class="fa fa-cloud"></i> 
-            <h2>Friendly Code</h2>
-            <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-          </div>
+<div class="feature #aed581 light-green lighten padding-normal">
+  <h4 class="center-align header">What we do</h4>
+  <div class="row text-center">
+    <div class="col s3 center-align">
+      <div>
+        <i class="circle material-icons md-dark">edit</i>  
+        <h6>Full Responsive</h6>
+        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
+      </div>
     </div>
-  </div></div>
-  
-
-
+    <div class="col s3 center-align">
+      <div>
+        <i class="circle material-icons md-dark">edit</i>  
+        <h6>Retina Ready</h6>
+        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
+      </div>
+    </div>
+    <div class="col s3 center-align">
+      <div>
+         <i class="circle material-icons md-dark">edit</i>  
+        <h6>Full Responsive</h6>
+        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
+      </div>
+    </div>
+    <div class="col s3 center-align">
+      <div>
+         <i class="circle material-icons md-dark">3d_rotation</i>  
+        <h6>Friendly Code</h6>
+        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!---Footer-------------------------------------------------->
- <footer class="page-footer green darken-3">
-             <div class="row">
-              <div class="col s4" style="padding-left: 32px;">
-                <h5 class="white-text">About Us</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col s4">
-                <h5 class="white-text">Services</h5>
-              </div>
-              <div class="col s4">
-                <h5 class="white-text">Contact Us</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            </div>
-          </div>
-        </footer>
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
+
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
 
 
 <!-----Script to Import---------------------->
@@ -519,30 +518,24 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/wow.min.js"></script>
   
 
 
 <!------------Script in Index.html--------------->
   <script>
 
-
-    //drop dowm
     $(document).ready(function(){
+    //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
-    }); 
-    
-
-    //Slider
-     $(document).ready(function(){
-      $('.carousel').carousel();
-      $('.modal').modal();
+    $('.carousel').carousel();
+    $('.modal').modal();
     $('select').formSelect();
-    });
-
-      $(document).ready(function(){
     $('.slider').slider();
-    });   
+
+
+    });
+      
+    
   </script>
 
 </body>

@@ -7,40 +7,23 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style type="text/css" class="green darken 3">
-   #frame {
-  height: 900px;
-  width: 750px;
-  color:  green ;
-  box-shadow: 10px 10px 50px 50px rgba(0,0,0,0.3);
-  border-radius: 25px;
-  background:
- no-repeat center;
-  
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-
-  .row{
-  	padding: 16px;
-  }
-
-
-}
-  
-</style>
+      <link href="css/style.css" rel="stylesheet" />  
 </head>
-<body class="green lighten-4">
+<body class="#ccff90 light-green accent-1">
 
 
 	 <!---Navigation------------------------------------->
+  
   <!-- Dropdown Structure -->
+
+  <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#!">ျမန္မာစာ</a></li>
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="#!">English</a></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
   </ul>
+
+  <!----Authentication-->
   <ul id="authentication" class="dropdown-content">
   	    <li><a href="#!">User Name</a></li>
     <li class="divider"></li>
@@ -48,22 +31,23 @@
     <li class="divider"></li>
     <li><a href="#!">Logout</a></li>
   </ul>
+
+  <!---Buyer Items-------->    
     <ul id="product" class="dropdown-content">
 
     <li><a href="#!">All Products</a></li>
     <li class="divider"></li>
-    <li><a href="#!">My Products</a></li>
+    <li><a href="#!">My Orders</a></li>
+    <li><a href="#!">My Cart</a></li>
   </ul>
 
   <nav style="margin-bottom: 0px;padding: 0;">
     <div class="nav-wrapper green darken-3">
       <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="dropdown-trigger" href="#!" data-target="font">Font<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="index.html">Home</a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="product">Products<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="authentication">My Account
           <i class="material-icons right">arrow_drop_down</i></a></li>  
       </ul>
@@ -78,82 +62,91 @@
  <!-- for form -->
 
    	
- 	<div class="row" style="padding: 32px;">
+ 	<div class="padding-normal">
 
  	<!---Items--------------------------->
-    <div class="col s6" action="" method="">
 	<h4>Your Items</h4>
-  <div id="ff">
-	  <div class="row">
-        
-        <div class="input-field col s5 ">
-          <input id="pname" type="text" class="validate" disabled="disabled">
-          <label for="pname">Product name</label>
-        </div>
-        <div class="input-field col s5 ">
-           <input id="quantity" type="number" value="1" min="0" class="validate"
-           >
-          <label for="quantity">Quantity</label>
-        </div>
-        <div class="input-field col s2">
-        	<a href="#" class="btn btn-default waves-effect  white
-         green-text"><i class="material-icons">delete</i></a>  
-        </div>
-      </div>
-      <div class="row" >
-        
-        <div class="input-field col s5 ">
-          <input id="pname" type="text" class="validate" disabled="disabled">
-          <label for="pname">Product name</label>
-        </div>
-        <div class="input-field col s5 ">
-           <input id="quantity" type="number" value="1" min="0" class="validate"
-           >
-          <label for="quantity">Quantity</label>
-        </div>
-        <div class="input-field col s2">
-        	<a href="#" class="btn btn-default waves-effect  white
-         green-text"><i class="material-icons">delete</i></a>  
-        </div>
-      </div>
-      <div class="row">
-        
-        <div class="input-field col s5 ">
-          <input id="pname" type="text" class="validate" disabled="disabled">
-          <label for="pname">Product name</label>
-        </div>
-        <div class="input-field col s5 ">
-           <input id="quantity" type="number" value="1" min="0" class="validate"
-           >
-          <label for="quantity">Quantity</label>
-        </div>
-        <div class="input-field col s2">
-        	<a href="#" class="btn btn-default waves-effect white
-         green-text"><i class="material-icons">delete</i></a>  
-        </div>
-         <div class="col s12">
-         <p class="divider green"></p>
-        </div>
-      </div>
 
- 		<!--Cost-------------->
- 		<div class="row" >
-  		<div class="input-field col s6">
-     	 <input id="cost" type="number" value="100000" disabled="delivered" 
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th><th></th>
+    </tr>
+    <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
            >
-          <label for="quantity">Total Cost</label>
-		</div>
-		
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+       <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>0</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+       <tr><td></td><td></td><td></td><td></td><th>TotalCost = </th><td>Total Cost</td></tr>
+
+  </table>
+
       <!--Cash -------------->
-  		<div class="col s6">
+      <div class="col s2">
      	<label>Payment Method</label>
   		<select class="browser-default">
     	<option value="1" >Cash On Delivery</option>
-    	</select>
-		</div>
-	</div>
- <div class="row">
-        <!--button class="btn green darken-3" type="submit" name="action" 
+    	</select></div><br>
+
+              <!--button class="btn green darken-3" type="submit" name="action" 
          onclick="show_alert()";>Order
       <i class="material-icons right">send</i> </button-->
       <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
@@ -225,33 +218,40 @@
 
 </div></div></div>
      
-  	<div class="col s1"></div>
-       <div class="col s5">
-	<h4>Delivery</h4>
-	<p>This section will appear after you confirmed order.</p>
-	<div id="qrsection" style="display:none;">
-	<p>This is the code for delivery man</p>
-	<!--form name = "delivered" action="" method="">
-		<input type="text" name = "dCode" placeholder="Delivery Man's ID">
-		<br>
-		<select>
-		<option class="delivery status" value="pending">Pending....</option>
-		<option class ="delivery status" value="delivered">Delivered!!!</option>
-	</select>
-	<input type="button" id="delivery_done" value="DONE"/>
-	</form-->
-	<img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" />
-	</div></div>
-<div id="md1" class="modal">
-        <div class="modal-content">
-            <h4>Please Confirm</h4>
-            <p>Are you sure to proceed?</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="waves-effect waves-red btn-flat" onclick="$('#md1').closeModal(); return false;">Cancel</a>
-            <a href="#" class="waves-effect waves-green btn-flat" id="md1_YesBtn">Yes</a>
-       </div>
+     <!---Footer-------------------------------------------------->
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
+
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
     </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
+
 	<!-----Script to Import---------------------->
 
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
@@ -262,16 +262,7 @@
 
 
    <script>
-	function show_alert() {
-   	if (confirm("Are you sure to confirm the order?")) {
-    var doc = document.getElementById('qrsection');
-    doc.style.display="block";
-    $('#ff').prop("disabled", true);
-    return true;
-	}
-	return false;
-	}
-
+	
     //drop dowm
     $(document).ready(function(){
     $(".dropdown-trigger").dropdown({ hover: true });

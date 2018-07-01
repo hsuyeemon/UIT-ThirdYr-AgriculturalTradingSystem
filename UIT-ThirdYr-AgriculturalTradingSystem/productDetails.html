@@ -3,75 +3,193 @@
 	 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style type="text/css" class="green darken 3">
-    
-  #frame {
-  height: 900px;
-  width: 750px;
-  color:  green ;
-  box-shadow: 10px 10px 50px 50px rgba(0,0,0,0.3);
-  border-radius: 25px;
-  background:
- no-repeat center;
-  
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
 
-  .row{
-  	padding: 16px;
-  }
-
-
-
-}
-
-
-</style>
+      <link href="css/style.css" rel="stylesheet" /> 
+      <style type="text/css">
+        .details{
+          font-size: 20px;
+        }
+      </style>
 </head>
-<body class="green lighten-4">
+<body class="#ccff90 light-green accent-1">
 
-
-	 <!---Navigation------------------------------------->
+<!---Navigation------------------------------------->
+  
   <!-- Dropdown Structure -->
+
+  <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#!">ျမန္မာစာ</a></li>
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="#!">English</a></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
   </ul>
+
+  <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
-  	    <li><a href="#!">User Name</a></li>
+    <li><a href="#login" class="modal-trigger ">Login</a></li>
     <li class="divider"></li>
-    <li><a href="#!">Switch account</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">Logout</a></li>
-  </ul>
-    <ul id="product" class="dropdown-content">
-
-    <li><a href="#!">All Products</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">My Products</a></li>
+    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
   </ul>
 
-  <nav style="margin-bottom: 0px;padding: 0;">
-    <div class="nav-wrapper green darken-3">
-      <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="dropdown-trigger" href="#!" data-target="font">Font<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="product">Products<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="authentication">My Account
-          <i class="material-icons right">arrow_drop_down</i></a></li>  
-      </ul>
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="email" type="text" class="validate">
+          <label for="email">Name</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <label style='float: right;'>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
+      </div>
+      <div>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" checked />
+            <span>User Account</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary green darken-3">Login</button>
+    </form>
     </div>
-  </nav>  <!--h4 style="padding: 16px;">
+  </div>
+
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Address</label>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Comfirm Password</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn green darken-3">
+          <span>File</span>
+          <input type="file" multiple>
+
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+    <div>
+    <br>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" checked />
+        <span>User Account</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" />
+        <span>Admin Account</span>
+      </label>
+    </p>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green darken-3">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+<!---------------------Navigation--------------------->
+<nav style="margin-bottom: 0px;padding: 0;">
+  <div class="nav-wrapper green darken-3">
+    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#Products ">Products</a></li>
+      <!--li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li-->
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+        <i class="material-icons right">arrow_drop_down</i></a></li>  
+    </ul>
+  </div>
+</nav>
+ <!--h4 style="padding: 16px;">
   Products/Categories/ProductName</h4-->
   <br>
   <div style="padding: 16px;">
@@ -79,39 +197,44 @@
   <a href="#">SubCategory/</a>
   <a href="#">ProductName/</a>
   </div>
-  <br>
-<div class="container" style="padding: 32px;">
-
-  <div class="row">
-    <div class="col s3">
-      <img src="images/fertilizer.jpg" height="200px" width="200px">
-    </div>
-    <div class="col s5">
-      <h4 id="productName">Fertilizer</h4>
-      <p id="productVendor">Myanma Awba</p>
-      <p id="productPrice">7000 Kyats per item</p>
-       <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
-     <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Add to Cart<i class="material-icons right">send</i></a>
+  
+  <div class="padding-normal">
+  <div class="row ">
+    <div class="col s3 padding-normal">
+      <h3 id="productName">Fertilizer</h3>
+      <p class="details" id="productPrice">7000 Kyats per item</p>
+      <p class="details" id="productVendor"><a>Myanma Awba</a></p><br>
+        <a class="btn green btn"  id="order">Call to Vendor<i class="material-icons right">phone</i></a>
+      
+       
    </div>
-   <div class="col s4">
+     <div class="carousel col s9" style="margin:0px;height: 200px; ">
+    <a class="carousel-item" href="#one!"><img src="images/fertilizer.jpg" width="500px"></a>
+    <a class="carousel-item" href="#two!"><img src="images/fertilizer.jpg"></a>
+    <a class="carousel-item" href="#three!"><img src="images/fertilizer.jpg"></a>
+    <a class="carousel-item" href="#four!"><img src="images/fertilizer.jpg"></a>
+    <a class="carousel-item" href="#five!"><img src="images/fertilizer.jpg"></a>
     </div>
+      </div>
+      
+      <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
+    In this study, six local wholesalers were interviewed to determine the fertilizer marketing functions and marketing channels in Tatkon Township. Business sizes of local wholesalers were distinguished according to the annual sale amounts of fertilizers (Table 1). In the fertilizer market, Tatkon Township, local wholesalers were marketing only registered urea fertilizers, and additional selling of both registered and unregistered compound fertilizers. Based on the survey data, the amounts of total </p>
+ <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
+     <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Add to Cart<i class="material-icons right">send</i></a>
+
   </div>
-  <p id="productDescription">In this study, six local wholesalers were interviewed to determine the fertilizer marketing functions and marketing channels in Tatkon Township. Business sizes of local wholesalers were distinguished according to the annual sale amounts of fertilizers (Table 1). In the fertilizer market, Tatkon Township, local wholesalers were marketing only registered urea fertilizers, and additional selling of both registered and unregistered compound fertilizers. Based on the survey data, the amounts of total </p>
-  </div>
-  <hr class="green">
   
       <!-----------------Rating------------------>
+<div class="#aed581 light-green lighten padding-normal">
 
-              <div class="row text-center">
-                 <div class="col s2">
-                </div>
+    <h4 style="text-align: center;">Rating and Reviews</h4>
+
+              <div class="row text-center center-align">
+                <div class="col s1"></div>
+                
                 <div class="col s2">
-                   <h1 class="rating-num" id="rating-num" 
-                   style="padding-top:64px;">
-      4.0</h1>
-                </div>
-                <div class="col s2">
-                  <div class="rating" id="rating-star"style="padding-top:64px;">
+                   <h1 class="rating-num" id="rating-num" style="">4.0</h1>
+                  <div class="rating" id="rating-star">
                   <span class="glyphicon glyphicon-star" id="rating-star-1">
                   </span>
                   <span class="glyphicon glyphicon-star" id="rating-star-2">
@@ -121,9 +244,9 @@
                 </div>
                 <div id="totalP">
                   <span class="glyphicon glyphicon-user"></span> 1,050,008 total
-                </div>
-                </div>
-                <div class="col s2">
+                </div></div>
+
+                <div class="col s7">
                   <div class="row rating-desc">
                     <div class="col s2 text-right">
                       <span class="glyphicon glyphicon-star"></span>5
@@ -135,6 +258,8 @@
                         </div>
                       </div>
                     </div>
+                    </div>
+                    <div class="row rating-desc">
                     <div class="col s2 text-right">
                       <span class="glyphicon glyphicon-star"></span>4
                     </div>
@@ -145,6 +270,8 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                    <div class="row rating-desc">
                     <div class="col s2 text-right">
                       <span class="glyphicon glyphicon-star"></span>3
                     </div>
@@ -155,6 +282,8 @@
                         </div>
                       </div>
                     </div>
+                    </div>
+                    <div class="row rating-desc">
                     <div class="col s2 text-right">
                       <span class="glyphicon glyphicon-star"></span>2
                     </div>
@@ -165,6 +294,8 @@
                         </div>
                       </div>
                     </div>
+                    </div>
+                    <div class="row rating-desc">
                     <div class="col s2 text-right">
                       <span class="glyphicon glyphicon-star"></span>1
                     </div>
@@ -176,16 +307,16 @@
                       </div>
                     </div>
                 </div>
+                <div class="col s1"></div>
               </div>
-                 <div class="col s2">
-                   
-                </div>
-              </div>
-  <hr>
+           </div>
   <!----------------Review Hightlight----------------->
-  <div class="container" style="padding: 32px;">
-    <h4 style="text-align: center;">Review Highlights</h4>
-  <ul class="collection">
+  <div id="row text-center center-align">
+    <div id="col s2">
+      
+    </div>
+    <div id="col s8">
+      <ul class="collection">
     <li class="green lighten-3 collection-item avatar">
       <img src="images/Equipments.jpg" alt="" class="circle">
       <span class="title">Hsu Yee Mon</span>
@@ -201,43 +332,49 @@
       <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
     </li>
   </ul>
-            
-            </div>
+    </div>
+    <div id="col s2">
+      
+    </div>
+  </div>
+
+</div>
 
 
 
 <!---Footer-------------------------------------------------->
- <footer class="page-footer green darken-3">
-             <div class="row">
-              <div class="col s4" style="padding-left: 32px;">
-                <h5 class="white-text">About Us</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col s4">
-                <h5 class="white-text">Services</h5>
-              </div>
-              <div class="col s4">
-                <h5 class="white-text">Contact Us</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            </div>
-          </div>
-        </footer>
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
 
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
 
 
 	<!-----Script to Import---------------------->
@@ -247,9 +384,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>   
 
-<script src="bootstrap/bootstrap-rating-input.js"></script>
-<script src="bootstrap/rating.js"></script>
-
+  
 
 
    <script>
@@ -268,7 +403,8 @@
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.modal').modal();
     $('select').formSelect();
-  });
+    $('.carousel').carousel();
+    });
   
 </script>
 </body>
