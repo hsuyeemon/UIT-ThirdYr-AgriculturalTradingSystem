@@ -70,3 +70,11 @@ body{
   .row{
   	padding: 16px;
   }
+
+
+
+.left{
+      left:1%;
+      }
+.right{right:1%;
+      }

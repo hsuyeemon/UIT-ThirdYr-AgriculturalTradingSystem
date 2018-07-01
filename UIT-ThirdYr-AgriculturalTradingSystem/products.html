@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+        <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+ 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link href="css/style.css" rel="stylesheet" />  
+   
+     </head>
+
+<body class="#ccff90 light-green accent-1">
+
+  <!---Navigation------------------------------------->
+  
+  <!-- Dropdown Structure -->
+
+  <!--Language------------------>
+  <ul id="font" class="dropdown-content">
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
+  </ul>
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger ">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
+  </ul>
+
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="email" type="text" class="validate">
+          <label for="email">Name</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <label style='float: right;'>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
+      </div>
+      <div>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" checked />
+            <span>User Account</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary green darken-3">Login</button>
+    </form>
+    </div>
+  </div>
+
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Address</label>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Comfirm Password</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn green darken-3">
+          <span>File</span>
+          <input type="file" multiple>
+
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+    <div>
+    <br>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" checked />
+        <span>User Account</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" />
+        <span>Admin Account</span>
+      </label>
+    </p>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green darken-3">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+<!---------------------Navigation--------------------->
+<nav style="margin-bottom: 0px;padding: 0;">
+  <div class="nav-wrapper green darken-3">
+    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#Products ">Products</a></li>
+      <!--li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li-->
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+        <i class="material-icons right">arrow_drop_down</i></a></li>  
+    </ul>
+  </div>
+</nav>
+<br>
+
+  <div style="padding: 16px;">
+  <a href="#">Category/</a>
+  <a href="#">SubCategory/</a>
+  </div>
+
+   
+   <div class="padding-normal">
+    <h4 class="header">Agricultural Products</h4><br>
+    <div id="slides">
+      <div class="Agricultural">      
+        <div class="row">
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+                <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+                  <img src="images/2446.jpg" width="300px" height="300px">
+                </div>
+              
+            </a>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+            </div>
+          </div></div>
+          <div class="col s4">
+            
+<a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>          </div>
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>
+          </div>
+
+       
+        <div class="Agricultural">      
+        <div class="row">
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+                <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+                  <img src="images/2446.jpg" width="300px" height="300px">
+                </div>
+              
+            </a>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+            </div>
+          </div></div>
+          <div class="col s4">
+            
+<a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>          </div>
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>
+          </div>
+
+       
+      </div></div>
+        <div class="Agricultural">      
+        <div class="row">
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+                <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+                  <img src="images/2446.jpg" width="300px" height="300px">
+                </div>
+              
+            </a>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+            </div>
+          </div></div>
+          <div class="col s4">
+            
+<a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>          </div>
+          <div class="col s4">
+            <a href="productDetails.html">
+            <div class="card hoverable ">
+    <div class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
+     
+            <img src="images/2446.jpg" width="300px" height="300px">
+    </div></a>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Rice<i class="material-icons right">more_vert</i></span>
+    </div> </div>
+          </div>
+
+       
+      </div></div>
+        
+         <a href="#!"><i class="material-icons left"  onclick="plusDivs(-1)">chevron_left</i></a> 
+<a href="#!"><i class="material-icons right"  onclick="plusDivs(+1)">chevron_right</i></a> 
+        </div>
+    
+      
+      
+    
+    </div>
+        </div>
+    </div>
+
+
+   <div class="padding-normal">
+          <h4>Fertilizers</h4><br>
+       <div id="slides">
+      <div class="Fertilizer">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Fertilizer">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Fertilizer">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Fertilizer">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+    
+      <!--p class="pButton left" onclick="plusDivs(-1)">&#10094;</p>
+      <p class="pButton right" onclick="plusDivs(+1)">&#10095;</p-->
+
+<a href="#!"><i class="material-icons left"  onclick="plusDivs(-1)">chevron_left</i></a> 
+<a href="#!"><i class="material-icons right"  onclick="plusDivs(+1)">chevron_right</i></a> 
+    
+    </div>
+        </div>
+    </div>
+
+
+
+   <div class="padding-normal">
+          <h4>Equipments</h4><br>
+       <div id="slides">
+      <div class="Equipments">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Equipments">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/fertilizer.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Equipments">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/dummy.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+        <div class="Equipments">
+        <div class="row">
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+          <div class="col s4">
+            
+            <img src="images/2446.jpg" width="300px" height="300px">
+          </div>
+
+       
+      </div></div>
+<a href="#!"><i class="material-icons left"  onclick="plusDivs(-1)">chevron_left</i></a> 
+<a href="#!"><i class="material-icons right"  onclick="plusDivs(+1)">chevron_right</i></a> 
+    
+    </div>
+        </div>
+    </div>
+
+
+ <div class="row">
+    <div class="col s12 m9 l10">
+      <div id="introduction" class="section scrollspy">
+        <p>Content </p>
+      </div>
+
+      <div id="structure" class="section scrollspy">
+        <p>Content </p>
+      </div>
+
+      <div id="initialization" class="section scrollspy">
+        <p>Content </p>
+      </div>
+    </div>
+    <div class="col hide-on-small-only m3 l2">
+      <ul class="section table-of-contents">
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#initialization">Intialization</a></li>
+      </ul>
+    </div>
+  </div>
+        
+
+
+    <!---Footer-------------------------------------------------->
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
+
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
+
+
+
+<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  
+
+
+<!------------Script in Index.html--------------->
+  <script>
+
+    $(document).ready(function(){
+    //drop dowm
+    $(".dropdown-trigger").dropdown({ hover: true });
+    $('.carousel').carousel();
+    $('.modal').modal();
+    $('select').formSelect();
+    $('.slider').slider();
+    $('.scrollspy').scrollSpy();
+
+
+    });
+      
+    
+  </script>
+     <script type="text/javascript">
+      var slideIndex = 0;
+      showDivs(slideIndex);
+
+      function plusDivs(n) 
+      {
+        showDivs(slideIndex += n);
+      }
+
+      function showDivs(n) 
+      {
+        var i;
+        var x = document.getElementsByClassName("Agricultural");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length} ;
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+
+        var y = document.getElementsByClassName("Equipments");
+        if (n > y.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = y.length} ;
+        for (i = 0; i < y.length; i++) {
+          y[i].style.display = "none";
+        }
+        y[slideIndex-1].style.display = "block";
+
+        var z = document.getElementsByClassName("Fertilizer");
+        if (n > z.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = z.length} ;
+        for (i = 0; i < z.length; i++) {
+          z[i].style.display = "none";
+        }
+        z[slideIndex-1].style.display = "block";
+        
+  
+
+      }
+    </script>
+    <script>
+            var slideIndex=0;
+        display();
+        function display(){
+        var i;
+        var x=document.getElementsByClassName("Agricultural");
+        for(i=0;i<x.length;i++){
+          x[i].style.display="none";
+        }
+
+        slideIndex++;
+        if(slideIndex>x.length){
+          slideIndex=1;
+        }
+          x[slideIndex-1].style.display="block";
+        setTimeout(display,20000);
+
+        var y=document.getElementsByClassName("Equipments");
+        for(i=0;i<y.length;i++){
+          y[i].style.display="none";
+        }
+
+        slideIndex++;
+        if(slideIndex>y.length){
+          slideIndex=1;
+        }
+          y[slideIndex-1].style.display="block";
+        setTimeout(display,20000);
+
+        var z=document.getElementsByClassName("Fertilizer");
+        for(i=0;i<z.length;i++){
+          z[i].style.display="none";
+        }
+
+        slideIndex++;
+        if(slideIndex>z.length){
+          slideIndex=1;
+        }
+          z[slideIndex-1].style.display="block";
+        setTimeout(display,20000);
+
+      }
+    </script>
+
+    
+            
+</body>
+</html>
