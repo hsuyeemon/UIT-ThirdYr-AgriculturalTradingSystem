@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+
+
+      <!-- for form -->
+ <div class="row">
+    <form class="col s12">
+
+            <!-- for name -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="text" class="validate">
+          <label for="email">product name</label>
+        </div>
+      </div>
+
+      <!-- for price per unit -->
+
+       <div class="row">
+        <div class="input-field inline col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">price</label>
+        </div>
+        <span>per</span>
+        <div class="input-field inline col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">unit</label>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="min" type="text" class="validate">
+          <label for="min">minimum buyable amount</label>
+        </div>
+      </div>
+
+      <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="max" type="text" class="validate">
+          <label for="max">maximum buyable amount</label>
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">brief description of the product</label>
+        </div>
+      </div>
+
+
+   <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="max" type="text" class="validate">
+          <label for="max">maximum buyable amount</label>
+        </div>
+      </div>
+
+<!-- for qualification
+-->
+     <label>qualification</label>
+  <select class="browser-default">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+
+
+<!-- for media for product image
+-->
+<div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+     </form>
+  </div>
+        
+
+
+                <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+    </html>
