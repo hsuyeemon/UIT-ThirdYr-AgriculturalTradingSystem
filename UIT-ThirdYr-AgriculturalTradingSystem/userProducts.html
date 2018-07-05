@@ -379,6 +379,28 @@
       <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
+        <!-- for mobile view --> 
+      <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/2446.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="images/fertilizer.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>language</a>
+    <ul>
+      <li><a href="#!">Myanmar</a></li>
+      <li><a href="#!">English</a></li>
+    </ul></li>
+    <li><a href="#!">Products</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">login</a></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
+<!-- end of mobile nav  -->
   </div>
 </nav>
 <br>
@@ -643,6 +665,14 @@
       
    
   </script>
+<!-- script for mobile nav -->
+
+                  <script type="text/javascript">
+                   $(document).ready(function(){
+                   $('.sidenav').sidenav();
+                    });
+
+                </script>
 
 
     
