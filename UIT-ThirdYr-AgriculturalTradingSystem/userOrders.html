@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+        <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+ 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link href="css/style.css" rel="stylesheet" />  
+   
+     </head>
+
+<body class="#ccff90 light-green accent-1">
+
+  <!---Navigation------------------------------------->
+  
+  <!-- Dropdown Structure -->
+
+  <!--Language------------------>
+  <ul id="font" class="dropdown-content">
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
+  </ul>
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger ">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
+  </ul>
+
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="email" type="text" class="validate">
+          <label for="email">Name</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <label style='float: right;'>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
+      </div>
+      <div>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" checked />
+            <span>User Account</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary green darken-3">Login</button>
+    </form>
+    </div>
+  </div>
+
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+    <form class="col s12">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Address</label>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="email" type="email" class="validate">
+          <label for="email">Comfirm Password</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn green darken-3">
+          <span>File</span>
+          <input type="file" multiple>
+
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+    <div>
+    <br>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" checked />
+        <span>User Account</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" />
+        <span>Admin Account</span>
+      </label>
+    </p>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green darken-3">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+<!---------------------Navigation--------------------->
+<nav style="margin-bottom: 0px;padding: 0;">
+  <div class="nav-wrapper green darken-3">
+    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#Products ">Products</a></li>
+      <!--li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li-->
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+        <i class="material-icons right">arrow_drop_down</i></a></li>  
+    </ul>
+  </div>
+</nav>
+<br>
+
+
+<div class="padding-normal">
+
+  <h4>My Orders</h4>
+  <p>Pending:10</p>
+  <p>Done:2</p>
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+         <div>
+           <p>1
+         
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a class="btn btn-default waves-effect modal-trigger" href="#myModal" id="order">Pending...</a> </td>
+       </tr>
+       <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+         <div>
+           <p>1
+         
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect modal-trigger" href="#myModal" id="order">Pending...</a> </td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+         <div>
+           <p>1
+         
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a class="btn btn-default waves-effect modal-trigger" href="#myModal" id="order">Delivered</td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div>
+           <p>1
+         
+        </div></td>
+      <td>70000</td>
+      
+      <td>0</td>
+      <td><a class="btn btn-default waves-effect modal-trigger" href="#myModal" id="order">Delivered </td>
+       </tr>
+       
+
+  </table>
+
+  </div>
+
+
+</div>
+
+    <!---Footer-------------------------------------------------->
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
+
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
+
+     <div id="myModal" class="modal fade" role="dialog">
+ <div class="modal-dialog" style="padding: 48px;">
+  <h4>Delivery:</h4>
+  <div id="not_delivered">
+  <p>Please scan the code</p>
+  <p>This is the code for delivery man</p>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" />
+</div>
+<div id="delivered" style="display: none;">
+  <p>We have offered your orders</p>
+</div>
+</div>
+
+    </div>
+
+
+
+<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+   <script type="text/javascript">jssor_slider_init();</script>
+
+
+<!------------Script in Index.html--------------->
+  <script>
+
+    $(document).ready(function(){
+    //drop dowm
+    $(".dropdown-trigger").dropdown({ hover: true });
+    $('.modal').modal();
+    $('select').formSelect();
+    });
+      
+   
+  </script>
+
+
+    
+            
+</body>
+</html>

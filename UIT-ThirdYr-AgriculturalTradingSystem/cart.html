@@ -1,0 +1,275 @@
+<html>
+<head>
+	 <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link href="css/style.css" rel="stylesheet" />  
+</head>
+<body class="#ccff90 light-green accent-1">
+
+
+	 <!---Navigation------------------------------------->
+  
+  <!-- Dropdown Structure -->
+
+  <!--Language------------------>
+  <ul id="font" class="dropdown-content">
+    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
+  </ul>
+
+  <!----Authentication-->
+  <ul id="authentication" class="dropdown-content">
+  	    <li><a href="#!">User Name</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Logout</a></li>
+  </ul>
+
+  <!---Buyer Items-------->    
+    <ul id="product" class="dropdown-content">
+
+    <li><a href="#!">All Products</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">My Orders</a></li>
+    <li><a href="#!">My Cart</a></li>
+  </ul>
+
+  <nav style="margin-bottom: 0px;padding: 0;">
+    <div class="nav-wrapper green darken-3">
+      <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="product">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="authentication">My Account
+          <i class="material-icons right">arrow_drop_down</i></a></li>  
+      </ul>
+    </div>
+  </nav>
+
+
+  <!------------------Middle Section----------------->
+
+   
+   
+ <!-- for form -->
+
+   	
+ 	<div class="padding-normal">
+
+ 	<!---Items--------------------------->
+	<h4>Your Items</h4>
+
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th><th></th>
+    </tr>
+    <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+       <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>70000</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+         <tr>
+      <td><img src="images/equipments.jpg" height="100px" width="100px"></td>
+      <td>Fertilizer</td>
+      <td>
+        <div class="input-field">
+           <input id="quantity" type="number" value="1" min="0" class="validate"
+           >
+          <label for="quantity">Quantity</label>
+        </div></td>
+      <td>70000</td>
+      
+      <td>0</td>
+      <td><a href="#" class="btn btn-default waves-effect  white
+         green-text"><i class="material-icons">delete</i></a> </td>
+       </tr>
+       <tr><td></td><td></td><td></td><td></td><th>TotalCost = </th><td>Total Cost</td></tr>
+
+  </table>
+
+      <!--Cash -------------->
+      <div class="col s2">
+     	<label>Payment Method</label>
+  		<select class="browser-default">
+    	<option value="1" >Cash On Delivery</option>
+    	</select></div><br>
+
+              <!--button class="btn green darken-3" type="submit" name="action" 
+         onclick="show_alert()";>Order
+      <i class="material-icons right">send</i> </button-->
+      <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
+     
+     <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="padding: 48px;">
+  <h4>Order Your Items</h4>
+  
+  <!---Items--------------------------->
+    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
+  
+    <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
+          <label for="phoneno">PhoneNo</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+     
+    <div class="row">
+      <div class="input-field col s4 ">
+          <input id="street" type="text" class="validate" required="required">
+          <label for="street">Street Address</label>
+        </div>
+
+        <div class="input-field col s4 ">
+          <input id="city" type="text" class="validate" required="required">
+          <label for="city">City</label>
+        </div>
+        <div class="input-field col s4" required="required">
+    <select id="state">
+      <option value="1">Yangon</option>
+      <option value="2">Manadalay</option>
+      <option value="3">Magway</option>
+    </select>
+    <label for="state">State/Region</label>
+  </div>
+    </div>
+     <div class="row">
+        <button class="modal-close btn green darken-3" type="submit" name="action"
+         onclick="show_alert()";>Confirm Order
+      <i class="material-icons right">send</i>
+      </button>
+      <button class="modal-close btn green darken-3" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      </button>
+
+      </div>
+    </form>
+
+    <!--div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div--></div>
+
+    </div>
+
+
+</div></div></div>
+     
+     <!---Footer-------------------------------------------------->
+<footer class="page-footer green darken-3 ">
+  <div class="row padding-normal">
+
+    <div class="col s4" style="padding-left: 32px;">
+      <h5 class="white-text">About Us</h5>
+      <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Services</h5>
+    </div>
+
+    <div class="col s4">
+      <h5 class="white-text">Contact Us</h5>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yaminthiriaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yamintheintheint@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">yeyintaung@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">khinthantsin@uit.edu.mm</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">hsuyeemon@uit.edu.mm</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+    </div>
+  </div>
+</footer>
+
+	<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>   
+
+
+
+   <script>
+	
+    //drop dowm
+    $(document).ready(function(){
+    $(".dropdown-trigger").dropdown({ hover: true });
+    $('.modal').modal();
+    $('select').formSelect();
+  });
+  
+</script>
+</body>
+</html>
