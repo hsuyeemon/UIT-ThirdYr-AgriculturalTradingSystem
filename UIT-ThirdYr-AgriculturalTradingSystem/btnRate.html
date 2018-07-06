@@ -20,7 +20,7 @@
 <div id="myModal" class="modal fade" role="dialog" >
   <div class="modal-dialog" style="padding: 48px;">
 
-      <h2>Review</h2>
+      <h2 id="review">Review</h2>
 
      <div class="row">
     <div class="input-field col s12">
@@ -36,7 +36,7 @@
 
       <div class="row">
         <div class="col s5">
-          <h2>Rate this product!</h2>
+          <h2 id="rate_this_product">Rate this product!</h2>
           <p>My rating: <input type="number" id="rating-empty-clearable" 
             class="rating" data-clearable/> </p>
           <input type="submit" class="btn btn-success" value="Submit" id="ratingSubmit"  onclick="rating();"/>
@@ -146,6 +146,14 @@
 
   });
 </script>
+    
+  <script type="text/javascript">
+  function language(){
+    document.getElementById("review").innerHTML="ထင္ျမင္ခ်က္ေပးရန္ ";
+    document.getElementById("rate_this_product").innerHTML="အဆင့္သက္မွတ္ခ်က္"; 
+  }
+</script>
+
 
 </body>
 </html>

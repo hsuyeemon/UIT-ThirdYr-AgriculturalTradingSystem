@@ -21,7 +21,7 @@
 
   <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li><a href="#" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
     <li class="divider"></li>
     <li><a href="#" id="english" onclick="">English</a></li>
   </ul>
@@ -173,15 +173,17 @@
 </div>
 
 <!---------------------Navigation--------------------->
+
+
 <nav style="margin-bottom: 0px;padding: 0;">
   <div class="nav-wrapper green darken-3">
     <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#Products ">Products</a></li>
-      <!--li><a href="#">About Us</a></li>
-      <li><a href="#">Contact</a></li-->
+      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="#" id="home">Home</a></li>
+      <li><a href="#Products " id=products>Products</a></li>
+      <!--li><a href="#" id="about_as">About Us</a></li>
+      <li><a href="#" id="contact">Contact</a></li-->
       <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
@@ -455,7 +457,7 @@
       </div>
     </div>
     <div class="col s3 center-align">
-      <div>
+      <div>f
         <i class="circle material-icons md-dark">edit</i>  
         <h6>Retina Ready</h6>
         <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
@@ -483,7 +485,7 @@
   <div class="row padding-normal">
 
     <div class="col s4" style="padding-left: 32px;">
-      <h5 class="white-text">About Us</h5>
+      <h5 class="white-text" id="about_as">About Us</h5>
       <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
     </div>
 
@@ -511,6 +513,17 @@
     </div>
   </div>
 </footer>
+<button onclick="Language()">Change it to myanmar</button>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+	function language(){
+		document.getElementById("language").innerHTML="ဘာသာစကား";
+		
+		document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
+		document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+		document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+	}
+</script>	
 
 
 <!-----Script to Import---------------------->
@@ -538,6 +551,10 @@
       
     
   </script>
+
+
+
+
 
 </body>
 </html>
