@@ -31,6 +31,23 @@
     <li><a href="#login" class="modal-trigger ">Login</a></li>
     <li class="divider"></li>
     <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
+    <li class="divider"></li>
+     <li><a href="#!">User Name</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.html" class="modal-trigger ">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userProducts.html" class="modal-trigger ">My Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userOrders.html" class="modal-trigger ">My Orders</a></li>
+    <li class="divider"></li>
+    <li><a href="cart.html" class="modal-trigger ">Cart</a></li>
   </ul>
 
   <!--Login Form------------>
@@ -179,14 +196,45 @@
   <div class="nav-wrapper green darken-3">
     <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+<<<<<<< HEAD
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="#" id="home">Home</a></li>
       <li><a href="#Products " id=products>Products</a></li>
       <!--li><a href="#" id="about_as">About Us</a></li>
       <li><a href="#" id="contact">Contact</a></li-->
+=======
+      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="Index.html">Home</a></li>
+       <li><a class="dropdown-trigger" href="#!" data-target="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+      <!--li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li-->
+>>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
       <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
+
+    <!-- for mobile view --> 
+      <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/2446.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="images/fertilizer.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>language</a>
+    <ul>
+      <li><a href="#!">Myanmar</a></li>
+      <li><a href="#!">English</a></li>
+    </ul></li>
+    <li><a href="#!">Products</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">login</a></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
+<!-- end of mobile nav  -->
   </div>
 </nav>
 
@@ -194,7 +242,7 @@
 <!-- HeroShot & HeadLine-------------------------------->
 <div class = "hero-shot">
   <div class = "transparent">
-   	<div class="white-text center-align" style="height: 320px;
+   	<div class="white-text center-align" style="
         padding: 64px;margin: 0px;">
    		 <h4 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
          ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ </h4>
@@ -216,8 +264,8 @@
    
   <!-- card for agricultural products --------------------------------->
 
-  <a href="products.html">
-    <div class="col s4" >
+  <a href="products.html#Agricultural">
+    <div class="col s12 m5 l4" >
     <div class="card hoverable ">
     <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/2446.jpg"  height="240px"-->
@@ -249,7 +297,7 @@
               <div class="col s2">
               <img src="images/Equipments.jpg" alt="" class="circle">
               </div>
-              <div class="col s4">
+              <div class="col s4 m8 l9">
                 <p class="title">SubCategory Name</p>
               </div>
 
@@ -295,7 +343,8 @@
 
 <!-- card for fertilizers products ------------------------------->
 
-    <div class="col s4">
+<a href="products.html#Fertilizers">
+    <div class="col s12 m5 l4">
     <div class="card hoverable">
     <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/fertilizer.jpg"  height="240px"-->
@@ -314,7 +363,7 @@
             <img src="images/2446.jpg">
           </li>
         </ul>
-      </div>   
+      </div>   </a>
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Fertilizers<i class="material-icons right">more_vert</i></span>
@@ -361,7 +410,8 @@
 
   <!-- card for equipments products --------------->
 
-    <div class="col s4">    
+<a href="products.html#Equipments">
+    <div class="col s12 m5 l4">    
     <div class="card hoverable"">
     <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/equipments.jpg"  height="240px"-->
@@ -380,7 +430,7 @@
             <img src="images/equipments.jpg">
           </li>
         </ul>
-      </div>   
+      </div>   </a>
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Equipments<i class="material-icons right">more_vert</i></span>
@@ -430,10 +480,11 @@
         
        
 <!----Slider------------------------->
+    <div class="row">
 <div class="slider" style="height: 400px;width: 100%;margin-bottom: 8px;">
   <ul class="slides">
     <li>
-      <img src="images/Screenshot (214).png">
+      <img src="images/Screenshot (214).png" class="responsive">
     </li>
     <li>
       <img src="images/get-blog-image.jpg">
@@ -442,13 +493,16 @@
       <img src="images/dummy.jpg">
     </li>
   </ul>
-</div>
+    </div>
+    </div>
+
 
 
 <!------Features------------------------->
 <div class="feature #aed581 light-green lighten padding-normal">
   <h4 class="center-align header">What we do</h4>
   <div class="row text-center">
+<<<<<<< HEAD
     <div class="col s3 center-align">
       <div>
         <i class="circle material-icons md-dark">edit</i>  
@@ -459,24 +513,24 @@
     <div class="col s3 center-align">
       <div>f
         <i class="circle material-icons md-dark">edit</i>  
+=======
+   
+    <div class="col s6 center-align">
+      <div>
+        <i class="circle material-icons md-dark" >edit</i>  
+>>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
         <h6>Retina Ready</h6>
         <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
       </div>
     </div>
-    <div class="col s3 center-align">
+    <div class="col s6 center-align">
       <div>
          <i class="circle material-icons md-dark">edit</i>  
         <h6>Full Responsive</h6>
         <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
       </div>
     </div>
-    <div class="col s3 center-align">
-      <div>
-         <i class="circle material-icons md-dark">3d_rotation</i>  
-        <h6>Friendly Code</h6>
-        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-      </div>
-    </div>
+    
   </div>
 </div>
 
@@ -489,11 +543,9 @@
       <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
     </div>
 
-    <div class="col s4">
-      <h5 class="white-text">Services</h5>
-    </div>
+   
 
-    <div class="col s4">
+    <div class="col s8">
       <h5 class="white-text">Contact Us</h5>
       <ul>
         <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
@@ -527,11 +579,11 @@
 
 
 <!-----Script to Import---------------------->
-
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>  
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+
   
 
 
@@ -546,15 +598,25 @@
     $('select').formSelect();
     $('.slider').slider();
 
-
     });
       
     
   </script>
 
+<<<<<<< HEAD
 
 
 
+=======
+  <!-- script for mobile nav -->
+
+                  <script type="text/javascript">
+                   $(document).ready(function(){
+                   $('.sidenav').sidenav();
+                    });
+
+                </script>
+>>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
 
 </body>
 </html>
