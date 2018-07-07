@@ -65,7 +65,7 @@
           'containerId': 'chart_div',
           'options': {
           	'height':300,
-
+'backgroundColor': '#ccff90',
             'pieSliceText': 'value',
             'legend': 'right'
           }
@@ -76,19 +76,20 @@
           'containerId': 'chart_div1',
           'options': {
           	'height':500,
+            'backgroundColor': '#ccff90',
             'pieSliceText': 'value',
             'legend': 'right'
           }
         });
-        // Establish dependencies, declaring that 'filter' drives 'pieChart',
+         // Establish dependencies, declaring that 'filter' drives 'pieChart',
         // so that the pie chart will only display entries that are let through
         // given the chosen slider range.
         dashboard.bind(donutRangeSlider, pieChart);
         dashboard1.bind(donutRangeSlider, columnChart);
 
         // Draw the dashboard.
-        dashboard.draw(data);
-        dashboard1.draw(data);
+       dashboard.draw(data);
+       dashboard1.draw(data);
       }
     </script>
   </head>
@@ -111,7 +112,7 @@
 <div class="center-align" style="padding: 64px;">
   <div class="row">
 
-  <div class="col s10">
+  <div class="col s10" >
 
   		 <div id="dashboard_div">
       <!--Divs that will hold each control and chart-->
@@ -120,7 +121,7 @@
       <div id="chart_div1"></div>
     </div>
   	
-<div id="dashboard_div1">
+<div id="dashboard_div1" >
       <!--Divs that will hold each control and chart-->
       <div id="filter_div"></div>
       <div id="chart_div"></div>
