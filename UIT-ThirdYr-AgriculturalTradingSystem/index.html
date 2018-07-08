@@ -28,26 +28,26 @@
 
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
-    <li><a href="#login" class="modal-trigger ">Login</a></li>
+    <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
     <li class="divider"></li>
-    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
+    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
     <li class="divider"></li>
-     <li><a href="#!">User Name</a></li>
+     <li><a href="#!" id="user_name">User Name</a></li>
     <li class="divider"></li>
-    <li><a href="#!">Switch account</a></li>
+    <li><a href="#!" id="switch_account">Switch account</a></li>
     <li class="divider"></li>
-    <li><a href="#!">Logout</a></li>
+    <li><a href="#!" id="logout">Logout</a></li>
   </ul>
 
   <!--Product--------------------->
   <ul id="products" class="dropdown-content">
-    <li><a href="products.html" class="modal-trigger ">Products</a></li>
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
-    <li><a href="userProducts.html" class="modal-trigger ">My Products</a></li>
+    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
     <li class="divider"></li>
-    <li><a href="userOrders.html" class="modal-trigger ">My Orders</a></li>
+    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
     <li class="divider"></li>
-    <li><a href="cart.html" class="modal-trigger ">Cart</a></li>
+    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
   </ul>
 
   <!--Login Form------------>
@@ -196,20 +196,18 @@
   <div class="nav-wrapper green darken-3">
     <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-<<<<<<< HEAD
+
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="#" id="home">Home</a></li>
-      <li><a href="#Products " id=products>Products</a></li>
-      <!--li><a href="#" id="about_as">About Us</a></li>
+      
+      <li><a href="#" id="about_as">About Us</a></li>
       <li><a href="#" id="contact">Contact</a></li-->
-=======
-      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="Index.html">Home</a></li>
-       <li><a class="dropdown-trigger" href="#!" data-target="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
-      <!--li><a href="#">About Us</a></li>
-      <li><a href="#">Contact</a></li-->
->>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+
+      
+       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+      
+
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">Login
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -479,7 +477,7 @@
 </div>
         
        
-<!----Slider------------------------->
+<!--Slider-->
     <div class="row">
 <div class="slider" style="height: 400px;width: 100%;margin-bottom: 8px;">
   <ul class="slides">
@@ -498,27 +496,17 @@
 
 
 
-<!------Features------------------------->
+<!--Features-->
 <div class="feature #aed581 light-green lighten padding-normal">
   <h4 class="center-align header">What we do</h4>
   <div class="row text-center">
-<<<<<<< HEAD
-    <div class="col s3 center-align">
-      <div>
-        <i class="circle material-icons md-dark">edit</i>  
-        <h6>Full Responsive</h6>
-        <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
-      </div>
-    </div>
-    <div class="col s3 center-align">
-      <div>f
-        <i class="circle material-icons md-dark">edit</i>  
-=======
-   
+
+
+ 
     <div class="col s6 center-align">
       <div>
         <i class="circle material-icons md-dark" >edit</i>  
->>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
+
         <h6>Retina Ready</h6>
         <p>Quisque eu ante at tortor imperdiet gravida nec sed turpis phasellus.</p>
       </div>
@@ -539,14 +527,14 @@
   <div class="row padding-normal">
 
     <div class="col s4" style="padding-left: 32px;">
-      <h5 class="white-text" id="about_as">About Us</h5>
+      <h5 class="white-text" id="about_as1">About Us</h5>
       <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
     </div>
 
    
 
     <div class="col s8">
-      <h5 class="white-text">Contact Us</h5>
+      <h5 class="white-text" id="contact_us">Contact Us</h5>
       <ul>
         <li><a class="grey-text text-lighten-3" href="#!">einghonphoo@uit.edu.mm</a></li>
         <li><a class="grey-text text-lighten-3" href="#!">khineminhtwe@uit.edu.mm</a></li>
@@ -574,6 +562,20 @@
 		document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
 		document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
 		document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+		document.getElementById("contact").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+		document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
+		document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
+		document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
+		document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
+		document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
+		document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
+		document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္";
+		document.getElementById("user_name").innerHTML="အမည္";
+		document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
+		document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
+		document.getElementById("contact_us").innerHTML="္ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+		document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+
 	}
 </script>	
 
@@ -603,11 +605,11 @@
     
   </script>
 
-<<<<<<< HEAD
 
 
 
-=======
+
+
   <!-- script for mobile nav -->
 
                   <script type="text/javascript">
@@ -616,7 +618,6 @@
                     });
 
                 </script>
->>>>>>> 21c5edd1be90aa5f913177207bd7659e891d1466
 
 </body>
 </html>
