@@ -178,13 +178,13 @@
   <h4 id="order_your_items">Order Your Items</h4>
   
   <!---Items--------------------------->
-    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
+    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();" onsubmit="vlaidOrder()">
   
     <div class="row">
         
         <div class="input-field col s10 ">
-          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
-          <label for="phoneno">PhoneNo</label>
+          <input id="phNo" type="text" class="validate" disabled="disabled" value="09448500348" required>
+          <label for="phNo">PhoneNo</label>
         </div>
         <div class="input-field col s2">
           <a href="#" class="btn"><i class="material-icons">edit</i></a>  
@@ -203,8 +203,8 @@
      
     <div class="row">
       <div class="input-field col s4 ">
-          <input id="street" type="text" class="validate" required="required">
-          <label for="street">Street Address</label>
+          <input id="sAdd" type="text" class="validate" required="required">
+          <label for="sAdd">Street Address</label>
         </div>
 
         <div class="input-field col s4 ">
@@ -323,6 +323,45 @@
                    $(document).ready(function(){
                    $('.sidenav').sidenav();
                     });
+
+                </script>
+
+                <script type="text/javascript">
+                  
+                  function vlaidOrder()
+                  {
+                  var phNo=document.getElementById("phNo").value;
+                  var sAdd=document.getElementById("sAdd").value;
+                  var city=document.getElementById("city").value;
+
+                  var phNoReg=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+                  var sAddReg=/^[A-Za-z\s]+$/;
+
+                  var cityReg=/^[A-Za-z\s]+$/;
+
+                  if (phNo.match(phNoReg))
+                  {
+                    if (sAdd.match(sAddReg))
+                    {
+                       if (city.match(cityReg))
+                       {
+                         alert("Success");
+                         return false;
+                        
+                       }else{
+                        alert ("Invalid city");
+                        return false;
+                       }
+                    }else{
+                      alert ("Invalid Street Address");
+                      return false;
+                    }
+
+                  }else{
+                    alert ("Invalid Phone Number");
+                    return false;
+                  }
+                }
 
                 </script>
 
