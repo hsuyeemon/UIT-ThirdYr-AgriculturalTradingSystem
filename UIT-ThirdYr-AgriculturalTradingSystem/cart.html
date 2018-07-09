@@ -84,7 +84,7 @@
  <!-- for form -->
 
    	
- 	<div class="padding-normal">
+ 	<div class="content padding-normal">
 
  	<!---Items--------------------------->
 	<h4  id="your_items">Your Items</h4>
@@ -171,7 +171,7 @@
               <!--button class="btn green darken-3" type="submit" name="action" 
          onclick="show_alert()";>Order
       <i class="material-icons right">send</i> </button-->
-      <a class="btn green darken-2 btn modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
+      <a class="btn green white-text modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
      
      <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
@@ -187,7 +187,7 @@
           <label for="phNo">PhoneNo</label>
         </div>
         <div class="input-field col s2">
-          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
         </div>
       </div>
       <div class="row">
@@ -197,7 +197,7 @@
           <label for="email">Email</label>
         </div>
         <div class="input-field col s2">
-          <a href="#" class="btn"><i class="material-icons">edit</i></a>  
+          <a href="#" class="btn green white-text "><i class="material-icons">edit</i></a>  
         </div>
       </div>
      
@@ -220,12 +220,16 @@
     <label for="state" id="state_region">State/Region</label>
   </div>
     </div>
+    <div class="row">
+      <input id="date" type="text" class="datepicker">
+      <label for="date" id="date_label">Pick the preferred date</label>
+    </div>
      <div class="row">
-        <button class="modal-close btn green darken-3" type="submit" name="action"
+        <button class="modal-close btn green white-text" type="submit" name="action"
          onclick="show_alert()";>Confirm Order
       <i class="material-icons right">send</i>
       </button>
-      <button class="modal-close btn green darken-3" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      <button class="modal-close btn green white-text" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
       </button>
 
       </div>
@@ -290,6 +294,7 @@
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.modal').modal();
     $('select').formSelect();
+    $('.datepicker').datepicker();
   });
   
 </script>
