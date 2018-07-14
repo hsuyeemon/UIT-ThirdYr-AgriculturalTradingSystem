@@ -17,8 +17,10 @@
 <body class="#ccff90 light-green accent-1">
 
 <?php
-      //include("dblink.php");
-      session_start();
+      if(!isset($_SESSION)) 
+      { 
+        session_start(); 
+      }
 
       /* initialize as dummy*/
       /*
@@ -27,61 +29,51 @@
        seller = 2;
        */
 
-      $_SESSION['login']="1";
-
       /* get the user id*/
       //$sid = $_POST['seller'];
       //$bid = $_POST['buyer'];
 
       $isTouch=empty($_SESSION['login']);
+
       if($isTouch){
        $loginStatus ="0";
+
       }
       else{
         $loginStatus = $_SESSION['login'];
       }
-
             filter($loginStatus);
 
       
             ?>
-
-            <?php 
-            function test(){
-              echo "test";
-              //filter(0);
-            }
-            ?>
             <?php
 
 
-
   function filter($loginStatus){
- echo $loginStatus;
-    
       /**
        buyer
        **/
-
       if($loginStatus==1){
-      ?> 
-      <!--Drop Down Structure-->  
-      <!--Login--------------------->
-      <ul id="authentication" class="dropdown-content">
-         <?php
+              ?>
+                
 
-      
-          //$user_name = "select name from buyer where sid ='".$_POST["buyer"]."'";
-          //$ret = mysqli_query ($con,$query);
-         $user_name = "Hsu";
-           
-          echo "<li><a href='#!'' id='user_name'>".$user_name."</a></li>";
-    
-            ?>
+    <!--Login--------------------->
+    <ul id="authentication" class="dropdown-content">
+         <?php
+          include("dblink.php");
+          $query = "select * from buyer where bid ='".$_POST["email"]."'";
+          //$query = "select * from seller where sid ='1'";
+          $ret = mysqli_query ($con,$query);          
+          $row=mysqli_fetch_array($ret); 
+          $noRows=mysqli_num_rows($ret);
+          if($noRows>0){
+            echo "<li><a href='#!'' id='user_name'>".$row["BNAME"]."</a></li>";
+          }
+          ?>
         <li class="divider"></li>
         <li><a href="#!" id="switch_account">Switch account</a></li>
         <li class="divider"></li>
-        <li><a href="#!"  id="logout">Logout</a></li>
+         <li><a href="logout.php" id="logout">Logout</a></li>
       </ul>
 
       <!--Product--------------------->
@@ -104,18 +96,21 @@
     <!--Login--------------------->
     <ul id="authentication" class="dropdown-content">
 
-         <?php
-          //$user_name = "select name from seller where sid ='".$_POST["seller"]."'";
-          //$ret = mysqli_query ($con,$query);
-          $user_name = "Hsu";
-           
-          echo "<li><a href='#!'' id='user_name'>".$user_name."</a></li>";
-    
-            ?>
+      <?php
+          include("dblink.php");
+          $query = "select * from seller where sid ='".$_POST["email"]."'";
+          //$query = "select * from seller where sid ='1'";
+          $ret = mysqli_query ($con,$query);          
+          $row=mysqli_fetch_array($ret);
+          $noRows=mysqli_num_rows($ret);  
+          if($noRows>0){
+            echo "<li><a href='#!'' id='user_name'>".$row["SNAME"]."</a></li>";
+          }
+          ?>
       <li class="divider"></li>
       <li><a href="#!" id="switch_account">Switch account</a></li>
       <li class="divider"></li>
-      <li><a href="#!" id="logout" onclick="test()">Logout</a></li>
+      <li><a href="logout.php" id="logout">Logout</a></li>
     </ul>
 
     <!--Product--------------------->
@@ -127,6 +122,7 @@
                 <?php
                 }
                 else{
+
                 ?>
                  <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
@@ -164,12 +160,13 @@
   <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Login To Your Account</h3>
-    <form class="col s12">
+    <form action="test.php" method="post" class="col s12">
 
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate" required="required">
+          <input id="email" type="text" class="validate" required="required" 
+          name="email">
           <label for="name">Name</label>
         </div>
       </div>
@@ -198,6 +195,11 @@
         </p>
       </div>
       <br>
+
+        <input type="hidden">
+
+
+
       <button type="submit" class="btn btn-primary green white-text">Login</button>
     </form>
     </div>
