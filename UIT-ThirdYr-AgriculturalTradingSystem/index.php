@@ -17,114 +17,119 @@
 <body class="#ccff90 light-green accent-1">
 
 <?php
-      if(!isset($_SESSION)) 
-      { 
-        session_start(); 
-      }
-
-      /* initialize as dummy*/
-      /*
-       normal user = 0;
-       buyer = 1;
-       seller = 2;
-       */
-
-      /* get the user id*/
-      //$sid = $_POST['seller'];
-      //$bid = $_POST['buyer'];
-
-      $isTouch=empty($_SESSION['login']);
-
-      if($isTouch){
-       $loginStatus ="0";
-
-      }
-      else{
-        $loginStatus = $_SESSION['login'];
-      }
-            filter($loginStatus);
-
       
-            ?>
-            <?php
+  if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
 
+  /* initialize as dummy*/
+  /*
+   normal user = 0;
+   buyer = 1;
+   seller = 2;
+   */
+
+  /* get the user id*/
+  //$sid = $_POST['seller'];
+  //$bid = $_POST['buyer'];
+
+  $isTouch=empty($_SESSION['login']);
+
+  if($isTouch){
+   $loginStatus ="0";
+
+  }
+  else{
+    $loginStatus = $_SESSION['login'];
+  }
+  
+  filter($loginStatus);
 
   function filter($loginStatus){
       /**
        buyer
        **/
-      if($loginStatus==1){
-              ?>
+  if($loginStatus==1){
+  
+  ?>
                 
 
-    <!--Login--------------------->
-    <ul id="authentication" class="dropdown-content">
-         <?php
-          include("dblink.php");
-          $query = "select * from buyer where bid ='".$_POST["email"]."'";
-          //$query = "select * from seller where sid ='1'";
-          $ret = mysqli_query ($con,$query);          
-          $row=mysqli_fetch_array($ret); 
-          $noRows=mysqli_num_rows($ret);
-          if($noRows>0){
-            echo "<li><a href='#!'' id='user_name'>".$row["BNAME"]."</a></li>";
-          }
-          ?>
-        <li class="divider"></li>
-        <li><a href="#!" id="switch_account">Switch account</a></li>
-        <li class="divider"></li>
-         <li><a href="logout.php" id="logout">Logout</a></li>
-      </ul>
-
-      <!--Product--------------------->
-      <ul id="products" class="dropdown-content">
-        <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
-        <li class="divider"></li>
-        <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
-        <li class="divider"></li>
-        <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
-      </ul>
-
-        <?php
-              }
-
-              /**seller**/
-              else if($loginStatus==2){
-              ?>
-                
-
-    <!--Login--------------------->
-    <ul id="authentication" class="dropdown-content">
-
-      <?php
-          include("dblink.php");
-          $query = "select * from seller where sid ='".$_POST["email"]."'";
-          //$query = "select * from seller where sid ='1'";
-          $ret = mysqli_query ($con,$query);          
-          $row=mysqli_fetch_array($ret);
-          $noRows=mysqli_num_rows($ret);  
-          if($noRows>0){
-            echo "<li><a href='#!'' id='user_name'>".$row["SNAME"]."</a></li>";
-          }
-          ?>
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+     <?php
+      include("dblink.php");
+      $query = "select * from buyer where bid ='".$_POST["email"]."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret); 
+      $noRows=mysqli_num_rows($ret);
+      if($noRows>0){
+        echo "<li><a href='#!'' id='user_name'>".$row["BNAME"]."</a></li>";
+      }
+      ?>
       <li class="divider"></li>
       <li><a href="#!" id="switch_account">Switch account</a></li>
       <li class="divider"></li>
       <li><a href="logout.php" id="logout">Logout</a></li>
-    </ul>
+  </ul>
 
-    <!--Product--------------------->
-    <ul id="products" class="dropdown-content">
-      <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
-      <li class="divider"></li>
-      <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
-    </ul>
-                <?php
-                }
-                else{
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
 
-                ?>
-                 <!--Login--------------------->
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
+    <li class="divider"></li>
+    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
+  </ul>
+
+  <?php
+  }
+  ?>
+  <?php
+
+  /**seller**/
+  else if($loginStatus==2){
+  ?>
+                
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+
+  <?php
+      include("dblink.php");
+      $query = "select * from seller where sid ='".$_POST["email"]."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret);
+      $noRows=mysqli_num_rows($ret);  
+      if($noRows>0){
+        echo "<li><a href='#!'' id='user_name'>".$row["SNAME"]."</a></li>";
+      }
+      ?>
+    <li class="divider"></li>
+    <li><a href="#!" id="switch_account">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php" id="logout">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
+  </ul>
+  <?php
+  }
+  ?>
+
+  <?php
+  else{
+  ?>
+
+
+  <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
     <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
     <li class="divider"></li>
@@ -137,12 +142,11 @@
     <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
   </ul>
-  <?php
-              }
-  } 
-?>
-              
 
+  <?php
+  }
+  } 
+  ?>
 
   <!---Navigation------------------------------------->
   
