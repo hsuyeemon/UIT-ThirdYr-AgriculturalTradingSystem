@@ -51,7 +51,8 @@
        buyer
        **/
   if($loginStatus==1){
-  
+ 
+
   ?>
                 
 
@@ -86,13 +87,8 @@
 
   <?php
   }
-  ?>
-  <?php
-
-  /**seller**/
-  else if($loginStatus==2){
-  ?>
-                
+ elseif ($loginStatus == 2) {
+ ?>            
 
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
@@ -122,9 +118,7 @@
   </ul>
   <?php
   }
-  ?>
-
-  <?php
+ 
   else{
   ?>
 
@@ -164,7 +158,7 @@
   <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Login To Your Account</h3>
-    <form action="test.php" method="post" class="col s12">
+    <form action="login.php" method="post" class="col s12">
 
       <div class="row ">
         <div class="input-field col s12 ">
@@ -358,15 +352,15 @@
 <!-- HeroShot & HeadLine-------------------------------->
 <div class = "content hero-shot">
   <div class = "transparent">
-   	<div class="white-text center-align" style="
+    <div class="white-text center-align" style="
         padding: 64px;margin: 0px;">
-   		 <h4 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
+       <h4 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
          <!--ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ -->
            Marketplace for people in agricultural sector
          </h4>
          <br><br>
          <a href="#" class="btn btn-default waves-effect pulse white green-text">View how it works</a>
-   	</div>   
+    </div>   
    </div>
 </div>
 
@@ -721,28 +715,28 @@ The important benefit is that "Public can buy agricultural products cheeper than
 </footer>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript">
-	function language(){
-		document.getElementById("language").innerHTML="ဘာသာစကား";
-		
-		document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
-		document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
-		document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-		document.getElementById("contact").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
-		document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
-		document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
-		document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-		document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
-		document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
-		document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
-		document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္";
-		document.getElementById("user_name").innerHTML="အမည္";
-		document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
-		document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
-		document.getElementById("contact_us").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
-		document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+  function language(){
+    document.getElementById("language").innerHTML="ဘာသာစကား";
+    
+    document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
+    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+    document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    document.getElementById("contact").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+    document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
+    document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
+    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
+    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
+    document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
+    document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
+    document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္";
+    document.getElementById("user_name").innerHTML="အမည္";
+    document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
+    document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
+    document.getElementById("contact_us").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+    document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
 
-	}
-</script>	
+  }
+</script> 
 
 
 <!-----Script to Import---------------------->
