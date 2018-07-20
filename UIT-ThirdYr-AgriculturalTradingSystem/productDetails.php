@@ -28,11 +28,11 @@ require ("dblink.php");
    $time = $rows['CMT_TIME'];
    
   }
-  $sell ="SELECT * FROM SELLER LEFT OUTER JOIN PRODUCT USING(SID) WHERE 'PRODUCT.PID' ='1' ";
+  $sell ='SELECT * FROM SELLER LEFT OUTER JOIN PRODUCT USING(SID) WHERE PID = "1"  ';
    $result = mysql_query($sell) or die(mysql_error());
      while ($rows  = mysql_fetch_array($result)) { 
-      $seller = $rows['SELLER.SNAME'];
-      $phone = $rows['SELLER.S_PHONENO'];
+      $seller = $rows['SNAME'];
+      $phone = $rows['S_PHONENO'];
     }
 ?>
 <!---Navigation------------------------------------->
@@ -243,13 +243,13 @@ require ("dblink.php");
     <div class="col s3 padding-normal">
       <h3 id="productName" name="pname"><?php echo "$pname"; ?></h3>
       <p class="details" id="productPrice" name="price"><?php echo "$price"; ?> Kyats per item</p>
-      <p class="details" id="productVendor"><a> <?php echo "$phone"; ?> </a></p><br>
+      <p class="details" id="productVendor"><a> <?php echo "$seller"; ?> </a></p><br>
         <a class="btn green white-text"  id="call">Call to Vendor<i class="material-icons right">phone</i></a>
       
        
    </div>
      <div class="carousel col s9" style="margin:0px;height: 200px; ">
-    <a class="carousel-item" href="#one!"><?php echo '<img src="images/" .$image width="500px">'?></a>
+    <a class="carousel-item" href="#one!"><?php echo '<img src="images/'.$image.'" />';?></a>
     <a class="carousel-item" href="#two!"><img src="images/fertilizer.jpg"></a>
     <a class="carousel-item" href="#three!"><img src="images/fertilizer.jpg"></a>
     <a class="carousel-item" href="#four!"><img src="images/fertilizer.jpg"></a>
