@@ -1,79 +1,52 @@
-<?php
-    $username="root";
-    $password="";
-    $database="ATS";
+<!doctype html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="$1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    #get the data from form fields
-    $Id=$_POST['SID'];
-    $P_name=$_POST['SNAME'];
-    $address1=$_POST['S_PHONENO'];
-    $address2=$_POST['S_ADDRESS'];
-    $email=$_POST['S_EMAIL'];
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-    mysql_connect("localhost",$username,$password);
-    mysql_select_db($database) or die("unable to select database");
+    <title>test</title>
 
-    if($_POST['insertrecord']=="insert"){
-        $query="INSERT into SELLER (SID,SNAME,S_PHONENO,S_ADDRESS,S_EMAIL) values('$Id','$P_name','$address1','$address2','$email')";
-        echo "inside";
-        mysql_query($query);
-        $query1="SELECT * from SELLER";
-        $result=mysql_query($query1);
-        $num= mysql_numrows($result);
+    <?php
+    require ("dblink.php");
+    ?>
 
-        #echo"<b>output</b>";
-        print"<table border size=1 > 
-        <tr><th>Id</th>
-        <th>P_name</th>
-        <th>address1</th>
-        <th>address2</th>
-        <th>email</th>
-        </tr>";
-        $i=0;
-        while($i<$num)
-        {
-            $Id=mysql_result($result,$i,"SID");
-            $P_name=mysql_result($result,$i,"SNAME");
-            $address1=mysql_result($result,$i,"S_PHONENO");
-            $address2=mysql_result($result,$i,"S_ADDRESS");
-            $email=mysql_result($result,$i,"S_EMAIL");
-            echo"<tr><td>$Id</td>
-            <td>$P_name</td>
-            <td>$address1</td>
-            <td>$address2</td>
-            <td>$email</td>
-            </tr>";
-            $i++;
-        }
-        print"</table>";
+</head>
+<body>
+     <?php
+    if(isset($_POST['save'])){
+        $sql = "INSERT INTO test (name, password, EMAIL)
+        VALUES ('".$_POST["username"]."','".$_POST["email"]."')";
+        echo "record";
+        $result = mysql_query($sql);
+        if (!mysql_query($sql))
+
+  {
+
+  die('Error: ' . mysql_error());
+
+  }
     }
+    else {echo "not record";}
 
-    if($_POST['searchdata']=="Search")
-    {
-        $P_name=$_POST['SNAME'];
-        $query="SELECT * from SELLER where SNAME='$P_name'";
-        $result=mysql_query($query);
-        print"<table border size=1><tr><th>Id</th>
-        <th>P_name</th>
-        <th>address1</th>
-        <th>address2</th>
-        <th>email</th>
-        </tr>";
-        while($row=mysql_fetch_array($result))
-        {
-            $Id=$row['SID'];
-            $P_name=$row['SNAME'];
-            $address1=$row['S_PHONENO'];
-            $address2=$row['S_ADDRESS'];
-            $email=$row['S_EMAIL'];
-            echo"<tr><td>$Id</td>
-            <td>$P_name</td>
-            <td>$address1</td>
-            <td>$address2</td>
-            <td>$email</td>
-            </tr>";
-        }
-        echo"</table>";
-    }
-    echo"<a href=lab2.html> Back </a>";
-?>
+    ?>
+<div>
+    <form method="post"> 
+    <label id="first"> First name:</label><br/>
+    <input type="text" name="username"><br/>
+
+    <label id="first">Password</label><br/>
+    <input type="" name="password"><br/>
+
+    <label id="first">Email</label><br/>
+    <input type="text" name="email"><br/>
+
+    <button type="submit" name="save">save</button>
+    <button type="submit" name="get">get</button>
+    </form>
+</div>
+</body>
+</html>

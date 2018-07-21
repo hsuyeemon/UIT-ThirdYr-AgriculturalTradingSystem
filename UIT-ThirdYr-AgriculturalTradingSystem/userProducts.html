@@ -209,7 +209,24 @@
      </head>
 
 <body class="#ccff90 light-green accent-1">
+<?php 
+require ("dblink.php"); 
+if(isset($_POST['submit']))
+{
+    $sql = "INSERT INTO PRODUCT (PNAME, PRICE, P_IMAGE,P_DESCRIPTION,STATUS,SID,CATEGORY_ID)
+    VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."',1,3,1)";
+    if (!mysql_query($sql))
 
+  {
+
+  die('Error: ' . mysql_error());
+
+  }
+
+echo "1 record added";
+}
+
+    ?>
   <!---Navigation------------------------------------->
   
   <!-- Dropdown Structure -->

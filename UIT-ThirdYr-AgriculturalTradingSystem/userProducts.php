@@ -211,17 +211,22 @@
 <body class="#ccff90 light-green accent-1">
 <?php 
 require ("dblink.php"); 
-
-if(isset($_POST['submit'])){
-        $sql = "INSERT INTO PRODUCT (PNAME, PRICE, P_IMAGE,P_DESCRIPTION)
-        VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]." , '".$_POST["brief"]."')";
-      }
+$id='2';
+while(isset($_POST['submit'])){
+        $id =$id++;
+    $sql = "INSERT INTO PRODUCT (PID,PNAME, PRICE, P_IMAGE,P_DESCRIPTION,STATUS,SID,CATEGORY_ID)
+    VALUES ($id,'".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','1',NULL,'1')";
+    
+      
       if(mysql_query($sql)){
     echo "Records added successfully.";
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysql_error($sql);
 }
+
         $result = mysql_query($sql) or die(mysql_error());
+       
+      }
     ?>
   <!---Navigation------------------------------------->
   
@@ -1056,7 +1061,7 @@ if(isset($_POST['submit'])){
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" id="brief" class="materialize-textarea validate" name="bried"></textarea>
+        <textarea name="brief" id="brief" class="materialize-textarea validate" name="brief"></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
@@ -1188,3 +1193,4 @@ if(isset($_POST['submit'])){
             
 </body>
 </html>
+ No newline at end of file
