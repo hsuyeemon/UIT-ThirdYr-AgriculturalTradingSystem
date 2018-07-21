@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
       <!--Import Google Icon Font-->
@@ -11,9 +11,142 @@
 
       <link href="css/style.css" rel="stylesheet" />  
 
+
 </head>
 
 <body class="#ccff90 light-green accent-1">
+
+<?php
+      //include("dblink.php");
+      session_start();
+
+      /* initialize as dummy*/
+      /*
+       normal user = 0;
+       buyer = 1;
+       seller = 2;
+       */
+
+      $_SESSION['login']="1";
+
+      /* get the user id*/
+      //$sid = $_POST['seller'];
+      //$bid = $_POST['buyer'];
+
+      $isTouch=empty($_SESSION['login']);
+      if($isTouch){
+       $loginStatus ="0";
+      }
+      else{
+        $loginStatus = $_SESSION['login'];
+      }
+
+            filter($loginStatus);
+
+      
+            ?>
+
+            <?php 
+            function test(){
+              echo "test";
+              //filter(0);
+            }
+            ?>
+            <?php
+
+
+
+  function filter($loginStatus){
+ echo $loginStatus;
+    
+      /**
+       buyer
+       **/
+
+      if($loginStatus==1){
+      ?> 
+      <!--Drop Down Structure-->  
+      <!--Login--------------------->
+      <ul id="authentication" class="dropdown-content">
+         <?php
+
+      
+          //$user_name = "select name from buyer where sid ='".$_POST["buyer"]."'";
+          //$ret = mysqli_query ($con,$query);
+         $user_name = "Hsu";
+           
+          echo "<li><a href='#!'' id='user_name'>".$user_name."</a></li>";
+    
+            ?>
+        <li class="divider"></li>
+        <li><a href="#!" id="switch_account">Switch account</a></li>
+        <li class="divider"></li>
+        <li><a href="#!"  id="logout">Logout</a></li>
+      </ul>
+
+      <!--Product--------------------->
+      <ul id="products" class="dropdown-content">
+        <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+        <li class="divider"></li>
+        <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
+        <li class="divider"></li>
+        <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
+      </ul>
+
+        <?php
+              }
+
+              /**seller**/
+              else if($loginStatus==2){
+              ?>
+                
+
+    <!--Login--------------------->
+    <ul id="authentication" class="dropdown-content">
+
+         <?php
+          //$user_name = "select name from seller where sid ='".$_POST["seller"]."'";
+          //$ret = mysqli_query ($con,$query);
+          $user_name = "Hsu";
+           
+          echo "<li><a href='#!'' id='user_name'>".$user_name."</a></li>";
+    
+            ?>
+      <li class="divider"></li>
+      <li><a href="#!" id="switch_account">Switch account</a></li>
+      <li class="divider"></li>
+      <li><a href="#!" id="logout" onclick="test()">Logout</a></li>
+    </ul>
+
+    <!--Product--------------------->
+    <ul id="products" class="dropdown-content">
+      <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+      <li class="divider"></li>
+      <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
+    </ul>
+                <?php
+                }
+                else{
+                ?>
+                 <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
+    <li class="divider"></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+  </ul>
+  <?php
+              }
+  } 
+?>
+              
+
 
   <!---Navigation------------------------------------->
   
@@ -26,30 +159,7 @@
     <li><a href="#" id="english" onclick="">English</a></li>
   </ul>
 
-  <!--Login--------------------->
-  <ul id="authentication" class="dropdown-content">
-    <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
-    <li class="divider"></li>
-    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
-    <li class="divider"></li>
-     <li><a href="#!" id="user_name">User Name</a></li>
-    <li class="divider"></li>
-    <li><a href="#!" id="switch_account">Switch account</a></li>
-    <li class="divider"></li>
-    <li><a href="#!" id="logout">Logout</a></li>
-  </ul>
-
-  <!--Product--------------------->
-  <ul id="products" class="dropdown-content">
-    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
-    <li class="divider"></li>
-    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
-    <li class="divider"></li>
-    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
-    <li class="divider"></li>
-    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
-  </ul>
-
+ 
   <!--Login Form------------>
   <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
@@ -659,6 +769,7 @@ The important benefit is that "Public can buy agricultural products cheeper than
                    $(document).ready(function(){
                    $('.sidenav').sidenav();
                     });
+                 //filter(0));
 
                 </script>
                  <script>
