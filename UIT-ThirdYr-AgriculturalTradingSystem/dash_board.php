@@ -145,7 +145,8 @@
             if($isTouch){
                 $loginStatus ="0";
 
-            echo "<script>alert('Please Log in first');setTimeout(function () {window.location.href= 'http://localhost/UIT-ThirdYr-AgriculturalTradingSystem/UIT-ThirdYr-AgriculturalTradingSystem/index.php';});</script>";exit();
+            echo "<script>alert('Please Log in first');setTimeout(function () {window.location.href= 'http://localhost/UIT-ThirdYr-AgriculturalTradingSystem/
+            UIT-ThirdYr-AgriculturalTradingSystem/index.php';});</script>";exit();
 
             }else{$loginStatus = $_SESSION['login'];}
 
