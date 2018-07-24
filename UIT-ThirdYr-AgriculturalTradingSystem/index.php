@@ -14,7 +14,8 @@
 
 </head>
 
-<body class="#ccff90 light-green accent-1">
+<!--body class="#ccff90 light-green accent-1"-->
+  <body class="white">
 
 <?php
       
@@ -127,7 +128,7 @@
   <ul id="authentication" class="dropdown-content">
     <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
     <li class="divider"></li>
-    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
+    <li><a href="#signupType" class="modal-trigger " id="sign_up">Sign Up</a></li>
     <li class="divider"></li>
   </ul>
 
@@ -203,8 +204,19 @@
     </div>
   </div>
 
+
+  <div id="signupType" class="modal fade large center-align" role="dialog">
+
+    <div class="modal-dialog" style="padding: 48px;">
+
+      <button id="seller" href="#signup_seller" class="modal-trigger btn btn-primary green white-text">Sign up as SELLER</button><br><br>
+      <button id="buyer" href="#signup_buyer" class="modal-trigger btn btn-primary green white-text">Sign up as BUYER</button>
+   
+    </div></div>
+      
+
   <!---Sign Up-------------------->
- <div id="signup" class="modal fade large" role="dialog">
+ <div id="signup_seller" class="modal fade large" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Create an Account</h3>
@@ -283,7 +295,7 @@
       </div>
     <div>
     <br>
-    <p>
+    <!--p>
       <label>
         <input class="with-gap" name="group3" type="radio" checked />
         <span>User Account</span>
@@ -294,7 +306,75 @@
         <input class="with-gap" name="group3" type="radio" />
         <span>Admin Account</span>
       </label>
-    </p>
+    </p-->
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+ <!---Sign Up-------------------->
+ <div id="signup_buyer" class="modal fade large" role="dialog">
+
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Create an Account</h3>
+    <form class="col s12" onsubmit="return validFunction()">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="name" type="text" class="validate" required="required">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="tel" type="tel" class="validate"required="required">
+          <label for="tel">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" required="required">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <input id="address" type="text" class="validate" required="required">
+          <label for="address" >Address</label>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="input-field col s12">
+           <i class="material-icons prefix">credit_card</i>
+          <input id="nrc" type="text" class="validate">
+          <label for="nrc">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="pw" type="password" class="validate" required="required">
+          <label for="pw">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="cpw" type="password" class="validate" required="required">
+          <label for="cpw">Comfirm Password</label>
+        </div>
+      </div>
+    <div>
+ 
     </div>
     <br>
     <button type="submit" class="btn btn-primary green white-text">Sign Up</button>

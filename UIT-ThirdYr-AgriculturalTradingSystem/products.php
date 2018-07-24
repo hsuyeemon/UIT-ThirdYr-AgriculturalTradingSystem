@@ -624,7 +624,7 @@
 
 
     
-echo "$noRows";
+//echo "$noRows";
       for($i=0;$i<$noRows;$i++){
          $row=mysqli_fetch_array($ret); 
       
