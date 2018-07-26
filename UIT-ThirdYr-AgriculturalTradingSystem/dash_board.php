@@ -46,13 +46,15 @@
 
             // Create our data table.
 
-
+            //data for pie chart
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Task');
             data.addColumn('number', 'Sold amount');
             data.addRows([
 
             <?php
+
+
 
                 include("dblink.php");
 
@@ -76,18 +78,13 @@
                     ?>
             ]);
 
-            /*var data2 = new google.visualization.DataTable();
-            data2.addColumn('string', 'Task');
-            data2.addColumn('number', 'Sold amount');
-            data2.addRows([
+            //This is for column chart
+            /*var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Task');
+            data1.addColumn('number', 'Sold amount');
+            data1.addRows([
 
             <?php
-
-
-                //$query = "select res.pname,count(oid) as coid from order_product inner join (select pid,pname from product where sid = 1) as res using(pid) group by (res.pname)";
-
-                //$ret = mysqli_query ($con,$query);
-
 
                 //$query2 = " select pname,count(pid) as cpid from product group by pname";
                 //$ret = mysqli_query ($con,$query2);
@@ -108,8 +105,8 @@
             var dashboard = new google.visualization.Dashboard(
             document.getElementById('dashboard_div'));
 
-            //var dashboard1 = new google.visualization.Dashboard(
-            //document.getElementById('dashboard_div1'));
+            var dashboard1 = new google.visualization.Dashboard(
+            document.getElementById('dashboard_div1'));
 
             // Create a range slider, passing some options
             var donutRangeSlider = new google.visualization.ControlWrapper({
@@ -133,7 +130,7 @@
             }
             });
 
-            /*var columnChart = new google.visualization.ChartWrapper({
+            var columnChart = new google.visualization.ChartWrapper({
             'chartType': 'ColumnChart',
             'containerId': 'chart_div1',
             'options': {
@@ -142,16 +139,18 @@
             'pieSliceText': 'value',
             'legend': 'right'
             }
-            });*/
+            });
+
             // Establish dependencies, declaring that 'filter' drives 'pieChart',
             // so that the pie chart will only display entries that are let through
             // given the chosen slider range.
             dashboard.bind(donutRangeSlider, pieChart);
-            //dashboard1.bind(donutRangeSlider, columnChart);
+            dashboard1.bind(donutRangeSlider, columnChart);
 
             // Draw the dashboard.
             dashboard.draw(data);
-            //dashboard1.draw(data);
+            dashboard1.draw(data);
+            //dashboard1.draw(data1);
             }
         </script>
     </head>

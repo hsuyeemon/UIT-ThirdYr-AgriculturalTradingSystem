@@ -822,8 +822,7 @@
             </svg>
         </div>
     </div>
-        </div>
-</div>
+        </div></div>
 </div>
 
 <div id="Equipments">
@@ -1076,7 +1075,7 @@
    
   </script>
 
-<!-- script for mobile nav -->
+  <!-- script for mobile nav -->
 
                   <script type="text/javascript">
                    $(document).ready(function(){
