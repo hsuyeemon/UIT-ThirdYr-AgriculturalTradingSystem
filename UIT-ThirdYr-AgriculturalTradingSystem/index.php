@@ -706,7 +706,7 @@
 
 
 <!--Features-->
-<div class="feature #b9f6ca green accent-1 padding-normal-sync">
+<div class="feature #c8e6c9 green lighten-4 padding-normal-sync">
   <h4 class="center-align header">What we do</h4>
   <div class="row text-center container">
    
@@ -841,7 +841,6 @@ The important benefit is that "Public can buy agricultural products cheeper than
 
     });
       
-    
   </script>
   <!-- script for mobile nav -->
 
