@@ -128,7 +128,7 @@
   <ul id="authentication" class="dropdown-content">
     <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
     <li class="divider"></li>
-    <li><a href="#signupType" class="modal-trigger " id="sign_up">Sign Up</a></li>
+    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
     <li class="divider"></li>
   </ul>
 
@@ -205,18 +205,18 @@
   </div>
 
 
-  <div id="signupType" class="modal fade large center-align" role="dialog">
+  <!--div id="signupType" class="modal fade large center-align" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
 
       <button id="seller" href="#signup_seller" class="modal-trigger btn btn-primary green white-text">Sign up as SELLER</button><br><br>
       <button id="buyer" href="#signup_buyer" class="modal-trigger btn btn-primary green white-text">Sign up as BUYER</button>
    
-    </div></div>
+    </div></div-->
       
 
   <!---Sign Up-------------------->
- <div id="signup_seller" class="modal fade large" role="dialog">
+ <div id="signup" class="modal fade large" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Create an Account</h3>
@@ -295,7 +295,7 @@
       </div>
     <div>
     <br>
-    <!--p>
+    <p>
       <label>
         <input class="with-gap" name="group3" type="radio" checked />
         <span>User Account</span>
@@ -315,7 +315,7 @@
 </div>
 
  <!---Sign Up-------------------->
- <div id="signup_buyer" class="modal fade large" role="dialog">
+ <!--div id="signup_buyer" class="modal fade large" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Create an Account</h3>
@@ -380,7 +380,7 @@
     <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
   </form>
   </div>
-</div>
+</div-->
 
 <!---Navigation-->
 <nav style="margin-bottom: 0px;padding: 0;">

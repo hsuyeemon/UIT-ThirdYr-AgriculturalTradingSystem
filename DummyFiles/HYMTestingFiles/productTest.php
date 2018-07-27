@@ -2,13 +2,13 @@
 
 
       include("dblink.php");
-      $queryForFertilizer = "select * from product where category like 'Fertilizer%'";
+      /*$queryForFertilizer = "select * from product where category like 'Fertilizer%'";
       $ret = mysqli_query ($con,$queryForFertilizer);          
      $noRows=mysqli_num_rows($ret);
 
 
 		
-echo "$noRows";
+      echo "$noRows";
       for($i=0;$i<$noRows;$i++){
       	 $row=mysqli_fetch_array($ret); 
       
@@ -36,5 +36,22 @@ echo "$noRows";
 ";
 
       }
+*/
+      //$query1 = "select count(distinct(catagory)) as numSubCatagory from product where catagory like 'saab/%';";
+
+      $query = "select distinct substring(catagory,5) as subCatagory from product where catagory like 'saab/%';";
+      $ret = mysqli_query ($con,$query);          
+     $noRows=mysqli_num_rows($ret);
+
+         
+ //echo $row;
+
+     for($i=0;$i<$noRows;$i++){
+      
+$row=mysqli_fetch_array($ret); 
+      echo $row["subCatagory"];
+
+  }
+
 
       ?>
