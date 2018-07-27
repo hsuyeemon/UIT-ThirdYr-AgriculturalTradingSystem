@@ -13,26 +13,26 @@
 <?php 
 require ("dblink.php"); 
 
- $product    = "SELECT * FROM PRODUCT WHERE PID='1'";
+ $product    = "SELECT * FROM product WHERE pid='1'";
    $result = mysql_query($product) or die(mysql_error());
      while ($rows  = mysql_fetch_array($result)) { 
-   $pname = $rows['PNAME'];
-   $price = $rows['PRICE'];
-   $des = $rows['P_DESCRIPTION'];
-   $image = $rows['P_IMAGE'];
+   $pname = $rows['pname'];
+   $price = $rows['price'];
+   $des = $rows['p_description'];
+ 
   }
-  $cmt = "SELECT * FROM COMMENT WHERE OID='1'";
+  /*$cmt = "SELECT * FROM comment WHERE oid='1'";
   $result = mysql_query($cmt) or die(mysql_error());
      while ($rows  = mysql_fetch_array($result)) { 
    $commentText = $rows['CMT_TEXT'];
    $time = $rows['CMT_TIME'];
    
-  }
-  $sell ='SELECT * FROM SELLER LEFT OUTER JOIN PRODUCT USING(SID) WHERE PID = "1"  ';
+  }*/
+  $sell ='SELECT * FROM seller LEFT OUTER JOIN product USING(sid) WHERE pid = "1"  ';
    $result = mysql_query($sell) or die(mysql_error());
      while ($rows  = mysql_fetch_array($result)) { 
-      $seller = $rows['SNAME'];
-      $phone = $rows['S_PHONENO'];
+      $seller = $rows['sname'];
+      $phone = $rows['s_phoneno'];
     }
 ?>
 <!---Navigation------------------------------------->
@@ -244,16 +244,20 @@ require ("dblink.php");
       <h3 id="productName" name="pname"><?php echo "$pname"; ?></h3>
       <p class="details" id="productPrice" name="price"><?php echo "$price"; ?> Kyats per item</p>
       <p class="details" id="productVendor"><a> <?php echo "$seller"; ?> </a></p><br>
-        <a class="btn green white-text"  id="call">Call to Vendor<i class="material-icons right">phone</i></a>
+        
+        <a class="btn green white-text" href="tel:<?php echo $phone; ?>" id="call">Call to Vendor</a>
       
        
    </div>
-     <div class="carousel col s9" style="margin:0px;height: 200px; ">
-    <a class="carousel-item" href="#one!"><?php echo '<img src="images/'.$image.'" />';?></a>
-    <a class="carousel-item" href="#two!"><img src="images/fertilizer.jpg"></a>
-    <a class="carousel-item" href="#three!"><img src="images/fertilizer.jpg"></a>
-    <a class="carousel-item" href="#four!"><img src="images/fertilizer.jpg"></a>
-    <a class="carousel-item" href="#five!"><img src="images/fertilizer.jpg"></a>
+    <div class="carousel col s9" style="margin:0px;height: 200px; ">
+      <?php 
+       $result = mysql_query($product) or die(mysql_error());
+      $filearray=array();
+
+while($row = mysql_fetch_assoc($result)){ ?>
+
+    <a class="carousel-item" href="#one!"><img src="images/<?php echo $row['photofile'] ?>" ></a>
+    <?php } ?>
     </div>
       </div>
       

@@ -209,6 +209,8 @@
      </head>
 
 <body class="#ccff90 light-green accent-1">
+   
+
 <?php 
 require ("dblink.php"); 
 $id='2';
@@ -228,6 +230,131 @@ while(isset($_POST['submit'])){
        
       }
     ?>
+<?php 
+require ("dblink.php"); 
+if(isset($_POST['add'])){
+       
+    $sql = "INSERT INTO PRODUCT (PID,PNAME, PRICE, P_IMAGE,P_DESCRIPTION,STATUS,SID,CATEGORY_ID)
+    VALUES ('7','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."',NULL,NULL,NULL)";
+    
+      
+      if(mysql_query($sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysql_error($sql);
+}
+
+        $result = mysql_query($sql) or die(mysql_error());
+      }
+    
+
+    ?>
+ 
+
+    <div id="addProducts"  class="modal fade" role="dialog">
+    <div class="padding-normal modal-dialog">
+      <h3>Add your Products</h3>
+ <div class="row">
+    <form class="col s12">
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <input id="pname" name="pname" type="text" class="validate" value="<?php echo $pname; ?>">
+          <label for="pname">Product name</label>
+        </div>
+      </div>
+
+      <!-- for price per unit -->
+
+       <div class="row ">
+        <div class="input-field inline col s5">
+          <input id="price" name="price" type="text" class="validate" value="<?php echo $price; ?>">
+          <label for="price">Price</label>
+        </div>
+        <span class="col s1">per</span>
+        <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" name="unit" id="unit">
+    <option value=""  disabled selected>Choose your option unit</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="min" name="min" type="text" class="validate">
+          <label for="min">Minimum buyable amount</label>
+        </div>
+      </div>
+
+      <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="max" name="min" type="text" class="validate">
+          <label for="max">Maximum buyable amount</label>
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate" value="<?php echo $des; ?>"></textarea>
+        <label for="brief">Brief description of the product</label>
+        </div>
+      </div>
+
+
+   <!-- for maximum amount -->
+
+
+<!-- for qualification
+--><div>
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2" id="qualification" name="qualification">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+
+<!-- for media for product image
+--><br><br>
+<div class="file-field input-field">
+      <div class="btn green white-text">
+        <span>File</span>
+        <input type="file" name="image" id="image" multiple value="<?php echo $image; ?>">
+
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+    <br>
+    <br><div>
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="add" id="add">ADD
+    <i class="material-icons right">send</i>
+  </button> </td>
+  <td>
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
+    <i class="material-icons right">cancel</i>
+  </button></td></tr></table>
+
+     </form>
+
+  </div>
+</div>
+</div>
+</div>
+
   <!---Navigation------------------------------------->
   
   <!-- Dropdown Structure -->
@@ -441,7 +568,7 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
           <a href="productDetails.html">
@@ -449,14 +576,26 @@ while(isset($_POST['submit'])){
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
          <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+           <button href = "#addProducts" class="btn green modal-trigger">Edit<i class="material-icons right">edit</i></button>
+          </div>
+         
+          
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
-        <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-    </div></div>
+        <!--p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p-->
+          
+    </div>
+  </div>
 
 
 
@@ -466,9 +605,17 @@ while(isset($_POST['submit'])){
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
          <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green" >Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -476,14 +623,22 @@ while(isset($_POST['submit'])){
     </div></div>
 
  <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+        <a href="productDetails.php">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -496,10 +651,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+<div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -525,6 +688,7 @@ while(isset($_POST['submit'])){
 </div>
 
 <div class="card #ccff90 light-green accent-1 padding-normal">
+
   <div id="Agricultural_sub2">
 
     <h4>Beans</h4>
@@ -533,34 +697,52 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+          <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
          <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
-        <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-    </div></div>
+        <!--p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p-->
+          
+    </div>
+  </div>
 
 
 
       <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+         <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
          <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -568,14 +750,22 @@ while(isset($_POST['submit'])){
     </div></div>
 
  <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-         <a href="productDetails.html">
+        <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -588,10 +778,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+<div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -615,8 +813,6 @@ while(isset($_POST['submit'])){
     </div>
         </div>
 </div>
-</div>
-
 
 
 <div id="fertilizer">
@@ -630,17 +826,25 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
          <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -654,10 +858,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -669,10 +881,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -685,10 +905,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -714,7 +942,7 @@ while(isset($_POST['submit'])){
 </div>
 
 <div class="card #ccff90 light-green accent-1 padding-normal">
-  <div id="Agricultural_sub2">
+  <div id="Fertilizer_sub2">
 
     <h4>Beans</h4>
   <div id="jssor_4" style="position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:320px;overflow:hidden;visibility:hidden;">
@@ -722,17 +950,25 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
          <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -746,10 +982,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -757,14 +1001,22 @@ while(isset($_POST['submit'])){
     </div></div>
 
  <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-         <a href="productDetails.html">
+        <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -777,10 +1029,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -804,7 +1064,6 @@ while(isset($_POST['submit'])){
     </div>
         </div>
 </div>
-</div>
 
 <div id="Equipments">
   <h3>Equipments</h3>
@@ -817,17 +1076,25 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
          <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -841,10 +1108,18 @@ while(isset($_POST['submit'])){
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -852,14 +1127,22 @@ while(isset($_POST['submit'])){
     </div></div>
 
  <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-         <a href="productDetails.html">
+        <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -868,14 +1151,22 @@ while(isset($_POST['submit'])){
 
 
      <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+         <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -909,17 +1200,127 @@ while(isset($_POST['submit'])){
         <!--div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
         </div-->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:2px;width:1000px;height:280px;overflow:hidden;padding: 8px;">
           
         <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+         <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
-        
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button href = "#addProducts" class="btn green modal-trigger">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div id="addProducts"  class="modal fade" role="dialog">
+    <div class="padding-normal modal-dialog">
+      <h3>Add your Products</h3>
+ <div class="row">
+    <form class="col s12">
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <input id="pname" name="pname" type="text" class="validate">
+          <label for="pname">Product name</label>
+        </div>
       </div>
+
+      <!-- for price per unit -->
+
+       <div class="row ">
+        <div class="input-field inline col s5">
+          <input id="price" name="price" type="text" class="validate">
+          <label for="price">Price</label>
+        </div>
+        <span class="col s1">per</span>
+        <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" name="unit" id="unit">
+    <option value=""  disabled selected>Choose your option unit</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="min" name="min" type="text" class="validate">
+          <label for="min">Minimum buyable amount</label>
+        </div>
+      </div>
+
+      <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="max" name="min" type="text" class="validate">
+          <label for="max">Maximum buyable amount</label>
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description of the product</label>
+        </div>
+      </div>
+
+
+   <!-- for maximum amount -->
+
+
+<!-- for qualification
+--><div>
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2" id="qualification" name="qualification">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+
+<!-- for media for product image
+--><br><br>
+<div class="file-field input-field">
+      <div class="btn green white-text">
+        <span>File</span>
+        <input type="file" name="image" id="image" multiple>
+
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+    <br>
+    <br><div>
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="add" id="add">ADD
+    <i class="material-icons right">send</i>
+  </button> </td>
+  <td>
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
+    <i class="material-icons right">cancel</i>
+  </button></td></tr></table>
+
+     </form>
+
+  </div>
+  </div>
+</div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
+        
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -929,14 +1330,22 @@ while(isset($_POST['submit'])){
 
 
       <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+         <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -944,14 +1353,22 @@ while(isset($_POST['submit'])){
     </div></div>
 
  <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-       <a href="productDetails.html">
+        <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -960,14 +1377,22 @@ while(isset($_POST['submit'])){
 
 
      <div class="card"  style="border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);">
-        <a href="productDetails.html">
+         <a href="productDetails.html">
         <div class="card-image">
           <img src="images/2446.jpg" height="160px" width="160px">
         </div></a>
-         <div class="card-content" >
-        <span class="card-title activator grey-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+       <div class="card-content" >
+        <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
+        <div class="row">
+          <div class="col s6">
+            <button class="btn green">Edit<i class="material-icons right">edit</i></button>
+          </div>
+          <div class="col s6">
+          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          </div>
+          
         
-      </div>
+      </div></div>
       <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
         <p>I am a very simple card. I am good at containing small bits of information.
@@ -991,30 +1416,27 @@ while(isset($_POST['submit'])){
     </div>
         </div>
 </div>
-</div>
-</div>
+
 <div class="fixed-action-btn padding-normal">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">mode_edit</i>
   </a>
   <ul>
-    <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons">add</i></a></li>
-    <li><a class="btn-floating yellow darken-1 modal-trigger" href="#addProducts"><i class="material-icons">edit</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">delete</i></a></li>
+    <li><a class="btn-floating red modal-trigger" href="#addProducts1"><i class="material-icons">add</i></a></li>
+    
     <li><a class="btn-floating blue" href="dash_board.html"><i class="material-icons">insert_chart</i></a></li>
   </ul>
 </div>
 
 
-<div id="addProducts" class="modal fade" role="dialog">
+<div id="addProducts1" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
-      <form method="post">
  <div class="row">
     <form class="col s12">
       <div class="row ">
         <div class="input-field col s12 ">
-          <input id="pname" type="text" class="validate" name="pname">
+          <input id="pname" name="pname" type="text" class="validate">
           <label for="pname">Product name</label>
         </div>
       </div>
@@ -1023,14 +1445,14 @@ while(isset($_POST['submit'])){
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input id="price" type="text" class="validate" name="price">
+          <input id="price" name="price" type="text" class="validate">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3">
-    <option value="" disabled selected>Choose your option unit</option>
+  <select class="browser-default green lighten-3" name="unit" id="unit">
+    <option value=""  disabled selected>Choose your option unit</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
     <option value="3">Option 3</option>
@@ -1042,7 +1464,7 @@ while(isset($_POST['submit'])){
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="min" type="text" class="validate">
+          <input id="min" name="min" type="text" class="validate">
           <label for="min">Minimum buyable amount</label>
         </div>
       </div>
@@ -1051,7 +1473,7 @@ while(isset($_POST['submit'])){
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="max" type="text" class="validate">
+          <input id="max" name="min" type="text" class="validate">
           <label for="max">Maximum buyable amount</label>
         </div>
       </div>
@@ -1061,7 +1483,7 @@ while(isset($_POST['submit'])){
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" id="brief" class="materialize-textarea validate" name="brief"></textarea>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
@@ -1072,8 +1494,8 @@ while(isset($_POST['submit'])){
 
 <!-- for qualification
 --><div>
-     <label>Qualification</label>
-  <select class="browser-default green lighten-2">
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2" id="qualification" name="qualification">
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -1083,20 +1505,20 @@ while(isset($_POST['submit'])){
 
 <!-- for media for product image
 --><br><br>
-<div class="file-field input-field" >
+<div class="file-field input-field">
       <div class="btn green white-text">
         <span>File</span>
-        <input type="file" multiple name="image">
+        <input type="file" name="image" id="image" multiple>
 
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files" >
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
       </div>
     </div>
 
     <br>
     <br><div>
-<table><tr><td></td><td><button class="btn green white-text" type="submit" name="submit">ADD
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="submit" >ADD
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
@@ -1193,4 +1615,3 @@ while(isset($_POST['submit'])){
             
 </body>
 </html>
- No newline at end of file

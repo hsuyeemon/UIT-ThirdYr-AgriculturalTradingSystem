@@ -3,7 +3,7 @@
             $usernm   = "root";
             $passwd   = "";
             $host     = "localhost";
-            $database = "ATS";
+            $database = "agri";
 
             //$Name=$_POST['Name'];
             //$Username=$_POST['User_name'];
@@ -14,7 +14,7 @@
             mysql_select_db($database);
 
 	mysql_select_db($database);
-	echo "connect";
+	
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
