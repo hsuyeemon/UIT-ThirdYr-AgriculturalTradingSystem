@@ -1,3 +1,10 @@
+<?php
+      
+  if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +25,6 @@
   <body class="white">
 
 <?php
-      
-  if(!isset($_SESSION)) 
-  { 
-    session_start(); 
-  }
-
   /* initialize as dummy*/
   /*
    normal user = 0;

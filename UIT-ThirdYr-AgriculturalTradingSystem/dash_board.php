@@ -1,3 +1,6 @@
+<?php
+  if(!isset($_SESSION)){session_start();}
+  ?>
 <!DOCTYPE html>
 <html>
 
@@ -54,18 +57,15 @@
 
             <?php
 
-
-
                 include("dblink.php");
-
 
                 //$query = "select res.pname,count(oid) as coid from order_product inner join (select pid,pname from product where sid = 1) as res using(pid) group by (res.pname)";
 
                 //$ret = mysqli_query ($con,$query);
 
 
-                $query1 = " select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = 1) as res using(pid) group by (res.pname);";
-                $ret = mysqli_query ($con,$query1);
+                $query= " select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = 1) as res using(pid) group by (res.pname);";
+                $ret = mysqli_query ($con,$query);
 
 
                 $noRows=mysqli_num_rows($ret);
@@ -79,26 +79,26 @@
             ]);
 
             //This is for column chart
-            /*var data1 = new google.visualization.DataTable();
+            var data1 = new google.visualization.DataTable();
             data1.addColumn('string', 'Task');
-            data1.addColumn('number', 'Sold amount');
+            data1.addColumn('number', 'Montly Sale');
             data1.addRows([
 
             <?php
 
-                //$query2 = " select pname,count(pid) as cpid from product group by pname";
-                //$ret = mysqli_query ($con,$query2);
+                $query1 = " select pname,count(pid) as cpid from product group by pname";
+                $ret1 = mysqli_query ($con,$query1);
 
 
-                //$noRows=mysqli_num_rows($ret);
+                $noRows1=mysqli_num_rows($ret1);
 
 
-                //for($i=1;$i<=$noRows;$i++){
-                   // $row=mysqli_fetch_array($ret);
-                    //echo "['".$row["pname"]."',".$row["coid"]."],";}
+                for($j=1;$j<=$noRows1;$j++){
+                    $row1=mysqli_fetch_array($ret1);
+                    echo "['".$row1["pname"]."',".$row1["cpid"]."],";}
                    // echo "['".$row["pname"]."',".$row["amount"]."],";}
                     ?>
-            ]);*/
+            ]);
 
 
             // Create a dashboard.
@@ -118,13 +118,22 @@
             }
             });
 
+            var donutRangeSlider1 = new google.visualization.ControlWrapper({
+            'controlType': 'NumberRangeFilter',
+            'containerId': 'filter_div1',
+            'options': {
+
+            'filterColumnLabel': 'Montly Sale'
+            }
+            });
+
             // Create a pie chart, passing some options
             var pieChart = new google.visualization.ChartWrapper({
             'chartType': 'PieChart',
             'containerId': 'chart_div',
             'options': {
             'height':300,
-            'backgroundColor': '#ccff90',
+            'backgroundColor': '#ffffff',
             'pieSliceText': 'value',
             'legend': 'right'
             }
@@ -135,32 +144,34 @@
             'containerId': 'chart_div1',
             'options': {
             'height':500,
-            'backgroundColor': '#ccff90',
+            'backgroundColor': '#ffffff',
             'pieSliceText': 'value',
             'legend': 'right'
             }
             });
+            //'backgroundColor': '#ccff90',
 
             // Establish dependencies, declaring that 'filter' drives 'pieChart',
             // so that the pie chart will only display entries that are let through
             // given the chosen slider range.
             dashboard.bind(donutRangeSlider, pieChart);
-            dashboard1.bind(donutRangeSlider, columnChart);
+            dashboard1.bind(donutRangeSlider1, columnChart);
 
             // Draw the dashboard.
             dashboard.draw(data);
-            dashboard1.draw(data);
-            //dashboard1.draw(data1);
+            //dashboard1.draw(data);
+            dashboard1.draw(data1);
             }
         </script>
     </head>
 
-    <body class="#ccff90 light-green accent-1">
+    <!--body class="#ccff90 light-green accent-1"-->
+    <body class="white">
 
 
         <?php
 
-            if(!isset($_SESSION)){session_start();}
+          
 
             /* initialize as dummy*//*normal user = 0;buyer = 1;seller = 2;*/
 
@@ -338,7 +349,7 @@
                 <h3>Login To Your Account</h3>
 
                 <form
-                    action="test.php"
+                    action="index.php"
                     class="col s12"
                     method="post">
 
@@ -799,18 +810,29 @@
         </nav>
 
         <div class="content padding-normal center-align">
+            <div class="row">
+                <br>
+            </div>
 
             <div class="row">
 
-                <div class="col s10">
+                <div class="col s12">
 
                     <div
                         class="padding-normal"
                         id="dashboard_div">
                         <!--Divs that will hold each control and chart-->
+
+                        <h4>Products<br>
+
                         <div id="filter_div"></div>
 
                         <div id="chart_div"></div>
+
+                        <hr>
+                        <h4>Monthy sale products<br>
+
+                        <div id="filter_div1"></div>
 
                         <div id="chart_div1"></div>
                     </div>
