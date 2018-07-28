@@ -17,6 +17,10 @@ include('db_config.php');
 $result = mysqli_query($connection,"SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid
 ");
 
+$result_for_rating=mysqli_query($connection,"SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid)");
+while($row = mysqli_fetch_array($result_for_rating))
+{ echo "<p>".$row['rating']."</p>";
+}
 
 while($row = mysqli_fetch_array($result))
 {
