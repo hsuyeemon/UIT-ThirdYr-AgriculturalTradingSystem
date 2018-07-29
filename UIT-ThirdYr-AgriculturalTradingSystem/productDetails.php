@@ -61,14 +61,14 @@ require ("dblink.php");
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate">
+          <input  type="text" class="validate">
           <label for="email">Name</label>
         </div>
       </div>
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <input type="password" class="validate">
           <label for="password">Password</label>
         </div>
         <label style='float: right;'>
@@ -116,7 +116,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate">
+          <input  type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
@@ -124,14 +124,14 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">home</i>
-          <input id="email" type="email" class="validate">
+          <input type="email" class="validate">
           <label for="email">Address</label>
         </div>
       </div>
 
      <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input type="email" class="validate">
           <label for="email">NRC</label>
         </div>
       </div>
@@ -139,7 +139,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <input type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
@@ -147,7 +147,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input id="email" type="email" class="validate">
+          <input  type="email" class="validate">
           <label for="email">Comfirm Password</label>
         </div>
       </div>
@@ -485,7 +485,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
       <div class="row">
         
         <div class="input-field col s10 ">
-          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+          <input  type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
           <label for="email">Email</label>
         </div>
         <div class="input-field col s2">
@@ -537,7 +537,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>   
+  
 
   
 
