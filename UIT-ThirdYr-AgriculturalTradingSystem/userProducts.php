@@ -211,33 +211,131 @@
 <body class="#ccff90 light-green accent-1">
    
 
-<?php 
-require ("dblink.php"); 
-$result = mysql_query("SELECT * FROM product");
+<?php
+ require('dblink.php');
+ $result = mysql_query("SELECT * FROM product");
 $num_rows = mysql_num_rows($result);
+$total=++$num_rows;
+    if(isset($_POST['save'])){
+        echo "string";
+        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','".$_POST["category"]."','1')";
+       $result=mysql_query($sql);
+    }
+ 
+if($result) {echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully added');
+    </script>");}
+else {echo("<script LANGUAGE='JavaScript'>
+    window.alert(mysql_error());
+    </script>");}
+    # code...
 
-
-if(isset($_POST['add'])){
-        
-    $sql = "INSERT INTO product(pid, pname, price, p_image, p_description, status, min_amount, max_amount, UNIT, qualification, category, sid) VALUES ('$num_rows++','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','1','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','".$_POST["category"]."',NULL)";
-    
-      $result = mysql_query($sql) or die(mysql_error());
-      if($result){
-    echo "Records added successfully.";
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysql_error($sql);
-}
-
-        
-       
-      }
     ?>
-
-
     
 
+    <div id="addProducts" class="modal fade" role="dialog">
+    <div class="padding-normal modal-dialog">
+      <h3>Add your Products</h3>
+ <div class="row">
+    <form class="col s12" method="post">
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <input  name="pname" type="text" class="validate">
+          <label for="pname">Product name</label>
+        </div>
+      </div>
 
-   
+      <!-- for price per unit -->
+
+       <div class="row ">
+        <div class="input-field inline col s5">
+          <input  name="price" type="text" class="validate">
+          <label for="price">Price</label>
+        </div>
+        <span class="col s1">per</span>
+        <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" name="unit" >
+    <option value=""  disabled selected>Choose your option unit</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input  name="min" type="text" class="validate">
+          <label for="min">Minimum buyable amount</label>
+        </div>
+      </div>
+
+      <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="max" type="text" class="validate">
+          <label for="max">Maximum buyable amount</label>
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief"  class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description of the product</label>
+        </div>
+      </div>
+
+
+   <!-- for maximum amount -->
+
+
+<!-- for qualification
+--><div>
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2"  name="qualification">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+
+<!-- for media for product image
+--><br><br>
+<div class="file-field input-field">
+      <div class="btn green white-text">
+        <span>File</span>
+        <input type="file" name="image" multiple>
+
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+    <br>
+    <br><div>
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="save">ADD
+    <i class="material-icons right">send</i>
+  </button> </td>
+  <td>
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
+    <i class="material-icons right">cancel</i>
+  </button></td></tr></table>
+</div>
+
+     </form>
+
+  </div>
+  </div>
+</div>
 
   <!---Navigation------------------------------------->
   
@@ -1097,109 +1195,7 @@ if(isset($_POST['add'])){
           <div class="col s6">
             <button href = "#addProducts" class="btn green modal-trigger">Edit<i class="material-icons right">edit</i></button>
           </div>
-          <div id="addProducts"  class="modal fade" role="dialog">
-    <div class="padding-normal modal-dialog">
-      <h3>Add your Products</h3>
- <div class="row">
-    <form class="col s12">
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <input  name="pname" type="text" class="validate">
-          <label for="pname">Product name</label>
-        </div>
-      </div>
-
-      <!-- for price per unit -->
-
-       <div class="row ">
-        <div class="input-field inline col s5">
-          <input 
-           name="price" type="text" class="validate">
-          <label for="price">Price</label>
-        </div>
-        <span class="col s1">per</span>
-        <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" name="unit" id="unit" name="unit">
-    <option value=""  disabled selected>Choose your option unit</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-        </div>
-      </div>
-
-      <!-- for minimum amount -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="min" name="min" type="text" class="validate">
-          <label for="min">Minimum buyable amount</label>
-        </div>
-      </div>
-
-      <!-- for maximum amount -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="max" name="max" type="text" class="validate">
-          <label for="max">Maximum buyable amount</label>
-        </div>
-      </div>
-
-   <!-- for brief description  -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
-        <label for="brief">Brief description of the product</label>
-        </div>
-      </div>
-
-
-   <!-- for maximum amount -->
-
-
-<!-- for qualification
---><div>
-     <label>Qualification</label> 
-  <select class="browser-default green lighten-2" id="qualification" name="qualification" name="qualification">
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-</div>
-
-<!-- for media for product image
---><br><br>
-<div class="file-field input-field">
-      <div class="btn green white-text">
-        <span>File</span>
-        <input type="file" name="image" id="image" multiple>
-
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
-
-    <br>
-    <br>
-<table><tr><td></td><td><button class="btn green white-text" type="submit" name="submit" >ADD
-    <i class="material-icons right">send</i>
-  </button> </td>
-  <td>
-  <button class="btn green white-text" type="submit" name="add">Cancle
-    <i class="material-icons right">cancel</i>
-  </button></td></tr></table>
-
-     </form>
-
-  </div>
-  </div>
-</div>
           <div class="col s6">
           <button class="btn green">Delete<i class="material-icons right">delete</i></button>
           </div>
@@ -1307,116 +1303,13 @@ if(isset($_POST['add'])){
     <i class="large material-icons">mode_edit</i>
   </a>
   <ul>
-    <li><a class="btn-floating red modal-trigger" href="#addProducts1"><i class="material-icons">add</i></a></li>
+    <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons">add</i></a></li>
     
     <li><a class="btn-floating blue" href="dash_board.html"><i class="material-icons">insert_chart</i></a></li>
   </ul>
 </div>
 
 
-<div id="addProducts1" class="modal fade" role="dialog">
-    <div class="padding-normal modal-dialog">
-      <h3>Add your Products</h3>
- <div class="row">
-    <form class="col s12">
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <input  name="pname" type="text" class="validate">
-          <label for="pname">Product name</label>
-        </div>
-      </div>
-
-      <!-- for price per unit -->
-
-       <div class="row ">
-        <div class="input-field inline col s5">
-          <input  name="price" type="text" class="validate">
-          <label for="price">Price</label>
-        </div>
-        <span class="col s1">per</span>
-        <div class="input-field inline col s3 row s5">
-          
-  <select class="browser-default green lighten-3" name="unit" >
-    <option value=""  disabled selected>Choose your option unit</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-        </div>
-      </div>
-
-      <!-- for minimum amount -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input  name="min" type="text" class="validate">
-          <label for="min">Minimum buyable amount</label>
-        </div>
-      </div>
-
-      <!-- for maximum amount -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input name="min" type="text" class="validate">
-          <label for="max">Maximum buyable amount</label>
-        </div>
-      </div>
-
-   <!-- for brief description  -->
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief"  class="materialize-textarea validate"></textarea>
-        <label for="brief">Brief description of the product</label>
-        </div>
-      </div>
-
-
-   <!-- for maximum amount -->
-
-
-<!-- for qualification
---><div>
-     <label>Qualification</label> 
-  <select class="browser-default green lighten-2"  name="qualification">
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-</div>
-
-<!-- for media for product image
---><br><br>
-<div class="file-field input-field">
-      <div class="btn green white-text">
-        <span>File</span>
-        <input type="file" name="image" multiple>
-
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
-
-    <br>
-    <br><div>
-<table><tr><td></td><td><button class="btn green white-text" type="submit" name="submit" >ADD
-    <i class="material-icons right">send</i>
-  </button> </td>
-  <td>
-  <button class="btn green white-text" type="submit" name="cancel">Cancle
-    <i class="material-icons right">cancel</i>
-  </button></td></tr></table>
-</div>
-
-     </form>
-
-  </div>
-  </div>
-</div>
 
 
     <!---Footer-------------------------------------------------->
