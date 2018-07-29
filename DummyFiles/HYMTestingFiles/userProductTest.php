@@ -1,3 +1,4 @@
+ 
 <?php
  if(!isset($_SESSION)) 
   { 
@@ -7,14 +8,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--Import Google Icon Font-->
+  <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
         <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
- 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <link href="css/style.css" rel="stylesheet" />  
    <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
@@ -633,8 +634,9 @@ function showProducts($category){
   $length=$length+2;
 
   include("dblink.php");
+  $sid = 1;
 
-  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
+  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid='$sid';";
       
   $ret = mysqli_query ($con,$query);          
   $noRows=mysqli_num_rows($ret);
@@ -656,7 +658,7 @@ function showProducts($category){
 
         $subCatagory = $row['subCatagory'];
         
-  $query2 = "select * from product where category like '$category%$subCatagory'";
+  $query2 = "select * from product where category like '$category%$subCatagory' and sid='$sid'";
 
   $ret2 = mysqli_query ($con,$query2);          
   $noRows2=mysqli_num_rows($ret2);
@@ -671,16 +673,22 @@ function showProducts($category){
     echo "
 
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
-          <a href='productDetails.php?productId='".$row2["pid"]."''>
+          <a href='productDetails.html'>
             <div class='card-image'>
             <img src='".$url."' height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
           <span class='card-title activator grey-text text-darken-4'>".
-            $row2['pname']."<i class='material-icons right'>more_vert</i>
-          </span>
+            $row2['pname']."</span>
+            <div class='row'>
+          <div class='col s6'>
+            <button class='btn green'>Edit<i class='material-icons right'>edit</i></button>
           </div>
+          <div class='col s6'>
+          <button class='btn green'>Delete<i class='material-icons right'>delete</i></button>
+          </div>
+          </div></div>
           <div class='card-reveal'>
             <span class='card-title grey-text text-darken-4'>".
             $row2['pname']."<i class='material-icons right'>close</i>

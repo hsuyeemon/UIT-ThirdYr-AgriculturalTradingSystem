@@ -23,10 +23,12 @@
       		//if($_POST['status'] == "seller"){
 		       if($status == "2"){
       			$_SESSION['login']="2";
+            $_SESSION['sid']=$_POST["email"];
 
       		}
       		else if($status == "1"){
       			$_SESSION['login']="1";
+             $_SESSION['bid']=$_POST["email"];
       		}
        		include("index.php");
 

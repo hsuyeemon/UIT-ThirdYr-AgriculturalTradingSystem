@@ -45,7 +45,7 @@
   else{
     $loginStatus = $_SESSION['login'];
   }
-  
+ 
   filter($loginStatus);
 
   function filter($loginStatus){
@@ -53,7 +53,7 @@
        buyer
        **/
   if($loginStatus==1){
- 
+ echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
 
   ?>
                 
@@ -62,13 +62,14 @@
   <ul id="authentication" class="dropdown-content">
      <?php
       include("dblink.php");
-      $query = "select * from buyer where bid ='".$_POST["email"]."'";
+      $bid = $_SESSION['bid'];
+      $query = "select * from buyer where bid ='".$bid."'";
       //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
       $row=mysqli_fetch_array($ret); 
       $noRows=mysqli_num_rows($ret);
       if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row["BNAME"]."</a></li>";
+        echo "<li><a href='#!'' id='user_name'>".$row['bname']."</a></li>";
       }
       ?>
       <li class="divider"></li>
@@ -90,6 +91,7 @@
   <?php
   }
  elseif ($loginStatus == 2) {
+  echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
  ?>            
 
   <!--Login--------------------->
@@ -97,13 +99,14 @@
 
   <?php
       include("dblink.php");
-      $query = "select * from seller where sid ='".$_POST["email"]."'";
+      $sid = $_SESSION['sid'];
+      $query = "select * from seller where sid ='".$sid."'";
       //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
       $row=mysqli_fetch_array($ret);
       $noRows=mysqli_num_rows($ret);  
       if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row["SNAME"]."</a></li>";
+        echo "<li><a href='#!'' id='user_name'>".$row['sname']."</a></li>";
       }
       ?>
     <li class="divider"></li>
@@ -167,7 +170,7 @@
           <i class="material-icons prefix">account_circle</i>
           <input id="email" type="text" class="validate" required="required" 
           name="email">
-          <label for="name">Name</label>
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="row ">
