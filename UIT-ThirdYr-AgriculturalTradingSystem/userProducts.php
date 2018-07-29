@@ -226,8 +226,7 @@ $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
        $result=mysql_query($sql);
     }
  
-if($result) {
-  echo ("<script LANGUAGE='JavaScript'>
+if($result) {echo ("<script LANGUAGE='JavaScript'>
     window.alert('Succesfully added');
     </script>");}
 else {echo("<script LANGUAGE='JavaScript'>
