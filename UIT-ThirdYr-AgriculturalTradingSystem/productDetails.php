@@ -34,6 +34,13 @@ require ("dblink.php");
       $seller = $rows['sname'];
       $phone = $rows['s_phoneno'];
     }
+    
+    $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid)";
+   $result = mysql_query($rating) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+      $rating = $rows['rating'];
+     
+    }
 ?>
 <!---Navigation------------------------------------->
   
@@ -61,14 +68,14 @@ require ("dblink.php");
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
-          <input  type="text" class="validate">
+          <input id="email" type="text" class="validate">
           <label for="email">Name</label>
         </div>
       </div>
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input type="password" class="validate">
+          <input id="password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
         <label style='float: right;'>
@@ -116,7 +123,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
-          <input  type="email" class="validate">
+          <input id="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
@@ -124,14 +131,14 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">home</i>
-          <input type="email" class="validate">
+          <input id="email" type="email" class="validate">
           <label for="email">Address</label>
         </div>
       </div>
 
      <div class="row">
         <div class="input-field col s12">
-          <input type="email" class="validate">
+          <input id="email" type="email" class="validate">
           <label for="email">NRC</label>
         </div>
       </div>
@@ -139,7 +146,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input type="password" class="validate">
+          <input id="password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
@@ -147,7 +154,7 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input  type="email" class="validate">
+          <input id="email" type="email" class="validate">
           <label for="email">Comfirm Password</label>
         </div>
       </div>
@@ -254,10 +261,10 @@ require ("dblink.php");
        $result = mysql_query($product) or die(mysql_error());
       $filearray=array();
 
-while($row = mysql_fetch_assoc($result)){ ?>
+while($row = mysql_fetch_assoc($result)){ 
 
-    <a class="carousel-item" href="#one!"><img src="images/<?php echo $row['photofile'] ?>" ></a>
-    <?php } ?>
+    echo '<a class="carousel-item" href="#one!"><img src="images/' .$row['p_image']. '" ></a>';
+     } ?>
     </div>
       </div>
       
@@ -334,7 +341,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container four">
@@ -345,7 +352,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                             <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container tree">
@@ -356,7 +363,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container two">
@@ -367,7 +374,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container one">
@@ -378,7 +385,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
       </div>
@@ -387,46 +394,29 @@ while($row = mysql_fetch_assoc($result)){ ?>
 </div>
   <!----------------Review Hightlight----------------->
   <section id="reviews" class="comments container">
-  <article class="comment">
+    <?php 
+    $cmt ="SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid";
+   $result = mysql_query($cmt) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) 
+     { 
+      $text = $rows['cmt_text'];
+      $time = $rows['cmt_time'];
+      $buyer= $rows['bname'];
+    echo  '<article class="comment">
     <a class="comment-img" href="#non">
       <img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50" />
     </a>
       
     <div class="comment-body">
       <div class="text">
-        <p><?php echo $commentText; ?></p>
+        <p>' .$text. '</p>
       </div>
-      <p class="attribution">by <a href="#non"></a> <?php echo $time;?></p>
+      <p class="attribution">by <a href="#non"></a> <a href="#non">' .$buyer.'</a>' ." at " .$time. '</p>
     </div>
-  </article>
-  
-  <article class="comment">
-    <a class="comment-img" href="#non">
-    <img src="http://lorempixum.com/50/50/people/7" alt="" width="50" height="50">
-    </a>
-      
-    <div class="comment-body">
-      <div class="text">
-        <p>This is a much longer one that will go on for a few lines.</p>
-        <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
-      </div>
-    <p class="attribution">by <a href="#non">Joe Bloggs</a> at 2:23pm, 4th Dec 2012</p>
-    </div>
-  </article>
-    
-  <article class="comment">
-    <a class="comment-img" href="#non">
-    <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/572942_100000672487970_422966851_q.jpg" alt="" width="50" height="50">
-    </a>
-      
-    <div class="comment-body">
-      <div class="text">
-        <p>Originally from <a href="https://cssdeck.com/item/301/timeline-style-blog-comments#comment_289">cssdeck.com</a> this presentation has been updated 
-        to looks more precisely to the facebook timeline</p>
-      </div>
-    <p class="attribution">by <a href="https://www.facebook.com/luky.TikTek">Luky Vj</a> at 2:44pm, 14th Apr 2012</p>
-    </div>
-  </article>
+  </article>';
+    }
+    ?>
+
 </section>​
 
 
@@ -485,7 +475,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
       <div class="row">
         
         <div class="input-field col s10 ">
-          <input  type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
           <label for="email">Email</label>
         </div>
         <div class="input-field col s2">
@@ -537,7 +527,7 @@ while($row = mysql_fetch_assoc($result)){ ?>
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
-  
+  <script src="js/init.js"></script>   
 
   
 
