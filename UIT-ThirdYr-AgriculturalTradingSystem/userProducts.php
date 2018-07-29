@@ -216,13 +216,18 @@
  $result = mysql_query("SELECT * FROM product");
 $num_rows = mysql_num_rows($result);
 $total=++$num_rows;
+
+
     if(isset($_POST['save'])){
-        echo "string";
-        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','".$_POST["category"]."','1')";
+        $seleced_val1=$_POST["selectitem"];
+$seleced_val2=$_POST["selectedsub"];
+$seleced_cata = $seleced_val1 . '/' . $seleced_val2;
+        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
        $result=mysql_query($sql);
     }
  
-if($result) {echo ("<script LANGUAGE='JavaScript'>
+if($result) {
+  echo ("<script LANGUAGE='JavaScript'>
     window.alert('Succesfully added');
     </script>");}
 else {echo("<script LANGUAGE='JavaScript'>
@@ -291,7 +296,23 @@ else {echo("<script LANGUAGE='JavaScript'>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
+<label>Category</label> 
+<select class="browser-default green lighten-2" name="selectitem" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
 
+<label>Brand</label> 
+<select class="browser-default green lighten-2" name="selectedsub" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
 
    <!-- for maximum amount -->
 
