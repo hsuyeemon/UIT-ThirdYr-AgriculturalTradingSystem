@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--Import Google Icon Font-->
+  <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
         <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
- 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <link href="css/style.css" rel="stylesheet" />  
   <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
@@ -213,25 +213,24 @@
 
 <?php
  require('dblink.php');
- $result = mysql_query("SELECT * FROM product");
+$result = mysql_query("SELECT * FROM product");
 $num_rows = mysql_num_rows($result);
 $total=++$num_rows;
 
 
     if(isset($_POST['save'])){
-        $seleced_val1=$_POST["selectitem"];
+$seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
         $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
        $result=mysql_query($sql);
     }
  
-if($result) {echo ("<script LANGUAGE='JavaScript'>
+if($result) {
+  echo ("<script LANGUAGE='JavaScript'>
     window.alert('Succesfully added');
     </script>");}
-else {echo("<script LANGUAGE='JavaScript'>
-    window.alert(mysql_error());
-    </script>");}
+else {echo mysql_error();}
     # code...
 
     ?>
@@ -298,7 +297,7 @@ else {echo("<script LANGUAGE='JavaScript'>
 <label>Category</label> 
 <select class="browser-default green lighten-2" name="selectitem" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="volvo">Volvo</option>
+  <option value="Fertilizer">Fertilizer</option>
   <option value="saab">Saab</option>
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
