@@ -30,6 +30,8 @@
       			$_SESSION['login']="1";
              $_SESSION['bid']=$_POST["email"];
       		}
+
+          session_write_close();
        		include("index.php");
 
           ?>

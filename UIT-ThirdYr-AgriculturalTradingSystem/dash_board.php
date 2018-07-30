@@ -86,16 +86,18 @@
 
             <?php
 
-                $query1 = " select pname,count(pid) as cpid from product group by pname";
+                $query1 = "select month(order_time) as Month,count(*) as pcount from order_product inner join (select pname,pid from product where sid=2)as res using (pid) group by month(order_time)";
                 $ret1 = mysqli_query ($con,$query1);
-
 
                 $noRows1=mysqli_num_rows($ret1);
 
-
+                
                 for($j=1;$j<=$noRows1;$j++){
-                    $row1=mysqli_fetch_array($ret1);
-                    echo "['".$row1["pname"]."',".$row1["cpid"]."],";}
+                $row1=mysqli_fetch_array($ret1);
+                $monthNum = $row1["Month"];
+                $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                $monthName = $dateObj->format('F');
+                    echo "['".$monthName."',".$row1["pcount"]."],";}
                    // echo "['".$row["pname"]."',".$row["amount"]."],";}
                     ?>
             ]);
