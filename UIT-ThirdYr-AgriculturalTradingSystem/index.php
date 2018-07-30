@@ -198,11 +198,6 @@
         </p>
       </div>
       <br>
-
-        <input type="hidden">
-
-
-
       <button type="submit" class="btn btn-primary green white-text">Login</button>
     </form>
     </div>

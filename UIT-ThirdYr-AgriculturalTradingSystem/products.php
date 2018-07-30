@@ -18,172 +18,7 @@
   <link href="css/style.css" rel="stylesheet" />  
    <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-        jssor_slider_init = function() {
-
-            var jssor_options = {
-              $AutoPlay: 0,
-              $AutoPlaySteps: 5,
-              $SlideDuration: 160,
-              $SlideWidth: 240,
-              $SlideSpacing:16,
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$,
-                $Steps: 5
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
-            };
-
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_options);
-            var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_options);
-            var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_options);
-            var jssor_4_slider = new $JssorSlider$("jssor_4", jssor_options);
-            var jssor_5_slider = new $JssorSlider$("jssor_5", jssor_options);
-            var jssor_6_slider = new $JssorSlider$("jssor_6", jssor_options);
-
-            /*#region responsive code begin*/
-
-            var MAX_WIDTH = 980;
-
-            function ScaleSlider1() {
-                var containerElement = jssor_1_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_1_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider1();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider1);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider1);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider1);
-
-                        function ScaleSlider2() {
-                var containerElement = jssor_2_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_2_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider2();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider2);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider2);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider2);
-
-                        function ScaleSlider3() {
-                var containerElement = jssor_3_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_3_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider3();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider3);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider3);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider3);
-
-
-            function ScaleSlider4() {
-                var containerElement = jssor_4_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_4_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider4();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider4);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider4);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider4);
-
-            
-
-                        function ScaleSlider5() {
-                var containerElement = jssor_5_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_5_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider5();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider5);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider5);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider5);
-
-                        function ScaleSlider6() {
-                var containerElement = jssor_6_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_6_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-             ScaleSlider6();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider6);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider6);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider6);
-
-/*
-             ScaleSlider(jssor_3_slider);
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            /*#endregion responsive code end*/
-
-        };
-    </script>
+       
     <style>
         /*jssor slider loading skin spin css*/
         .jssorl-009-spin img {
@@ -625,14 +460,22 @@
 
 static $jssor = 0;
 
+  include("dblink.php");
+
+            $sliderCount= 'select count(distinct(category))as ct from product';
+      
+            $result = mysqli_query ($con,$sliderCount);          
+           
+            $r=mysqli_fetch_array($result);
+            $count = $r['ct'];
 
 function showProducts($category){
 
   global $jssor;
   $length = strlen($category);
   $length=$length+2;
-
   include("dblink.php");
+
 
   $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
       
@@ -815,6 +658,60 @@ The important benefit is that "Public can buy agricultural products cheeper than
   </div>
 </footer>
 
+ <script type="text/javascript">
+        jssor_slider_init = function() {
+
+            var jssor_options = {
+              $AutoPlay: 0,
+              $AutoPlaySteps: 5,
+              $SlideDuration: 160,
+              $SlideWidth: 240,
+              $SlideSpacing:16,
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$,
+                $Steps: 5
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+            
+            var count =parseInt("<?php echo $count;?>");
+
+            for (var i = 1; i <= count; i++) {
+              //Things[i]
+              eval("jssor_" + i +"_slider"+ " = new $JssorSlider$('jssor_"+i+"', jssor_options)");
+            }
+           
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+
+              for (var i = 1; i <= count; i++) {
+              
+              eval("var containerElement = jssor_"+i+"_slider.$Elmt.parentNode;");
+              var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    eval("jssor_"+i+"_slider.$ScaleWidth(expectedWidth);");
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+
+                eval("$Jssor$.$AddEvent(window, 'load', ScaleSlider"+i+");       $Jssor$.$AddEvent(window, 'resize', ScaleSlider"+i+");    $Jssor$.$AddEvent(window, 'orientationchange', ScaleSlider"+i+");");
+                }
+                 
+                }
+
+            ScaleSlider();
+        };
+    </script>
 
 <!-----Script to Import---------------------->
 
@@ -836,21 +733,12 @@ The important benefit is that "Public can buy agricultural products cheeper than
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.modal').modal();
     $('select').formSelect();
-
+    $('.sidenav').sidenav();
 
     });
       
-   
   </script>
 
-<!-- script for mobile nav -->
-
-                  <script type="text/javascript">
-                   $(document).ready(function(){
-                   $('.sidenav').sidenav();
-                    });
-
-                </script>
 
     
             
