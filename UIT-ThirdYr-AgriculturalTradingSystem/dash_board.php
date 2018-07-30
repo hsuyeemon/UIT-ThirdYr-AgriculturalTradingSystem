@@ -64,7 +64,7 @@
                 //$ret = mysqli_query ($con,$query);
 
 
-                $query= " select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = 1) as res using(pid) group by (res.pname);";
+                $query= "select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = 2) as res using(pid) group by (res.pname);";
                 $ret = mysqli_query ($con,$query);
 
 
