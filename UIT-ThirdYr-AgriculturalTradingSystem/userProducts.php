@@ -240,10 +240,10 @@ else {echo mysql_error();}
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form class="col s12" method="post">
+    <form class="col s12" method="post" onsubmit="return pnamevalid()">
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" class="validate">
+          <input id="pname" name="pname" type="text" class="validate">
           <label for="pname">Product name</label>
         </div>
       </div>
@@ -252,13 +252,13 @@ else {echo mysql_error();}
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input  name="price" type="text" class="validate">
+          <input id="price" name="price" type="number" class="validate" required="#">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" name="unit" >
+  <select class="browser-default green lighten-3" id="unit" name="unit" >
     <option value=""  disabled selected>Choose your option unit</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -271,7 +271,7 @@ else {echo mysql_error();}
 
       <div class="row">
         <div class="input-field col s12">
-          <input  name="min" type="text" class="validate">
+          <input id="min" name="min" type="text" class="validate" required="#">
           <label for="min">Minimum buyable amount</label>
         </div>
       </div>
@@ -280,7 +280,7 @@ else {echo mysql_error();}
 
       <div class="row">
         <div class="input-field col s12">
-          <input name="max" type="text" class="validate">
+          <input id="max" name="max" type="text" class="validate" required="#">
           <label for="max">Maximum buyable amount</label>
         </div>
       </div>
@@ -290,12 +290,12 @@ else {echo mysql_error();}
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief"  class="materialize-textarea validate"></textarea>
+        <textarea id="brief" name="brief"  class="materialize-textarea validate"></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
 <label>Category</label> 
-<select class="browser-default green lighten-2" name="selectitem" >
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" >
   <option value="" disabled selected>Choose your option</option>
   <option value="Fertilizer">Fertilizer</option>
   <option value="saab">Saab</option>
@@ -304,7 +304,7 @@ else {echo mysql_error();}
 </select>
 
 <label>Brand</label> 
-<select class="browser-default green lighten-2" name="selectedsub" >
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" >
   <option value="" disabled selected>Choose your option</option>
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
@@ -318,7 +318,7 @@ else {echo mysql_error();}
 <!-- for qualification
 --><div>
      <label>Qualification</label> 
-  <select class="browser-default green lighten-2"  name="qualification">
+  <select class="browser-default green lighten-2" id="qualification"  name="qualification">
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -331,7 +331,7 @@ else {echo mysql_error();}
 <div class="file-field input-field">
       <div class="btn green white-text">
         <span>File</span>
-        <input type="file" name="image" multiple>
+        <input type="file" name="image" id="image" multiple>
 
       </div>
       <div class="file-path-wrapper">
@@ -1402,6 +1402,48 @@ else {echo mysql_error();}
 
                 </script>
 
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/addproductForm.js"></script>
+<script> 
+ 
+
+function pnamevalid()
+{
+  var pname = document.getElementById("pname").value;
+  var minnn= document.getElementById("min").value;
+  var maxx=document.getElementById("max").value;
+
+  var pnameReg = /^[a-zA-Z]+$/;
+  var minnnReg=/^-?\d*(\.\d+)?$/;
+  var maxxReg=/^-?\d*(\.\d+)?$/;
+
+  if (pname.match(pnameReg))
+  {
+    if (minnn.match(minnnReg))
+    {
+     if (maxx.match(maxxReg))
+         {
+            alert("Good");
+            return false;
+         }else 
+             {
+                alert("Invalid Max");
+                return false;
+              }
+    }
+    else
+    {
+      alert("Invalid minn");
+      return false;
+    }
+  }
+else {
+  alert ("Invalid pname");
+  return false;
+}
+}
+
+</script>
 
     
             
