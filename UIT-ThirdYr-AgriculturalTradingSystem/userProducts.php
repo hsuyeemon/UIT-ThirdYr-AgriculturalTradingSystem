@@ -332,9 +332,9 @@ else {echo mysql_error();}
           
   <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
     <option value=""  disabled selected>Choose your option unit</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
+    <option value="1">Gram</option>
+    <option value="2">mililiter</option>
+    <option value="3">Kyat Thar</option>
   </select>
         </div>
       </div>
@@ -371,23 +371,26 @@ else {echo mysql_error();}
       <div class="input-field inline col s5">
         <br><br>
 <label>Category</label>
-<select class="browser-default green lighten-2" id="selectitem" name="selectitem" >
+
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="Fertilizer">Fertilizer</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
    <br><br>
 <label>Brand</label> 
-<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" >
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" onchange="changeData()">
   <option value="" disabled selected>Choose your option</option>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="fruits" id="0">fruits</option>
+  <option value="grocery" id="1" >grocery</option>
+  <option value="stable" id="2">stable foods</option>
+  <option value="hello" id="3" style="display:none;">stable foods</option>
+  <option value="hello" id="4" style="display:none;">stable foods</option>
+  <option value="hello" id="5" style="display:none;">stable foods</option>
+  <option value="hello" id="6" style="display:none;">stable foods</option>
 </select>
 </div>
    <!-- for maximum amount -->
@@ -440,7 +443,7 @@ else {echo mysql_error();}
   <!--editProductsForm-->
 <div id="editProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
-      <h3>Add your Products</h3>
+      <h3>Edit your Products</h3>
  <div class="row">
     <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
@@ -462,6 +465,7 @@ else {echo mysql_error();}
           
   <select class="browser-default green lighten-3" name="unit" required="#">
     <option value="<?php echo $row["UNIT"];?>"  disabled selected><?php echo $row["UNIT"];?></option>
+    <option value="" disabled selected>Choose your option</option>
     <option value="1">Gram</option>
     <option value="2">mililiter</option>
     <option value="3">Kyat Thar</option>
@@ -501,23 +505,26 @@ else {echo mysql_error();}
       <div class="input-field inline col s5">
         <br><br>
 <label>Category</label>
-<select class="browser-default green lighten-2" id="selectitem" name="selectitem" >
+
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="Fertilizer">Fertilizer</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
    <br><br>
 <label>Brand</label> 
-<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" >
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" onchange="changeData()">
   <option value="" disabled selected>Choose your option</option>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="fruits" id="0">fruits</option>
+  <option value="grocery" id="1" >grocery</option>
+  <option value="stable" id="2">stable foods</option>
+  <option value="hello" id="3" style="display:none;">stable foods</option>
+  <option value="hello" id="4" style="display:none;">stable foods</option>
+  <option value="hello" id="5" style="display:none;">stable foods</option>
+  <option value="hello" id="6" style="display:none;">stable foods</option>
 </select>
 </div>
    <!-- for maximum amount -->
@@ -1668,6 +1675,41 @@ else {
   return false;
 }
 }
+
+</script>
+<script type="text/javascript">
+  function changeData() {
+  var e = document.getElementById("selectitem");
+  var strUser = e.options[e.selectedIndex].value;
+
+  switch(strUser){
+  
+    case "fert":document.getElementById("0").value="pesticide";
+                document.getElementById("0").innerHTML="pesticide";
+                document.getElementById("1").value="Nitrogen";
+                document.getElementById("1").innerHTML="Nitrogen fertilizer";
+                document.getElementById("2").value="phosphorous";
+                document.getElementById("2").innerHTML="phosphorous fertilizer";
+                document.getElementById("3").value="Potassium";
+                document.getElementById("3").innerHTML="Potassium fertilizer";
+                document.getElementById("3").style.display = "block";
+
+    break;
+    case "equi":document.getElementById("0").value="Cultipacker";
+                document.getElementById("0").innerHTML="Cultipacker";
+                document.getElementById("1").value="Harrow";
+                document.getElementById("1").innerHTML="Harrow";
+                document.getElementById("2").value="Roller";
+                document.getElementById("2").innerHTML="Roller";
+                document.getElementById("3").value="Subsoiler";
+                document.getElementById("3").innerHTML="Subsoiler";
+                document.getElementById("3").style.display = "block";
+    break;
+
+  }
+
+
+    }
 
 </script>
 
