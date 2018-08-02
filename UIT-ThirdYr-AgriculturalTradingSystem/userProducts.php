@@ -209,7 +209,100 @@
      </head>
 
 <body class="#ccff90 light-green accent-1">
+  
+<?php
+
+ require('dblink.php');
+$result = mysql_query("SELECT * FROM product");
+$num_rows = mysql_num_rows($result);
+$total=++$num_rows;
+
+
+    if(isset($_POST['save'])){
+  $seleced_val1=$_POST["selectitem"];
+$seleced_val2=$_POST["selectedsub"];
+$seleced_cata = $seleced_val1 . '/' . $seleced_val2;
    
+    // Full Name must be letters, dash and spaces only
+      if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["pname"]) === 0)
+      $errname = '<p class="errText">Please enter your product name </p>';
+    
+   
+        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
+       $result=mysql_query($sql);
+    
+  }
+ 
+if($result) {
+  echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully added');
+    </script>");}
+else {echo mysql_error();}
+    # code...
+
+    ?>
+
+    <?php
+
+# DELETE
+ include('dblink.php');
+ //$result = mysqli_query($con,"SELECT * FROM product");
+//$num_rows = mysqli_num_rows($result);
+//$total=++$num_rows;
+ 
+    if(isset($_GET['delnews'])){
+        echo "string";
+        
+
+$sql2 = "DELETE FROM product WHERE pid='10'";
+       $result2=mysql_query($sql2);
+       if($result2) {echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully deleted');
+    </script>");}
+else {echo mysql_error();}
+    }
+ 
+
+    # code...
+
+
+    ?>
+
+
+
+     <?php
+         //UPDATE
+ include('dblink.php');
+ //$result = mysqli_query($con,"SELECT * FROM product");
+//$num_rows = mysqli_num_rows($result);
+//$total=++$num_rows;
+ $result = mysql_query("SELECT * FROM product WHERE pid='11'");
+
+$row = mysql_fetch_array($result);
+echo $row["p_description"];
+echo $row["UNIT"];
+    if(isset($_POST['update'])){
+       
+        
+
+//$sql3 ="UPDATE product set pname=$_POST['pname'],price=$_POST['pname'],p_image=,$_POST['p_image'],p_description=$_POST['description'], 
+     // min_amount=$_POST['min'], max_amount=$_POST['max'], UNIT=$_POST['unit'], qualification=$_POST['qualification'] WHERE pid='1'";
+$sql3 ="UPDATE product set pname='".$_POST['pname']."',price='".$_POST['pname']."',p_image='".$_POST['image']."',p_description='".$_POST['brief']."', 
+      min_amount='".$_POST['min']."', max_amount='".$_POST['max']."', UNIT='".$_POST['unit']."', qualification='".$_POST['qualification']."' WHERE pid='11'";
+
+
+       $result3=mysql_query($sql3);
+       if($result3) {echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully update');
+    </script>");}
+else {echo mysql_error();}
+    }
+ 
+
+    # code...
+
+
+    ?>
 
 
     
@@ -218,11 +311,12 @@
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form action="add.php" class="col s12" method="post" onsubmit="return pnamevalid()">
+    <form id="form" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input id="pname" name="pname" type="text" class="validate">
+          <input id="pname" name="pname" type="text" class="validate" required="#">
           <label for="pname">Product name</label>
+          
         </div>
       </div>
 
@@ -230,13 +324,13 @@
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input id="price" name="price" type="number" class="validate" required="#">
+          <input id="price" name="price" type="number" class="validate" required="required">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" id="unit" name="unit" >
+  <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
     <option value=""  disabled selected>Choose your option unit</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -248,18 +342,20 @@
       <!-- for minimum amount -->
 
       <div class="row">
-        <div class="input-field col s12">
-          <input id="min" name="min" type="text" class="validate" required="#">
+        <div class="input-field col s5">
+          <input id="min" name="min" type="number" class="validate" required="required">
           <label for="min">Minimum buyable amount</label>
+          
         </div>
-      </div>
+     
 
       <!-- for maximum amount -->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="max" name="max" type="text" class="validate" required="#">
+      
+        <div class="input-field col s5">
+          <input id="max" name="max" type="number" class="validate" required="required">
           <label for="max">Maximum buyable amount</label>
+          
         </div>
       </div>
 
@@ -272,7 +368,9 @@
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
-<label>Category</label> 
+      <div class="input-field inline col s5">
+        <br><br>
+<label>Category</label>
 <select class="browser-default green lighten-2" id="selectitem" name="selectitem" >
   <option value="" disabled selected>Choose your option</option>
   <option value="Fertilizer">Fertilizer</option>
@@ -280,7 +378,9 @@
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
 </select>
-
+</div>
+<div class="input-field inline col s5">
+   <br><br>
 <label>Brand</label> 
 <select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" >
   <option value="" disabled selected>Choose your option</option>
@@ -289,12 +389,13 @@
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
 </select>
-
+</div>
    <!-- for maximum amount -->
 
 
 <!-- for qualification
---><div>
+--><div class="input-field inline col s10">
+<br><br>
      <label>Qualification</label> 
   <select class="browser-default green lighten-2" id="qualification"  name="qualification">
     <option value="" disabled selected>Choose your option</option>
@@ -306,10 +407,11 @@
 
 <!-- for media for product image
 --><br><br>
-<div class="file-field input-field">
+<div class="file-field input-field col s10">
       <div class="btn green white-text">
+
         <span>File</span>
-        <input type="file" name="image" id="image" multiple>
+        <input type="file" name="image" id="image" multiple required="#">
 
       </div>
       <div class="file-path-wrapper">
@@ -335,15 +437,15 @@
 </div>
 
   <!---Navigation------------------------------------->
-  //editProductsForm
+  <!--editProductsForm-->
 <div id="editProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form action="add.php" class="col s12" method="post" onsubmit="return pnamevalid()">
+    <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" value="<?php echo $_POST["pname"]?>" class="validate">
+          <input  name="pname" type="text" value="<?php echo $row["pname"]?>" class="validate">
           <label for="pname">Product name</label>
         </div>
       </div>
@@ -352,36 +454,38 @@
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input  name="price" type="text" value="<?php echo $_POST["price"]?>" class="validate">
+          <input  name="price" type="number" value="<?php echo $row["price"]?>" class="validate">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" name="unit" >
-    <option value="<?php echo $_POST["unit"]?>"  disabled selected>Choose your option unit</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
+  <select class="browser-default green lighten-3" name="unit" required="#">
+    <option value="<?php echo $row["UNIT"];?>"  disabled selected><?php echo $row["UNIT"];?></option>
+    <option value="1">Gram</option>
+    <option value="2">mililiter</option>
+    <option value="3">Kyat Thar</option>
   </select>
         </div>
       </div>
 
       <!-- for minimum amount -->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input  name="min" value="<?php echo $_POST["min"]?>" type="text" class="validate">
+       <div class="row">
+        <div class="input-field col s5">
+          <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $row["min_amount"]?>">
           <label for="min">Minimum buyable amount</label>
+          
         </div>
-      </div>
+     
 
       <!-- for maximum amount -->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input name="max" type="text" value="<?php echo $_POST["max"]?>" class="validate">
+      
+        <div class="input-field col s5">
+          <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $row["max_amount"]?>">
           <label for="max">Maximum buyable amount</label>
+          
         </div>
       </div>
 
@@ -390,37 +494,41 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" value="<?php echo $_POST["brief"]?>" class="materialize-textarea validate"></textarea>
+        <textarea class="materialize-textarea validate" name="brief" value="<?php echo $row["p_description"]?>" ></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
-
-
-   <!-- for maximum amount -->
-<label>Category</label> 
-<select class="browser-default green lighten-2" name="selectitem" >
+      <div class="input-field inline col s5">
+        <br><br>
+<label>Category</label>
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="volvo">Volvo</option>
+  <option value="Fertilizer">Fertilizer</option>
   <option value="saab">Saab</option>
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
 </select>
-
+</div>
+<div class="input-field inline col s5">
+   <br><br>
 <label>Brand</label> 
-<select class="browser-default green lighten-2" name="selectedsub" >
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" >
   <option value="" disabled selected>Choose your option</option>
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
 </select>
+</div>
+   <!-- for maximum amount -->
 
 
 <!-- for qualification
---><div>
+--><div class="input-field inline col s10">
+<br><br>
      <label>Qualification</label> 
-  <select class="browser-default green lighten-2"  name="qualification">
-    <option value="<?php echo $_POST["qualification"]?>" disabled selected>Choose your option</option>
+  <select class="browser-default green lighten-2" id="qualification"  name="qualification">
+    <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
     <option value="3">Option 3</option>
@@ -429,22 +537,25 @@
 
 <!-- for media for product image
 --><br><br>
-<div class="file-field input-field">
+<div class="file-field input-field col s10">
       <div class="btn green white-text">
+        
         <span>File</span>
-        <input type="file" value="<?php echo $_POST["image"]?>" name="image" multiple>
+        <input type="file" name="image" id="image" multiple>
 
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate"  type="text" placeholder="Upload one or more files">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
       </div>
     </div>
+
+
 
     <br>
     <br><div>
 <table><tr><td></td><td>
 <form action="post">
-  <button class="btn green white-text" type="submit" name="update">UPDATE
+  <button class="btn green white-text" type="submit" name="update" >UPDATE
     <i class="material-icons right">send</i>
   </button>
 </form>
@@ -687,9 +798,18 @@
          
           
           <div class="col s6">
-          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          <button class="btn green" href="<?php 'javascript:delnews("1")'?>">Delete<i class="material-icons right">delete</i></button>
           </div>
           
+<script language="JavaScript" type="text/javascript">
+function delnews(newsID)
+{
+if (confirm("Are you sure you want to delete '"))
+{
+window.location.href = 'userProducts.php';
+}
+}
+</script>
         
       </div></div>
       <div class="card-reveal">
@@ -737,7 +857,8 @@
             <button class="btn green">Edit<i class="material-icons right">edit</i></button>
           </div>
           <div class="col s6">
-          <button class="btn green">Delete<i class="material-icons right">delete</i></button>
+          
+          <input type="button" class="btn green" value="Rate Request" onclick="return comfirm('Are you sure want to delete');" />
           </div>
           
         
@@ -1505,7 +1626,7 @@
                 </script>
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script src="js/addproductForm.js"></script>
+
 <script> 
  
 
@@ -1527,17 +1648,20 @@ function pnamevalid()
          {
             alert("Good");
             return false;
+            
          }else 
              {
                 alert("Invalid Max");
                 return false;
               }
+              
     }
     else
     {
       alert("Invalid minn");
       return false;
     }
+
   }
 else {
   alert ("Invalid pname");
