@@ -211,36 +211,14 @@
 <body class="#ccff90 light-green accent-1">
    
 
-<?php
- require('dblink.php');
-$result = mysql_query("SELECT * FROM product");
-$num_rows = mysql_num_rows($result);
-$total=++$num_rows;
 
-
-    if(isset($_POST['save'])){
-$seleced_val1=$_POST["selectitem"];
-$seleced_val2=$_POST["selectedsub"];
-$seleced_cata = $seleced_val1 . '/' . $seleced_val2;
-        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
-       $result=mysql_query($sql);
-    }
- 
-if($result) {
-  echo ("<script LANGUAGE='JavaScript'>
-    window.alert('Succesfully added');
-    </script>");}
-else {echo mysql_error();}
-    # code...
-
-    ?>
     
 
     <div id="addProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form class="col s12" method="post" onsubmit="return pnamevalid()">
+    <form action="add.php" class="col s12" method="post" onsubmit="return pnamevalid()">
       <div class="row ">
         <div class="input-field col s12 ">
           <input id="pname" name="pname" type="text" class="validate">
@@ -357,7 +335,131 @@ else {echo mysql_error();}
 </div>
 
   <!---Navigation------------------------------------->
-  
+  //editProductsForm
+<div id="editProducts" class="modal fade" role="dialog">
+    <div class="padding-normal modal-dialog">
+      <h3>Add your Products</h3>
+ <div class="row">
+    <form action="add.php" class="col s12" method="post" onsubmit="return pnamevalid()">
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <input  name="pname" type="text" value="<?php echo $_POST["pname"]?>" class="validate">
+          <label for="pname">Product name</label>
+        </div>
+      </div>
+
+      <!-- for price per unit -->
+
+       <div class="row ">
+        <div class="input-field inline col s5">
+          <input  name="price" type="text" value="<?php echo $_POST["price"]?>" class="validate">
+          <label for="price">Price</label>
+        </div>
+        <span class="col s1">per</span>
+        <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" name="unit" >
+    <option value="<?php echo $_POST["unit"]?>"  disabled selected>Choose your option unit</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input  name="min" value="<?php echo $_POST["min"]?>" type="text" class="validate">
+          <label for="min">Minimum buyable amount</label>
+        </div>
+      </div>
+
+      <!-- for maximum amount -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="max" type="text" value="<?php echo $_POST["max"]?>" class="validate">
+          <label for="max">Maximum buyable amount</label>
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" value="<?php echo $_POST["brief"]?>" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description of the product</label>
+        </div>
+      </div>
+
+
+   <!-- for maximum amount -->
+<label>Category</label> 
+<select class="browser-default green lighten-2" name="selectitem" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+<label>Brand</label> 
+<select class="browser-default green lighten-2" name="selectedsub" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+
+<!-- for qualification
+--><div>
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2"  name="qualification">
+    <option value="<?php echo $_POST["qualification"]?>" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+
+<!-- for media for product image
+--><br><br>
+<div class="file-field input-field">
+      <div class="btn green white-text">
+        <span>File</span>
+        <input type="file" value="<?php echo $_POST["image"]?>" name="image" multiple>
+
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate"  type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+    <br>
+    <br><div>
+<table><tr><td></td><td>
+<form action="post">
+  <button class="btn green white-text" type="submit" name="update">UPDATE
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+   </td>
+  <td>
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
+    <i class="material-icons right">cancel</i>
+  </button></td></tr></table>
+</div>
+
+     </form>
+
+  </div>
+  </div>
+</div>
   <!-- Dropdown Structure -->
 
   <!--Language------------------>
@@ -580,7 +682,7 @@ else {echo mysql_error();}
         <span class="card-title activator grey-text text-darken-4">Agricultural<!--i class="material-icons right">more_vert</i--></span>
         <div class="row">
           <div class="col s6">
-           <button href = "#addProducts" class="btn green modal-trigger">Edit<i class="material-icons right">edit</i></button>
+           <button href = "#editProducts" class="btn green modal-trigger">Edit<i class="material-icons right">edit</i></button>
           </div>
          
           
