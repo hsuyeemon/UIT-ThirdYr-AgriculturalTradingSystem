@@ -217,15 +217,14 @@ $result = mysql_query("SELECT * FROM product");
 $num_rows = mysql_num_rows($result);
 $total=++$num_rows;
 
-
+ 
     if(isset($_POST['save'])){
   $seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
    
     // Full Name must be letters, dash and spaces only
-      if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["pname"]) === 0)
-      $errname = '<p class="errText">Please enter your product name </p>';
+     
     
    
         $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
@@ -316,7 +315,7 @@ else {echo mysql_error();}
         <div class="input-field col s12 ">
           <input id="pname" name="pname" type="text" class="validate" required="#">
           <label for="pname">Product name</label>
-          
+          <span class="error">* <?php echo $nameErr;?></span>
         </div>
       </div>
 
@@ -424,7 +423,7 @@ else {echo mysql_error();}
 
     <br>
     <br><div>
-<table><tr><td></td><td><button class="btn green white-text" type="submit" name="save">ADD
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="save" onclick="pnamevalid()">ADD
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
@@ -1640,36 +1639,17 @@ window.location.href = 'userProducts.php';
 function pnamevalid()
 {
   var pname = document.getElementById("pname").value;
-  var minnn= document.getElementById("min").value;
-  var maxx=document.getElementById("max").value;
-
+  
   var pnameReg = /^[a-zA-Z]+$/;
-  var minnnReg=/^-?\d*(\.\d+)?$/;
-  var maxxReg=/^-?\d*(\.\d+)?$/;
-
+ 
   if (pname.match(pnameReg))
   {
-    if (minnn.match(minnnReg))
-    {
-     if (maxx.match(maxxReg))
-         {
-            alert("Good");
+        alert("Good");
             return false;
-            
-         }else 
-             {
-                alert("Invalid Max");
-                return false;
-              }
+       
               
     }
-    else
-    {
-      alert("Invalid minn");
-      return false;
-    }
-
-  }
+   
 else {
   alert ("Invalid pname");
   return false;
