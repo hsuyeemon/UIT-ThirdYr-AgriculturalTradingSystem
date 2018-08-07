@@ -200,7 +200,8 @@
     </style>
      </head>
 
-<body class="#ccff90 light-green accent-1">
+<!--body class="#ccff90 light-green accent-1"-->
+<body>
 
 
 <?php

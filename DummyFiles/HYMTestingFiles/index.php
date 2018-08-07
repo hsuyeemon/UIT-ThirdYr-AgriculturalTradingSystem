@@ -20,6 +20,8 @@
 
 
 </head>
+
+<!--body class="#ccff90 light-green accent-1"-->
   <body>
 
 <?php
@@ -380,9 +382,9 @@
 </div-->
 
 <!---Navigation-->
-<nav style="margin-bottom: 0px;padding: 0;">
+<nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
