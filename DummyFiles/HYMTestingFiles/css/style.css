@@ -1,11 +1,10 @@
-
 body{
   background: #F5F5F5;
 
 }
  
  .nav-wrapper{
-  background: #002508;
+  background: #002408;
   padding: 4px;
  }
 
@@ -18,7 +17,7 @@ body{
 }
 
 .page-footer{
-   background: #002508;
+   background: #002408;
 }
 
 .footer-copyright{

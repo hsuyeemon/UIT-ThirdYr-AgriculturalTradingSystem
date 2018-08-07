@@ -25,16 +25,6 @@
   <body>
 
 <?php
-  /* initialize as dummy*/
-  /*
-   normal user = 0;
-   buyer = 1;
-   seller = 2;
-   */
-
-  /* get the user id*/
-  //$sid = $_POST['seller'];
-  //$bid = $_POST['buyer'];
 
   $isTouch=empty($_SESSION['login']);
 
