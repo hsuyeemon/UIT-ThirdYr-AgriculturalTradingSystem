@@ -1,5 +1,4 @@
- 
-<?php
+ <?php
  if(!isset($_SESSION)) 
   { 
     session_start(); 
@@ -19,172 +18,6 @@
   <link href="css/style.css" rel="stylesheet" />  
    <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-        jssor_slider_init = function() {
-
-            var jssor_options = {
-              $AutoPlay: 0,
-              $AutoPlaySteps: 5,
-              $SlideDuration: 160,
-              $SlideWidth: 240,
-              $SlideSpacing:16,
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$,
-                $Steps: 5
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
-            };
-
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_options);
-            var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_options);
-            var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_options);
-            var jssor_4_slider = new $JssorSlider$("jssor_4", jssor_options);
-            var jssor_5_slider = new $JssorSlider$("jssor_5", jssor_options);
-            var jssor_6_slider = new $JssorSlider$("jssor_6", jssor_options);
-
-            /*#region responsive code begin*/
-
-            var MAX_WIDTH = 980;
-
-            function ScaleSlider1() {
-                var containerElement = jssor_1_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_1_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider1();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider1);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider1);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider1);
-
-                        function ScaleSlider2() {
-                var containerElement = jssor_2_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_2_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider2();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider2);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider2);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider2);
-
-                        function ScaleSlider3() {
-                var containerElement = jssor_3_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_3_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider3();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider3);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider3);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider3);
-
-
-            function ScaleSlider4() {
-                var containerElement = jssor_4_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_4_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider4();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider4);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider4);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider4);
-
-            
-
-                        function ScaleSlider5() {
-                var containerElement = jssor_5_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_5_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider5();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider5);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider5);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider5);
-
-                        function ScaleSlider6() {
-                var containerElement = jssor_6_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_6_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-             ScaleSlider6();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider6);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider6);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider6);
-
-/*
-             ScaleSlider(jssor_3_slider);
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            /*#endregion responsive code end*/
-
-        };
-    </script>
     <style>
         /*jssor slider loading skin spin css*/
         .jssorl-009-spin img {
@@ -217,17 +50,7 @@
 
  <body class="white">
 <?php
-  /* initialize as dummy*/
-  /*
-   normal user = 0;
-   buyer = 1;
-   seller = 2;
-   */
-
-  /* get the user id*/
-  //$sid = $_POST['seller'];
-  //$bid = $_POST['buyer'];
-
+  
   $isTouch=empty($_SESSION['login']);
 
   if($isTouch){
@@ -397,17 +220,7 @@
     </form>
     </div>
   </div>
-
-
-  <!--div id="signupType" class="modal fade large center-align" role="dialog">
-
-    <div class="modal-dialog" style="padding: 48px;">
-
-      <button id="seller" href="#signup_seller" class="modal-trigger btn btn-primary green white-text">Sign up as SELLER</button><br><br>
-      <button id="buyer" href="#signup_buyer" class="modal-trigger btn btn-primary green white-text">Sign up as BUYER</button>
-   
-    </div></div-->
-      
+     
 
   <!---Sign Up-------------------->
  <div id="signup" class="modal fade large" role="dialog">
@@ -509,41 +322,93 @@
 </div>
 
 
-
-<!----Add Product--->
 <?php
-include('dblink.php');
+
+ include('dblink.php');
 $result = mysqli_query($con,"SELECT * FROM product");
 $num_rows = mysqli_num_rows($result);
 $total=++$num_rows;
-    if(isset($_POST['save'])){
-        echo "string";
-        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','".$_POST["category"]."','1')";
-       $result=mysqli_query($con,$sql);
-       if($result) {echo ("<script LANGUAGE='JavaScript'>
-    window.alert('Succesfully added');
-    </script>");}
-else {echo("<script LANGUAGE='JavaScript'>
-    window.alert(mysql_error());
-    </script>");}
 
-    }
- 
+// Full Name must be letters, dash and spaces only
+     
+
+if(isset($_POST['save'])){
+  if(preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])){
+$seleced_val1=$_POST["selectitem"];
+$seleced_val2=$_POST["selectedsub"];
+$seleced_cata = $seleced_val1 . '/' . $seleced_val2;
+        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
+       $result=mysqli_query($con,$sql);
+       if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
+  echo ("<script LANGUAGE='JavaScript'>
+  alert('Succesfully added');
+    </script>");}
+//else {echo mysql_error();}
     # code...
+
+}
+else{
+ echo ("<script LANGUAGE='JavaScript'>
+    alert('Invalid name');
+    </script>");
+ 
+}
+}
+ 
+# DELETE
+
+    if(isset($_GET['delnews'])){
+        echo "string";
+              //add ALert to confirm delete
+
+//if(confirm)
+$sql2 = "DELETE FROM product WHERE pid='10'";
+       $result2=mysql_query($sql2);
+       if($result2) {echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully deleted');
+    </script>");}
+else {echo mysql_error();}
+    }
+
+             //UPDATE
+ //$result = mysqli_query($con,"SELECT * FROM product");
+//$num_rows = mysqli_num_rows($result);
+//$total=++$num_rows;
+ $result = mysqli_query($con,"SELECT * FROM product WHERE pid='11'");
+
+$row = mysqli_fetch_array($result);
+echo $row["p_description"];
+echo $row["UNIT"];
+    if(isset($_POST['update'])){
+       
+        
+
+//$sql3 ="UPDATE product set pname=$_POST['pname'],price=$_POST['pname'],p_image=,$_POST['p_image'],p_description=$_POST['description'], 
+     // min_amount=$_POST['min'], max_amount=$_POST['max'], UNIT=$_POST['unit'], qualification=$_POST['qualification'] WHERE pid='1'";
+$sql3 ="UPDATE product set pname='".$_POST['pname']."',price='".$_POST['pname']."',p_image='".$_POST['image']."',p_description='".$_POST['brief']."', 
+      min_amount='".$_POST['min']."', max_amount='".$_POST['max']."', UNIT='".$_POST['unit']."', qualification='".$_POST['qualification']."' WHERE pid='11'";
+
+
+       $result3=mysql_query($sql3);
+       if($result3) {echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Succesfully update');
+    </script>");}
+else {echo mysql_error();}
+ # code...
+    }
 
     ?>
 
-<!----Add Product Form-->
-
-<div id="addProducts" class="modal fade" role="dialog">
+    <div id="addProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form class="col s12" method="post">
+    <form id="form" action="userProductTest.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" class="validate">
+          <input id="pname" name="pname" type="text" class="validate" required="#">
           <label for="pname">Product name</label>
+         
         </div>
       </div>
 
@@ -551,17 +416,17 @@ else {echo("<script LANGUAGE='JavaScript'>
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input  name="price" type="text" class="validate">
+          <input id="price" name="price" type="number" class="validate" required="required">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" name="unit" >
+  <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
     <option value=""  disabled selected>Choose your option unit</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
+    <option value="1">Gram</option>
+    <option value="2">mililiter</option>
+    <option value="3">Kyat Thar</option>
   </select>
         </div>
       </div>
@@ -569,18 +434,20 @@ else {echo("<script LANGUAGE='JavaScript'>
       <!-- for minimum amount -->
 
       <div class="row">
-        <div class="input-field col s12">
-          <input  name="min" type="text" class="validate">
+        <div class="input-field col s5">
+          <input id="min" name="min" type="number" class="validate" required="required">
           <label for="min">Minimum buyable amount</label>
+          
         </div>
-      </div>
+     
 
       <!-- for maximum amount -->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input name="max" type="text" class="validate">
+      
+        <div class="input-field col s5">
+          <input id="max" name="max" type="number" class="validate" required="required">
           <label for="max">Maximum buyable amount</label>
+          
         </div>
       </div>
 
@@ -589,19 +456,43 @@ else {echo("<script LANGUAGE='JavaScript'>
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief"  class="materialize-textarea validate"></textarea>
+        <textarea id="brief" name="brief"  class="materialize-textarea validate"></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
+      <div class="input-field inline col s5">
+        <br><br>
+<label>Category</label>
 
-
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
+</select>
+</div>
+<div class="input-field inline col s5">
+   <br><br>
+<label>Brand</label> 
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" onchange="changeData()">
+  <option value="" disabled selected>Choose your option</option>
+  <option value="fruits" id="0">fruits</option>
+  <option value="grocery" id="1" >grocery</option>
+  <option value="stable" id="2">stable foods</option>
+  <option value="hello" id="3" style="display:none;">stable foods</option>
+  <option value="hello" id="4" style="display:none;">stable foods</option>
+  <option value="hello" id="5" style="display:none;">stable foods</option>
+  <option value="hello" id="6" style="display:none;">stable foods</option>
+</select>
+</div>
    <!-- for maximum amount -->
 
 
 <!-- for qualification
---><div>
+--><div class="input-field inline col s10">
+<br><br>
      <label>Qualification</label> 
-  <select class="browser-default green lighten-2"  name="qualification">
+  <select class="browser-default green lighten-2" id="qualification"  name="qualification">
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -611,10 +502,11 @@ else {echo("<script LANGUAGE='JavaScript'>
 
 <!-- for media for product image
 --><br><br>
-<div class="file-field input-field">
+<div class="file-field input-field col s10">
       <div class="btn green white-text">
+
         <span>File</span>
-        <input type="file" name="image" multiple>
+        <input type="file" name="image" id="image" multiple required="#">
 
       </div>
       <div class="file-path-wrapper">
@@ -639,12 +531,151 @@ else {echo("<script LANGUAGE='JavaScript'>
   </div>
 </div>
 
+  <!---Navigation------------------------------------->
+  <!--editProductsForm-->
+<div id="editProducts" class="modal fade" role="dialog">
+    <div class="padding-normal modal-dialog">
+      <h3>Edit your Products</h3>
+ <div class="row">
+    <form id="form1" action="userProductTest.php" class="col s12" method="post" >
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <input  name="pname" type="text" value="<?php echo $row["pname"]?>" class="validate">
+          <label for="pname">Product name</label>
+        </div>
+      </div>
+
+      <!-- for price per unit -->
+
+       <div class="row ">
+        <div class="input-field inline col s5">
+          <input  name="price" type="number" value="<?php echo $row["price"]?>" class="validate">
+          <label for="price">Price</label>
+        </div>
+        <span class="col s1">per</span>
+        <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" name="unit" required="#">
+    <option value="<?php echo $row["UNIT"];?>"  disabled selected><?php echo $row["UNIT"];?></option>
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Gram</option>
+    <option value="2">mililiter</option>
+    <option value="3">Kyat Thar</option>
+  </select>
+        </div>
+      </div>
+
+      <!-- for minimum amount -->
+
+       <div class="row">
+        <div class="input-field col s5">
+          <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $row["min_amount"]?>">
+          <label for="min">Minimum buyable amount</label>
+          
+        </div>
+     
+
+      <!-- for maximum amount -->
+
+      
+        <div class="input-field col s5">
+          <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $row["max_amount"]?>">
+          <label for="max">Maximum buyable amount</label>
+          
+        </div>
+      </div>
+
+   <!-- for brief description  -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea class="materialize-textarea validate" name="brief" value="<?php echo $row["p_description"]?>" ></textarea>
+        <label for="brief">Brief description of the product</label>
+        </div>
+      </div>
+      <div class="input-field inline col s5">
+        <br><br>
+<label>Category</label>
+
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
+  <option value="" disabled selected>Choose your option</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
+</select>
+</div>
+<div class="input-field inline col s5">
+   <br><br>
+<label>Brand</label> 
+<select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" onchange="changeData()">
+  <option value="" disabled selected>Choose your option</option>
+  <option value="fruits" id="0">fruits</option>
+  <option value="grocery" id="1" >grocery</option>
+  <option value="stable" id="2">stable foods</option>
+  <option value="hello" id="3" style="display:none;">stable foods</option>
+  <option value="hello" id="4" style="display:none;">stable foods</option>
+  <option value="hello" id="5" style="display:none;">stable foods</option>
+  <option value="hello" id="6" style="display:none;">stable foods</option>
+</select>
+</div>
+   <!-- for maximum amount -->
+
+
+<!-- for qualification
+--><div class="input-field inline col s10">
+<br><br>
+     <label>Qualification</label> 
+  <select class="browser-default green lighten-2" id="qualification"  name="qualification">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+
+<!-- for media for product image
+--><br><br>
+<div class="file-field input-field col s10">
+      <div class="btn green white-text">
+        
+        <span>File</span>
+        <input type="file" name="image" id="image" multiple>
+
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+
+
+
+    <br>
+    <br><div>
+<table><tr><td></td><td>
+<form action="post">
+  <button class="btn green white-text" type="submit" name="update" >UPDATE
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+   </td>
+  <td>
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
+    <i class="material-icons right">cancel</i>
+  </button></td></tr></table>
+</div>
+
+     </form>
+
+  </div>
+  </div>
+</div>
 
 
 <!---Navigation-->
 <nav style="margin-bottom: 0px;padding: 0;">
-  <div class="nav-wrapper green darken-3">
-    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -723,9 +754,9 @@ function showProducts($category){
   <div class='card padding-normal'>
     <div>
       <h4>".$row['subCatagory']."</h4>
-      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:320px;overflow:hidden;visibility:hidden;'>
+      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:280px;overflow:hidden;visibility:hidden;'>
         
-        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;'>";
+        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:300px;overflow:hidden;padding: 8px;'>";
 
         $subCatagory = $row['subCatagory'];
         
@@ -738,31 +769,43 @@ function showProducts($category){
     $row2=mysqli_fetch_array($ret2); 
       
     $url = $row2["p_image"];
-    echo "
+    $imageData = base64_encode(file_get_contents($url));
+
+    // Format the image SRC:  data:{mime};base64,{data};
+    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+
+    ?>
 
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
-          <a href='productDetails.html'>
+          <a href="productDetails.html?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
-            <img src='".$url."' height='160px' width='160px'>
+            <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
-          <span class='card-title activator grey-text text-darken-4'>".
-            $row2['pname']."</span>
+          <span class='card-title activator grey-text text-darken-4'>
+            <?php echo $row2['pname']; ?>
+          </span>
           <div class='row'>
-            <div class='col s6'>
-              <button href ='#addProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
-            </div>          
-            <div class='col s6'>
-            <button class='btn green'>Delete<i class='material-icons right'>delete</i></button>
-            </div>
+             <div class='col s6'>
+           <button href = '#editProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
+          </div>
+         
+          
+          <div class='col s6'>
+
+          <!--input type="hidden" name="productId" 
+            value="<?php echo $row2['pid'];?>"-->
+          <button class='btn green'>Delete<i class='material-icons right'>delete</i></button>
+          </div>
           </div>
           </div>
         </div>
-        ";
-    }
-      
-    echo"</div>
+
+        <?php
+            }
+            ?>
+      </div>
         <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
 
           <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
@@ -781,7 +824,7 @@ function showProducts($category){
       </div>
   </div></div>
 
-";
+  <?php
 
   }
 }
@@ -833,7 +876,7 @@ else
 </div>
 
   <!---Footer-------------------------------------------------->
-<footer class="page-footer green darken-3 ">
+<footer class="page-footer">
   <div class="row padding-normal container" id="aboutus">
 
 
@@ -980,6 +1023,16 @@ The important benefit is that "Public can buy agricultural products cheeper than
        
    
   </script>
+
+  <script type="text/javascript">
+            function delnews(newsID)
+            {
+            if (confirm("Are you sure you want to delete '"))
+            {
+            window.location.href = 'userProductTest.php';
+              }
+                }
+            </script>
 
 <!-- script for mobile nav -->
 

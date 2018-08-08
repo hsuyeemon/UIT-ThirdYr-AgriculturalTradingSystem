@@ -90,7 +90,8 @@
   <ul id="authentication" class="dropdown-content">
      <?php
       include("dblink.php");
-      $query = "select * from buyer where bid ='".$_POST["email"]."'";
+      $bid = $_SESSION['bid'];
+      $query = "select * from buyer where bid ='".$bid."'";
       //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
       $row=mysqli_fetch_array($ret); 
@@ -125,8 +126,8 @@
 
   <?php
       include("dblink.php");
-      $query = "select * from seller where sid ='".$_POST["email"]."'";
-      //$query = "select * from seller where sid ='1'";
+      $sid = $_SESSION['sid'];
+      $query = "select * from seller where sid ='".$sid."'";
       $ret = mysqli_query ($con,$query);          
       $row=mysqli_fetch_array($ret);
       $noRows=mysqli_num_rows($ret);  
@@ -343,73 +344,6 @@
   </div>
 </div>
 
- <!---Sign Up-------------------->
- <!--div id="signup_buyer" class="modal fade large" role="dialog">
-
-    <div class="modal-dialog" style="padding: 48px;">
-      <h3>Create an Account</h3>
-    <form class="col s12" onsubmit="return validFunction()">
-      
-      <div class="row">      
-        <div class="input-field col s12">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="name" type="text" class="validate" required="required">
-          <label for="icon_prefix">Name</label>
-        </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">phone</i>
-          <input id="tel" type="tel" class="validate"required="required">
-          <label for="tel">Telephone</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" required="required">
-          <label for="email">Email</label>
-        </div>
-      </div>
-    
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">home</i>
-          <input id="address" type="text" class="validate" required="required">
-          <label for="address" >Address</label>
-        </div>
-      </div>
-
-     <div class="row">
-        <div class="input-field col s12">
-           <i class="material-icons prefix">credit_card</i>
-          <input id="nrc" type="text" class="validate">
-          <label for="nrc">NRC</label>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="pw" type="password" class="validate" required="required">
-          <label for="pw">Password</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="cpw" type="password" class="validate" required="required">
-          <label for="cpw">Comfirm Password</label>
-        </div>
-      </div>
-    <div>
- 
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
-  </form>
-  </div>
-</div-->
 
 <!---Navigation-->
 <nav style="margin-bottom: 0px;padding: 0;">
@@ -462,7 +396,7 @@ static $jssor = 0;
 
   include("dblink.php");
 
-            $sliderCount= 'select count(distinct(category))as ct from product';
+            $sliderCount= 'select count(distinct(category))as ct from product where sid=$';
       
             $result = mysqli_query ($con,$sliderCount);          
            
@@ -477,7 +411,7 @@ function showProducts($category){
   include("dblink.php");
 
 
-  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
+  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid=';";
       
   $ret = mysqli_query ($con,$query);          
   $noRows=mysqli_num_rows($ret);

@@ -2,9 +2,15 @@ body{
   background: #F5F5F5;
 
 }
+
+.card{
+  background: #E5E3E1;
+
+}
  
  .nav-wrapper{
-  background: #002508;
+  background: #002408;
+  padding: 4px;
  }
 
  .feature{
@@ -16,13 +22,16 @@ body{
 }
 
 .page-footer{
-   background: #002508;
+   background: #002408;
 }
 
 .footer-copyright{
   background: #150D0B;
 }
 
+.nav{
+  margin-bottom: 0px;height: 80px;
+}
 
 .hero-shot{
     background-image: url("../images/Myanmar-42A9805-Agriculture-LIFT-John-Rae.jpg");
