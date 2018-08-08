@@ -132,7 +132,7 @@
       $row=mysqli_fetch_array($ret);
       $noRows=mysqli_num_rows($ret);  
       if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row["SNAME"]."</a></li>";
+        echo "<li><a href='#!'' id='user_name'>".$row['sname']."</a></li>";
       }
       ?>
     <li class="divider"></li>
@@ -346,8 +346,8 @@
 
 
 <!---Navigation-->
-<nav style="margin-bottom: 0px;padding: 0;">
-  <div class="nav-wrapper green darken-3">
+<nav>
+  <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -395,10 +395,11 @@
 static $jssor = 0;
 
   include("dblink.php");
+  $sid = $_SESSION['sid'];
 
-            $sliderCount= 'select count(distinct(category))as ct from product where sid=$';
+            $sliderCount= "select count(distinct(category))as ct from product";
       
-            $result = mysqli_query ($con,$sliderCount);          
+            $result = mysqli_query($con,$sliderCount);          
            
             $r=mysqli_fetch_array($result);
             $count = $r['ct'];
@@ -410,8 +411,8 @@ function showProducts($category){
   $length=$length+2;
   include("dblink.php");
 
-
-  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid=';";
+$sid = $_SESSION['sid'];
+  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
       
   $ret = mysqli_query ($con,$query);          
   $noRows=mysqli_num_rows($ret);
@@ -441,21 +442,23 @@ function showProducts($category){
   for($j=0;$j<$noRows2;$j++){
     $row2=mysqli_fetch_array($ret2); 
       
+      
     $url = $row2["p_image"];
-    //$image = file_get_contents("$url");
-    //$imageData = base64_encode(file_get_contents($url));
-    //echo $url;
-    echo "
+    $imageData = base64_encode(file_get_contents($url));
+
+    // Format the image SRC:  data:{mime};base64,{data};
+    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+    ?>
 
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
-          <a href='productDetails.php?productId='".$row2["pid"]."''>
+          <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
-            <img src='".$url."' height='160px' width='160px'>
+            <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
-          <span class='card-title activator grey-text text-darken-4'>".
-            $row2['pname']."<i class='material-icons right'>more_vert</i>
+          <span class='card-title activator grey-text text-darken-4'>
+             <?php echo $row2['pname']; ?><i class='material-icons right'>more_vert</i>
           </span>
           </div>
           <div class='card-reveal'>
@@ -465,10 +468,10 @@ function showProducts($category){
             <p>".$row2['p_description']."</p>
           </div>
         </div>
-        ";
-    }
-      
-    echo"</div>
+        <?php
+      }
+      ?>
+    </div>
         <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
 
           <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
@@ -487,10 +490,10 @@ function showProducts($category){
       </div>
   </div></div>
 
-";
+<?php
 
-  }
-}
+  }}
+
 else
 {
   echo "There is no product in this category yet!!!";
@@ -528,7 +531,7 @@ else
 
 </div>
   <!---Footer-------------------------------------------------->
-<footer class="page-footer green darken-3 ">
+<footer class="page-footer">
   <div class="row padding-normal container" id="aboutus">
 
 

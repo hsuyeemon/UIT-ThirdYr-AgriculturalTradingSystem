@@ -1,81 +1,180 @@
+<?php
+      
+  if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
+  ?>
+<!DOCTYPE html>
 <html>
 <head>
-	 <!--Import Google Icon Font-->
+      <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     
+      <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      <link href="css/style.css" rel="stylesheet" /> 
-</head>
-<body>
-<?php 
-require ("dblink.php"); 
+      <link href="css/style.css" rel="stylesheet" />  
 
- $product    = "SELECT * FROM product WHERE pid='1'";
-   $result = mysql_query($product) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) { 
-   $pname = $rows['pname'];
-   $price = $rows['price'];
-   $des = $rows['p_description'];
- 
+
+</head>
+  <body>
+
+<?php
+  /* initialize as dummy*/
+  /*
+   normal user = 0;
+   buyer = 1;
+   seller = 2;
+   */
+
+  /* get the user id*/
+  //$sid = $_POST['seller'];
+  //$bid = $_POST['buyer'];
+
+  $isTouch=empty($_SESSION['login']);
+
+  if($isTouch){
+   $loginStatus ="0";
+
   }
-  /*$cmt = "SELECT * FROM comment WHERE oid='1'";
-  $result = mysql_query($cmt) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) { 
-   $commentText = $rows['CMT_TEXT'];
-   $time = $rows['CMT_TIME'];
-   
-  }*/
-  $sell ='SELECT * FROM seller LEFT OUTER JOIN product USING(sid) WHERE pid = "1"  ';
-   $result = mysql_query($sell) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) { 
-      $seller = $rows['sname'];
-      $phone = $rows['s_phoneno'];
-    }
-    
-    $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid)";
-   $result = mysql_query($rating) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) { 
-      $rating = $rows['rating'];
-     
-    }
-?>
-<!---Navigation------------------------------------->
+  else{
+    $loginStatus = $_SESSION['login'];
+  }
+ 
+  filter($loginStatus);
+
+  function filter($loginStatus){
+      /**
+       buyer
+       **/
+  if($loginStatus==1){
+ echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
+
+  ?>
+                
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+     <?php
+      include("dblink.php");
+      $bid = $_SESSION['bid'];
+      $query = "select * from buyer where bid ='".$bid."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret); 
+      $noRows=mysqli_num_rows($ret);
+      if($noRows>0){
+        echo "<li><a href='#!'' id='user_name'>".$row['bname']."</a></li>";
+      }
+      ?>
+      <li class="divider"></li>
+      <li><a href="#!" id="switch_account">Switch account</a></li>
+      <li class="divider"></li>
+      <li><a href="logout.php" id="logout">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
+    <li class="divider"></li>
+    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
+  </ul>
+
+  <?php
+  }
+ elseif ($loginStatus == 2) {
+  echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
+ ?>            
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+
+  <?php
+      include("dblink.php");
+      $sid = $_SESSION['sid'];
+      $query = "select * from seller where sid ='".$sid."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret);
+      $noRows=mysqli_num_rows($ret);  
+      if($noRows>0){
+        echo "<li><a href='#!'' id='user_name'>".$row['sname']."</a></li>";
+      }
+      ?>
+    <li class="divider"></li>
+    <li><a href="#!" id="switch_account">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php" id="logout">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
+  </ul>
+  <?php
+  }
+ 
+  else{
+  ?>
+
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
+    <li class="divider"></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+  </ul>
+
+  <?php
+  }
+  } 
+  ?>
+
+  <!---Navigation------------------------------------->
   
   <!-- Dropdown Structure -->
 
   <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#" id="myanmar" onclick="">ျမန္မာစာ</a></li>
+    <li><a href="#" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
     <li class="divider"></li>
     <li><a href="#" id="english" onclick="">English</a></li>
   </ul>
 
-  <!--Login--------------------->
-  <ul id="authentication" class="dropdown-content">
-    <li><a href="#login" class="modal-trigger ">Login</a></li>
-    <li class="divider"></li>
-    <li><a href="#signup" class="modal-trigger ">Sign Up</a></li>
-  </ul>
-
+ 
   <!--Login Form------------>
   <div id="login" class="modal fade" role="dialog">
-    <div class="container padding-normal modal-dialog" style="padding: 48px;">
-    <form class="col s12">
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Login To Your Account</h3>
+    <form action="login.php" method="post" class="col s12">
 
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate">
-          <label for="email">Name</label>
+          <input id="email" type="text" class="validate" required="required" 
+          name="email">
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" required="required">
           <label for="password">Password</label>
         </div>
         <label style='float: right;'>
@@ -85,45 +184,48 @@ require ("dblink.php");
       <div>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" checked />
+            <input class="with-gap" name="group3" type="radio" required="required" />
             <span>User Account</span>
           </label>
         </p>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" />
+            <input class="with-gap" name="group3" type="radio" required="required" />
             <span>Admin Account</span>
           </label>
         </p>
       </div>
       <br>
-      <button type="submit" class="btn btn-primary green darken-3">Login</button>
+      <button type="submit" class="btn btn-primary green white-text">Login</button>
     </form>
     </div>
   </div>
 
+
   <!---Sign Up-------------------->
  <div id="signup" class="modal fade large" role="dialog">
+
     <div class="modal-dialog" style="padding: 48px;">
-    <form class="col s12">
+      <h3>Create an Account</h3>
+    <form class="col s12" onsubmit="return validFunction()">
       
       <div class="row">      
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="name" type="text" class="validate" required="required">
           <label for="icon_prefix">Name</label>
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
+          <input id="tel" type="tel" class="validate"required="required">
+          <label for="tel">Telephone</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" required="required">
           <label for="email">Email</label>
         </div>
       </div>
@@ -131,31 +233,32 @@ require ("dblink.php");
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">home</i>
-          <input id="email" type="email" class="validate">
-          <label for="email">Address</label>
+          <input id="address" type="text" class="validate" required="required">
+          <label for="address" >Address</label>
         </div>
       </div>
 
      <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">NRC</label>
+           <i class="material-icons prefix">credit_card</i>
+          <input id="nrc" type="text" class="validate">
+          <label for="nrc">NRC</label>
         </div>
       </div>
       
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <input id="pw" type="password" class="validate" required="required">
+          <label for="pw">Password</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
-          <input id="email" type="email" class="validate">
-          <label for="email">Comfirm Password</label>
+          <input id="cpw" type="password" class="validate" required="required">
+          <label for="cpw">Comfirm Password</label>
         </div>
       </div>
      
@@ -168,7 +271,7 @@ require ("dblink.php");
       </div>
 
       <div class="file-field input-field">
-        <div class="btn green darken-3">
+        <div class="btn green white-text">
           <span>File</span>
           <input type="file" multiple>
 
@@ -190,29 +293,35 @@ require ("dblink.php");
         <input class="with-gap" name="group3" type="radio" />
         <span>Admin Account</span>
       </label>
-    </p>
+    </p-->
     </div>
     <br>
     <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
   </form>
   </div>
 </div>
-
-<!---------------------Navigation--------------------->
+<!---Navigation-->
 <nav style="margin-bottom: 0px;padding: 0;">
-  <div class="nav-wrapper green darken-3">
+  <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-trigger" href="#!" data-target="font">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#Products ">Products</a></li>
-      <!--li><a href="#">About Us</a></li>
-      <li><a href="#">Contact</a></li-->
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication">Login
+
+
+      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="index.html" id="home">Home</a></li>
+      
+      <li><a href="index.html#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.html#contactus" id="contact">Contact</a></li-->
+
+      
+       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+      
+
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">Login
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
-        <!-- for mobile view --> 
+    <!-- for mobile view --> 
       <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
       <div class="background">
@@ -234,49 +343,92 @@ require ("dblink.php");
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
-
   </div>
 </nav>
 
-  <div class="content padding-normal-sync">
+<?php 
+//require ("dblink.php"); 
+include('dblink.php');
+global $pid;
+if(isset($_GET['productId'])){
+$pid = $_GET['productId'];
+//$sid = $_SESSION['sid'];
+?>
+ <div class="content padding-normal-sync">
   <div>
   <a href="#">Category/</a>
   <a href="#">SubCategory/</a>
   <a href="#">ProductName/</a>
   </div>
 
+<?php
 
-  <div class="row ">
+//Product Details
+$productDetails = "SELECT * FROM product WHERE pid='$pid'";
+$res1 = mysqli_query($con,$productDetails) or die(mysqli_error());
+  # code...
+   $rows1 = mysqli_fetch_array($res1);
+   $pname = $rows1['pname'];
+   $price = $rows1['price'];
+   $des = $rows1['p_description'];
+
+//Seller Info:
+$seller ="SELECT * FROM seller LEFT OUTER JOIN product USING(sid) WHERE pid ='".$pid."'";
+$res2 = mysqli_query($con,$seller) or die(mysqli_error());
+$rows2 =mysqli_fetch_array($res1);
+$seller = $rows2['sname'];
+$phone = $rows2['s_phoneno'];
+?>
+
+<div class="row ">
     <div class="col s3 padding-normal">
-      <h3 id="productName" name="pname"><?php echo "$pname"; ?></h3>
-      <p class="details" id="productPrice" name="price"><?php echo "$price"; ?> Kyats per item</p>
+      <h3 id="productName" name="pname">
+        <?php echo $pname;?>  
+      </h3>
+      <p class="details" id="productPrice" name="price">
+      <?php echo $price;?> Kyats per item</p>
       <p class="details" id="productVendor"><a> <?php echo "$seller"; ?> </a></p><br>
         
-        <a class="btn green white-text" href="tel:<?php echo $phone; ?>" id="call">Call to Vendor</a>
-      
-       
-   </div>
-    <div class="carousel col s9" style="margin:0px;height: 200px; ">
-      <?php 
-       $result = mysql_query($product) or die(mysql_error());
-      $filearray=array();
+        <a class="btn green white-text" href="tel:
+        <?php echo $phone?>" id="call">Call to Vendor</a>
+    
+</div>
+<div class="carousel col s9" style="margin:0px;height: 200px; ">
+<?php
+$res3 = mysqli_query($con,$productDetails) or die(mysql_error());
+$filearray=array();
 
-while($row = mysql_fetch_assoc($result)){ 
+$rows3= mysqli_fetch_assoc($res3);
+while($row3 = mysqli_fetch_assoc($res3)){ 
+$url = $row3["p_image"];
+$imageData = base64_encode(file_get_contents($url));
 
-    echo '<a class="carousel-item" href="#one!"><img src="images/' .$row['p_image']. '" ></a>';
-     } ?>
-    </div>
-      </div>
-      
-      <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
-   <p><?php echo "$des"; ?>  </p>
+    // Format the image SRC:  data:{mime};base64,{data};
+$src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+
+echo "<a class='carousel-item' href='#one!'><img src='images/".$src."'></a>";
+     }
+?>
+</div>
+</div>
+<!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
+    <p><?php echo $des;?> </p>
  <a class="btn green white-text modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
      <a class="btn green white-text modal-trigger">Add to Cart<i class="material-icons right">send</i></a>
 
   </div>
   <br><hr>
 
-  <!-----Rating------------------------>
+<?php
+$rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid=$pid AND c.oid=o.oid)";
+
+   $res4 = mysqli_query($con,$rating) or die(mysqli_error());
+   $rows4  = mysqli_fetch_array($res4);
+   $rating = $rows4['rating'];
+
+?>
+
+ <!-----Rating------------------------>
   
        <div class="container padding-normal">
   <div class="hreview-aggregate">
@@ -396,8 +548,8 @@ while($row = mysql_fetch_assoc($result)){
   <section id="reviews" class="comments container">
     <?php 
     $cmt ="SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid";
-   $result = mysql_query($cmt) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) 
+   $result = mysqli_query($con,$cmt) or die(mysql_error());
+     while ($rows  = mysqli_fetch_array($result)) 
      { 
       $text = $rows['cmt_text'];
       $time = $rows['cmt_time'];
@@ -415,7 +567,21 @@ while($row = mysql_fetch_assoc($result)){
     </div>
   </article>';
     }
-    ?>
+
+
+  /*$cmt = "SELECT * FROM comment WHERE oid='1'";
+  $result = mysql_query($cmt) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+   $commentText = $rows['CMT_TEXT'];
+   $time = $rows['CMT_TIME'];
+   
+  }*/
+  
+    }
+  
+?>
+
+
 
 </section>​
 

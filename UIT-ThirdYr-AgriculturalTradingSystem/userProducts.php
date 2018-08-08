@@ -739,8 +739,8 @@ function showProducts($category){
   $length=$length+2;
 
  include("dblink.php");
-  //$sid = $_SESSION['sid'];
-$sid=1;
+  $sid = $_SESSION['sid'];
+//$sid=1;
 
   $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid='$sid';";
       
@@ -781,7 +781,7 @@ $sid=1;
     ?>
 
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
-          <a href="productDetails.html?productId=<?php echo $row2['pid'];?>">
+          <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
             <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
@@ -792,6 +792,7 @@ $sid=1;
           </span>
           <div class='row'>
              <div class='col s6'>
+
            <button href = '#editProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
           </div>
          
