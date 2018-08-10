@@ -395,7 +395,7 @@
 static $jssor = 0;
 
   include("dblink.php");
-  //$sid = $_SESSION['sid'];
+  $sid = $_SESSION['sid'];
 
             $sliderCount= "select count(distinct(category))as ct from product";
       
@@ -411,7 +411,7 @@ function showProducts($category){
   $length=$length+2;
   include("dblink.php");
 
-//$sid = $_SESSION['sid'];
+$sid = $_SESSION['sid'];
   $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
       
   $ret = mysqli_query ($con,$query);          

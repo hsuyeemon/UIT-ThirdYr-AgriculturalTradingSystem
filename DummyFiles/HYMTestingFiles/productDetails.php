@@ -689,7 +689,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 </div></div></div></div>
 
-  <!-----Script to Import---------------------->
+	<!-----Script to Import---------------------->
 
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -700,15 +700,15 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 
    <script>
-  function show_alert() {
-    if (confirm("Are you sure to confirm the order?")) {
+	function show_alert() {
+   	if (confirm("Are you sure to confirm the order?")) {
     var doc = document.getElementById('qrsection');
     doc.style.display="block";
     $('#ff').prop("disabled", true);
     return true;
-  }
-  return false;
-  }
+	}
+	return false;
+	}
 
     //drop dowm
     $(document).ready(function(){

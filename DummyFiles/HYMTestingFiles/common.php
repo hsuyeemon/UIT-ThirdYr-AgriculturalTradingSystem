@@ -1,68 +1,35 @@
 <?php
- if(!isset($_SESSION)) 
+
+  if(!isset($_SESSION)) 
   { 
     session_start(); 
   }
-  ?>
+ 
+
+function displayPageHeader( $pageTitle ) {
+
+      
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<!--Import Google Icon Font-->
+      <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-        <!--Let browser know website is optimized for mobile-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+      <link href="css/style.css" rel="stylesheet" />  
 
- 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <link href="css/style.css" rel="stylesheet" />  
-   <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
-       
-    <style>
-        /*jssor slider loading skin spin css*/
-        .jssorl-009-spin img {
-            animation-name: jssorl-009-spin;
-            animation-duration: 1.6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
+</head>
 
-        @keyframes jssorl-009-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /*jssor slider bullet skin 057 css*/
-        .jssorb057 .i {position:absolute;cursor:pointer;}
-        .jssorb057 .i .b {fill:none;stroke:#fff;stroke-width:2000;stroke-miterlimit:10;stroke-opacity:0.4;}
-        .jssorb057 .i:hover .b {stroke-opacity:.7;}
-        .jssorb057 .iav .b {stroke-opacity: 1;}
-        .jssorb057 .i.idn {opacity:.3;}
-
-        /*jssor slider arrow skin 073 css*/
-        .jssora073 {display:block;position:absolute;cursor:pointer;}
-        .jssora073 .a {fill:#ddd;fill-opacity:.7;stroke:#000;stroke-width:160;stroke-miterlimit:10;stroke-opacity:.7;}
-        .jssora073:hover {opacity:.8;}
-        .jssora073.jssora073dn {opacity:.4;}
-        .jssora073.jssora073ds {opacity:.3;pointer-events:none;}
-    </style>
-     </head>
-
- <body class="white">
+<!--body class="#ccff90 light-green accent-1"-->
+  <body>
 
 <?php
-      
-  /* initialize as dummy*/
-  /*
-   normal user = 0;
-   buyer = 1;
-   seller = 2;
-   */
-
-  /* get the user id*/
-  //$sid = $_POST['seller'];
-  //$bid = $_POST['buyer'];
 
   $isTouch=empty($_SESSION['login']);
 
@@ -73,15 +40,13 @@
   else{
     $loginStatus = $_SESSION['login'];
   }
-  
-  filter($loginStatus);
 
   function filter($loginStatus){
       /**
        buyer
        **/
   if($loginStatus==1){
- 
+ echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
 
   ?>
                 
@@ -97,7 +62,7 @@
       $row=mysqli_fetch_array($ret); 
       $noRows=mysqli_num_rows($ret);
       if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row["BNAME"]."</a></li>";
+        echo "<li><a href='#!'' id='user_name'>".$row['bname']."</a></li>";
       }
       ?>
       <li class="divider"></li>
@@ -109,7 +74,7 @@
   <!--Product--------------------->
   <ul id="products" class="dropdown-content">
 
-    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
     <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
     <li class="divider"></li>
@@ -119,6 +84,7 @@
   <?php
   }
  elseif ($loginStatus == 2) {
+  echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
  ?>            
 
   <!--Login--------------------->
@@ -128,6 +94,7 @@
       include("dblink.php");
       $sid = $_SESSION['sid'];
       $query = "select * from seller where sid ='".$sid."'";
+      //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
       $row=mysqli_fetch_array($ret);
       $noRows=mysqli_num_rows($ret);  
@@ -143,7 +110,7 @@
 
   <!--Product--------------------->
   <ul id="products" class="dropdown-content">
-    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
     <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
   </ul>
@@ -164,15 +131,18 @@
 
   <!--Product--------------------->
   <ul id="products" class="dropdown-content">
-    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
   </ul>
 
   <?php
   }
-  } 
-  ?>
+  }
 
+ 
+  filter($loginStatus);
+  }
+  ?>
   <!---Navigation------------------------------------->
   
   <!-- Dropdown Structure -->
@@ -196,7 +166,7 @@
           <i class="material-icons prefix">account_circle</i>
           <input id="email" type="text" class="validate" required="required" 
           name="email">
-          <label for="name">Name</label>
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="row ">
@@ -224,11 +194,6 @@
         </p>
       </div>
       <br>
-
-        <input type="hidden">
-
-
-
       <button type="submit" class="btn btn-primary green white-text">Login</button>
     </form>
     </div>
@@ -344,11 +309,10 @@
   </div>
 </div>
 
-
 <!---Navigation-->
-<nav>
+<nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px">AgriculturalTradingSystem</a>
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -390,147 +354,12 @@
 <!-- end of mobile nav  -->
   </div>
 </nav>
-<?php
-
-static $jssor = 0;
-
-  include("dblink.php");
-  //$sid = $_SESSION['sid'];
-
-            $sliderCount= "select count(distinct(category))as ct from product";
-      
-            $result = mysqli_query($con,$sliderCount);          
-           
-            $r=mysqli_fetch_array($result);
-            $count = $r['ct'];
-
-function showProducts($category){
-
-  global $jssor;
-  $length = strlen($category);
-  $length=$length+2;
-  include("dblink.php");
-
-//$sid = $_SESSION['sid'];
-  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
-      
-  $ret = mysqli_query ($con,$query);          
-  $noRows=mysqli_num_rows($ret);
-  //echo $noRows;
-  if($noRows>0){
-  for($i=0;$i<$noRows;$i++){
-  
-  $jssor +=1;
-  $row=mysqli_fetch_array($ret); 
-  //echo $jssor;
-
-  echo "
-  <div class='card padding-normal'>
-    <div>
-      <h4>".$row['subCatagory']."</h4>
-      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:320px;overflow:hidden;visibility:hidden;'>
-        
-        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;'>";
-
-        $subCatagory = $row['subCatagory'];
-        
-  $query2 = "select * from product where category like '$category%$subCatagory'";
-
-  $ret2 = mysqli_query ($con,$query2);          
-  $noRows2=mysqli_num_rows($ret2);
-
-  for($j=0;$j<$noRows2;$j++){
-    $row2=mysqli_fetch_array($ret2); 
-      
-      
-    $url = $row2["p_image"];
-    $imageData = base64_encode(file_get_contents($url));
-
-    // Format the image SRC:  data:{mime};base64,{data};
-    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
-    ?>
-
-        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
-          <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
-            <div class='card-image'>
-            <img src='<?php echo "$src";?>'height='160px' width='160px'>
-            </div>
-          </a>
-          <div class='card-content'>
-          <span class='card-title activator grey-text text-darken-4'>
-             <?php echo $row2['pname']; ?><i class='material-icons right'>more_vert</i>
-          </span>
-          </div>
-          <div class='card-reveal'>
-            <span class='card-title grey-text text-darken-4'>".
-            $row2['pname']."<i class='material-icons right'>close</i>
-            </span>
-            <p>".$row2['p_description']."</p>
-          </div>
-        </div>
-        <?php
-      }
-      ?>
-    </div>
-        <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
-
-          <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
-
-            <path class='a' d='M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z'></path>
-
-          </svg>
-
-        </div>
-
-        <div data-u='arrowright' class='jssora073' style='width:50px;height:50px;top:0px;right:30px;' data-autocenter='2' data-scale='0.75' data-scale-right='0.75'>
-            <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
-                <path class='a' d='M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z'></path>
-            </svg>
-        </div>
-      </div>
-  </div></div>
 
 <?php
 
-  }}
-
-else
-{
-  echo "There is no product in this category yet!!!";
-}
-  }
-
-  ?>
-<div class="content padding-normal">
-  <div>
-  <a href="#">Category/</a>
-  <a href="#">SubCategory/</a>
-  </div>
-
-
-<div id="Agricultural">
-  <h3>Agricultural</h3>
-   <?php
-    showProducts("agricultural");
-    ?>
-</div>
-
-<div id="fertilizer">
-  <h3>Fertilizer</h3>
-   <?php
-    showProducts("fertilizer");
-    ?>
-</div>
-
-<div id="Equipments">
-  <h3>Equipments</h3>
-   <?php
-    showProducts("Equipment");
-    ?>
-</div>
-
-</div>
-  <!---Footer-------------------------------------------------->
+function displayPageFooter() {
+?>
+<!---Footer-------------------------------------------------->
 <footer class="page-footer">
   <div class="row padding-normal container" id="aboutus">
 
@@ -594,71 +423,38 @@ The important benefit is that "Public can buy agricultural products cheeper than
     </div>
   </div>
 </footer>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+  function language(){
+    document.getElementById("language").innerHTML="ဘာသာစကား";
+    
+    document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
+    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+    document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    document.getElementById("contact").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+    document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
+    document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
+    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
+    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
+    document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
+    document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
+    document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္";
+    document.getElementById("user_name").innerHTML="အမည္";
+    document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
+    document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
+    document.getElementById("contact_us").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
+    document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
 
- <script type="text/javascript">
-        jssor_slider_init = function() {
+  }
+</script> 
 
-            var jssor_options = {
-              $AutoPlay: 0,
-              $AutoPlaySteps: 5,
-              $SlideDuration: 160,
-              $SlideWidth: 240,
-              $SlideSpacing:16,
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$,
-                $Steps: 5
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
-            };
-            
-            var count =parseInt("<?php echo $count;?>");
-
-            for (var i = 1; i <= count; i++) {
-              //Things[i]
-              eval("jssor_" + i +"_slider"+ " = new $JssorSlider$('jssor_"+i+"', jssor_options)");
-            }
-           
-            /*#region responsive code begin*/
-
-            var MAX_WIDTH = 980;
-
-            function ScaleSlider() {
-
-              for (var i = 1; i <= count; i++) {
-              
-              eval("var containerElement = jssor_"+i+"_slider.$Elmt.parentNode;");
-              var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    eval("jssor_"+i+"_slider.$ScaleWidth(expectedWidth);");
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-
-                eval("$Jssor$.$AddEvent(window, 'load', ScaleSlider"+i+");       $Jssor$.$AddEvent(window, 'resize', ScaleSlider"+i+");    $Jssor$.$AddEvent(window, 'orientationchange', ScaleSlider"+i+");");
-                }
-                 
-                }
-
-            ScaleSlider();
-        };
-    </script>
 
 <!-----Script to Import---------------------->
-
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>  
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-   <script type="text/javascript">jssor_slider_init();</script>
-   <!--script type="text/javascript">jssor_2_slider_init();</script>
-    <script type="text/javascript">jssor_3_slider_init();</script-->
+
   
 
 
@@ -668,16 +464,73 @@ The important benefit is that "Public can buy agricultural products cheeper than
     $(document).ready(function(){
     //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
+    $('.carousel').carousel();
     $('.modal').modal();
     $('select').formSelect();
-    $('.sidenav').sidenav();
+    $('.slider').slider();
 
     });
       
   </script>
+  <!-- script for mobile nav -->
+
+                  <script type="text/javascript">
+                   $(document).ready(function(){
+                   $('.sidenav').sidenav();
+                    });
+                 //filter(0));
+
+                </script>
+                 <script>
+                   function validFunction()
+                   {
+                    var name=document.getElementById("name").value;
+                    var tel=document.getElementById("tel").value;
+                    var email=document.getElementById("email").value
+                    var pw=document.getElementById("pw").value;
+                    var cpw=document.getElementById("cpw").value;
+
+                    var nameReg=/^[A-Za-z\s]+$/;
+                    var telReg=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
+                    var pwReg= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+                    if(name.match(nameReg))
+                    {
+                       if(tel.match(telReg))
+                       {
+                        if (true) {}
+                          if(pw.match(pwReg))
+                          {
+                             if (pw==cpw)
+                             {
+                              elert ("Successful ");
+                              return false;
+                             }else{
+                              alert("Please enter same password");
+                              return false;
+                             }
+                          }else{
+                            alert("Invalid password");
+                            return false;
+                          }
+                       }else
+                       {
+                        alert("Invalid telephone");
+                        return false;
+                       }
+                    }else
+                    {
+                      alert ("Invalid Name");
+                      return false;
+                    }
 
 
-    
-            
+
+                   }
+                 </script>
+
 </body>
 </html>
+<?php
+}
+?>
