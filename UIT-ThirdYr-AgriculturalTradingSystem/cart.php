@@ -21,13 +21,15 @@ displayPageHeader( "Cart" );
     </tr>
 
 <?php
-include("dblink.php");
-
+$_SESSION['pid1Incart'];
+$token;
+$result;
 if(isset($_GET['pid'])){
 $_SESSION['pid1Incart'].=$_GET['pid'].",";
 }
+if(isset($_SESSION['pid1Incart'])){
 $token = strtok($_SESSION['pid1Incart'], ",");
-
+}
 $i=0;
 while ($token !== false)
 {
@@ -40,15 +42,18 @@ $i++;
 $result = mysqli_query($con,"SELECT * FROM product where pid IN (".implode(',',$pids).")");
 
 $itid=1;
+$sum = 0;
 
 $num_rows = mysqli_num_rows($result);
 echo "<span id='num_row'>$num_rows</span>";
 //echo "<span id='num_row'>$num_rows</span>";
+
 while($row = mysqli_fetch_array($result))
 {
   
 $image = $row['p_image'];
 $imageData = base64_encode(file_get_contents($image));
+
 
 // Format the image SRC:  data:{mime};base64,{data};
 $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
@@ -57,24 +62,31 @@ $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
     <tr id ='<?php echo "div$itid"; ?>'>
       <td><img src='<?php echo $src;?>' height="100px" width="100px"></td>
       <td id='<?php echo "pid$itid";?>'><?php echo $row['pname'];?></td>
-      <td>
+      <td  >
         <div class="input-field">
-           <input id="quantity" type="number" value="1" min="0" class="validate" onchange='calculate()'>
+           <input id='<?php echo "quantity$itid";?>' class="validate" type="number" value="1" onchange='calculate(<?php echo $itid;?>)'>
 
+           <input type="hidden" id='<?php echo "price$itid";?>' value='<?php echo $row["price"];?>'>
 
         <label for="quantity">Quantity</label>
         </div></td>
-           <!--script type="text/javascript">
-            var cost=<?php echo $row['price'] ?>;
-             function calculate(){
-              var quantity = document.getElementById('quantity').value;
-              var cost = quantity*(<?php echo $row['price'];?>);
-              alert(cost);
-             }
-             document.write('<td>'+cost+'</td>');
-           </script-->
+       <script type="text/javascript">
+
+  function calculate(id) {
+    // body...
+    alert(id);
+    var i = document.getElementById('<?php echo "quantity'+id+'";?>').value;
+    var price = document.getElementById('<?php echo "price'+id+'";?>').value;
+      document.getElementById('<?php echo "cost'+id+'";?>').innerHTML = i*price;
+    }
+
+</script>
+
+      <td id='<?php echo "cost$itid";?>'>
+        <?php echo $row['price']?>
           
-      <td><?php echo $row['price'];?></td>
+        </td>
+
       <td><a href="#" class="btn btn-default waves-effect  white
          green-text"><i class="material-icons">delete</i></a> </td>
        </tr>
@@ -83,13 +95,11 @@ $itid++;
 }
 ?>
 
+
 </table>
 <?php
 echo mysqli_error($con);
 ?>
-
-
-
 
       <!--Cash -------------->
       <div class="col s2">
@@ -172,13 +182,25 @@ echo mysqli_error($con);
 
 </div></div></div>
 <button type="button" onclick="getvalue();">getvalue</button>
+<script type="text/javascript">
+alert("calculate");
+           // var cost = document.getElementById('<?php echo "quantity$itid";?>//').innerHTML;
+             function calculate(){
+              alert("calculate");
+              var quantity=document.getElementById('<?php echo "quantity$itid";
+               ?>').innerHTML;
+              var cost = (int)quantity*(int)cost;
+              alert(cost);
+             }
+             document.write('<td id=>'+cost+'</td>');
+                        </script>
 
 
 <script type="text/javascript">
-alert("script");
+//alert("script");
   var cart=new Array();
  // function getvalue(){
-    alert("getvalue");
+    //alert("getvalue");
   var totalrow=document.getElementById('num_row').innerHTML;
   var i=0;
     var getpid='pid'+(i+1);
@@ -209,73 +231,6 @@ alert("script");
 </script>
 
 
-
-<!---Footer-------------------------------------------------->
-<footer class="page-footer">
-  <div class="row padding-normal container" id="aboutus">
-
-
-      <h5 class="white-text" id="about_as1" style="text-align: center;padding: 16px;">About Us</h5>
-      <p class="grey-text text-lighten-4 center-align">
-
-  Our project team is organized with 7 students from UIT.Our idea is that to help trading agricultural products directly via B2B system.<br><br>
-
-Trading between sellers and customers needs many steps and may face warehouse problems.
-Repeated contributions may make the price up to double(or even triple) for buyers.<br><br>
-
-We try hard to solve this problem in our system.
-In our website, we efficiently provide logistics service to both sellers and contributors.<br><br>
-Sellers and customers can directly trade without needing unnecessary steps that increase cost.<br><br>
-It also saves time!!!<br><br>
-
-The important benefit is that "Public can buy agricultural products cheeper than before."<br>
-
-
-
-</p></div>
-   <div class="row">
-    <hr style="width: 300px;color: white">
-  </div>
-
-   
-<div class="row padding-normal container" id="contactus">
-    
-      <h5 class="white-text" id="contact_us" style="text-align: center;padding: 16px">Contact Us</h5>
-
-<div class="col s6">
-  <ul>
-        <li>Ei Nghon Phoo- Project leader and supervisor<br>
-            email-einghonphoo@uit.edu.mm</li><br><br>
-        <li>Yamin Thiri Aung- Designer and programmer<br>
-            email-yaminthiriaung@uit.edu.mm</li><br><br>
-        <li>Yamin Theint Theint- Programmer and Language Analyst <br>
-            email- yamintheinttheint@uit.edu.mm</li><br><br>
-        <li>Khine Min Htwe- Programmer <br>
-            email- khineminhtwe@uit.edu.mm</li>      
-      </ul>
-</div>
-<div class="col s6">
-  <ul>
-        <li>Khin Thantsin- Data analyst<br>
-            email-khinthantsin@uit.edu.mm</li><br><br>
-        <li>Ye Yint Aung- Content writer and market researcher<br>
-            email-yeyintaung@uit.edu.mm</li><br><br>
-        <li>Hsu Yee Mon- Coordinator and analyst<br>
-            email- hsuyeemon@uit.edu.mm</li>   
-      </ul>
-      <h4> if you have any conflicts or problems feel free to contact us</h4>
-</div>
-      
-    
-  </div>
-  <div class="footer-copyright">
-    <div class="container center-align">
-      © 2018 Agricultural Trading System
-    </div>
-  </div>
-</footer>
-
-
 <script type="text/javascript">
 
   var cart=new Array();
@@ -294,68 +249,7 @@ The important benefit is that "Public can buy agricultural products cheeper than
   
 </script>
 
-<script src="js/jquery-3.1.1.js"></script>
-<script>
 
-</script>
-
-</body>
-</html>
-
-     
-    
-	<!-----Script to Import---------------------->
-
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>   
-
-
-
-   <script>
-	
-    //drop dowm
-    $(document).ready(function(){
-    $(".dropdown-trigger").dropdown({ hover: true });
-    $('.modal').modal();
-    $('select').formSelect();
-    $('.datepicker').datepicker();
-  });
-  
-</script>
-
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript">
-  function language(){
-    document.getElementById("myanmar").innerHTML="ဘာသာစကား";
-    document.getElementById("order_your_items").innerHTML="သင္ေရြးခ်ယ္ထားေသာ ပစၥည္းမ်ားကို ေအာ္ဒါမွာရန္";
-    document.getElementById("phoneno").innerHTML="ဖုန္းနံပါတ္";
-    document.getElementById("email").innerHTML="အီးေမးလ္ လိပ္စာ";
-    document.getElementById("street").innerHTML="လမ္း";
-    document.getElementById("city").innerHTML="ၿမိဳ႕";
-    document.getElementById("state_region").innerHTML="တိုင္းေဒသႀကီး /ျပည္နယ္";
-    document.getElementById("document.getElementById("your_items").innerHTML="သင္ေရြးခ်ယ္ထားေသာ ပစၥည္းမ်ား";
-    document.getElementById("document.getElementById("cash_on_delivery").innerHTML="ပစၥည္းေရာက္ေငြေခ်စနစ္";
-    
-
-
-
-    
-    
-  }
-</script>
-
-
-
-<!-- script for mobile nav -->
-
-                  <script type="text/javascript">
-                   $(document).ready(function(){
-                   $('.sidenav').sidenav();
-                    });
-
-                </script>
 
                 <script type="text/javascript">
                   

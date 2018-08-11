@@ -22,6 +22,8 @@ function displayPageHeader( $pageTitle ) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
       <link href="css/style.css" rel="stylesheet" />  
+      <link href="css/jssor.css" rel="stylesheet" />  
+<script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 
 
 </head>
