@@ -144,7 +144,7 @@ if(isset($_GET['lan_flag'])){
 $_SESSION['lan_flag']=$_GET['lan_flag'];
 }
 $lan_flag=null;
-echo $_SESSION['lan_flag'];
+//echo $_SESSION['lan_flag'];
 if(isset($_SESSION['lan_flag'])){
 $lan_flag=$_SESSION['lan_flag'];
 }

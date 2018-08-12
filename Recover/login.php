@@ -116,7 +116,7 @@ exit();
    }   
 
    session_write_close();
-   echo $_SESSION['login'];
+   //echo $_SESSION['login'];
    //include("index.php");
    //exit();
    header('Location: index.php');
