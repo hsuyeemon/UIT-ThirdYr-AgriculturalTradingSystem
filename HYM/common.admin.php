@@ -52,7 +52,7 @@ function displayNavAdmin(){
   <ul id="authentication" class="dropdown-content">
      <?php
       include("dblink.php");
-      $adminId = $_SESSION['adminId'];
+      $adminId = $_SESSION['admin_id'];
       $query = "select * from admin where admin_id ='".$adminId."'";
       //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
@@ -100,7 +100,7 @@ function displayNavAdmin(){
       <li><a href="index.php#contactus" id="contact">Contact</a></li-->
 
       
-       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Control<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
       <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">UserName

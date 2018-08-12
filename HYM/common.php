@@ -9,6 +9,9 @@
   include 'common.seller.php';
   include 'common.admin.php';
   include 'dblink.php';
+
+
+
 ?>
 <?php
 function displayPageHeader( $pageTitle ) {  
@@ -32,7 +35,23 @@ function displayPageHeader( $pageTitle ) {
 
 <?php
 
-  if(isset($_SESSION['login'])){
+  //session_start(); 
+if(isset($_GET['lan_flag'])){
+$_SESSION['lan_flag']=$_GET['lan_flag'];
+}
+$lan_flag=null;
+if(isset($_SESSION['lan_flag'])){
+$lan_flag=$_SESSION['lan_flag'];
+}
+//echo $_SESSION['lan_flag'];
+if ($lan_flag) {
+  echo "<script type='text/javascript'>
+  alert('myanmar');
+  document.getElementById('language').innerHTML='ဘာသာစကား';
+  </script>";  
+}
+
+    if(isset($_SESSION['login'])){
     $loginStatus = $_SESSION['login'];
   }
   else{
@@ -45,7 +64,7 @@ function displayPageHeader( $pageTitle ) {
     displayNavBuyer();
   }
   elseif($loginStatus=="seller"){
-  //elseif ($loginStatus == 2) {
+ // elseif ($loginStatus == 2) {
     displayNavSeller();
   }
   elseif($loginStatus == "admin"){
@@ -70,9 +89,9 @@ function displayPageHeader( $pageTitle ) {
  
   <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="index.php?lan_flag=1" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
+    <li><a href="index.php?lan_flag=1" id="myanmar">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="lan_index.php?lan_flag=1" id="english" onclick="">English</a></li>
+    <li><a href="index.php?lan_flag=0" id="english">English</a></li>
   </ul>
 
   <!---Navigation-->
@@ -82,7 +101,8 @@ function displayPageHeader( $pageTitle ) {
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
-      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-trigger" href="#!" data-target="font" 
+        id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home">Home</a></li>
       
       <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
@@ -129,20 +149,20 @@ function displayPageHeader( $pageTitle ) {
   <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Login To Your Account</h3>
-    <form action="login.php" method="post" class="col s12">
+    <form action="loginv.php" method="post" class="col s12">
 
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
           <input id="email" type="text" class="validate" required="required" 
-          name="email">
+          name="logemail">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate" required="required" name="loginPwd">
+          <input id="password" type="password" class="validate" required="required" name="logpwd">
           <label for="password">Password</label>
         </div>
         <label style='float: right;'>
@@ -153,18 +173,18 @@ function displayPageHeader( $pageTitle ) {
         <p>
           <label>
             <input class="with-gap" value="buyer" name="group3" type="radio" required="required" />
-            <span>User Account:BUYER</span>
+            <span>BUYER</span>
           </label>
         </p>
         <p>
           <label>
             <input class="with-gap" value="seller" name="group3" type="radio" required="required" />
-            <span>User Account:SELLER</span>
+            <span>SELLER</span>
           </label>
         </p>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
+            <input class="with-gap" value="admin" name="group3" type="radio" required="required" />
             <span>Admin Account</span>
           </label>
         </p>
@@ -484,30 +504,6 @@ The important benefit is that "Public can buy agricultural products cheeper than
 }
 
 
-//session_start(); 
-if(isset($_GET['lan_flag'])){
-$_SESSION['lan_flag']=$_GET['lan_flag'];
-}
-$lan_flag=null;
-if(isset($_GET['lan_flag'])){
-$lan_flag=$_GET['lan_flag'];
-}
-//echo $_SESSION['lan_flag'];
-if ($lan_flag) {
-  echo "<script type='text/javascript'>document.getElementById('para').innerHTML = 'changed it to myanmar';
-       document.getElementById('language').innerHTML='á€˜á€¬á€žá€¬á€…á€€á€¬á€¸';
-    
-    document.getElementById('home').innerHTML='á€•á€„á€¹á€™ á€…á€¬á€™á€ºá€€á€¹á‚�á€½á€¬';
-    document.getElementById('products').innerHTML='á€€á€¯á€”á€¹á€•á€…á�¥á€Šá€¹á€¸ á€™á€ºá€¬á€¸ ';
-    document.getElementById('about_as').innerHTML='á€€á€¼á�½á‚�á€¯á€•á€¹á€�á€­á€¯á‚” á€¡á€±á�¾á€€á€¬á€„á€¹á€¸';
-    document.getElementById('contact').innerHTML='á€€á€¼á�½á€”á€¹á€•á€¹á€�á€¯á€­á‚”á€€á€­á€¯á€†á€€á€¹á€žá€¼á€šá€¹á€›á€”á€¹';
-  document.getElementById('mytable').row[0].cells[0].innerHTML='á€…á€¥á€¹';
-    document.getElementById('mytable').row[0].cells[1].innerHTML=' á€€á€¯á€”á€¹á€•á€…á�¥á€Šá€¹á€¸á€¡á€™á€Šá€¹';
-      document.getElementById('mytable').row[0].cells[2].innerHTML='á€±á€›á€¬á€„á€¹á€¸á€žá€°á€¡á€™á€Šá€¹';
-        document.getElementById('mytable').row[0].cells[3].innerHTML='á€±á€…á€ºá€¸á‚�á‚ˆá€”á€¹á€¸';
-          document.getElementById('mytable').row[0].cells[4].innerHTML=' á€¡á€±á€›á€¡á€�á€¼á€€á€¹';
-            document.getElementById('mytable').row[0].cells[5].innerHTML='á€¡á€”á€Šá€¹á€¸á€†á€¶á€¯á€¸á€•á€™á€¬á€�';
-              document.getElementById('mytable').row[0].cells[6].innerHTML='á€¡á€™á€ºá€¬á€¸á€†á€¶á€¯á€¸á€•á€™á€¬á€�';</script>";}
 
               
 
