@@ -462,10 +462,11 @@ $sid = $_SESSION['sid'];
           </span>
           </div>
           <div class='card-reveal'>
-            <span class='card-title grey-text text-darken-4'>".
-            $row2['pname']."<i class='material-icons right'>close</i>
+            <span class='card-title grey-text text-darken-4'>
+            <?php echo $row2['pname'];?>
+            <i class='material-icons right'>close</i>
             </span>
-            <p>".$row2['p_description']."</p>
+            <p><?php echo $row2['p_description'];?></p>
           </div>
         </div>
         <?php

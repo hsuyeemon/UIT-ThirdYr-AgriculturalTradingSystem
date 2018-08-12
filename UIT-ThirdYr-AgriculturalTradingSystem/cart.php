@@ -1,9 +1,56 @@
 <?php
 
-include( "common.buyer.php" );
-include( "dblink.php" );
-
+//include( "common.buyer.php" );
+include 'common.php';
+include "dblink.php";
 displayPageHeader( "Cart" );
+  if(isset($_SESSION['login'])){
+    $loginStatus = $_SESSION['login'];
+  }
+  else
+    $loginStatus = "normal";
+
+  if($loginStatus!=1){
+    echo "<script>alert('please log in first');
+    location.replace('index.php');</script>";
+    //header('Location: index.php');
+    exit(); 
+  } 
+
+
+//$_SESSION['pid1Incart']=null;
+$token=null;
+$result=null;
+if(isset($_GET['pid'])){
+  if(isset($_SESSION['pid1Incart'])){
+$_SESSION['pid1Incart'].=$_GET['pid'].",";
+    }
+else
+  $_SESSION['pid1Incart']=$_GET['pid'].",";
+}
+
+if(isset($_SESSION['pid1Incart'])){
+$token = strtok($_SESSION['pid1Incart'], ",");
+}
+$i=0;
+while ($token !== false)
+{
+$pids[$i]=$token;
+$token = strtok(",");
+$i++;
+}
+if($pids[0]!=null){
+
+
+
+$result = mysqli_query($con,"SELECT * FROM product where pid IN (".implode(',',$pids).")");
+
+$itid=1;
+$sum = 0;
+
+$num_rows = mysqli_num_rows($result);
+echo "<span id='num_row'>$num_rows</span>";
+//echo "<span id='num_row'>$num_rows</span>";
 ?>
 
 <div class="content padding-normal">
@@ -21,32 +68,6 @@ displayPageHeader( "Cart" );
     </tr>
 
 <?php
-$_SESSION['pid1Incart'];
-$token;
-$result;
-if(isset($_GET['pid'])){
-$_SESSION['pid1Incart'].=$_GET['pid'].",";
-}
-if(isset($_SESSION['pid1Incart'])){
-$token = strtok($_SESSION['pid1Incart'], ",");
-}
-$i=0;
-while ($token !== false)
-{
-$pids[$i]=$token;
-$token = strtok(",");
-$i++;
-} 
-
-
-$result = mysqli_query($con,"SELECT * FROM product where pid IN (".implode(',',$pids).")");
-
-$itid=1;
-$sum = 0;
-
-$num_rows = mysqli_num_rows($result);
-echo "<span id='num_row'>$num_rows</span>";
-//echo "<span id='num_row'>$num_rows</span>";
 
 while($row = mysqli_fetch_array($result))
 {
@@ -98,6 +119,7 @@ $itid++;
 
 </table>
 <?php
+
 echo mysqli_error($con);
 ?>
 
@@ -181,7 +203,10 @@ echo mysqli_error($con);
 
 
 </div></div></div>
-<button type="button" onclick="getvalue();">getvalue</button>
+<?php
+}
+?>
+<!--button type="button" onclick="getvalue();">getvalue</button-->
 <script type="text/javascript">
 alert("calculate");
            // var cost = document.getElementById('<?php echo "quantity$itid";?>//').innerHTML;

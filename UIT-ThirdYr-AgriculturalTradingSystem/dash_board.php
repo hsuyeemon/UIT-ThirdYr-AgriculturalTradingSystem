@@ -1,9 +1,23 @@
 <?php
 
-include( "common.seller.php" );
+include( "common.php" );
 include( "dblink.php" );
 
 displayPageHeader( "Dashboard" );
+ if(isset($_SESSION['login'])){
+    $loginStatus = $_SESSION['login'];
+  }
+  else
+    $loginStatus = "normal";
+
+  if($loginStatus!=2){
+    echo "<script>alert('please log in first');
+    location.replace('index.php');</script>";
+    //header('Location: index.php');
+    exit(); 
+  } 
+?>
+
 ?>
 
 <div class="content padding-normal center-align">

@@ -4,6 +4,7 @@ if(!isset($_SESSION))
   { 
     session_start(); 
   }
+  /*
 function displayPageHeader( $pageTitle ) {    
   ?>
 <!DOCTYPE html>
@@ -22,8 +23,8 @@ function displayPageHeader( $pageTitle ) {
 
 </head>
 
-<!--body class="#ccff90 light-green accent-1"-->
-  <body>
+
+<body>
 
 <?php
 
@@ -33,11 +34,20 @@ function displayPageHeader( $pageTitle ) {
   else
     $loginStatus = "normal";
  
-  if($loginStatus=="admin"){
-  echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
-  ?>
-                
+    if($loginStatus==1){
+    displayNavAdmin();
+    }
+  else{
+    echo "<script>alert('please log in first');
+    windows.</script>";
+    header('Location: index.php');
+    exit(); 
+  } 
+}
+*/
 
+function displayNavAdmin(){
+  ?>
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
      <?php
@@ -67,21 +77,7 @@ function displayPageHeader( $pageTitle ) {
     <li><a href="approveUsers.php" class="modal-trigger " id="approveUsers">Users</a></li>
   </ul>
 
-  <?php
-  }
   
-  else{
-    echo "<script>alert('please log in first');
-    windows.</script>";
-    header('Location: index.php');
-    exit(); 
-  } 
-
-  ?>
-
-  <!---Navigation------------------------------------->
-  
-  <!-- Dropdown Structure -->
 
   <!--Language------------------>
   <ul id="font" class="dropdown-content">
@@ -98,10 +94,10 @@ function displayPageHeader( $pageTitle ) {
 
 
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="index.html" id="home">Home</a></li>
+      <li><a href="index.php" id="home">Home</a></li>
       
-      <li><a href="index.html#aboutus" id="about_as">About Us</a></li>
-      <li><a href="index.html#contactus" id="contact">Contact</a></li-->
+      <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.php#contactus" id="contact">Contact</a></li-->
 
       
        <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -136,126 +132,6 @@ function displayPageHeader( $pageTitle ) {
   </div>
 </nav>
 
-<?php
-}
-function displayPageFooter() {
-?><!---Footer-------------------------------------------------->
-<footer class="page-footer">
-  <div class="row padding-normal container" id="aboutus">
-
-
-      <h5 class="white-text" id="about_as1" style="text-align: center;padding: 16px;">About Us</h5>
-      <p class="grey-text text-lighten-4 center-align">
-
-  Our project team is organized with 7 students from UIT.Our idea is that to help trading agricultural products directly via B2B system.<br><br>
-
-Trading between sellers and customers needs many steps and may face warehouse problems.
-Repeated contributions may make the price up to double(or even triple) for buyers.<br><br>
-
-We try hard to solve this problem in our system.
-In our website, we efficiently provide logistics service to both sellers and contributors.<br><br>
-Sellers and customers can directly trade without needing unnecessary steps that increase cost.<br><br>
-It also saves time!!!<br><br>
-
-The important benefit is that "Public can buy agricultural products cheeper than before."<br>
-
-
-
-</p></div>
-   <div class="row">
-    <hr style="width: 300px;color: white">
-  </div>
-
-   
-<div class="row padding-normal container" id="contactus">
-    
-      <h5 class="white-text" id="contact_us" style="text-align: center;padding: 16px">Contact Us</h5>
-
-<div class="col s6">
-  <ul>
-        <li>Ei Nghon Phoo- Project leader and supervisor<br>
-            email-einghonphoo@uit.edu.mm</li><br><br>
-        <li>Yamin Thiri Aung- Designer and programmer<br>
-            email-yaminthiriaung@uit.edu.mm</li><br><br>
-        <li>Yamin Theint Theint- Programmer and Language Analyst <br>
-            email- yamintheinttheint@uit.edu.mm</li><br><br>
-        <li>Khine Min Htwe- Programmer <br>
-            email- khineminhtwe@uit.edu.mm</li>      
-      </ul>
-</div>
-<div class="col s6">
-  <ul>
-        <li>Khin Thantsin- Data analyst<br>
-            email-khinthantsin@uit.edu.mm</li><br><br>
-        <li>Ye Yint Aung- Content writer and market researcher<br>
-            email-yeyintaung@uit.edu.mm</li><br><br>
-        <li>Hsu Yee Mon- Coordinator and analyst<br>
-            email- hsuyeemon@uit.edu.mm</li>   
-      </ul>
-      <h4> if you have any conflicts or problems feel free to contact us</h4>
-</div>
-      
-    
-  </div>
-  <div class="footer-copyright">
-    <div class="container center-align">
-      © 2018 Agricultural Trading System
-    </div>
-  </div>
-</footer>
-
-<script type="text/javascript">
-  function language(){
-    document.getElementById("language").innerHTML="ဘာသာစကား";
-    
-    document.getElementById("home").innerHTML="ပင္မ စာမ်က္ႏွာ";
-    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
-    document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-    document.getElementById("contact").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
-    document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
-    document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
-    document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
-    document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္";
-    document.getElementById("user_name").innerHTML="အမည္";
-    document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
-    document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
-    document.getElementById("contact_us").innerHTML="ကြၽန္ပ္တုိ႔ကိုဆက္သြယ္ရန္";
-    document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-
-  }
-</script> 
-
-
-<!-----Script to Import---------------------->
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>  
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  
-
-
-<!------------Script in Index.html--------------->
-  <script>
-
-    $(document).ready(function(){
-    //drop dowm
-    $(".dropdown-trigger").dropdown({ hover: true });
-    $('.carousel').carousel();
-    $('.modal').modal();
-    $('select').formSelect();
-    $('.slider').slider();
-    $('.sidenav').sidenav();
-
-    });
-      
-  </script>
-  
-</body>
-</html>
 <?php
 }
 ?>

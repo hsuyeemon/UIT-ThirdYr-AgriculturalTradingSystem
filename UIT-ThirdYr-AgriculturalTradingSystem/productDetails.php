@@ -2,13 +2,10 @@
 
 include( "common.php" );
 include( "dblink.php" );
-
 displayPageHeader( "productDetails" );
 ?>
 
 <?php 
-//require ("dblink.php"); 
-include('dblink.php');
 global $pid;
 if(isset($_GET['productId'])){
 $pid = $_GET['productId'];
@@ -21,7 +18,7 @@ $pid = $_GET['productId'];
   <a href="#">ProductName/</a>
   </div>
 
-<?php
+ <?php
 
 //Product Details
 $productDetails = "SELECT * FROM product WHERE pid='$pid'";
@@ -52,8 +49,8 @@ $phone = $rows2['s_phoneno'];
         <a class="btn green white-text" href="tel:
         <?php echo $phone?>" id="call">Call to Vendor</a>
     
-</div>
-<div class="carousel col s9" style="margin:0px;height: 200px; ">
+    </div>
+    <div class="carousel col s9" style="margin:0px;height: 200px; ">
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 $filearray=array();
@@ -72,10 +69,78 @@ echo "<a class='carousel-item' href='#one!'><img src='images/".$src."'></a>";
 </div>
 </div>
 <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
-    <p><?php echo $des;?> </p>
- <a class="btn green white-text modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
-     <a class="btn green white-text modal-trigger" href="cart.php?
+ <p><?php echo $des;?> </p>
+ 
+ <a class="btn green white-text modal-trigger" 
+ href="#myModal2" id="order">Order<i class="material-icons right">send</i></a>
+
+ <div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="padding: 48px;">
+  <h4>Order Your Items</h4>
+  
+  <!---Items--------------------------->
+    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
+  
+    <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
+          <label for="phoneno">PhoneNo</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+      <div class="row">
+        
+        <div class="input-field col s10 ">
+          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s2">
+          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
+        </div>
+      </div>
+     
+    <div class="row">
+      <div class="input-field col s4 ">
+          <input id="street" type="text" class="validate" required="required">
+          <label for="street">Street Address</label>
+        </div>
+
+        <div class="input-field col s4 ">
+          <input id="city" type="text" class="validate" required="required">
+          <label for="city">City</label>
+        </div>
+        <div class="input-field col s4" required="required">
+    <select id="state">
+      <option value="1">Yangon</option>
+      <option value="2">Manadalay</option>
+      <option value="3">Magway</option>
+    </select>
+    <label for="state">State/Region</label>
+  </div>
+    </div>
+     <div class="row">
+        <button class="modal-close btn green white-text" type="submit" name="action"
+         onclick="show_alert()";>Confirm Order
+      <i class="material-icons right">send</i>
+      </button>
+      <button class="modal-close btn green white-text" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      </button>
+
+      </div>
+    </form>
+
+    <!--div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div--></div>
+
+    </div>
+ 
+ <a class="btn green white-text modal-trigger" href="cart.php?
      pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">send</i></a>
+
 
   </div>
   <br><hr>
@@ -228,86 +293,11 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
     </div>
   </article>';
     }
-
-
-  /*$cmt = "SELECT * FROM comment WHERE oid='1'";
-  $result = mysql_query($cmt) or die(mysql_error());
-     while ($rows  = mysql_fetch_array($result)) { 
-   $commentText = $rows['CMT_TEXT'];
-   $time = $rows['CMT_TIME'];
-   
-  }*/
-  
-    }
-  
 ?>
 
 
 
 </section>​
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="padding: 48px;">
-  <h4>Order Your Items</h4>
-  
-  <!---Items--------------------------->
-    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
-  
-    <div class="row">
-        
-        <div class="input-field col s10 ">
-          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
-          <label for="phoneno">PhoneNo</label>
-        </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
-        </div>
-      </div>
-      <div class="row">
-        
-        <div class="input-field col s10 ">
-          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
-          <label for="email">Email</label>
-        </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
-        </div>
-      </div>
-     
-    <div class="row">
-      <div class="input-field col s4 ">
-          <input id="street" type="text" class="validate" required="required">
-          <label for="street">Street Address</label>
-        </div>
-
-        <div class="input-field col s4 ">
-          <input id="city" type="text" class="validate" required="required">
-          <label for="city">City</label>
-        </div>
-        <div class="input-field col s4" required="required">
-    <select id="state">
-      <option value="1">Yangon</option>
-      <option value="2">Manadalay</option>
-      <option value="3">Magway</option>
-    </select>
-    <label for="state">State/Region</label>
-  </div>
-    </div>
-     <div class="row">
-        <button class="modal-close btn green white-text" type="submit" name="action"
-         onclick="show_alert()";>Confirm Order
-      <i class="material-icons right">send</i>
-      </button>
-      <button class="modal-close btn green white-text" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
-      </button>
-
-      </div>
-    </form>
-
-    <!--div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-    </div--></div>
-
-    </div>
 
    <script>
   function show_alert() {
@@ -320,6 +310,10 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
   return false;
   }
 </script>
+
+
+
  <?php
+}
 displayPageFooter();
 ?>

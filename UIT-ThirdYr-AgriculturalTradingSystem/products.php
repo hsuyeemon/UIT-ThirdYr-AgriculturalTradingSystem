@@ -1,7 +1,7 @@
 <?php
 
-include( "common.php" );
-include( "dblink.php" );
+include "common.php";
+include 'dblink.php';
 
 displayPageHeader( "product" );
 ?>
@@ -9,8 +9,6 @@ displayPageHeader( "product" );
 <?php
 
 static $jssor = 0;
-
-  include("dblink.php");
   //$sid = $_SESSION['sid'];
 
             $sliderCount= "select count(distinct(category))as ct from product";
@@ -21,15 +19,13 @@ static $jssor = 0;
             $count = $r['ct'];
 
 function showProducts($category){
-
+    include 'dblink.php';
+  
   global $jssor;
   $length = strlen($category);
   $length=$length+2;
-  include("dblink.php");
-
 //$sid = $_SESSION['sid'];
   $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%';";
-      
   $ret = mysqli_query ($con,$query);          
   $noRows=mysqli_num_rows($ret);
   //echo $noRows;
@@ -78,10 +74,11 @@ function showProducts($category){
           </span>
           </div>
           <div class='card-reveal'>
-            <span class='card-title grey-text text-darken-4'>".
-            $row2['pname']."<i class='material-icons right'>close</i>
+            <span class='card-title grey-text text-darken-4'>
+            <?php echo $row2['pname'];?>
+            <i class='material-icons right'>close</i>
             </span>
-            <p>".$row2['p_description']."</p>
+            <p><?php echo $row2['p_description'];?></p>
           </div>
         </div>
         <?php
@@ -203,7 +200,7 @@ else
     </script>
 
    <script type="text/javascript">jssor_slider_init();</script>
-</script>
+
  <?php
 displayPageFooter();
 ?>

@@ -4,11 +4,14 @@
   { 
     session_start(); 
   }
- 
 
-function displayPageHeader( $pageTitle ) {
-
-      
+  include 'common.buyer.php';
+  include 'common.seller.php';
+  include 'common.admin.php';
+  include 'dblink.php';
+?>
+<?php
+function displayPageHeader( $pageTitle ) {  
  ?>
 <!DOCTYPE html>
 <html>
@@ -23,106 +26,34 @@ function displayPageHeader( $pageTitle ) {
 
       <link href="css/style.css" rel="stylesheet" />  
       <link href="css/jssor.css" rel="stylesheet" />  
-<script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
-
-
+      <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
 </head>
-
-<!--body class="#ccff90 light-green accent-1"-->
-  <body>
+<body>
 
 <?php
 
-  $isTouch=empty($_SESSION['login']);
-
-  if($isTouch){
-   $loginStatus ="0";
-
-  }
-  else{
+  if(isset($_SESSION['login'])){
     $loginStatus = $_SESSION['login'];
   }
-
-  function filter($loginStatus){
-      /**
-       buyer
-       **/
-  if($loginStatus==1){
- echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
-
-  ?>
-                
-
-  <!--Login--------------------->
-  <ul id="authentication" class="dropdown-content">
-     <?php
-      include("dblink.php");
-      $bid = $_SESSION['bid'];
-      $query = "select * from buyer where bid ='".$bid."'";
-      //$query = "select * from seller where sid ='1'";
-      $ret = mysqli_query ($con,$query);          
-      $row=mysqli_fetch_array($ret); 
-      $noRows=mysqli_num_rows($ret);
-      if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row['bname']."</a></li>";
-      }
-      ?>
-      <li class="divider"></li>
-      <li><a href="#!" id="switch_account">Switch account</a></li>
-      <li class="divider"></li>
-      <li><a href="logout.php" id="logout">Logout</a></li>
-  </ul>
-
-  <!--Product--------------------->
-  <ul id="products" class="dropdown-content">
-
-    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
-    <li class="divider"></li>
-    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
-    <li class="divider"></li>
-    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
-  </ul>
-
-  <?php
-  }
- elseif ($loginStatus == 2) {
-  echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
- ?>            
-
-  <!--Login--------------------->
-  <ul id="authentication" class="dropdown-content">
-
-  <?php
-      include("dblink.php");
-      $sid = $_SESSION['sid'];
-      $query = "select * from seller where sid ='".$sid."'";
-      //$query = "select * from seller where sid ='1'";
-      $ret = mysqli_query ($con,$query);          
-      $row=mysqli_fetch_array($ret);
-      $noRows=mysqli_num_rows($ret);  
-      if($noRows>0){
-        echo "<li><a href='#!'' id='user_name'>".$row['sname']."</a></li>";
-      }
-      ?>
-    <li class="divider"></li>
-    <li><a href="#!" id="switch_account">Switch account</a></li>
-    <li class="divider"></li>
-    <li><a href="logout.php" id="logout">Logout</a></li>
-  </ul>
-
-  <!--Product--------------------->
-  <ul id="products" class="dropdown-content">
-    <li><a href="products.html" class="modal-trigger " id="product_dropdown">Products</a></li>
-    <li class="divider"></li>
-    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
-  </ul>
-  <?php
+  else{
+    $loginStatus = "normal";
   }
  
+
+  //if($loginStatus=="buyer"){
+  if($loginStatus==1){
+    displayNavBuyer();
+  }
+  //elseif($loginStatus=="seller"){
+  elseif ($loginStatus == 2) {
+    displayNavSeller();
+  }
+  elseif($loginStatus == "admin"){
+    displayNavAdmin();
+  }
   else{
   ?>
-
-
+     
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
     <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
@@ -136,181 +67,15 @@ function displayPageHeader( $pageTitle ) {
     <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
     
   </ul>
-  <?php
-  }
-  }
-
  
-  filter($loginStatus);
-  }
-  ?>
-  <!---Navigation------------------------------------->
-  
-  <!-- Dropdown Structure -->
-
   <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
+    <li><a href="index.php?lan_flag=1" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="#" id="english" onclick="">English</a></li>
+    <li><a href="lan_index.php?lan_flag=1" id="english" onclick="">English</a></li>
   </ul>
 
- 
-  <!--Login Form------------>
-  <div id="login" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="padding: 48px;">
-      <h3>Login To Your Account</h3>
-    <form action="login.php" method="post" class="col s12">
-
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate" required="required" 
-          name="email">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate" required="required">
-          <label for="password">Password</label>
-        </div>
-        <label style='float: right;'>
-        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-        </label>
-      </div>
-      <div>
-        <p>
-          <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
-            <span>User Account</span>
-          </label>
-        </p>
-        <p>
-          <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
-            <span>Admin Account</span>
-          </label>
-        </p>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary green white-text">Login</button>
-    </form>
-    </div>
-  </div>
-
-
-  <!--div id="signupType" class="modal fade large center-align" role="dialog">
-
-    <div class="modal-dialog" style="padding: 48px;">
-
-      <button id="seller" href="#signup_seller" class="modal-trigger btn btn-primary green white-text">Sign up as SELLER</button><br><br>
-      <button id="buyer" href="#signup_buyer" class="modal-trigger btn btn-primary green white-text">Sign up as BUYER</button>
-   
-    </div></div-->
-      
-
-  <!---Sign Up-------------------->
- <div id="signup" class="modal fade large" role="dialog">
-
-    <div class="modal-dialog" style="padding: 48px;">
-      <h3>Create an Account</h3>
-    <form class="col s12" onsubmit="return validFunction()">
-      
-      <div class="row">      
-        <div class="input-field col s12">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="name" type="text" class="validate" required="required">
-          <label for="icon_prefix">Name</label>
-        </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">phone</i>
-          <input id="tel" type="tel" class="validate"required="required">
-          <label for="tel">Telephone</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" required="required">
-          <label for="email">Email</label>
-        </div>
-      </div>
-    
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">home</i>
-          <input id="address" type="text" class="validate" required="required">
-          <label for="address" >Address</label>
-        </div>
-      </div>
-
-     <div class="row">
-        <div class="input-field col s12">
-           <i class="material-icons prefix">credit_card</i>
-          <input id="nrc" type="text" class="validate">
-          <label for="nrc">NRC</label>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="pw" type="password" class="validate" required="required">
-          <label for="pw">Password</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input id="cpw" type="password" class="validate" required="required">
-          <label for="cpw">Comfirm Password</label>
-        </div>
-      </div>
-     
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
-        <label for="brief">Brief description</label>
-        </div>
-      </div>
-
-      <div class="file-field input-field">
-        <div class="btn green white-text">
-          <span>File</span>
-          <input type="file" multiple>
-
-        </div>    
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Upload one or more files">
-        </div>
-      </div>
-    <div>
-    <br>
-    <p>
-      <label>
-        <input class="with-gap" name="group3" type="radio" checked />
-        <span>User Account</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input class="with-gap" name="group3" type="radio" />
-        <span>Admin Account</span>
-      </label>
-    </p-->
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
-  </form>
-  </div>
-</div>
-
-<!---Navigation-->
+  <!---Navigation-->
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
@@ -318,10 +83,10 @@ function displayPageHeader( $pageTitle ) {
 
 
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="index.html" id="home">Home</a></li>
+      <li><a href="index.php" id="home">Home</a></li>
       
-      <li><a href="index.html#aboutus" id="about_as">About Us</a></li>
-      <li><a href="index.html#contactus" id="contact">Contact</a></li-->
+      <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.php#contactus" id="contact">Contact</a></li-->
 
       
        <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -355,6 +120,191 @@ function displayPageHeader( $pageTitle ) {
 <!-- end of mobile nav  -->
   </div>
 </nav>
+<?php
+}
+}
+?>
+ 
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Login To Your Account</h3>
+    <form action="login.php" method="post" class="col s12">
+
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="email" type="text" class="validate" required="required" 
+          name="email">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate" required="required">
+          <label for="password">Password</label>
+        </div>
+        <label style='float: right;'>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
+      </div>
+      <div>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" required="required" />
+            <span>User Account:BUYER</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" required="required" />
+            <span>User Account:SELLER</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" required="required" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary green white-text">Login</button>
+    </form>
+    </div>
+  </div>
+
+
+ 
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Create an Account</h3>
+    <form class="col s12" action="" method="" id="form1">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="name" type="text" class="validate" required="required" name="username">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="tel" type="tel" class="validate"required="required" name="telph">
+          <label for="tel">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" required="required" name="em">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      
+      <div class="row">
+        <div class="input-field col s4">
+          <i class="material-icons prefix">home</i>
+          <input id="home" type="text" class="validate" required="required" name="no">
+          <label for="home">Home No.</label>
+        </div>
+   
+        <div class="input-field col s4">
+         
+          <input id="Street" type="text" class="validate" required="required" name="street">
+          <label for="Street" >Street</label>
+        </div>
+     
+        <div class="input-field col s4">
+         
+          <input id="Quarter" type="text" class="validate" required="required" name="quarter">
+          <label for="Quarter" >Quarter</label>
+        </div>
+      </div>
+    <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">home</i>
+          <input id="Township" type="text" class="validate" required="required" name="township">
+          <label for="Township" >Township</label>
+        </div>
+      
+        <div class="input-field col s6">
+          <input id="Division" type="text" class="validate" required="required" name="division">
+          <label for="Division" >Division</label>
+        </div>
+      </div>
+
+
+
+     <div class="row">
+        <div class="input-field col s12">
+           <i class="material-icons prefix">credit_card</i>
+          <input id="nrc" type="text" class="validate" name="nrcname">
+          <label for="nrc">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="pw" type="password" class="validate" required="required" name="pwname">
+          <label for="pw">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="cpw" type="password" class="validate" required="required" name="cpwname">
+          <label for="cpw">Comfirm Password</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate" name="briefName"></textarea>
+        <label for="brief">Brief description</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn green white-text">
+          <span>File</span>
+          <input type="file" multiple>
+
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+    <div>
+    <br>
+    <p>
+      <label>
+        <input class="with-gap" value="seller" name="group3" type="radio" checked />
+        <span>User Account:BUYER</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" value="buyer" name="group3" type="radio" checked />
+        <span>User Account:SELLER</span>
+      </label>
+    </p>
+    
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green white-text" onclick="return validFunction()">Sign Up</button>
+  </form>
+  </div>
+</div>
+
+
 
 <?php
 
@@ -469,69 +419,96 @@ The important benefit is that "Public can buy agricultural products cheeper than
     $('.modal').modal();
     $('select').formSelect();
     $('.slider').slider();
+    $('.sidenav').sidenav();
+    $('.fixed-action-btn').floatingActionButton();
 
     });
       
   </script>
-  <!-- script for mobile nav -->
+ 
+   <script>
+     function validFunction()
+     {
+      var name=document.getElementById("name").value;
+      var tel=document.getElementById("tel").value;
+      var email=document.getElementById("email").value
+      var pw=document.getElementById("pw").value;
+      var cpw=document.getElementById("cpw").value;
 
-                  <script type="text/javascript">
-                   $(document).ready(function(){
-                   $('.sidenav').sidenav();
-                    });
-                 //filter(0));
+      var nameReg=/^[A-Za-z\s]+$/;
+      var telReg=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-                </script>
-                 <script>
-                   function validFunction()
-                   {
-                    var name=document.getElementById("name").value;
-                    var tel=document.getElementById("tel").value;
-                    var email=document.getElementById("email").value
-                    var pw=document.getElementById("pw").value;
-                    var cpw=document.getElementById("cpw").value;
-
-                    var nameReg=/^[A-Za-z\s]+$/;
-                    var telReg=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-
-                    var pwReg= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-                    if(name.match(nameReg))
-                    {
-                       if(tel.match(telReg))
-                       {
-                        if (true) {}
-                          if(pw.match(pwReg))
-                          {
-                             if (pw==cpw)
-                             {
-                              elert ("Successful ");
-                              return false;
-                             }else{
-                              alert("Please enter same password");
-                              return false;
-                             }
-                          }else{
-                            alert("Invalid password");
-                            return false;
-                          }
-                       }else
-                       {
-                        alert("Invalid telephone");
-                        return false;
-                       }
-                    }else
-                    {
-                      alert ("Invalid Name");
-                      return false;
-                    }
+      var pwReg= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+      if(name.match(nameReg))
+      {
+         if(tel.match(telReg))
+         {
+          if (true) {}
+            if(pw.match(pwReg))
+            {
+               if (pw==cpw)
+               {
+                elert ("Registration Successful ");
+                var form =document.getElementById("form1");
+                form.method="post";
+                form.action="signup1.php";
+                form.submit();
+                return false;
+               }else{
+                alert("Please enter same password");
+                return false;
+               }
+            }else{
+              alert("Invalid password");
+              return false;
+            }
+         }else
+         {
+          alert("Invalid telephone");
+          return false;
+         }
+      }else
+      {
+        alert ("Invalid Name");
+        return false;
+      }
 
 
 
-                   }
-                 </script>
+     }
+   </script>
 
 </body>
 </html>
 <?php
 }
+
+
+//session_start(); 
+if(isset($_GET['lan_flag'])){
+$_SESSION['lan_flag']=$_GET['lan_flag'];
+}
+$lan_flag=null;
+if(isset($_GET['lan_flag'])){
+$lan_flag=$_GET['lan_flag'];
+}
+//echo $_SESSION['lan_flag'];
+if ($lan_flag) {
+  echo "<script type='text/javascript'>document.getElementById('para').innerHTML = 'changed it to myanmar';
+       document.getElementById('language').innerHTML='á€˜á€¬á€žá€¬á€…á€€á€¬á€¸';
+    
+    document.getElementById('home').innerHTML='á€•á€„á€¹á€™ á€…á€¬á€™á€ºá€€á€¹á‚�á€½á€¬';
+    document.getElementById('products').innerHTML='á€€á€¯á€”á€¹á€•á€…á�¥á€Šá€¹á€¸ á€™á€ºá€¬á€¸ ';
+    document.getElementById('about_as').innerHTML='á€€á€¼á�½á‚�á€¯á€•á€¹á€�á€­á€¯á‚” á€¡á€±á�¾á€€á€¬á€„á€¹á€¸';
+    document.getElementById('contact').innerHTML='á€€á€¼á�½á€”á€¹á€•á€¹á€�á€¯á€­á‚”á€€á€­á€¯á€†á€€á€¹á€žá€¼á€šá€¹á€›á€”á€¹';
+  document.getElementById('mytable').row[0].cells[0].innerHTML='á€…á€¥á€¹';
+    document.getElementById('mytable').row[0].cells[1].innerHTML=' á€€á€¯á€”á€¹á€•á€…á�¥á€Šá€¹á€¸á€¡á€™á€Šá€¹';
+      document.getElementById('mytable').row[0].cells[2].innerHTML='á€±á€›á€¬á€„á€¹á€¸á€žá€°á€¡á€™á€Šá€¹';
+        document.getElementById('mytable').row[0].cells[3].innerHTML='á€±á€…á€ºá€¸á‚�á‚ˆá€”á€¹á€¸';
+          document.getElementById('mytable').row[0].cells[4].innerHTML=' á€¡á€±á€›á€¡á€�á€¼á€€á€¹';
+            document.getElementById('mytable').row[0].cells[5].innerHTML='á€¡á€”á€Šá€¹á€¸á€†á€¶á€¯á€¸á€•á€™á€¬á€�';
+              document.getElementById('mytable').row[0].cells[6].innerHTML='á€¡á€™á€ºá€¬á€¸á€†á€¶á€¯á€¸á€•á€™á€¬á€�';</script>";}
+
+              
+
 ?>
