@@ -40,12 +40,12 @@ function displayPageHeader( $pageTitle ) {
   }
  
 
-  //if($loginStatus=="buyer"){
-  if($loginStatus==1){
+  if($loginStatus=="buyer"){
+  //if($loginStatus==1){
     displayNavBuyer();
   }
-  //elseif($loginStatus=="seller"){
-  elseif ($loginStatus == 2) {
+  elseif($loginStatus=="seller"){
+  //elseif ($loginStatus == 2) {
     displayNavSeller();
   }
   elseif($loginStatus == "admin"){
@@ -142,7 +142,7 @@ function displayPageHeader( $pageTitle ) {
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate" required="required">
+          <input id="password" type="password" class="validate" required="required" name="loginPwd">
           <label for="password">Password</label>
         </div>
         <label style='float: right;'>
@@ -152,13 +152,13 @@ function displayPageHeader( $pageTitle ) {
       <div>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
+            <input class="with-gap" value="buyer" name="group3" type="radio" required="required" />
             <span>User Account:BUYER</span>
           </label>
         </p>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
+            <input class="with-gap" value="seller" name="group3" type="radio" required="required" />
             <span>User Account:SELLER</span>
           </label>
         </p>
@@ -267,7 +267,7 @@ function displayPageHeader( $pageTitle ) {
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea name="brief" id="brief" class="materialize-textarea validate" name="briefName"></textarea>
+        <textarea id="brief" class="materialize-textarea validate" name="briefName"></textarea>
         <label for="brief">Brief description</label>
         </div>
       </div>
@@ -286,13 +286,13 @@ function displayPageHeader( $pageTitle ) {
     <br>
     <p>
       <label>
-        <input class="with-gap" value="seller" name="group3" type="radio" checked />
+        <input class="with-gap" value="buyer" name="group3" type="radio" checked />
         <span>User Account:BUYER</span>
       </label>
     </p>
     <p>
       <label>
-        <input class="with-gap" value="buyer" name="group3" type="radio" checked />
+        <input class="with-gap" value="seller" name="group3" type="radio" checked />
         <span>User Account:SELLER</span>
       </label>
     </p>
@@ -443,15 +443,15 @@ The important benefit is that "Public can buy agricultural products cheeper than
       {
          if(tel.match(telReg))
          {
-          if (true) {}
+          
             if(pw.match(pwReg))
             {
                if (pw==cpw)
                {
-                elert ("Registration Successful ");
+                alert ("Registration Successful ");
                 var form =document.getElementById("form1");
                 form.method="post";
-                form.action="signup1.php";
+                form.action="sign1.php";
                 form.submit();
                 return false;
                }else{

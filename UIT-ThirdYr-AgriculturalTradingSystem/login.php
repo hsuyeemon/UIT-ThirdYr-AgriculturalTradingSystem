@@ -1,4 +1,4 @@
-<?php 
+<!--?php 
 		
 		 if(!isset($_SESSION)) 
       		{ 
@@ -34,4 +34,60 @@
           session_write_close();
        		include("index.php");
 
-          ?>
+          ?-->
+
+  <?php
+  //session_start();
+  if(!isset($_SESSION)) 
+          { 
+          session_start(); 
+          }
+  include("dblink.php");
+  $logemail=$_POST["email"];
+  $logpwd=$_POST["loginPwd"];
+  $logradio=$_POST["group3"];
+  //echo $logpwd;
+  if (strcmp($logradio, 'seller') == 0) {
+    $authenticate=mysqli_query($con,"SELECT sid,s_pwd FROM seller where s_email='$logemail';");
+    while($row=mysqli_fetch_assoc($authenticate)){
+
+   $row=mysqli_fetch_assoc($authenticate);
+      $fetchpwd=$row['s_pwd'];
+      $fetchid=$row['sid'];}
+        echo "f".$fetchpwd;
+        echo "l".$logpwd;
+      if(password_verify($logpwd,$fetchpwd)){
+        $_SESSION['login']="seller";
+        $_SESSION['sid']=$fetchid;
+       // header("location:index.php");
+        echo "<script> alert('User email and password match');</script>";
+
+      }else{
+           echo "<script> alert('User email and password do not match');</script>";
+           //header("location:index.php");
+      }
+    }
+    else{
+      $authenticate=mysqli_query($con,"SELECT bid,b_pwd FROM buyer where b_email='$logemail';");
+    while($row=mysqli_fetch_assoc($authenticate)){
+      $fetchpwd=$row['b_pwd'];
+      $fetchid=$row['bid'];}
+
+
+      if(password_verify($logpwd,$fetchpwd)){
+        $_SESSION['login']="buyer";
+        $_SESSION['bid']=$fetchid;
+        echo "<script> alert('User email and password match');</script>";
+
+
+      }else{
+           echo "<script> alert('User email and password do not match');</script>";
+          // header("location:index.php");
+      }
+
+
+    }
+
+
+include 'index.php';
+?>
