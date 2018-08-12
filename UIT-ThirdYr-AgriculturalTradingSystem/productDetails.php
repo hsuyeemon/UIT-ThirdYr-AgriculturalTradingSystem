@@ -1,8 +1,8 @@
 <?php
 
-include( "common.php" );
+//include( "common.php" );
 include( "dblink.php" );
-displayPageHeader( "productDetails" );
+//displayPageHeader( "productDetails" );
 ?>
 
 <?php 
@@ -51,23 +51,16 @@ $phone = $rows2['s_phoneno'];
     
     </div>
     <div class="carousel col s9" style="margin:0px;height: 200px; ">
-<?php
-$res3 = mysqli_query($con,$productDetails) or die(mysql_error());
-$filearray=array();
+      <?php 
+       $result = mysql_query($product) or die(mysql_error());
+      $filearray=array();
 
-$rows3= mysqli_fetch_assoc($res3);
-while($row3 = mysqli_fetch_assoc($res3)){ 
-$url = $row3["p_image"];
-$imageData = base64_encode(file_get_contents($url));
+while($row = mysql_fetch_assoc($result)){ 
 
-    // Format the image SRC:  data:{mime};base64,{data};
-$src = 'data: '.mime_content_type($url).';base64,'.$imageData;
-
-echo "<a class='carousel-item' href='#one!'><img src='images/".$src."'></a>";
-     }
-?>
-</div>
-</div>
+    echo '<a class="carousel-item" href="#one!"><img src="images/' .$row['p_image']. '" ></a>';
+     } ?>
+    </div>
+      </div>
 <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
  <p><?php echo $des;?> </p>
  
@@ -315,5 +308,5 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
  <?php
 }
-displayPageFooter();
+//displayPageFooter();
 ?>
