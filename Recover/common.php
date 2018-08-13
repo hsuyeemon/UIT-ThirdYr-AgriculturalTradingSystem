@@ -72,7 +72,7 @@ function displayPageHeader( $pageTitle ) {
   <ul id="font" class="dropdown-content">
     <li><a href="index.php?lan_flag=1"  id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="index.php?lan_flag=0" id="english">English</a></li>
+    <li><a href="index.php?lan_flag=0" id="english" onclick="language()">English</a></li>
   </ul>
 
   <!---Navigation-->
@@ -80,8 +80,6 @@ function displayPageHeader( $pageTitle ) {
   <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home">Home</a></li>
       
@@ -182,7 +180,7 @@ function displayPageHeader( $pageTitle ) {
 
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Create an Account</h3>
-    <form class="col s12" action="" method="" id="form1">
+    <form class="col s12" action="" method="" id="form1" enctype="multipart/form-data">
       
       <div class="row">      
         <div class="input-field col s12">
@@ -275,11 +273,11 @@ function displayPageHeader( $pageTitle ) {
       <div class="file-field input-field">
         <div class="btn green white-text">
           <span>File</span>
-          <input type="file" multiple>
+          <input type="file" name="files[]"/>
 
         </div>    
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          <input class="file-path validate" type="text" placeholder="Upload your profile image">
         </div>
       </div>
     <div>
@@ -483,7 +481,8 @@ $lan_flag=$_SESSION['lan_flag'];
     document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
     document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
     document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
+    document.getElementById("my_product")
+    .innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
     document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
     document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
 

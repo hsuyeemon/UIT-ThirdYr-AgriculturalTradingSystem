@@ -14,7 +14,7 @@ displayPageHeader("product");
   else
     $loginStatus = "normal";
 
-  if($loginStatus!=2){
+  if($loginStatus!="seller"){
     echo "<script>alert('please log in first');
     location.replace('index.php');</script>";
     //header('Location: index.php');
@@ -35,7 +35,35 @@ if(isset($_POST['save'])){
 $seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
-        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
+for ($i = 0; $i < count($_FILES['product']['name']); $i++) {
+        
+$filenames=$_FILES['product']['name'][$i];
+            //Get the temp file path
+            $tmpFilePath = $_FILES['product']['tmp_name'][$i];
+            //echo $tmpFilePath;
+
+            //Make sure we have a filepath
+            if ($tmpFilePath != "") {
+                //Setup our new file path
+                $newFilePath = "images/products/" . $_FILES['product']['name'][$i];
+
+                move_uploaded_file($tmpFilePath, $newFilePath);
+                //Upload the file into the temp dir
+               // if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+                       // $sql="insert into file_storing values(1,'$filenames')";
+                       // mysqli_query($connection,$sql);
+                  $photoarr[]=$newFilePath;
+                    //Handle other code here
+
+                }
+            }
+          }
+          $arr =  implode(",",$photoarr);  
+
+        $qualification = isset($_POST['qualification'])?$_POST['qualification']:"";    
+        $sid = $_SESSION['sid'];
+
+        $sql = "INSERT INTO product(pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES (".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
        $result=mysqli_query($con,$sql);
        if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
   echo ("<script LANGUAGE='JavaScript'>
@@ -51,7 +79,7 @@ else{
     </script>");
  
 }
-}
+
  
 # DELETE
 
@@ -102,7 +130,7 @@ else {echo mysql_error();}
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form id="form" action="userProducts.php" class="col s12" method="post" >
+    <form id="form" action="userProducts.php" class="col s12" method="post" enctype="multipart/form-data">
       <div class="row ">
         <div class="input-field col s12 ">
           <input id="pname" name="pname" type="text" class="validate" required="#">
@@ -165,9 +193,9 @@ else {echo mysql_error();}
 
 <select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()">
   <option value="" disabled selected>Choose your option</option>
-  <option value="agri">agricultural products</option>
-  <option value="fert">fertilizers</option>
-  <option value="equi">equipments</option>
+  <option value="agricultural">agricultural products</option>
+  <option value="fertilizers">fertilizers</option>
+  <option value="equipments">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
@@ -205,7 +233,7 @@ else {echo mysql_error();}
       <div class="btn green white-text">
 
         <span>File</span>
-        <input type="file" name="image" id="image" multiple required="#">
+        <input type="file" name="product[]" multiple required />
 
       </div>
       <div class="file-path-wrapper">
@@ -219,7 +247,7 @@ else {echo mysql_error();}
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
-  <button class="btn green white-text" type="submit" name="cancel">Cancle
+  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -299,9 +327,9 @@ else {echo mysql_error();}
 
 <select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="agri">agricultural products</option>
-  <option value="fert">fertilizers</option>
-  <option value="equi">equipments</option>
+  <option value="agricultural">agricultural products</option>
+  <option value="fertilizers">fertilizers</option>
+  <option value="equipments">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
@@ -359,7 +387,7 @@ else {echo mysql_error();}
 </form>
    </td>
   <td>
-  <button class="btn green white-text" type="submit" name="cancel">Cancle
+  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -448,9 +476,6 @@ function showProducts($category){
          
           
           <div class='col s6'>
-
-          <!--input type="hidden" name="productId" 
-            value="<?php echo $row2['pid'];?>"-->
           <button class='btn green'>Delete<i class='material-icons right'>delete</i></button>
           </div>
           </div>
@@ -507,14 +532,14 @@ else
 <div id="fertilizer">
   <h3>Fertilizer</h3>
    <?php
-    showProducts("fertilizer");
+    showProducts("fertilizers");
     ?>
 </div>
 
 <div id="Equipments">
   <h3>Equipments</h3>
    <?php
-    showProducts("Equipment");
+    showProducts("equipments");
     ?>
 </div>
 

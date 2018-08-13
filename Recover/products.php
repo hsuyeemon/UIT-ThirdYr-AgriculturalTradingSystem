@@ -131,14 +131,14 @@ else
 <div id="fertilizer">
   <h3>Fertilizer</h3>
    <?php
-    showProducts("fertilizer");
+    showProducts("fertilizers");
     ?>
 </div>
 
 <div id="Equipments">
   <h3>Equipments</h3>
    <?php
-    showProducts("Equipment");
+    showProducts("equipments");
     ?>
 </div>
 

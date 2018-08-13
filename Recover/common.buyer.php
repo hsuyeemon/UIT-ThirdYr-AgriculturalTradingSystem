@@ -28,7 +28,7 @@ function displayNavBuyer(){
   </ul>
 
   <!--Product--------------------->
-  <ul id="products" class="dropdown-content">
+  <ul id="product" class="dropdown-content">
     <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
     <li><a href="userOrders.php" class="modal-trigger " id="my_order">My Orders</a></li>
@@ -54,13 +54,14 @@ function displayNavBuyer(){
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
-      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-trigger" href="#!" data-target="font" 
+        id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
       <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
       <li><a href="index.php#contactus" id="contact">Contact</a></li-->
       
-       <li><a class="dropdown-trigger" href="#!" data-target="products" 
+       <li><a class="dropdown-trigger" href="#!" data-target="product" 
         id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
@@ -113,8 +114,8 @@ $lan_flag=$_SESSION['lan_flag'];
   function language(){
    
     document.getElementById('home1').innerHTML="ပင္မ စာမ်က္ႏွာ";
-     document.getElementById('language').innerHTML="ဘာသာစကား";  
-    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+    document.getElementById('language').innerHTML="ဘာသာစကား";  
+    document.getElementById("product").innerHTML="ကုန္ပစၥည္း မ်ား ";
     document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
     document.getElementById("contact").innerHTML="ဆက္သြယ္ရန္";
     document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
