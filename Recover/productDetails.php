@@ -53,18 +53,31 @@ $phone = $rows2['s_phoneno'];
     <div class="carousel col s9" style="margin:0px;height: 200px; ">
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
-$filearray=array();
 
-$rows3= mysqli_fetch_assoc($res3);
-while($row3 = mysqli_fetch_assoc($res3)){ 
-$url = $row3["p_image"];
-$imageData = base64_encode(file_get_contents($url));
+//$filearray=array();
+//$rows3= mysqli_fetch_assoc($res3);
 
-    // Format the image SRC:  data:{mime};base64,{data};
-$src = 'data: '.mime_content_type($url).';base64,'.$imageData;
-
-echo "<a class='carousel-item' href='#one!'><img src='images/".$src."'></a>";
-     }
+while($row3 = mysqli_fetch_assoc($res3)){
+//echo $row3["p_image"]; 
+$array = explode(',', $row3["p_image"]);
+//echo sizeof($array);
+if(sizeof($array)>0){
+foreach ($array as $url) {
+  # code...
+  $imageData = base64_encode(file_get_contents($url));
+  $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+  //echo $src;
+    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='500px' width='500px'></a>";
+  }
+}
+else{
+  # code...
+  $imageData = base64_encode(file_get_contents($url));
+  $src = 'data: '.mime_content_type($row3["p_image"]).';base64,'.$imageData;
+  //echo $src;
+    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='500px' width='500px'></a>";
+}
+}
 ?>
 </div>
 </div>
@@ -120,6 +133,10 @@ echo "<a class='carousel-item' href='#one!'><img src='images/".$src."'></a>";
     </select>
     <label for="state">State/Region</label>
   </div>
+    </div>
+    <div class="row">
+      <input id="date" type="text" class="datepicker">
+      <label for="date" id="date_label">Pick the preferred date</label>
     </div>
      <div class="row">
         <button class="modal-close btn green white-text" type="submit" name="action"

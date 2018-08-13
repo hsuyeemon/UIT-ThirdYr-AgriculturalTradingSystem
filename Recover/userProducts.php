@@ -48,22 +48,22 @@ $filenames=$_FILES['product']['name'][$i];
                 $newFilePath = "images/products/" . $_FILES['product']['name'][$i];
 
                 move_uploaded_file($tmpFilePath, $newFilePath);
-                //Upload the file into the temp dir
-               // if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                       // $sql="insert into file_storing values(1,'$filenames')";
-                       // mysqli_query($connection,$sql);
+                
                   $photoarr[]=$newFilePath;
                     //Handle other code here
 
                 }
             }
-          }
-          $arr =  implode(",",$photoarr);  
+         
+          $arr =  implode(",",$photoarr);
+          echo $arr;  
 
         $qualification = isset($_POST['qualification'])?$_POST['qualification']:"";    
         $sid = $_SESSION['sid'];
+        echo $sid; 
 
-        $sql = "INSERT INTO product(pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES (".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
+        $sql = "INSERT INTO product(pid,pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('32','".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
+        echo $sql;
        $result=mysqli_query($con,$sql);
        if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
   echo ("<script LANGUAGE='JavaScript'>
@@ -71,7 +71,7 @@ $filenames=$_FILES['product']['name'][$i];
     </script>");}
 //else {echo mysql_error();}
     # code...
-
+ }
 }
 else{
  echo ("<script LANGUAGE='JavaScript'>
@@ -449,9 +449,9 @@ function showProducts($category){
 
   for($j=0;$j<$noRows2;$j++){
     $row2=mysqli_fetch_array($ret2); 
-      
-    $url = $row2["p_image"];
-    $imageData = base64_encode(file_get_contents($url));
+      $array = explode(',', $row2["p_image"]);
+    $url = $array[0];
+        $imageData = base64_encode(file_get_contents($url));
 
     // Format the image SRC:  data:{mime};base64,{data};
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
