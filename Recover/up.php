@@ -1,28 +1,333 @@
+ <?php
+ if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
+  ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+        <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link href="css/style.css" rel="stylesheet" />  
+   <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
+
+    <style>
+        /*jssor slider loading skin spin css*/
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 057 css*/
+        .jssorb057 .i {position:absolute;cursor:pointer;}
+        .jssorb057 .i .b {fill:none;stroke:#fff;stroke-width:2000;stroke-miterlimit:10;stroke-opacity:0.4;}
+        .jssorb057 .i:hover .b {stroke-opacity:.7;}
+        .jssorb057 .iav .b {stroke-opacity: 1;}
+        .jssorb057 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 073 css*/
+        .jssora073 {display:block;position:absolute;cursor:pointer;}
+        .jssora073 .a {fill:#ddd;fill-opacity:.7;stroke:#000;stroke-width:160;stroke-miterlimit:10;stroke-opacity:.7;}
+        .jssora073:hover {opacity:.8;}
+        .jssora073.jssora073dn {opacity:.4;}
+        .jssora073.jssora073ds {opacity:.3;pointer-events:none;}
+    </style>
+     </head>
+
+ <body class="white">
 <?php
+  
+  $isTouch=empty($_SESSION['login']);
 
-//include( "common.seller.php" );
-include("common.php");
-include( "dblink.php" );
+  if($isTouch){
+   $loginStatus ="0";
 
-//displayPageHeaderSeller( "product" );
-displayPageHeader("product");
-
-
-  if(isset($_SESSION['login'])){
+  }
+  else{
     $loginStatus = $_SESSION['login'];
   }
-  else
-    $loginStatus = "normal";
+ 
+  filter($loginStatus);
 
-  if($loginStatus!="seller"){
-    echo "<script>alert('please log in first');
-    location.replace('index.php');</script>";
-    //header('Location: index.php');
-    exit(); 
+  function filter($loginStatus){
+      /**
+       buyer
+       **/
+  if($loginStatus==1){
+ echo "<script>document.getElementById('#login').innerHTML('My Account');</script>";
+
+  ?>
+                
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+     <?php
+      include("dblink.php");
+      $bid = $_SESSION['bid'];
+      $query = "select * from buyer where bid ='".$bid."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret); 
+      $noRows=mysqli_num_rows($ret);
+      if($noRows>0){
+        echo "<li><a href='#!'' id='user_name'>".$row['bname']."</a></li>";
+      }
+      ?>
+      <li class="divider"></li>
+      <li><a href="#!" id="switch_account">Switch account</a></li>
+      <li class="divider"></li>
+      <li><a href="logout.php" id="logout">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+
+    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userOrders.html" class="modal-trigger " id="my_order">My Orders</a></li>
+    <li class="divider"></li>
+    <li><a href="cart.html" class="modal-trigger " id="cart">Cart</a></li>
+  </ul>
+
+  <?php
+  }
+ elseif ($loginStatus == 2) {
+ ?>            
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+
+  <?php
+      include("dblink.php");
+      global $sid;
+      //$sid = $_SESSION['sid'];
+      $sid = '1';
+      $query = "select * from seller where sid ='".$sid."'";
+      //$query = "select * from seller where sid ='1'";
+      $ret = mysqli_query ($con,$query);          
+      $row=mysqli_fetch_array($ret);
+      $noRows=mysqli_num_rows($ret);  
+      if($noRows>0){
+        echo "<li><a href='#!' id='user_name'>".$row['sname']."</a></li>";
+      }
+      ?>
+    <li class="divider"></li>
+    <li><a href="#!" id="switch_account">Switch account</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php" id="logout">Logout</a></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+    <li><a href="userProducts.html" class="modal-trigger " id="my_product">My Products</a></li>
+  </ul>
+  <?php
+  }
+ 
+  else{
+  ?>
+
+
+  <!--Login--------------------->
+  <ul id="authentication" class="dropdown-content">
+    <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
+    <li class="divider"></li>
+    <li><a href="#signup" class="modal-trigger " id="sign_up">Sign Up</a></li>
+    <li class="divider"></li>
+  </ul>
+
+  <!--Product--------------------->
+  <ul id="products" class="dropdown-content">
+    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
+    <li class="divider"></li>
+  </ul>
+
+  <?php
+  }
   } 
-?>
+  ?>
+
+  <!---Navigation------------------------------------->
+  
+  <!-- Dropdown Structure -->
+
+  <!--Language------------------>
+  <ul id="font" class="dropdown-content">
+    <li><a href="#" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="english" onclick="">English</a></li>
+  </ul>
+
+ 
+  <!--Login Form------------>
+  <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Login To Your Account</h3>
+    <form action="login.php" method="post" class="col s12">
+
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="email" type="text" class="validate" required="required" 
+          name="email">
+          <label for="name">Name</label>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="input-field col s12 ">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate" required="required">
+          <label for="password">Password</label>
+        </div>
+        <label style='float: right;'>
+        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+        </label>
+      </div>
+      <div>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" required="required" />
+            <span>User Account</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="group3" type="radio" required="required" />
+            <span>Admin Account</span>
+          </label>
+        </p>
+      </div>
+      <br>
+
+        <input type="hidden">
+
+
+
+      <button type="submit" class="btn btn-primary green white-text">Login</button>
+    </form>
+    </div>
+  </div>
+     
+
+  <!---Sign Up-------------------->
+ <div id="signup" class="modal fade large" role="dialog">
+
+    <div class="modal-dialog" style="padding: 48px;">
+      <h3>Create an Account</h3>
+    <form class="col s12" onsubmit="return validFunction()">
+      
+      <div class="row">      
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="name" type="text" class="validate" required="required">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="tel" type="tel" class="validate"required="required">
+          <label for="tel">Telephone</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" required="required">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <input id="address" type="text" class="validate" required="required">
+          <label for="address" >Address</label>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="input-field col s12">
+           <i class="material-icons prefix">credit_card</i>
+          <input id="nrc" type="text" class="validate">
+          <label for="nrc">NRC</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="pw" type="password" class="validate" required="required">
+          <label for="pw">Password</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input id="cpw" type="password" class="validate" required="required">
+          <label for="cpw">Comfirm Password</label>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mode_edit</i>
+        <textarea name="brief" id="brief" class="materialize-textarea validate"></textarea>
+        <label for="brief">Brief description</label>
+        </div>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn green white-text">
+          <span>File</span>
+          <input type="file" multiple>
+
+        </div>    
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+    <div>
+    <br>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" checked />
+        <span>User Account</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group3" type="radio" />
+        <span>Admin Account</span>
+      </label>
+    </p-->
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary green white-text">Sign Up</button>
+  </form>
+  </div>
+</div>
+
 
 <?php
+
+ include('dblink.php');
 $result = mysqli_query($con,"SELECT * FROM product");
 $num_rows = mysqli_num_rows($result);
 $total=++$num_rows;
@@ -35,35 +340,7 @@ if(isset($_POST['save'])){
 $seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
-for ($i = 0; $i < count($_FILES['product']['name']); $i++) {
-        
-$filenames=$_FILES['product']['name'][$i];
-            //Get the temp file path
-            $tmpFilePath = $_FILES['product']['tmp_name'][$i];
-            //echo $tmpFilePath;
-
-            //Make sure we have a filepath
-            if ($tmpFilePath != "") {
-                //Setup our new file path
-                $newFilePath = "images/products/" . $_FILES['product']['name'][$i];
-
-                move_uploaded_file($tmpFilePath, $newFilePath);
-                
-                  $photoarr[]=$newFilePath;
-                    //Handle other code here
-
-                }
-            }
-         
-          $arr =  implode(",",$photoarr);
-          echo $arr;  
-
-        $qualification = isset($_POST['qualification'])?$_POST['qualification']:"";    
-        $sid = $_SESSION['sid'];
-        echo $sid; 
-
-        $sql = "INSERT INTO product(pid,pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('32','".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
-        echo $sql;
+        $sql = "INSERT INTO product(pid, pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('$total','".$_POST["pname"]."','".$_POST["price"]."','".$_POST["image"]."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$_POST["qualification"]."','$seleced_cata','1')";
        $result=mysqli_query($con,$sql);
        if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
   echo ("<script LANGUAGE='JavaScript'>
@@ -71,8 +348,8 @@ $filenames=$_FILES['product']['name'][$i];
     </script>");}
 //else {echo mysql_error();}
     # code...
- }
 
+}
 else{
  echo ("<script LANGUAGE='JavaScript'>
     alert('Invalid name');
@@ -80,6 +357,7 @@ else{
  
 }
 }
+ 
 # DELETE
 
     if(isset($_POST['confirm'])){
@@ -130,7 +408,7 @@ else {echo mysql_error();}
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
-    <form id="form" action="userProducts.php" class="col s12" method="post" enctype="multipart/form-data">
+    <form id="form" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
           <input id="pname" name="pname" type="text" class="validate" required="#">
@@ -191,11 +469,11 @@ else {echo mysql_error();}
         <br><br>
 <label>Category</label>
 
-<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()">
+<select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="agricultural">agricultural products</option>
-  <option value="fertilizers">fertilizers</option>
-  <option value="equipments">equipments</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
@@ -233,7 +511,7 @@ else {echo mysql_error();}
       <div class="btn green white-text">
 
         <span>File</span>
-        <input type="file" name="product[]" multiple required />
+        <input type="file" name="image" id="image" multiple required="#">
 
       </div>
       <div class="file-path-wrapper">
@@ -247,7 +525,7 @@ else {echo mysql_error();}
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
-  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -258,7 +536,7 @@ else {echo mysql_error();}
   </div>
 </div>
 
- 
+  <!---Navigation------------------------------------->
   <!--editProductsForm-->
 <div id="editProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
@@ -327,9 +605,9 @@ else {echo mysql_error();}
 
 <select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()" >
   <option value="" disabled selected>Choose your option</option>
-  <option value="agricultural">agricultural products</option>
-  <option value="fertilizers">fertilizers</option>
-  <option value="equipments">equipments</option>
+  <option value="agri">agricultural products</option>
+  <option value="fert">fertilizers</option>
+  <option value="equi">equipments</option>
 </select>
 </div>
 <div class="input-field inline col s5">
@@ -387,7 +665,7 @@ else {echo mysql_error();}
 </form>
    </td>
   <td>
-  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
+  <button class="btn green white-text" type="submit" name="cancel">Cancle
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -397,6 +675,8 @@ else {echo mysql_error();}
   </div>
   </div>
 </div>
+
+
 <!--deleteProductsForm-->
 <div id="deleteProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
@@ -429,11 +709,62 @@ else {echo mysql_error();}
 
 </div>
 
+  
+
+
+
+
+
+<!---Navigation-->
+<nav style="margin-bottom: 0px;padding: 0;">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+
+      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="index.html" id="home">Home</a></li>
+      
+      <li><a href="index.html#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.html#contactus" id="contact">Contact</a></li-->
+
+      
+       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+      
+
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">Login
+        <i class="material-icons right">arrow_drop_down</i></a></li>  
+    </ul>
+
+    <!-- for mobile view --> 
+      <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/2446.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="images/fertilizer.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>language</a>
+    <ul>
+      <li><a href="#!">Myanmar</a></li>
+      <li><a href="#!">English</a></li>
+    </ul></li>
+    <li><a href="#!">Products</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">login</a></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
+<!-- end of mobile nav  -->
+  </div>
+</nav>
 <?php
 
 static $jssor = 0;
+include("dblink.php");
 $sid = $_SESSION['sid'];
-
             $sliderCount= "select count(distinct(category))as ct from product where sid='$sid'";
       
             $result = mysqli_query ($con,$sliderCount);          
@@ -480,9 +811,9 @@ function showProducts($category){
 
   for($j=0;$j<$noRows2;$j++){
     $row2=mysqli_fetch_array($ret2); 
-      $array = explode(',', $row2["p_image"]);
-    $url = $array[0];
-        $imageData = base64_encode(file_get_contents($url));
+      
+    $url = $row2["p_image"];
+    $imageData = base64_encode(file_get_contents($url));
 
     // Format the image SRC:  data:{mime};base64,{data};
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
@@ -504,13 +835,15 @@ function showProducts($category){
 
            <button href = '#editProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
           </div>
+
+
+
          
           
           <div class='col s6'>
-
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
-          <button  href='#deleteProducts'class='btn green modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+          <button  href='#deleteProducts' class=''>Delete<i class='material-icons right'>delete</i></button>
           </div>
           </div>
           </div>
@@ -546,7 +879,7 @@ else
 {
   echo "There is no product in this category yet!!!";
 }
-}
+  }
 
   ?>
 <div class="content padding-normal">
@@ -566,14 +899,14 @@ else
 <div id="fertilizer">
   <h3>Fertilizer</h3>
    <?php
-    showProducts("fertilizers");
+    showProducts("fertilizer");
     ?>
 </div>
 
 <div id="Equipments">
   <h3>Equipments</h3>
    <?php
-    showProducts("equipments");
+    showProducts("Equipment");
     ?>
 </div>
 
@@ -584,10 +917,76 @@ else
   <ul>
     <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons">add</i></a></li>
     
-    <li><a class="btn-floating blue" href="dash_board.php"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating blue" href="dash_board.html"><i class="material-icons">insert_chart</i></a></li>
   </ul>
 </div>
 </div>
+
+  <!---Footer-------------------------------------------------->
+<footer class="page-footer">
+  <div class="row padding-normal container" id="aboutus">
+
+
+      <h5 class="white-text" id="about_as1" style="text-align: center;padding: 16px;">About Us</h5>
+      <p class="grey-text text-lighten-4 center-align">
+
+  Our project team is organized with 7 students from UIT.Our idea is that to help trading agricultural products directly via B2B system.<br><br>
+
+Trading between sellers and customers needs many steps and may face warehouse problems.
+Repeated contributions may make the price up to double(or even triple) for buyers.<br><br>
+
+We try hard to solve this problem in our system.
+In our website, we efficiently provide logistics service to both sellers and contributors.<br><br>
+Sellers and customers can directly trade without needing unnecessary steps that increase cost.<br><br>
+It also saves time!!!<br><br>
+
+The important benefit is that "Public can buy agricultural products cheeper than before."<br>
+
+
+
+</p></div>
+   <div class="row">
+    <hr style="width: 300px;color: white">
+  </div>
+
+   
+<div class="row padding-normal container" id="contactus">
+    
+      <h5 class="white-text" id="contact_us" style="text-align: center;padding: 16px">Contact Us</h5>
+
+<div class="col s6">
+  <ul>
+        <li>Ei Nghon Phoo- Project leader and supervisor<br>
+            email-einghonphoo@uit.edu.mm</li><br><br>
+        <li>Yamin Thiri Aung- Designer and programmer<br>
+            email-yaminthiriaung@uit.edu.mm</li><br><br>
+        <li>Yamin Theint Theint- Programmer and Language Analyst <br>
+            email- yamintheinttheint@uit.edu.mm</li><br><br>
+        <li>Khine Min Htwe- Programmer <br>
+            email- khineminhtwe@uit.edu.mm</li>      
+      </ul>
+</div>
+<div class="col s6">
+  <ul>
+        <li>Khin Thantsin- Data analyst<br>
+            email-khinthantsin@uit.edu.mm</li><br><br>
+        <li>Ye Yint Aung- Content writer and market researcher<br>
+            email-yeyintaung@uit.edu.mm</li><br><br>
+        <li>Hsu Yee Mon- Coordinator and analyst<br>
+            email- hsuyeemon@uit.edu.mm</li>   
+      </ul>
+      <h4> if you have any conflicts or problems feel free to contact us</h4>
+</div>
+      
+    
+  </div>
+  <div class="footer-copyright">
+    <div class="container center-align">
+      © 2018 Agricultural Trading System
+    </div>
+  </div>
+</footer>
+
 
  <script type="text/javascript">
         jssor_slider_init = function() {
@@ -643,9 +1042,34 @@ else
             ScaleSlider();
         };
     </script>
-<script type="text/javascript">jssor_slider_init();</script>
+
+<!-----Script to Import---------------------->
+
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+   <script type="text/javascript">jssor_slider_init();</script>
    <!--script type="text/javascript">jssor_2_slider_init();</script>
     <script type="text/javascript">jssor_3_slider_init();</script-->
+  
+
+
+<!------------Script in Index.html--------------->
+ 
+     <script>
+
+    $(document).ready(function(){
+    //drop dowm
+    $(".dropdown-trigger").dropdown({ hover: true });
+    $('.modal').modal();
+    $('select').formSelect();
+ $('.fixed-action-btn').floatingActionButton();
+
+    });
+       
+   
+  </script>
 
   <script type="text/javascript">
             function delnews(newsID)
@@ -656,6 +1080,17 @@ else
               }
                 }
             </script>
-<?php
-displayPageFooter();
-?>
+
+<!-- script for mobile nav -->
+
+                  <script type="text/javascript">
+                   $(document).ready(function(){
+                   $('.sidenav').sidenav();
+                    });
+
+                </script>
+
+    
+            
+</body>
+</html>

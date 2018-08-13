@@ -4,50 +4,6 @@ if(!isset($_SESSION))
   { 
     session_start(); 
   }
-function displayPageHeaderSeller( $pageTitle ) {
-?>
-<!DOCTYPE html>
-<html>
-<head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-      <link href="css/style.css" rel="stylesheet" />  
-
-
-</head>
-
-<body>
-<?php
-
-  if(isset($_SESSION['login'])){
-    $loginStatus = $_SESSION['login'];
-  }
-  else
-    $loginStatus = "normal";
-  
-  //if($loginStatus=="seller"){
-
-  if($loginStatus==2){
-  displayNavSeller();
-  }
-  else{
-    echo "<script>alert('please log in first');
-    windows.</script>";
-    header('Location: index.php');
-    exit(); 
-  } 
-}
-
-?>
-          
-
-<?php
 function displayNavSeller(){
  ?> 
   <!--Login--------------------->

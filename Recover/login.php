@@ -12,10 +12,13 @@ include("dblink.php");
 <?php 
 if(isset($_POST["logemail"])){
 $regemail=$_POST["logemail"];
-}?>
+}
+?>
 <?php if(isset($_POST["logpwd"]) && isset($_POST["group3"])){
   $regpwd=$_POST["logpwd"];
   $rdvalue=$_POST['group3'];
+
+  //echo $rdvalue;
  
 if (strcmp($rdvalue, 'seller') == 0) {
     $info=mysqli_query($con," SELECT sid,s_pwd FROM seller where s_email='$regemail'");
@@ -30,22 +33,24 @@ if (strcmp($rdvalue, 'seller') == 0) {
     //echo "have user";
 
     if (strcmp($regpwd,$fetchpwd ) == 0) {
-  echo "same";
+  //echo "same";
   $_SESSION['login'] = "seller";
   $_SESSION['sid'] = $fetchid;
+  session_write_close();
+  include("index.php");
 
-}else{
+  }
+else{
    echo "<script>alert('User name or password incorrect');</script>";
-}
+  }
 
    }
    else{
     echo "<script>alert('No Account Matched.');</script>";
-    
    }
    session_write_close();
    header('Location: index.php');
-exit();
+  exit();
 
     
 }elseif(strcmp($rdvalue, 'buyer') == 0){
