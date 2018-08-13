@@ -1,42 +1,4 @@
-<!--?php 
-		
-		 if(!isset($_SESSION)) 
-      		{ 
-        	session_start(); 
-      		}
-
-        	
-      		if (empty($_POST["email"])) {
-    			$status = 0;
-  				}
-  				else
-  					$status = $_POST["email"];
-      		
-
-      		//If login success
-      		 /*
-		       normal user = 0;
-		       buyer = 1;
-		       seller = 2;
-		       */
-
-      		//if($_POST['status'] == "seller"){
-		       if($status == "2"){
-      			$_SESSION['login']="2";
-            $_SESSION['sid']=$_POST["email"];
-
-      		}
-      		else if($status == "1"){
-      			$_SESSION['login']="1";
-             $_SESSION['bid']=$_POST["email"];
-      		}
-
-          session_write_close();
-       		include("index.php");
-
-          ?-->
-
-          <?php 
+<?php 
              if(!isset($_SESSION)) 
           { 
           session_start(); 
@@ -125,6 +87,8 @@ exit();
 }
 
 elseif(strcmp($rdvalue, 'admin') == 0){
+  echo "<script>alert('HI Admin');</script>";
+  //echo "admin";
   $info=mysqli_query($con," SELECT admin_id,password FROM admin where user_name='$regemail'");
   while($row=mysqli_fetch_assoc($info)){
         $fetchid=$row['admin_id'];
@@ -136,11 +100,13 @@ elseif(strcmp($rdvalue, 'admin') == 0){
     # code...
     //echo "have user";
     if (strcmp($regpwd,$fetchpwd ) == 0) {
-  //echo "same";
+     // echo "same";
 
-   $_SESSION['login'] = "admin";
+   $_SESSION['login'] ="admin";
   $_SESSION['admin_id'] = $fetchid;
   session_write_close();
+   include("admin_product.php");
+  
   
  
 }else{
@@ -152,8 +118,17 @@ elseif(strcmp($rdvalue, 'admin') == 0){
     echo "<script>alert('No Account Matched.');</script>";
     //include("index.php");
    }
+  
+   session_write_close();
+   header('Location: admin_product.php');
+   exit();
 }
+
 }
+ session_write_close();
+   header('Location: index.php');
+   exit();
+
 
 ?>
 

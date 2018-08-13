@@ -24,7 +24,7 @@ function displayNavBuyer(){
       <li class="divider"></li>
       <li><a href="#!" id="switch_account">Switch account</a></li>
       <li class="divider"></li>
-      <li><a href="./logout.php" id="logout">Logout</a></li>
+      <li><a href="logout.php" id="logout">Logout</a></li>
   </ul>
 
   <!--Product--------------------->

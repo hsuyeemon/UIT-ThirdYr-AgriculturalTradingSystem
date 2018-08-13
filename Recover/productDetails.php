@@ -19,7 +19,6 @@ $pid = $_GET['productId'];
   </div>
 
  <?php
-
 //Product Details
 $productDetails = "SELECT * FROM product WHERE pid='$pid'";
 $res1 = mysqli_query($con,$productDetails) or die(mysqli_error());
@@ -32,9 +31,11 @@ $res1 = mysqli_query($con,$productDetails) or die(mysqli_error());
 //Seller Info:
 $seller ="SELECT * FROM seller LEFT OUTER JOIN product USING(sid) WHERE pid ='".$pid."'";
 $res2 = mysqli_query($con,$seller) or die(mysqli_error());
-$rows2 =mysqli_fetch_array($res1);
+$rows2 =mysqli_fetch_array($res2);
 $seller = $rows2['sname'];
 $phone = $rows2['s_phoneno'];
+
+
 ?>
 
 <div class="row ">
@@ -45,9 +46,9 @@ $phone = $rows2['s_phoneno'];
       <p class="details" id="productPrice" name="price">
       <?php echo $price;?> Kyats per item</p>
       <p class="details" id="productVendor"><a> <?php echo "$seller"; ?> </a></p><br>
-        
+        <?php echo $phone;?>
         <a class="btn green white-text" href="tel:
-        <?php echo $phone?>" id="call">Call to Vendor</a>
+        <?php echo $phone;?>" id="call">Call to Vendor</a>
     
     </div>
     <div class="carousel col s9" style="margin:0px;height: 200px; ">

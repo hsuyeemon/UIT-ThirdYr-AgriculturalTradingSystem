@@ -52,7 +52,7 @@ function displayNavAdmin(){
   <ul id="authentication" class="dropdown-content">
      <?php
       include("dblink.php");
-      $adminId = $_SESSION['adminId'];
+      $adminId = $_SESSION['admin_id'];
       $query = "select * from admin where admin_id ='".$adminId."'";
       //$query = "select * from seller where sid ='1'";
       $ret = mysqli_query ($con,$query);          
@@ -70,12 +70,14 @@ function displayNavAdmin(){
 
   <!--Control--------------------->
   <ul id="control" class="dropdown-content">
-    <li><a href="products.php" class="modal-trigger " id="product_dropdown">Control</a></li>
+    <li><a href="approveProduct.php" class="modal-trigger" id="product_dropdown">Approve Products</a></li>
     <li class="divider"></li>
-    <li><a href="approveProducts.php" class="modal-trigger " id="approveProducts">Products</a></li>
+    <li><a href="approveMember.php" class="modal-trigger " id="approveProducts">Approve Seller</a></li>
     <li class="divider"></li>
-    <li><a href="approveUsers.php" class="modal-trigger " id="approveUsers">Users</a></li>
-  </ul>
+    <li><a href="approveBuyer.php" class="modal-trigger " id="approveUsers">Approve Buyer</a></li>
+    <li class="divider"></li>
+    <li><a href="admin_product.php" class="modal-trigger " id="approveUsers">Products</a></li>
+     </ul>
 
   
 
@@ -100,7 +102,7 @@ function displayNavAdmin(){
       <li><a href="index.php#contactus" id="contact">Contact</a></li-->
 
       
-       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+       <li><a class="dropdown-trigger" href="#!" data-target="control" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
       <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">UserName

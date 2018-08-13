@@ -48,7 +48,7 @@ function displayPageHeader( $pageTitle ) {
   //elseif ($loginStatus == 2) {
     displayNavSeller();
   }
-  elseif($loginStatus == "admin"){
+  elseif($loginStatus =="admin"){
     displayNavAdmin();
   }
   else{
@@ -109,10 +109,10 @@ function displayPageHeader( $pageTitle ) {
       <li><a href="#!">Myanmar</a></li>
       <li><a href="#!">English</a></li>
     </ul></li>
-    <li><a href="#!">Products</a></li>
+    <li><a href="products.php">Products</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">login</a></li>
+    <li><a class="waves-effect" href="#login" class="modal-trigger">login</a></li>
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
@@ -162,7 +162,7 @@ function displayPageHeader( $pageTitle ) {
         </p>
         <p>
           <label>
-            <input class="with-gap" name="group3" type="radio" required="required" />
+            <input class="with-gap" name="group3" type="radio" required="required" value ="admin"/>
             <span>Admin Account</span>
           </label>
         </p>
