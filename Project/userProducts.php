@@ -62,7 +62,7 @@ $filenames=$_FILES['product']['name'][$i];
         $sid = $_SESSION['sid'];
         echo $sid; 
 
-        $sql = "INSERT INTO product(pid,pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('32','".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
+        $sql = "INSERT INTO product(pid,pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('53','".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
         echo $sql;
        $result=mysqli_query($con,$sql);
        if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
@@ -588,6 +588,42 @@ else
   </ul>
 </div>
 </div>
+ <script type="text/javascript">
+  function changeData() {
+  var e = document.getElementById("selectitem");
+  var strUser = e.options[e.selectedIndex].value;
+
+  switch(strUser){
+  
+    case "fertilizers":document.getElementById("0").value="pesticide";
+                document.getElementById("0").innerHTML="pesticide";
+                document.getElementById("1").value="Nitrogen";
+                document.getElementById("1").innerHTML="Nitrogen fertilizer";
+                document.getElementById("2").value="phosphorous";
+                document.getElementById("2").innerHTML="phosphorous fertilizer";
+                document.getElementById("3").value="Potassium";
+                document.getElementById("3").innerHTML="Potassium fertilizer";
+                document.getElementById("3").style.display = "block";
+
+    break;
+    case "equipments":document.getElementById("0").value="Cultipacker";
+                document.getElementById("0").innerHTML="Cultipacker";
+                document.getElementById("1").value="Harrow";
+                document.getElementById("1").innerHTML="Harrow";
+                document.getElementById("2").value="Roller";
+                document.getElementById("2").innerHTML="Roller";
+                document.getElementById("3").value="Subsoiler";
+                document.getElementById("3").innerHTML="Subsoiler";
+                document.getElementById("3").style.display = "block";
+    break;
+
+  }
+
+
+    }
+
+</script>
+
 
  <script type="text/javascript">
         jssor_slider_init = function() {
@@ -656,42 +692,7 @@ else
               }
                 }
             </script>
-            <script type="text/javascript">
-  function changeData() {
-  var e = document.getElementById("selectitem");
-  var strUser = e.options[e.selectedIndex].value;
-
-  switch(strUser){
-  
-    case "fert":document.getElementById("0").value="pesticide";
-                document.getElementById("0").innerHTML="pesticide";
-                document.getElementById("1").value="Nitrogen";
-                document.getElementById("1").innerHTML="Nitrogen fertilizer";
-                document.getElementById("2").value="phosphorous";
-                document.getElementById("2").innerHTML="phosphorous fertilizer";
-                document.getElementById("3").value="Potassium";
-                document.getElementById("3").innerHTML="Potassium fertilizer";
-                document.getElementById("3").style.display = "block";
-
-    break;
-    case "equi":document.getElementById("0").value="Cultipacker";
-                document.getElementById("0").innerHTML="Cultipacker";
-                document.getElementById("1").value="Harrow";
-                document.getElementById("1").innerHTML="Harrow";
-                document.getElementById("2").value="Roller";
-                document.getElementById("2").innerHTML="Roller";
-                document.getElementById("3").value="Subsoiler";
-                document.getElementById("3").innerHTML="Subsoiler";
-                document.getElementById("3").style.display = "block";
-    break;
-
-  }
-
-
-    }
-
-</script>
-
+           
 <?php
 displayPageFooter();
 ?>
