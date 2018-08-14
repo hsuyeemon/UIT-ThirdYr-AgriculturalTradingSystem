@@ -56,14 +56,14 @@ $filenames=$_FILES['product']['name'][$i];
             }
          
           $arr =  implode(",",$photoarr);
-          echo $arr;  
+          //echo $arr;  
 
         $qualification = isset($_POST['qualification'])?$_POST['qualification']:"";    
         $sid = $_SESSION['sid'];
         echo $sid; 
 
         $sql = "INSERT INTO product(pname, price, currency, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["currency"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
-        
+
        $result=mysqli_query($con,$sql);
        if($result) {
   echo ("<script LANGUAGE='JavaScript'>
@@ -74,7 +74,13 @@ $filenames=$_FILES['product']['name'][$i];
  }
 
 
-# DELETE
+else{
+ echo ("<script LANGUAGE='JavaScript'>
+    alert('Invalid name');
+    </script>");
+ 
+}
+}
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
