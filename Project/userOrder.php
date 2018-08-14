@@ -103,7 +103,7 @@ echo "<tr><th>product name</th>
       <th>expected delivery date</th>
       <th>ordered time</th>
       <th>quantity</th>
-      <th>cost</th><tr>";
+      <th>cost</th><th></th><tr>";
 
 if($delivered_num_rows>0){
 while($row = mysqli_fetch_array($delivered_product_result))
@@ -138,6 +138,12 @@ echo $row['cost'];
 echo "</td>";
 
 ?>
+?>
+</td><td>
+<form id="delivered" method="" action="">
+      <a class='btn btn-default' onclick='delivery()'>delivered</a>
+      <input type='hidden' value="<?php echo $row['oid'];?>" name='oid'>
+</form></td>
 </tr>
 
 <?php
