@@ -62,7 +62,7 @@ $filenames=$_FILES['product']['name'][$i];
         $sid = $_SESSION['sid'];
         echo $sid; 
 
-        $sql = "INSERT INTO product(pid,pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('32','".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
+        $sql = "INSERT INTO product(pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES (".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
         echo $sql;
        $result=mysqli_query($con,$sql);
        if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
@@ -82,7 +82,7 @@ else{
 }
 # DELETE
 
-    if(isset($_POST['confirm'])){
+  /*  if(isset($_POST['confirm'])){
 
 
         echo "string";
@@ -96,6 +96,8 @@ $sql2 = "DELETE FROM product WHERE pid='10'";
     </script>");}
 else {echo mysql_error();}
     }
+
+*/
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
