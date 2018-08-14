@@ -172,7 +172,7 @@ else{
   <div><a class="btn green white-text  modal-trigger" href="#myModal" id="call">Comment and rating</a></div>
   <?php 
 if(isset($_POST['commentSubmit'])){
-$sql="INSERT INTO comment(cmt_text,rating,oid) VALUES ('".$_POST["comment"]."',2,2)";
+$sql="INSERT INTO comment(cmt_text,rating,oid) VALUES ('".$_POST["comment"]."','".$_POST["stars"]."',2)";
 $result=mysqli_query($con,$sql);
 if($result) {
   echo ("<script LANGUAGE='JavaScript'>
@@ -191,14 +191,15 @@ if($result) {
       <!--If not used prefix class the icon overflow the textarea-->
       <form method="post">
       <i class="material-icons prefix">comment</i>
-      <textarea id="txt" name="comment" class="materialize-textarea" maxlength="400"></textarea>
       <label for="txta1">Comment</label>
+      <textarea id="txt" name="comment" class="materialize-textarea" maxlength="400" required="required"></textarea>
+      
 
     </div>
-     <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/>
+    
   </div>
       <!--Rating-->
-</form>
+
       <!-----Rating------------------------>
   
   <div class="hreview-aggregate">
@@ -312,6 +313,7 @@ if($result) {
         </div>
       </div>
     </div>
+     <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/></form>
   </div>
     </div>
 </div>
@@ -343,11 +345,11 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
           </div>
           <div class="rating-stars col s12">
             <input type="radio" name="stars" id="star-null">
-            <input type="radio" name="stars" id="star-1" saving="1" data-start="1" checked="">
-            <input type="radio" name="stars" id="star-2" saving="2" data-start="2" checked="">
-            <input type="radio" name="stars" id="star-3" saving="3" data-start="3" checked="">
-            <input type="radio" name="stars" id="star-4" saving="4" data-start="4" checked="">
-            <input type="radio" name="stars" id="star-5" saving="5" checked="">
+            <input type="radio" name="stars" value="1" id="star-1" saving="1" data-start="1" checked="">
+            <input type="radio" name="stars" value="2" id="star-2" saving="2" data-start="2" checked="">
+            <input type="radio" name="stars" value="3" id="star-3" saving="3" data-start="3" checked="">
+            <input type="radio" name="stars" value="4" id="star-4" saving="4" data-start="4" checked="">
+            <input type="radio" name="stars" value="5" id="star-5" saving="5" checked="">
             <section>
               <label for="star-1">
                 <svg width="255" height="240" viewBox="0 0 51 48">
@@ -442,6 +444,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
         </div>
       </div>
     </div>
+ 
   </div>
 </div>
 
