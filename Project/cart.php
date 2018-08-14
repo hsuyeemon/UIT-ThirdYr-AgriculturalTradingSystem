@@ -97,7 +97,7 @@ $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
 
   function calculate(id) {
     // body...
-    alert(id);
+    
     var i = document.getElementById('<?php echo "quantity'+id+'";?>').value;
     var price = document.getElementById('<?php echo "price'+id+'";?>').value;
       document.getElementById('<?php echo "cost'+id+'";?>').innerHTML = i*price;

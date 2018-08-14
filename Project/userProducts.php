@@ -31,7 +31,7 @@ $total=++$num_rows;
      
 
 if(isset($_POST['save'])){
-  if(preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])){
+  
 $seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
@@ -62,16 +62,17 @@ $filenames=$_FILES['product']['name'][$i];
         $sid = $_SESSION['sid'];
         echo $sid; 
 
-        $sql = "INSERT INTO product(pname, price, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
-        echo $sql;
+        $sql = "INSERT INTO product(pname, price, currency, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["currency"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
+
        $result=mysqli_query($con,$sql);
-       if($result && preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])) {
+       if($result) {
   echo ("<script LANGUAGE='JavaScript'>
   alert('Succesfully added');
     </script>");}
 //else {echo mysql_error();}
     # code...
  }
+
 
 else{
  echo ("<script LANGUAGE='JavaScript'>
@@ -80,24 +81,6 @@ else{
  
 }
 }
-# DELETE
-
-  /*  if(isset($_POST['confirm'])){
-
-
-        echo "string";
-              //add ALert to confirm delete
-
-//if(confirm)
-$sql2 = "DELETE FROM product WHERE pid='10'";
-       $result2=mysqli_query($con,$sql2);
-       if($result2) {echo ("<script LANGUAGE='JavaScript'>
-    window.alert('Succesfully deleted');
-    </script>");}
-else {echo mysql_error();}
-    }
-
-*/
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
@@ -144,18 +127,30 @@ else {echo mysql_error();}
       <!-- for price per unit -->
 
        <div class="row ">
-        <div class="input-field inline col s5">
+        <div class="input-field inline col s3">
           <input id="price" name="price" type="number" class="validate" required="required">
           <label for="price">Price</label>
         </div>
+         <div class="input-field inline col s1 row s4">
+        <select class="browser-default green lighten-3" id="currency" name="currency" required="#">
+    <option value=""  disabled selected>currency</option>
+    <option value="Dollar">Dollar</option>
+    <option value="Kyat">Kyat</option>
+    
+  </select>
+</div>
         <span class="col s1">per</span>
-        <div class="input-field inline col s3 row s5">
+        <div class="input-field inline col s2 row s4">
           
   <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
-    <option value=""  disabled selected>Choose your option unit</option>
-    <option value="1">Gram</option>
-    <option value="2">mililiter</option>
-    <option value="3">Kyat Thar</option>
+    <option value=""  disabled selected>Unit</option>
+    <option value="Gram">Gram</option>
+    <option value="Bag">Bag</option>
+    <option value="Basket">Basket</option>
+    <option value="Liter">Liter</option>
+    <option value="Kilogram">Kilogram</option>
+    <option value="Item">Item</option>
+    <option value="Unit">Unit</option>
   </select>
         </div>
       </div>
@@ -163,7 +158,7 @@ else {echo mysql_error();}
       <!-- for minimum amount -->
 
       <div class="row">
-        <div class="input-field col s5">
+        <div class="input-field col s6">
           <input id="min" name="min" type="number" class="validate" required="required">
           <label for="min">Minimum buyable amount</label>
           
@@ -173,7 +168,7 @@ else {echo mysql_error();}
       <!-- for maximum amount -->
 
       
-        <div class="input-field col s5">
+        <div class="input-field col s6">
           <input id="max" name="max" type="number" class="validate" required="required">
           <label for="max">Maximum buyable amount</label>
           
@@ -208,6 +203,7 @@ else {echo mysql_error();}
   <option value="fruits" id="0">fruits</option>
   <option value="grocery" id="1" >grocery</option>
   <option value="stable" id="2">stable foods</option>
+
   <option value="hello" id="3" style="display:none;">stable foods</option>
   <option value="hello" id="4" style="display:none;">stable foods</option>
   <option value="hello" id="5" style="display:none;">stable foods</option>
@@ -223,9 +219,9 @@ else {echo mysql_error();}
      <label>Qualification</label> 
   <select class="browser-default green lighten-2" id="qualification"  name="qualification">
     <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
+    <option value="MM FDA registered">MM FDA registered</option>
+    <option value="ABE coporation certifined">ABE coporation certifined</option>
+    <option value="Ministry certifined">Ministry certifined</option>
   </select>
 </div>
 
@@ -342,6 +338,7 @@ else {echo mysql_error();}
   <option value="fruits" id="0">fruits</option>
   <option value="grocery" id="1" >grocery</option>
   <option value="stable" id="2">stable foods</option>
+
   <option value="hello" id="3" style="display:none;">stable foods</option>
   <option value="hello" id="4" style="display:none;">stable foods</option>
   <option value="hello" id="5" style="display:none;">stable foods</option>
@@ -590,6 +587,44 @@ else
   </ul>
 </div>
 </div>
+ <script type="text/javascript">
+  function changeData() {
+  var e = document.getElementById("selectitem");
+  var strUser = e.options[e.selectedIndex].value;
+
+  switch(strUser){
+  
+    case "fertilizers":document.getElementById("0").value="pesticide";
+                document.getElementById("0").innerHTML="pesticide";
+                document.getElementById("1").value="Nitrogen";
+                document.getElementById("1").innerHTML="Nitrogen fertilizer";
+                document.getElementById("2").value="phosphorous";
+                document.getElementById("2").innerHTML="phosphorous fertilizer";
+                document.getElementById("3").value="Potassium";
+                document.getElementById("3").innerHTML="Potassium fertilizer";
+
+
+                document.getElementById("3").style.display = "block";
+
+    break;
+    case "equipments":document.getElementById("0").value="Cultipacker";
+                document.getElementById("0").innerHTML="Cultipacker";
+                document.getElementById("1").value="Harrow";
+                document.getElementById("1").innerHTML="Harrow";
+                document.getElementById("2").value="Roller";
+                document.getElementById("2").innerHTML="Roller";
+                document.getElementById("3").value="Subsoiler";
+                document.getElementById("3").innerHTML="Subsoiler";
+                document.getElementById("3").style.display = "block";
+    break;
+
+  }
+
+
+    }
+
+</script>
+
 
  <script type="text/javascript">
         jssor_slider_init = function() {
@@ -658,6 +693,7 @@ else
               }
                 }
             </script>
+           
 <?php
 displayPageFooter();
 ?>
