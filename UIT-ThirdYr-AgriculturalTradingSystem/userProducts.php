@@ -327,9 +327,18 @@ else {echo mysql_error();}
       <!-- for price per unit -->
 
        <div class="row ">
-        <div class="input-field inline col s5">
+        <div class="input-field inline col s3">
           <input id="price" name="price" type="number" class="validate" required="required">
           <label for="price">Price</label>
+        </div>
+                <div class="input-field inline col s3 row s5">
+          
+  <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
+    <option value=""  disabled selected>Choose your option unit</option>
+    <option value="1">DOLLAR</option>
+    <option value="2">KYAT</option>
+    <option value="3">URO</option>
+  </select>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">

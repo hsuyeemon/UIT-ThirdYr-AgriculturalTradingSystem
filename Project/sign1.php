@@ -37,12 +37,15 @@ if (strcmp($uradio, 'seller') == 0) {
 	$results1=mysqli_query($con,$selectQuery);
 	$row = mysqli_num_rows($results1);
 	if($row <=0){
-    $query = "INSERT INTO seller (sname,s_phoneno,s_email,s_address,s_nrc_no,s_description,s_profile_image,s_pwd)  VALUES ($usn','$utel','$uem','$uaddr','$unrc','$ubrief','$newFilePath','pw');";
+    $query = "INSERT INTO seller (sname,s_phoneno,s_email,s_address,s_nrc_no,s_description,s_profile_image,s_pwd)  VALUES ('$usn','$utel','$uem','$uaddr','$unrc','$ubrief','$newFilePath','$upw');";
 	$results=mysqli_query($con,$query); 
 	move_uploaded_file($tmpFilePath, $newFilePath);
 	echo "<script>alert('Seller Account has been created')</script>";
 	mysqli_close($con);
     }
+    else{
+	echo "<script>alert('Cannot create')</script>";
+}
 
 }
 else{
@@ -51,7 +54,7 @@ else{
 	$results1=mysqli_query($con,$selectQuery);
 	$row = mysqli_num_rows($results1);
 	if($row <=0){
-	$query = "INSERT INTO buyer (bname,b_phoneno,b_email,b_profile_image,b_nrc_no,b_address,b_pwd) VALUES ($usn','$utel','$uem','$newFilePath','$unrc','$uaddr','$upw');";
+	$query = "INSERT INTO buyer (bname,b_phoneno,b_email,b_profile_image,b_nrc_no,b_address,b_pwd) VALUES ('$usn','$utel','$uem','$newFilePath','$unrc','$uaddr','$upw');";
 	move_uploaded_file($tmpFilePath, $newFilePath);
 
 	$results=mysqli_query($con,$query); 
@@ -59,7 +62,7 @@ else{
 	mysqli_close($con);
 }
 else{
-	echo "ELse case";
+	echo "<script>alert('Cannot create')</script>";
 }
 }
 

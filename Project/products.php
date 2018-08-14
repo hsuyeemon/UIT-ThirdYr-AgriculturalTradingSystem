@@ -53,10 +53,13 @@ function showProducts($category){
 
   for($j=0;$j<$noRows2;$j++){
     $row2=mysqli_fetch_array($ret2); 
+     
+      $array = explode(',', $row2["p_image"]);
+    $url = $array[0];
+        $imageData = base64_encode(file_get_contents($url));
+
       
-      
-    $url = $row2["p_image"];
-    $imageData = base64_encode(file_get_contents($url));
+    
 
     // Format the image SRC:  data:{mime};base64,{data};
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;

@@ -424,7 +424,7 @@ The important benefit is that "Public can buy agricultural products cheeper than
             {
                if (pw==cpw)
                {
-                alert ("Registration Successful ");
+              
                 var form =document.getElementById("form1");
                 form.method="post";
                 form.action="sign1.php";
