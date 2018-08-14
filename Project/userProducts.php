@@ -656,6 +656,42 @@ else
               }
                 }
             </script>
+            <script type="text/javascript">
+  function changeData() {
+  var e = document.getElementById("selectitem");
+  var strUser = e.options[e.selectedIndex].value;
+
+  switch(strUser){
+  
+    case "fert":document.getElementById("0").value="pesticide";
+                document.getElementById("0").innerHTML="pesticide";
+                document.getElementById("1").value="Nitrogen";
+                document.getElementById("1").innerHTML="Nitrogen fertilizer";
+                document.getElementById("2").value="phosphorous";
+                document.getElementById("2").innerHTML="phosphorous fertilizer";
+                document.getElementById("3").value="Potassium";
+                document.getElementById("3").innerHTML="Potassium fertilizer";
+                document.getElementById("3").style.display = "block";
+
+    break;
+    case "equi":document.getElementById("0").value="Cultipacker";
+                document.getElementById("0").innerHTML="Cultipacker";
+                document.getElementById("1").value="Harrow";
+                document.getElementById("1").innerHTML="Harrow";
+                document.getElementById("2").value="Roller";
+                document.getElementById("2").innerHTML="Roller";
+                document.getElementById("3").value="Subsoiler";
+                document.getElementById("3").innerHTML="Subsoiler";
+                document.getElementById("3").style.display = "block";
+    break;
+
+  }
+
+
+    }
+
+</script>
+
 <?php
 displayPageFooter();
 ?>
