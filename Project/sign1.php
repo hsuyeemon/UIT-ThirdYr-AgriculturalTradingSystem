@@ -45,6 +45,9 @@ if (strcmp($uradio, 'seller') == 0) {
 	include("index.php");
 	mysqli_close($con);
     }
+    else{
+	echo "<script>alert('Cannot create')</script>";
+}
 
 }
 else{
@@ -64,7 +67,7 @@ else{
 
 }
 else{
-	echo "ELse case";
+	echo "<script>alert('Cannot create')</script>";
 }
 }
 
