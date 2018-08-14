@@ -10,7 +10,7 @@ displayPageHeader( "Dashboard" );
   else
     $loginStatus = "normal";
 
-  if($loginStatus!=2){
+  if($loginStatus!="seller"){
     echo "<script>alert('please log in first');
     location.replace('index.php');</script>";
     //header('Location: index.php');
@@ -18,7 +18,7 @@ displayPageHeader( "Dashboard" );
   } 
 ?>
 
-?>
+
 
 <div class="content padding-normal center-align">
             <div class="row">
@@ -211,7 +211,6 @@ displayPageHeader( "Dashboard" );
             //dashboard1.draw(data);
             dashboard1.draw(data1);
             }
-        </script>
-<?php
+        </script><?php
 displayPageFooter();
 ?>

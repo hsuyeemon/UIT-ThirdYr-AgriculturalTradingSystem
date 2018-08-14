@@ -49,7 +49,7 @@ $itid=1;
 $sum = 0;
 
 $num_rows = mysqli_num_rows($result);
-echo "<span id='num_row'>$num_rows</span>";
+//echo "<span id='num_row'>$num_rows</span>";
 //echo "<span id='num_row'>$num_rows</span>";
 ?>
 
@@ -68,7 +68,6 @@ echo "<span id='num_row'>$num_rows</span>";
     </tr>
 
 <?php
-
 while($row = mysqli_fetch_array($result))
 {
   
@@ -113,9 +112,10 @@ $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
        </tr>
 <?php
 $itid++;
+
+
 }
 ?>
-
 
 </table>
 <?php

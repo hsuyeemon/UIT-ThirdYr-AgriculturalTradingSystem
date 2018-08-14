@@ -52,10 +52,11 @@ function showProducts($category){
   $noRows2=mysqli_num_rows($ret2);
 
   for($j=0;$j<$noRows2;$j++){
+         
     $row2=mysqli_fetch_array($ret2); 
-      
-      
-    $url = $row2["p_image"];
+      $array = explode(',', $row2["p_image"]);
+    $url = $array[0];
+        $imageData = base64_encode(file_get_contents($url));
     $imageData = base64_encode(file_get_contents($url));
 
     // Format the image SRC:  data:{mime};base64,{data};
@@ -200,7 +201,6 @@ else
     </script>
 
    <script type="text/javascript">jssor_slider_init();</script>
-
- <?php
+<?php
 displayPageFooter();
 ?>
