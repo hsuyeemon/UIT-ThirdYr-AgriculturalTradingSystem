@@ -7,9 +7,25 @@ displayPageHeader( "productDetails" );
 
 <?php 
 global $pid;
+if(isset($_POST['order'])){
+  echo "<script>alert('haha')</script>";
+
+  $_GET['productId'] = $_POST['pid'];
+
+  // getting current Date Time OOP way
+ $currentDateTime = new \DateTime();
+ echo $currentDateTime;
+
+ //set timeZone
+ $currentDateTime->setTimezone(new \DateTimeZone('America/New_York'));
+ $dateTime = $currentDateTime->format('l-j-M-Y H:i:s A');
+}
+
 if(isset($_GET['productId'])){
 $pid = $_GET['productId'];
 //$sid = $_SESSION['sid'];
+
+
 ?>
 
  <div class="content padding-normal-sync">
@@ -98,30 +114,39 @@ else{
 
  <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
+     <?php
+        if (isset($_SESSION['bid'])) {
+          $buyerInfo = "SELECT * FROM buyer where bid='".$_SESSION['bid']."'";
+
+          $res3 = mysqli_query($con,$buyerInfo) or die(mysqli_error($con));
+
+          $n3 = mysqli_fetch_array($res3);
+
+          ?>
   <h4>Order Your Items</h4>
   
   <!---Items--------------------------->
-    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();">
-  
-    <div class="row">
-        
-        <div class="input-field col s10 ">
-          <input id="phoneno" type="text" class="validate" disabled="disabled" value="09448500348" required>
+    <form id="order_Form" class="col" action="" method="">
+            
+
+   
+          <input type="hidden" name="pid" value="<?php echo $pid;?>">
+          <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
+           <div class="row">
+
+<div class="input-field col s12 ">
+          <input id="phoneno" type="text" class="validate" value="<?php echo $n3['b_phoneno'];?>" required>
           <label for="phoneno">PhoneNo</label>
         </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
-        </div>
+        
       </div>
       <div class="row">
         
-        <div class="input-field col s10 ">
-          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+        <div class="input-field col s12 ">
+          <input id="email" type="email" class="validate" value="<?php echo $n3['b_email'];?>" required="required">
           <label for="email">Email</label>
         </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
-        </div>
+        
       </div>
      
     <div class="row">
@@ -134,35 +159,59 @@ else{
           <input id="city" type="text" class="validate" required="required">
           <label for="city">City</label>
         </div>
-        <div class="input-field col s4" required="required">
-    <select id="state">
-      <option value="1">Yangon</option>
-      <option value="2">Manadalay</option>
-      <option value="3">Magway</option>
-    </select>
-    <label for="state">State/Region</label>
-  </div>
-    </div>
+      <div class="input-field col s4 ">
+          <input id="region" type="text" class="validate" required="required">
+          <label for="Region">Region</label>
+        </div>
+      </div>
+
     <div class="row">
       <input id="date" type="text" class="datepicker">
       <label for="date" id="date_label">Pick the preferred date</label>
     </div>
      <div class="row">
-        <button class="modal-close btn green white-text" type="submit" name="action"
-         onclick="show_alert()";>Confirm Order
+        <button class="btn green white-text" name="order1" onclick="confirm_alert()">Confirm Order
       <i class="material-icons right">send</i>
       </button>
-      <button class="modal-close btn green white-text" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      <button class="modal-close btn green white-text"  name="action">Cancel<i class="material-icons right">cancel</i>
       </button>
 
       </div>
+      
+
+        
+        
     </form>
+    <?php
+        }
+        else{
+          ?>
+         <h4>Please Login first</h4>
+         <?php
+        }
+        ?>
 
     <!--div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div--></div>
 
     </div>
+     <script>
+    alert("hah");
+  function confirm_alert() {
+   
+  if(confirm("Are you sure to confirm the order?")){
+    var form = document.getElementById('order_Form');
+    form.action="productDetails.php";
+    form.method="post";
+    form.submit():
+  }
+  }
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+      
+</script>
  
  <a class="btn green white-text modal-trigger" href="cart.php?
      pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">send</i></a>
@@ -478,17 +527,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 </section>​
 
-   <script>
-  function show_alert() {
-    if (confirm("Are you sure to confirm the order?")) {
-    var doc = document.getElementById('qrsection');
-    doc.style.display="block";
-    $('#ff').prop("disabled", true);
-    return true;
-  }
-  return false;
-  }
-</script>
+  
 
 
 
