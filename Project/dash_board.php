@@ -10,7 +10,7 @@ displayPageHeader( "Dashboard" );
   else
     $loginStatus = "normal";
 
-  if($loginStatus!=2){
+  if($loginStatus!="seller"){
     echo "<script>alert('please log in first');
     location.replace('index.php');</script>";
     //header('Location: index.php');

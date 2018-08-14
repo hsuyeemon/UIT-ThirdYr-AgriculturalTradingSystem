@@ -1,5 +1,5 @@
 <?php
-echo "HAHA";
+//echo "HAHA";
 include("dblink.php");
 $usn=$_POST["username"];
 $utel=$_POST["telph"];
@@ -19,7 +19,7 @@ $filenames=$_FILES['files']['name'][0];
             
             //Get the temp file path
             $tmpFilePath = $_FILES['files']['tmp_name'][0];
-            echo $tmpFilePath;
+            //echo $tmpFilePath;
 
             	$newFilePath;
             //Make sure we have a filepath
@@ -27,7 +27,7 @@ $filenames=$_FILES['files']['name'][0];
                 //Setup our new file path
                 $newFilePath = "images/profiles/" . $_FILES['files']['name'][0];
 
-		echo $newFilePath;
+		//echo $newFilePath;
             }
         
 
@@ -37,10 +37,11 @@ if (strcmp($uradio, 'seller') == 0) {
 	$results1=mysqli_query($con,$selectQuery);
 	$row = mysqli_num_rows($results1);
 	if($row <=0){
-    $query = "INSERT INTO seller (sname,s_phoneno,s_email,s_address,s_nrc_no,s_description,s_profile_image,s_pwd)  VALUES ($usn','$utel','$uem','$uaddr','$unrc','$ubrief','$newFilePath','pw');";
+    $query = "INSERT INTO seller (sid,sname,s_phoneno,s_email,s_address,s_nrc_no,s_description,s_profile_image,s_pwd)  VALUES ('200','$usn','$utel','$uem','$uaddr','$unrc','$ubrief','$newFilePath','$upw');";
 	$results=mysqli_query($con,$query); 
 	move_uploaded_file($tmpFilePath, $newFilePath);
 	echo "<script>alert('Seller Account has been created')</script>";
+	include("index.php");
 	mysqli_close($con);
     }
 
@@ -57,6 +58,9 @@ else{
 	$results=mysqli_query($con,$query); 
 	echo "<script>alert('Buyer Account has been created')</script>";
 	mysqli_close($con);
+	session_write_close();
+  	include("index.php");
+
 }
 else{
 	echo "ELse case";

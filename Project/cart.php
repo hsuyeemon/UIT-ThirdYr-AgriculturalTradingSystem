@@ -113,9 +113,10 @@ $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
        </tr>
 <?php
 $itid++;
+
+echo "";
 }
 ?>
-
 
 </table>
 <?php
