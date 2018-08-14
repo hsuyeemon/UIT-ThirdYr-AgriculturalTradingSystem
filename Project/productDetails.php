@@ -322,7 +322,7 @@ if($result) {
 <?php
 $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid='$pid' AND c.oid=o.oid)";
 
-   $res4 = mysqli_query($con,$rating) or die(mysqli_error());
+   $res4 = mysqli_query($con,$rating) or die(mysqli_error($con));
    $rows4  = mysqli_fetch_array($res4);
    $rating = $rows4['rating'];
 
@@ -444,6 +444,8 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
     </div>
   </div>
 </div>
+
+
   <!----------------Review Hightlight----------------->
   <section id="reviews" class="comments container">
     <?php 
