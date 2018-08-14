@@ -74,13 +74,6 @@ $filenames=$_FILES['product']['name'][$i];
  }
 
 
-else{
- echo ("<script LANGUAGE='JavaScript'>
-    alert('Invalid name');
-    </script>");
- 
-}
-}
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
