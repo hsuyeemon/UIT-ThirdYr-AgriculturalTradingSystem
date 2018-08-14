@@ -228,67 +228,12 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
           </div>
         </div>
       </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                             <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-      </div>
     </div>
   </div>
 </div>
-  <!----------------Review Hightlight----------------->
+
+     
+  
   <section id="reviews" class="comments container">
     <?php 
     $cmt ="SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid";
