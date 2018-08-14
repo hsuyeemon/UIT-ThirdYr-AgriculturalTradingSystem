@@ -54,6 +54,7 @@ $num_rows = mysqli_num_rows($result);
 ?>
 
 <div class="content padding-normal">
+  <button type="button" onclick="getvalue();">getvalue</button>
 
   <!---Items--------------------------->
   <h4  id="your_items">Your Items</h4>
@@ -70,6 +71,8 @@ $num_rows = mysqli_num_rows($result);
 <?php
 while($row = mysqli_fetch_array($result))
 {
+
+ //echo "<input type='button' onclick='removediv($itid)' value='removeelement'>";
   
 $image = $row['p_image'];
 $imageData = base64_encode(file_get_contents($image));
@@ -108,18 +111,16 @@ $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
         </td>
 
       <td><a href="#" class="btn btn-default waves-effect  white
-         green-text"><i class="material-icons">delete</i></a> </td>
+         green-text" onclick='removediv(<?php echo $itid?>)'><i class="material-icons">delete</i></a> </td>
        </tr>
 <?php
 $itid++;
-
-
 }
 ?>
 
 </table>
 <?php
-
+echo $itid;
 echo mysqli_error($con);
 ?>
 
@@ -272,6 +273,87 @@ alert("calculate");
    // alert(cart);
   }
   
+</script>
+
+
+<script type="text/javascript">
+  
+  var cart = new Array();
+  function removediv(divid){
+    var elementName ="div".concat(divid);
+    document.getElementById(elementName).remove();
+      }
+
+     /*    function getValue(){
+        var totalrow = document.getElementByTagName("div").length;
+        var i=0;
+        var getpid = 'pid'+(i+1);
+        var getprice = 'price'+(i+1);
+     alert(document.getElementById(getpid).innerHTML);
+      }
+
+      for (i =1; i <=totalrow; i++) {
+  if(document.getElementById('div'.concat(i)).innerHTML==null)
+  {
+    continue;
+  }
+
+    cart.push(document.getElementById('pid'.concat(i)).innerHTML);
+    cart.push(document.getElementById('pname'.concat(i)).innerHTML);
+    cart.push(document.getElementById('price'.concat(i)).innerHTML);
+
+  
+    
+  }
+  //cart.toString();
+   //alert(cart);
+   var jsonString = JSON.stringify(cart);
+
+
+ $.ajax({
+  url: "receiveFromJS.php",
+  type: "POST",
+  data:{data : jsonString}
+
+}).done(function(data) {
+     console.log(data);
+});
+
+}
+*/
+function getvalue(){
+    alert(document.getElementById('div'));
+  var totalrow=document.getElementsByTagName('div').length;
+  alert(totalrow);
+
+for (i =1; i <=totalrow; i++) {
+  if(document.getElementById('div'.concat(i)).innerHTML==null)
+  {
+    continue;
+  }
+
+
+    cart.push(document.getElementById('pid'.concat(i)).innerHTML);
+    cart.push(document.getElementById('pname'.concat(i)).innerHTML);
+    cart.push(document.getElementById('price'.concat(i)).innerHTML);
+
+     // alert(cart.toString());
+    
+  }
+  cart.toString();
+  alert(cart);
+   var jsonString = JSON.stringify(cart);
+
+
+ $.ajax({
+  url: "receiveFromJS.php",
+  type: "POST",
+  data:{data : jsonString}
+
+}).done(function(data) {
+     console.log(data);
+});
+}
 </script>
 
 

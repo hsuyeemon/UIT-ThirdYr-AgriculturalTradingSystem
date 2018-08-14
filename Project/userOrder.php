@@ -146,36 +146,15 @@ echo "</td>";
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form--></td>
 </tr>
-
-<?php
-}
-}
-else{
-	echo "<tr><td>you haven't order anything yet!!</td></tr>";
-}
-echo "</table>";
-
-?>
-</div>
-
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="padding: 48px;">
-    <form action="userOrder.php" method="post">
-  type your order id <input type="text" name="orderid">
-  <input type="submit" name="submit">
-</form> 
-    </div>
-  </div>
-
-
-
-  <div id="myModal2" class="modal fade" role="dialog">
+<div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
 
       <h2 id="review">Review</h2>
 
      <div class="row">
+
+      <form id="comment" action="userOrder.php" method="post">
+        <input type="text" name="nn" value="<?php echo $row['oid'];?>">
     <div class="input-field col s12">
       <!--If not used prefix class the icon overflow the textarea-->
       <i class="material-icons prefix">comment</i>
@@ -301,8 +280,34 @@ echo "</table>";
       </div>
     </div>
   </div>
+  </form>
     </div>
 </div>
+
+
+<?php
+}
+}
+else{
+	echo "<tr><td>you haven't order anything yet!!</td></tr>";
+}
+echo "</table>";
+
+?>
+</div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="padding: 48px;">
+    <form action="userOrder.php" method="post">
+  type your order id <input type="text" name="orderid">
+  <input type="submit" name="submit">
+</form> 
+    </div>
+  </div>
+
+
+
 
 
 
