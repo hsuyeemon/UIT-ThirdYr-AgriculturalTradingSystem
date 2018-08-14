@@ -18,7 +18,7 @@ displayPageHeader( "Dashboard" );
   } 
 ?>
 
-?>
+
 
 <div class="content padding-normal center-align">
             <div class="row">
@@ -211,7 +211,6 @@ displayPageHeader( "Dashboard" );
             //dashboard1.draw(data);
             dashboard1.draw(data1);
             }
-        </script>
-<?php
+        </script><?php
 displayPageFooter();
 ?>

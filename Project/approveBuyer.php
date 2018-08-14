@@ -50,4 +50,6 @@
     echo "</button>";
     echo "</form>";
   	?>
-     
+     <?php
+displayPageFooter();
+?>

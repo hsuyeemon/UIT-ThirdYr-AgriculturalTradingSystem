@@ -59,4 +59,6 @@ echo "<div class='content padding-normal'>";
     ?>
     
        
-         
+         <?php
+displayPageFooter();
+?>

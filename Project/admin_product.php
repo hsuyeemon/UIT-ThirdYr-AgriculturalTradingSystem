@@ -1,4 +1,3 @@
-
 <?php
 include("common.php");
 include("dblink.php");
@@ -56,4 +55,7 @@ else{
 echo "</table>";
 echo "</div>";
 
+?>
+<?php
+displayPageFooter();
 ?>

@@ -306,6 +306,71 @@ displayPageHeader( "index" );
   </div>
 </div>
 
+<!---Footer-------------------------------------------------->
+<footer class="page-footer">
+  <div class="row padding-normal container" id="aboutus">
+
+
+      <h5 class="white-text" id="about_as1" style="text-align: center;padding: 16px;">About Us</h5>
+      <p class="grey-text text-lighten-4 center-align">
+
+  Our project team is organized with 7 students from UIT.Our idea is that to help trading agricultural products directly via B2B system.<br><br>
+
+Trading between sellers and customers needs many steps and may face warehouse problems.
+Repeated contributions may make the price up to double(or even triple) for buyers.<br><br>
+
+We try hard to solve this problem in our system.
+In our website, we efficiently provide logistics service to both sellers and contributors.<br><br>
+Sellers and customers can directly trade without needing unnecessary steps that increase cost.<br><br>
+It also saves time!!!<br><br>
+
+The important benefit is that "Public can buy agricultural products cheeper than before."<br>
+
+
+
+</p></div>
+   <div class="row">
+    <hr style="width: 300px;color: white">
+  </div>
+
+   
+<div class="row padding-normal container" id="contactus">
+    
+      <h5 class="white-text" id="contact_us" style="text-align: center;padding: 16px">Contact Us</h5>
+
+<div class="col s6">
+  <ul>
+        <li>Ei Nghon Phoo- Project leader and supervisor<br>
+            email-einghonphoo@uit.edu.mm</li><br><br>
+        <li>Yamin Thiri Aung- Designer and programmer<br>
+            email-yaminthiriaung@uit.edu.mm</li><br><br>
+        <li>Yamin Theint Theint- Programmer and Language Analyst <br>
+            email- yamintheinttheint@uit.edu.mm</li><br><br>
+        <li>Khine Min Htwe- Programmer <br>
+            email- khineminhtwe@uit.edu.mm</li>      
+      </ul>
+</div>
+<div class="col s6">
+  <ul>
+        <li>Khin Thantsin- Data analyst<br>
+            email-khinthantsin@uit.edu.mm</li><br><br>
+        <li>Ye Yint Aung- Content writer and market researcher<br>
+            email-yeyintaung@uit.edu.mm</li><br><br>
+        <li>Hsu Yee Mon- Coordinator and analyst<br>
+            email- hsuyeemon@uit.edu.mm</li>   
+      </ul>
+      <h4> if you have any conflicts or problems feel free to contact us</h4>
+</div>
+      
+    
+  </div>
+  <div class="footer-copyright">
+    <div class="container center-align">
+      © 2018 Agricultural Trading System
+    </div>
+  </div>
+</footer>
+
 <?php
 displayPageFooter();
 ?>

@@ -52,4 +52,6 @@
     echo "</form>";
     echo "</div>";
   	?>
-    
+    <?php
+displayPageFooter();
+?>

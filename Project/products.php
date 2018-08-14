@@ -201,7 +201,6 @@ else
     </script>
 
    <script type="text/javascript">jssor_slider_init();</script>
-
- <?php
+<?php
 displayPageFooter();
 ?>
