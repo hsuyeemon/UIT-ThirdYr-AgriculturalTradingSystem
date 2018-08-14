@@ -23,8 +23,8 @@ displayPageHeader("product");
 ?>
 
 <?php
-$result = mysqli_query($con,"SELECT * FROM product");
-$num_rows = mysqli_num_rows($result);
+$result1 = mysqli_query($con,"SELECT * FROM product");
+$num_rows = mysqli_num_rows($result1);
 $total=++$num_rows;
 
 // Full Name must be letters, dash and spaces only
@@ -80,40 +80,24 @@ else{
  
 }
 }
-# DELETE
-
-    if(isset($_POST['confirm'])){
-
-
-        echo "string";
-              //add ALert to confirm delete
-
-//if(confirm)
-$sql2 = "DELETE FROM product WHERE pid='10'";
-       $result2=mysqli_query($con,$sql2);
-       if($result2) {echo ("<script LANGUAGE='JavaScript'>
-    window.alert('Succesfully deleted');
-    </script>");}
-else {echo mysql_error();}
-    }
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
 //$num_rows = mysqli_num_rows($result);
 //$total=++$num_rows;
- $result = mysqli_query($con,"SELECT * FROM product WHERE pid='11'");
 
-$row = mysqli_fetch_array($result);
+$row = mysqli_fetch_array($result1);
 echo $row["p_description"];
 echo $row["UNIT"];
     if(isset($_POST['update'])){
+      $proId=$_POST['productId'];
        
         
 
 //$sql3 ="UPDATE product set pname=$_POST['pname'],price=$_POST['pname'],p_image=,$_POST['p_image'],p_description=$_POST['description'], 
      // min_amount=$_POST['min'], max_amount=$_POST['max'], UNIT=$_POST['unit'], qualification=$_POST['qualification'] WHERE pid='1'";
 $sql3 ="UPDATE product set pname='".$_POST['pname']."',price='".$_POST['pname']."',p_image='".$_POST['image']."',p_description='".$_POST['brief']."', 
-      min_amount='".$_POST['min']."', max_amount='".$_POST['max']."', UNIT='".$_POST['unit']."', qualification='".$_POST['qualification']."' WHERE pid='11'";
+      min_amount='".$_POST['min']."', max_amount='".$_POST['max']."', UNIT='".$_POST['unit']."', qualification='".$_POST['qualification']."' WHERE pid='$proId'";
 
 
        $result3=mysql_query($sql3);
@@ -258,16 +242,33 @@ else {echo mysql_error();}
   </div>
 </div>
 
+
  
   <!--editProductsForm-->
 <div id="editProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Edit your Products</h3>
+
+      <?php
+        
+        $id= 32;
+
+
+// if(isset($_SESSION['tempId'])){
+
+   //  alert("edit");
+$edit= mysqli_query($con,"SELECT * FROM product where pid='".$id."'");
+$editrow= mysqli_fetch_array($edit);
+//echo  $editrow;
+//}
+//*/
+
+?>
  <div class="row">
     <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" value="<?php echo $row["pname"]?>" class="validate">
+          <input  name="pname" type="text" value="<?php echo $editrow["pname"]?>" class="validate">
           <label for="pname">Product name</label>
         </div>
       </div>
@@ -276,14 +277,14 @@ else {echo mysql_error();}
 
        <div class="row ">
         <div class="input-field inline col s5">
-          <input  name="price" type="number" value="<?php echo $row["price"]?>" class="validate">
+          <input  name="price" type="number" value="<?php echo $editrow["price"]?>" class="validate">
           <label for="price">Price</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
   <select class="browser-default green lighten-3" name="unit" required="#">
-    <option value="<?php echo $row["UNIT"];?>"  disabled selected><?php echo $row["UNIT"];?></option>
+    <option value="<?php echo $editrow["UNIT"];?>"  disabled selected><?php echo $editrow["UNIT"];?></option>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Gram</option>
     <option value="2">mililiter</option>
@@ -296,7 +297,7 @@ else {echo mysql_error();}
 
        <div class="row">
         <div class="input-field col s5">
-          <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $row["min_amount"]?>">
+          <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $editrow["min_amount"]?>">
           <label for="min">Minimum buyable amount</label>
           
         </div>
@@ -306,7 +307,7 @@ else {echo mysql_error();}
 
       
         <div class="input-field col s5">
-          <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $row["max_amount"]?>">
+          <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $editrow["max_amount"]?>">
           <label for="max">Maximum buyable amount</label>
           
         </div>
@@ -317,7 +318,7 @@ else {echo mysql_error();}
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea class="materialize-textarea validate" name="brief" value="<?php echo $row["p_description"]?>" ></textarea>
+        <textarea class="materialize-textarea validate" name="brief" value="<?php echo $editrow["p_description"]?>" ></textarea>
         <label for="brief">Brief description of the product</label>
         </div>
       </div>
@@ -398,36 +399,22 @@ else {echo mysql_error();}
   </div>
 </div>
 <!--deleteProductsForm-->
-<div id="deleteProducts" class="modal fade" role="dialog">
-    <div class="padding-normal modal-dialog">
-      <h3>Delete your Products</h3>
 
-    </div>
-  <div>
-    <table border="0">
-      <tr>
-         <td>
-           <form method="post" action="userProducts.php">
-       <button class="btn green white-text" type="submit" name="confirm" >Confirm
-        <i class="material-icons right">update</i>
-       </button>
-       </form>
-     </td>
-   
-    <td>
-    <form method="post" action="userProducts.php">
-  <button class="btn green white-text" type="submit" name="cancel">Cancel<i class="material-icons right">cancel</i>
-  </button>
-</form>
-</td>
-</tr>
-</table>
-</div>
+
+   <?php if(isset($_POST['delete'])){
+  $productid=$_POST['productId'];
+$sql2 = "DELETE FROM product WHERE pid='$productid'";
+       $result2=mysqli_query($con,$sql2);
+       }
+else {echo mysqli_error($con);
+}
+    
+    ?>
 
 
      
 
-</div>
+
 
 <?php
 
@@ -435,7 +422,6 @@ static $jssor = 0;
 $sid = $_SESSION['sid'];
 
             $sliderCount= "select count(distinct(category))as ct from product where sid='$sid'";
-      
             $result = mysqli_query ($con,$sliderCount);          
            
             $r=mysqli_fetch_array($result);
@@ -501,20 +487,39 @@ function showProducts($category){
           </span>
           <div class='row'>
              <div class='col s6'>
+              
 
            <button href = '#editProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
+         
           </div>
          
-          
           <div class='col s6'>
-
-          <!--input type="hidden" name="productId" 
-            value="<?php echo $row2['pid'];?>"-->
-          <button  href='#deleteProducts'class='btn green modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+            <form id="deleteF" action="" method="">
+          <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
+          <button onclick="conf()" name="delete" class='btn green modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+        </form>
           </div>
           </div>
           </div>
         </div>
+        <script>
+          function smt(){
+            $_SESSION['tempId']=$row2['pid'];
+          }
+        function conf(){
+          var del=confirm("Are you sure you want to delete this record?");
+          if(del==true){
+            var de=document.getElementById("deleteF");
+            alert ("record deleted");
+            de.action="userProducts.php";
+            de.method="post";
+            de.submit();
+          }
+          else{
+            alert ("record not delete");
+          }
+         }
+        </script>
 
         <?php
             }
