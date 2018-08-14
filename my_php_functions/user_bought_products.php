@@ -27,7 +27,7 @@ while($row = mysqli_fetch_array($pending_product_result))
 echo "<tr><td>";
 echo $row['pname'];
 echo "</td>";
-      
+
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";

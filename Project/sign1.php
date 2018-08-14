@@ -37,7 +37,9 @@ if (strcmp($uradio, 'seller') == 0) {
 	$results1=mysqli_query($con,$selectQuery);
 	$row = mysqli_num_rows($results1);
 	if($row <=0){
+
     $query = "INSERT INTO seller (sname,s_phoneno,s_email,s_address,s_nrc_no,s_description,s_profile_image,s_pwd)  VALUES ('$usn','$utel','$uem','$uaddr','$unrc','$ubrief','$newFilePath','$upw');";
+
 	$results=mysqli_query($con,$query); 
 	//echo $results;
 	move_uploaded_file($tmpFilePath, $newFilePath);

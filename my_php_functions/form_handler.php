@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 include("db_config.php");
+
 	if($_SESSION['pid1Incart']){
 	$_SESSION['pid1Incart'].=$_GET['pidset'].",";
 }
@@ -10,7 +11,6 @@ else
 }
 
 $token = strtok($_SESSION['pid1Incart'], ",");
-
 $i=0;
 while ($token !== false)
 {
@@ -18,7 +18,6 @@ $pids[$i]=$token;
 $token = strtok(",");
 $i++;
 } 
-
 echo $pids;
 //echo implode(',', $pids);
 $result = mysqli_query($connection,"SELECT * FROM product where product_id IN (".implode(',',$pids).")");
@@ -58,10 +57,10 @@ echo mysqli_error($connection);
 <script type="text/javascript">
 
 	var cart=new Array();
-
 	function getvalue(){
 		alert("haha");
 	var totalrow=document.getElementById('num_row').innerHTML;
+
 	var i=0;
 		var getpid='pid'+(i+1);
 		var getprice='price'+(i+1);
