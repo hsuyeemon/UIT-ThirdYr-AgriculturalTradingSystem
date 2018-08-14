@@ -334,6 +334,7 @@ function displayPageFooter() {
     $('.slider').slider();
     $('.sidenav').sidenav();
     $('.fixed-action-btn').floatingActionButton();
+     $('.datepicker').datepicker();
 
     });
       
