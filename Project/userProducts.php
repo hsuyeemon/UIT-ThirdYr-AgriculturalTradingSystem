@@ -63,9 +63,9 @@ $filenames=$_FILES['product']['name'][$i];
         echo $sid; 
 
         $sql = "INSERT INTO product(pname, price, currency, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["currency"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
-        echo $sql;
+        
        $result=mysqli_query($con,$sql);
-       if($result && preg_match("/^[a-zA-Z0-9]+$/",$_POST["pname"])) {
+       if($result) {
   echo ("<script LANGUAGE='JavaScript'>
   alert('Succesfully added');
     </script>");}
@@ -81,21 +81,6 @@ else{
 }
 }
 # DELETE
-
-    if(isset($_POST['confirm'])){
-
-
-        echo "string";
-              //add ALert to confirm delete
-
-//if(confirm)
-$sql2 = "DELETE FROM product WHERE pid='10'";
-       $result2=mysqli_query($con,$sql2);
-       if($result2) {echo ("<script LANGUAGE='JavaScript'>
-    window.alert('Succesfully deleted');
-    </script>");}
-else {echo mysql_error();}
-    }
 
              //UPDATE
  //$result = mysqli_query($con,"SELECT * FROM product");
