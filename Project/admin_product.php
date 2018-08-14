@@ -4,7 +4,9 @@ include("dblink.php");
 displayPageHeader("admin_product.php");
 
 $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.pid=p.pid and o.DELIVERED=0");
+
 $pending_num_rows = mysqli_num_rows($pending_product_result);
+echo "<div class='content padding-normal'>";
 echo "<table>";
 echo "<tr><th>product name</th>
       <th>seller address</th>
@@ -51,6 +53,8 @@ else{
       echo "<tr><td>you haven't order anything yet!!</td></tr>";
 }
 echo "</table>";
+echo "</div>";
+
 ?>
 <?php
 displayPageFooter();

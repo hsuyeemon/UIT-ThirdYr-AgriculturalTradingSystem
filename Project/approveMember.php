@@ -7,10 +7,7 @@
             ";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);
-            
-
-
-
+            echo "<div class='content padding-normal'>";
   echo '<table border="300">
   	<thead>
   		<tr>
@@ -49,9 +46,11 @@
   	}
   	echo '</tbody>
   	</table>';
+
     echo "<button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
     echo "</button>";
     echo "</form>";
+    echo "</div>";
   	?>
     <?php
 displayPageFooter();

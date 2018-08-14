@@ -6,6 +6,7 @@
             $sql="select bid,bname,b_phoneno,b_email from buyer where status=0";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);
+            echo "<div class='content padding-normal'>";
   echo '<table border="300">
   	<thead>
   		<tr>
@@ -44,6 +45,7 @@
   	}
   	echo '</tbody>
   	</table>';
+    echo "</div>";
     echo "<button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
     echo "</button>";
     echo "</form>";

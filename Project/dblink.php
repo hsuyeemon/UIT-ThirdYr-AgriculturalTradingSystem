@@ -4,7 +4,7 @@
 	{
 		die('couldnt connect:'.mysql_error());
 	}
-	$databasename="agriculture_database";
+	$databasename="agri";
 	$db_selected=mysqli_select_db($con,$databasename);
 
 	if(!$db_selected)

@@ -5,6 +5,8 @@ if(!isset($_SESSION))
     session_start(); 
   }
 function displayNavSeller(){
+
+
  ?> 
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
@@ -28,7 +30,7 @@ function displayNavSeller(){
   </ul>
 
   <!--Product--------------------->
-  <ul id="products" class="dropdown-content">
+  <ul id="product" class="dropdown-content">
     <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
     <li class="divider"></li>
     <li><a href="userProducts.php" class="modal-trigger " id="my_product">My Products</a></li>
@@ -56,16 +58,16 @@ function displayNavSeller(){
 
 
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="index.php" id="home">Home</a></li>
+      <li><a href="index.php" id="home1">Home</a></li>
       
-      <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
-      <li><a href="index.php#contactus" id="contact">Contact</a></li>
+      <li><a href="index.php#aboutus" id="about_us">About Us</a></li>
+      <li><a href="index.php#contactus" id="contact_us">Contact</a></li>
 
       
-       <li><a class="dropdown-trigger" href="#!" data-target="products" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
+       <li><a class="dropdown-trigger" href="#!" data-target="product" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login1">UserName
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">UserName
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -94,45 +96,5 @@ function displayNavSeller(){
   </div>
 </nav>
 <?php
-
-  //session_start(); 
-if(isset($_GET['lan_flag'])){
-$_SESSION['lan_flag']=$_GET['lan_flag'];
-}
-$lan_flag=null;
-//echo $_SESSION['lan_flag'];
-if(isset($_SESSION['lan_flag'])){
-$lan_flag=$_SESSION['lan_flag'];
-}
-
-  if ($lan_flag) {
- ?>
-<script type="text/javascript">
-  language();
-  function language(){
-   
-    document.getElementById('home1').innerHTML="ပင္မ စာမ်က္ႏွာ";
-     document.getElementById('language').innerHTML="ဘာသာစကား";  
-    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
-    document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-    document.getElementById("contact").innerHTML="ဆက္သြယ္ရန္";
-    document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
-    document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
-    document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
-
-    
-    document.getElementById("user_name").innerHTML="အမည္";
-    document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
-    document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
-    document.getElementById("contact_us").innerHTML="ဆက္သြယ္ရန္";
-    document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-
-  }  
-</script> 
-  <?php
-}
 }
 ?>
