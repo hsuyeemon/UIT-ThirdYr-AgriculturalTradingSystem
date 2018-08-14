@@ -127,7 +127,7 @@ else {echo mysql_error();}
         </div>
          <div class="input-field inline col s1 row s4">
         <select class="browser-default green lighten-3" id="currency" name="currency" required="#">
-    <option value=""  disabled selected>Choose your currency</option>
+    <option value=""  disabled selected>currency</option>
     <option value="Dollar">Dollar</option>
     <option value="Kyat">Kyat</option>
     
@@ -137,7 +137,7 @@ else {echo mysql_error();}
         <div class="input-field inline col s2 row s4">
           
   <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
-    <option value=""  disabled selected>Choose your option unit</option>
+    <option value=""  disabled selected>Unit</option>
     <option value="Gram">Gram</option>
     <option value="Bag">Bag</option>
     <option value="Basket">Basket</option>
@@ -152,7 +152,7 @@ else {echo mysql_error();}
       <!-- for minimum amount -->
 
       <div class="row">
-        <div class="input-field col s5">
+        <div class="input-field col s6">
           <input id="min" name="min" type="number" class="validate" required="required">
           <label for="min">Minimum buyable amount</label>
           
@@ -162,7 +162,7 @@ else {echo mysql_error();}
       <!-- for maximum amount -->
 
       
-        <div class="input-field col s5">
+        <div class="input-field col s6">
           <input id="max" name="max" type="number" class="validate" required="required">
           <label for="max">Maximum buyable amount</label>
           
