@@ -172,12 +172,13 @@ else{
   <div><a class="btn green white-text  modal-trigger" href="#myModal" id="call">Comment and rating</a></div>
   <?php 
 if(isset($_POST['commentSubmit'])){
-$sql="INSERT INTO comment VALUES ('6','2234',".$_POST["comment"]."',2,2)";
+$sql="INSERT INTO comment(cmt_text,rating,oid) VALUES ('".$_POST["comment"]."',2,2)";
 $result=mysqli_query($con,$sql);
 if($result) {
   echo ("<script LANGUAGE='JavaScript'>
   alert('Comment have been recorded');
     </script>");}
+  else mysql_errno();
 }
 ?>
 <div id="myModal" class="modal fade" role="dialog">
@@ -188,6 +189,7 @@ if($result) {
      <div class="row">
     <div class="input-field col s12">
       <!--If not used prefix class the icon overflow the textarea-->
+      <form method="post">
       <i class="material-icons prefix">comment</i>
       <textarea id="txt" name="comment" class="materialize-textarea" maxlength="400"></textarea>
       <label for="txta1">Comment</label>
@@ -196,7 +198,7 @@ if($result) {
      <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/>
   </div>
       <!--Rating-->
-
+</form>
       <!-----Rating------------------------>
   
   <div class="hreview-aggregate">
