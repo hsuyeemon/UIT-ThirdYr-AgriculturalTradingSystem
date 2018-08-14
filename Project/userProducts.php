@@ -31,7 +31,7 @@ $total=++$num_rows;
      
 
 if(isset($_POST['save'])){
-  if(preg_match("/^([a-zA-Z' ]+)$/",$_POST["pname"])){
+  
 $seleced_val1=$_POST["selectitem"];
 $seleced_val2=$_POST["selectedsub"];
 $seleced_cata = $seleced_val1 . '/' . $seleced_val2;
@@ -73,13 +73,7 @@ $filenames=$_FILES['product']['name'][$i];
     # code...
  }
 
-else{
- echo ("<script LANGUAGE='JavaScript'>
-    alert('Invalid name');
-    </script>");
- 
-}
-}
+
 # DELETE
 
              //UPDATE
