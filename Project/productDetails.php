@@ -6,27 +6,32 @@ displayPageHeader( "productDetails" );
 ?>
 
 <?php 
-global $pid;
-if(isset($_POST['order'])){
-  echo "<script>alert('haha')</script>";
+//global $pid;
 
-  $_GET['productId'] = $_POST['pid'];
+if(isset($_POST['order1'])){
 
-  // getting current Date Time OOP way
- $currentDateTime = new \DateTime();
- echo $currentDateTime;
+  $date = date('Y-m-d h:i:s', time());
+ // echo $date;
 
- //set timeZone
- $currentDateTime->setTimezone(new \DateTimeZone('America/New_York'));
- $dateTime = $currentDateTime->format('l-j-M-Y H:i:s A');
+  echo "<script>alert(".$date.")</script>";
+
+ $orderQuery = "INSERT INTO order_product (order_time,from_addr,to_addr,quantity,cost,expect_delivery_date,pid,bid,delivered) VALUES ('".$date."','".$_POST['from_addr']."','".$_POST['to_addr']."',1,".$_POST['price'].",'".$_POST['expect_delivery_date']."',".$_GET['productId'].",".$_SESSION['bid'].",0);";
+
+ //echo $orderQuery;
+
+ $res1 = mysqli_query($con,$orderQuery) or die(mysqli_error($con));
+
+echo "<script>alert('Your have ordered your item')</script>";
+  
+
+
 }
-
 if(isset($_GET['productId'])){
 $pid = $_GET['productId'];
 //$sid = $_SESSION['sid'];
 
-
 ?>
+
 
  <div class="content padding-normal-sync">
   <div>
@@ -132,6 +137,10 @@ else{
    
           <input type="hidden" name="pid" value="<?php echo $pid;?>">
           <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
+          <input type="hidden" name="to_addr" value="<?php echo $n3['b_address'];?>">
+          <input type="hidden" name="from_addr" value="<?php echo $rows2['s_address'];?>">
+          <input type="hidden" name="price" value="<?php echo $price?>">
+
            <div class="row">
 
 <div class="input-field col s12 ">
@@ -143,7 +152,7 @@ else{
       <div class="row">
         
         <div class="input-field col s12 ">
-          <input id="email" type="email" class="validate" value="<?php echo $n3['b_email'];?>" required="required">
+          <input id="emailBuyer" type="email" class="validate" value="<?php echo $n3['b_email'];?>" required="required">
           <label for="email">Email</label>
         </div>
         
@@ -166,11 +175,12 @@ else{
       </div>
 
     <div class="row">
-      <input id="date" type="text" class="datepicker">
+      <input id="date" name="expect_delivery_date" type="text" class="datepicker">
       <label for="date" id="date_label">Pick the preferred date</label>
     </div>
      <div class="row">
-        <button class="btn green white-text" name="order1" onclick="confirm_alert()">Confirm Order
+    
+      <button class="btn green white-text" name="order1" onclick="orderline()">Confirm Order
       <i class="material-icons right">send</i>
       </button>
       <button class="modal-close btn green white-text"  name="action">Cancel<i class="material-icons right">cancel</i>
@@ -196,30 +206,21 @@ else{
     </div--></div>
 
     </div>
-     <script>
-    alert("hah");
-  function confirm_alert() {
-   
-  if(confirm("Are you sure to confirm the order?")){
-    var form = document.getElementById('order_Form');
-    form.action="productDetails.php";
-    form.method="post";
-    form.submit():
-  }
-  }
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
-      
-</script>
- 
+
  <a class="btn green white-text modal-trigger" href="cart.php?
      pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">send</i></a>
 
 
   <br><br>
-  <div><a class="btn green white-text  modal-trigger" href="#myModal" id="call">Comment and rating</a></div>
-  <?php 
+    <div style="display:none"><a class="btn green white-text  modal-trigger" href="#myModal" id="call">Comment and rating</a></div>
+
+    <?php 
+
+
+  //  $q = "SELECT * FROM order_product "
+   // if(isset($_SESSION['bid']))
+
+
 if(isset($_POST['commentSubmit'])){
 $sql="INSERT INTO comment VALUES ('6','2234',".$_POST["comment"]."',2,2)";
 $result=mysqli_query($con,$sql);
@@ -363,7 +364,7 @@ if($result) {
     </div>
 </div>
 </div>
-    </div>
+   
   <br><hr>
 
 <?php
@@ -522,7 +523,28 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 </section>​
 
-  
+  <script>
+
+  function orderline(){
+   
+
+   var a = confirm("Are you sure to confirm the order?");
+    if(a==true){
+     // alert(a);
+    var form = document.getElementById('order_Form');
+    form.method="post";
+    form.action="productDetails.php?productId="+<?php echo $pid;?>;
+    
+    form.submit();
+  }
+  else{
+    alert("no");
+  }
+  }
+ 
+      
+</script>
+ 
 
 
 
