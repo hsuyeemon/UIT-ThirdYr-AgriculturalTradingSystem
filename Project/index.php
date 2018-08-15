@@ -33,7 +33,7 @@ displayPageHeader( "index" );
    
   <!-- card for agricultural products --------------------------------->
 
-  <a href="products.html#Agricultural">
+  <a href="products.php#Agricultural">
     <div class="col s12 m5 l4" >
     <div class="card hoverable ">
     <div class="product-category card-image waves-effect waves-block waves-light">
@@ -41,16 +41,13 @@ displayPageHeader( "index" );
       <div class="slider" >
         <ul class="slides carousel-fixed-item center" >
           <li>
-            <img src="images/2446.jpg">
+            <img src="images/products/685cf17e3ad356f67071c977cbd39a8c.jpg">
           </li>
           <li>
-            <img src="images/2446.jpg">
+            <img src="images/products/43816391-delicious-durian-fruit-isolated.jpg">
           </li>
           <li>
-            <img src="images/Equipments.jpg">
-          </li>
-          <li>
-            <img src="images/2446.jpg">
+            <img src="images/products/Business_Model_Canvas.png">
           </li>
         </ul> 
       </div>   
@@ -67,7 +64,7 @@ displayPageHeader( "index" );
               <img src="images/Equipments.jpg" alt="" class="circle">
               </div>
               <div class="col s4 m8 l9">
-                <p class="title">SubCategory Name</p>
+                <p class="title">Grocerry</p>
 
               </div>
 
@@ -79,7 +76,7 @@ displayPageHeader( "index" );
               <img src="images/Equipments.jpg" alt="" class="circle">
               </div>
               <div class="col s4">
-                <p class="title">SubCategory Name</p>
+                <p class="title">Stable</p>
               </div>
 
             </div>
@@ -93,7 +90,7 @@ displayPageHeader( "index" );
               <img src="images/Equipments.jpg" alt="" class="circle">
               </div>
               <div class="col s4">
-                <p class="title">SubCategory Name</p>
+                <p class="title">Fruits</p>
               </div>
 
             </div>
@@ -110,7 +107,7 @@ displayPageHeader( "index" );
 
 <!-- card for fertilizers products ------------------------------->
 
-<a href="products.html#fertilizer">
+<a href="products.php#fertilizer">
     <div class="col s12 m5 l4">
     <div class="card hoverable">
     <div class="product-category card-image waves-effect waves-block waves-light">
@@ -118,16 +115,13 @@ displayPageHeader( "index" );
       <div class="slider">
         <ul class="slides">
           <li>
-            <img src="images/fertilizer.jpg">
+             <img src="images/products/Activating-a-Plant-s-Immune-System-Protein.jpg">
           </li>
           <li>
-            <img src="images/fertilizer.jpg">
+             <img src="images/products/Best-Price-Quick-Effective-Agriculture-Liquid-Fertilizer.jpg">
           </li>
           <li>
-            <img src="images/fertilizer.jpg">
-          </li>
-          <li>
-            <img src="images/fertilizer.jpg">
+            <img src="images/products/GDM-Bio-Organic-Fertilizer-for-Agriculture.jpg_640x640 (1).jpg">
           </li>
         </ul>
       </div>   </a>
@@ -186,24 +180,19 @@ displayPageHeader( "index" );
 
   <!-- card for equipments products --------------->
 
-<a href="products.html#Equipments">
+<a href="products.php#Equipments">
     <div class="col s12 m5 l4">    
     <div class="card hoverable"">
     <div class="product-category card-image waves-effect waves-block waves-light">
       <!--img class="activator" src="images/equipments.jpg"  height="240px"-->
       <div class="slider" height="240px">
         <ul class="slides">
-          <li>
-            <img src="images/equipments.jpg">
-          </li>
-          <li>
-            <img src="images/equipments.jpg">
-          </li>
-          <li>
-            <img src="images/equipments.jpg">
-          </li>
-          <li>
-            <img src="images/equipments.jpg">
+         <li>
+             <img src="images/products/20160725114016.jpg">
+          </li><li>
+             <img src="images/products/20160725114026.jpg">
+          </li><li>
+             <img src="images/products/20161011111930.jpg">
           </li>
         </ul>
       </div>   </a>

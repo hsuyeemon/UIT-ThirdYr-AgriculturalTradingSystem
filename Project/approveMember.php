@@ -3,7 +3,7 @@
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveMember.php");
-            $sql="select sid,sname,s_phoneno,s_email from seller where status=0;
+            $sql="select sid,sname,s_phoneno,s_email from seller where s_status=0;
             ";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);

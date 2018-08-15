@@ -3,7 +3,7 @@
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveBuyer.php");
-            $sql="select bid,bname,b_phoneno,b_email from buyer where status=0";
+            $sql="select bid,bname,b_phoneno,b_email from buyer where b_status=0";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);
             echo "<div class='content padding-normal'>";
