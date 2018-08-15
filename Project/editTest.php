@@ -1,20 +1,10 @@
-<!--?php
+<?php
 
 include( "common.php" );
 
 displayPageHeader( "index" );
-?-->
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-</head>
-<body>
 
-  <?php
+
 include( "dblink.php" );
 
 
@@ -27,17 +17,6 @@ while($row=mysqli_fetch_array($productsQuery)){
   $pid=$row["pid"];
   echo $pid;
 ?>
-
-
-
-
-
-
-
- <!--a  id="test" data-target="modalEditClient" href="#modalEditClient" class="btn modal-trigger waves-effect waves-light"
-    data-idClient="{{$client->id}}" data-nom="<?php echo $pid;?>" data-prenom="haha"
-    data-adresse="{{$client->adresse}}" data-tel1="{{$client->tel1}}" data-tel2="{{$client->tel2}}"
-        >Button</a-->
 
          <a  id="test" data-target="modalEditClient" href="#modalEditClient" class="btn modal-trigger waves-effect waves-light" 
          data-pname="<?php echo $row['pname'];?>" 
@@ -78,6 +57,10 @@ while($row=mysqli_fetch_array($productsQuery)){
 }
 ?>
 
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
 
 <script type="text/javascript">
   
@@ -106,6 +89,6 @@ while($row=mysqli_fetch_array($productsQuery)){
 
 
 
-<!--?php
+<?php
 displayPageFooter();
-?-->
+?>

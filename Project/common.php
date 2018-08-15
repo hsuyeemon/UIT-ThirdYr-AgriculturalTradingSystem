@@ -27,8 +27,6 @@ function displayPageHeader( $pageTitle ) {
       <link href="css/style.css" rel="stylesheet" />  
       <link href="css/jssor.css" rel="stylesheet" />  
       <script src="js/jssor.slider-27.1.0.min.js" type="text/javascript"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 </head>
 <body>
 
@@ -339,13 +337,6 @@ function displayPageFooter() {
      $('.datepicker').datepicker();
 
     });
-
-    $('.modal').modal({
-    ready: function(modal, trigger) {
-        modal.find('input[name="nom"]').val(trigger.data('nom'))
-    }
-    });
-
       
   </script>
  
