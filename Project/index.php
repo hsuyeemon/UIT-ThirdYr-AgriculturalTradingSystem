@@ -11,12 +11,12 @@ displayPageHeader( "index" );
   <div class = "transparent">
     <div class="white-text center-align" style="
         padding: 64px;margin: 0px;">
-       <h3 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;font-family: 'Acme'">
+       <h3 style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;font-family: 'Acme';color:white">
          <!--ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ -->
            Marketplace for people in agricultural sector
          </h3>
          <br><br>
-         <a href="#" class="btn btn-default waves-effect pulse white green-text">View how it works</a>
+         <a href="index.php#feature" class="btn btn-default waves-effect pulse white green-text">View how it works</a>
     </div>   
    </div>
 </div>
@@ -258,7 +258,7 @@ displayPageHeader( "index" );
 
 
 <!--Features-->
-<div class="feature #c8e6c9 padding-normal-sync">
+<div class="feature #c8e6c9 padding-normal-sync" id="feature">
   <h3 class="center-align header" style=" font-family: 'Acme';">What we do</h3>
   <div class="row text-center container">
    
