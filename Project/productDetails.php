@@ -34,12 +34,6 @@ $pid = $_GET['productId'];
 
 
  <div class="content padding-normal-sync">
-  <div>
-  <a href="#">Category/</a>
-  <a href="#">SubCategory/</a>
-  <a href="#">ProductName/</a>
-  </div>
-
  <?php
 //Product Details
 $productDetails = "SELECT * FROM product WHERE pid='$pid'";
@@ -65,19 +59,29 @@ $phone = $rows2['s_phoneno'];
 ?>
 
 <div class="row ">
-    <div class="col s3 padding-normal">
-      <h3 id="productName" name="pname">
+  <h3 id="productName" name="pname">
         <?php echo $pname;?>  
       </h3>
+      <br><br>
+    <div class="col s5 padding-normal">
+      
       <p class="details" id="productPrice" name="price">
-      <?php echo $price ." ". $currency ." per ". $unit?></p>
-      <p class="details" id="productVendor"><a> <?php echo "Seller :$seller"; ?> </a></p><br>
-        <?php echo $phone;?>
-        <a class="btn green white-text" href="tel:
-        <?php echo $phone;?>" id="call">Call to Vendor</a>
+        <img src = "images/price.svg">
+      <?php echo "Price :".$price ." ". $currency ." per ". $unit?></p>
+
+      <p class="details" id="productVendor"><i class="material-icons left">account_circle</i> <?php echo "Seller :$seller"; ?> </a></p>
+  
+      <p class="details" id = "phone"><i class="material-icons left">call</i>
+        Phone :<a href="tel:
+        <?php echo $phone;?>" id="call"><?php echo $phone;?></a></p>
+
+        <p class="details"><i class="material-icons left">assignment</i>Description :<?php echo $des;?> </p>
+<p class="details"><i class="material-icons left">stars</i><?php echo "Qualification : ".$Qualification;?> </p>
+
     
     </div>
-    <div class="carousel col s9" style="margin:0px;height: 200px; ">
+    <div class="carousel col s6" style="margin:0px;height: 200px;">
+<br><br>
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
@@ -94,7 +98,7 @@ foreach ($array as $url) {
   $imageData = base64_encode(file_get_contents($url));
   $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
   //echo $src;
-    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='500px' width='500px'></a>";
+    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='100%' width='100%'></a>";
   }
 }
 else{
@@ -111,11 +115,13 @@ else{
 </div>
 </div>
 <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
- <p class="details"><b>Product Description: </b><?php echo $des;?> </p>
- <p class="details"><b>Product Qualification: </b><?php echo $Qualification;?> </p>
  
- <a class="btn green white-text modal-trigger" 
+<a class="btn green white-text modal-trigger" 
  href="#myModal2" id="order">Order<i class="material-icons right">send</i></a>
+ 
+ <a class="btn green white-text modal-trigger" href="cart.php?
+     pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
+   </div>
 
  <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
@@ -128,6 +134,7 @@ else{
           $n3 = mysqli_fetch_array($res3);
 
           ?>
+
   <h4>Order Your Items</h4>
   
   <!---Items--------------------------->
@@ -206,9 +213,6 @@ else{
     </div--></div>
 
     </div>
-
- <a class="btn green white-text modal-trigger" href="cart.php?
-     pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">send</i></a>
 
 
   <br><br>
@@ -297,70 +301,7 @@ if($result) {
               </label>
             </section>
           </div>
-          <div class="reviews-stats col s12">
-            <span class="reviewers-small"></span>
-            <span class="reviews-num">
-                 1
-              </span> total
-          </div>
-        </div>
-      </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
+          
       </div>
     </div>
      <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/></form>
@@ -436,62 +377,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
           </div>
         </div>
       </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                             <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
+      
       </div>
     </div>
  
@@ -550,7 +436,11 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
       
 </script>
  
-
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
+</script>
 
 
 

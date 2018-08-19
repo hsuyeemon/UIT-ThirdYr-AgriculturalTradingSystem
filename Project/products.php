@@ -5,11 +5,14 @@ include 'dblink.php';
 
 displayPageHeader( "product" );
 ?>
+<style type="text/css">
+  font-family: 'Acme';
+</style>
 
 <?php
 
 static $jssor = 0;
-  //$sid = $_SESSION['sid'];
+  //$sid = $_SESSION['sid'];  
 
             $sliderCount= "select count(distinct(category))as ct from product";
       
@@ -30,13 +33,14 @@ function showProducts($category){
   $noRows=mysqli_num_rows($ret);
   //echo $noRows;
   if($noRows>0){
+  echo "<table style='overflow-y:scroll;max-height:500px' >";
   for($i=0;$i<$noRows;$i++){
   
   $jssor +=1;
   $row=mysqli_fetch_array($ret); 
   //echo $jssor;
-
   echo "
+
   <div class='card padding-normal'>
     <div>
       <h4>".$row['subCatagory']."</h4>
@@ -64,15 +68,17 @@ function showProducts($category){
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
     ?>
 
-        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
+        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
           <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
             <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
-          <span class='card-title activator grey-text text-darken-4'>
-             <?php echo $row2['pname']; ?><i class='material-icons right'>more_vert</i>
+          <span class='card-title activator white-text text-darken-4' style=" white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis">
+             <?php echo $row2['pname']; ?><i class='material-icons right' style="position: fixed;right: 2">more_vert</i>
           </span>
           </div>
           <div class='card-reveal'>
@@ -107,7 +113,10 @@ function showProducts($category){
 
 <?php
 
-  }}
+  }
+  echo "</table>";
+
+}
 
 else
 {
@@ -117,28 +126,30 @@ else
 
   ?>
 <div class="content padding-normal">
-  <div>
-  <a href="#">Category/</a>
-  <a href="#">SubCategory/</a>
-  </div>
 
 
-<div id="Agricultural">
-  <h3>Agricultural</h3>
+<div class="pushpin-demo-nav" id="Agricultural">
+  <div class="card green darken-4">
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Agricultural</h3>
+</div>
    <?php
     showProducts("agricultural");
     ?>
 </div>
 
 <div id="fertilizer">
-  <h3>Fertilizer</h3>
+   <div class="card green darken-4">
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Fertilizer</h3>
+</div>
    <?php
     showProducts("fertilizers");
     ?>
 </div>
 
 <div id="Equipments">
-  <h3>Equipments</h3>
+   <div class="card green darken-4">
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal" >Equipments</h3>
+</div>
    <?php
     showProducts("equipments");
     ?>

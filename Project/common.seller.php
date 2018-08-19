@@ -100,10 +100,11 @@ function displayNavSeller(){
 
  
 <!---Navigation-->
+  <div class="navbar-fixed">
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <h2><a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a></h2>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="max-width: 60%">
 
 
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -143,7 +144,7 @@ function displayNavSeller(){
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
   </div>
-</nav>
+</nav></div>
 <?php
 }
 ?>

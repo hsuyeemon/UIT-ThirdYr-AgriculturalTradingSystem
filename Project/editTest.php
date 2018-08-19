@@ -35,7 +35,7 @@ while($row=mysqli_fetch_array($productsQuery)){
         <br><br>
 
 
-<div id="modalEditClient" class="modal">
+<div id="modalEditClient" class="modal m1">
     <div class="modal-content">
         Product Name<input type="text" name="pname" id="nom">
         Price<input type="text" name="price">
@@ -65,7 +65,7 @@ while($row=mysqli_fetch_array($productsQuery)){
 <script type="text/javascript">
   
 
-  $('.modal').modal({
+  $('.modal.m1').modal({
     ready: function(modal, trigger) {
         
         modal.find('input[name="pname"]').val(trigger.data('pname'))

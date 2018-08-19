@@ -2,15 +2,19 @@ body{
   background: #F5F5F5;
 
 }
-
+/*
 .card{
   background: #E5E3E1;
 
 }
- 
+ */
+ h3{
+  font-family: 'Acme';
+  color:#002408;
+ }
 
  .nav-wrapper{
-  background: #002408;
+  background: #005508;
   padding: 4px;
  }
 
@@ -19,12 +23,12 @@ body{
    background: #E5E3E1;
  }
 .content{
-  background: #F5F5F5;
+  background: ##F5F5F5;
 
 }
 
 .page-footer{
-   background: #002408;
+   background: #005508;
 }
 
 .footer-copyright{
@@ -77,6 +81,9 @@ body{
         }
         article, aside,  section #reviews{ display: block }
 
+.z-depth-5 {
+  box-shadow: 0 16px 24px 2px rgba(0, 55, 8, 0.14), 0 6px 30px 5px rgba(0, 55, 8, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
 
 section #reviews {
     padding-right: 85px;
