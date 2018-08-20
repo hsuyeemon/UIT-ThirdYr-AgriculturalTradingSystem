@@ -146,9 +146,9 @@ function displayPageHeader( $pageTitle ) {
           <input id="password" type="password" class="validate" required="required" name="logpwd">
           <label for="password">Password</label>
         </div>
-        <label style='float: right;'>
+        <!--label style='float: right;'>
         <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-        </label>
+        </label-->
       </div>
       <div>
         <p>

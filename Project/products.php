@@ -7,6 +7,7 @@ displayPageHeader( "product" );
 ?>
 <style type="text/css">
   font-family: 'Acme';
+  
 </style>
 
 <?php
@@ -128,31 +129,41 @@ else
 <div class="content padding-normal">
 
 
-<div class="pushpin-demo-nav" id="Agricultural">
+<div id="Agricultural">
   <div class="card green darken-4">
-  <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Agricultural</h3>
+   
+  <h4 style=" font-family: 'Acme';position:relative;" class="white-text padding-normal">Agricultural Products</h4>
 </div>
+
+<div style="overflow-y:  scroll;max-height: 800px;">
    <?php
     showProducts("agricultural");
     ?>
-</div>
+  </div>
+ </div>
+
 
 <div id="fertilizer">
    <div class="card green darken-4">
   <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Fertilizer</h3>
 </div>
-   <?php
+<div style="overflow-y: scroll;max-height: 800px;">
+ <?php
     showProducts("fertilizers");
     ?>
+</div>
+   
 </div>
 
 <div id="Equipments">
    <div class="card green darken-4">
   <h3 style=" font-family: 'Acme';" class="white-text padding-normal" >Equipments</h3>
 </div>
+<div style="overflow-y: scroll;max-height: 800px;">
    <?php
     showProducts("equipments");
     ?>
+</div>
 </div>
 
 </div>
@@ -210,6 +221,25 @@ else
 
             ScaleSlider();
         };
+    </script>
+    <script type="text/javascript">
+      // When the user scrolls the page, execute myFunction 
+window.onscroll = function() {myFunction()};
+
+// Get the header
+var header = document.getElementById("myHeader");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
     </script>
 
    <script type="text/javascript">jssor_slider_init();</script>

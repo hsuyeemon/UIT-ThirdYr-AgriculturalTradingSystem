@@ -25,7 +25,7 @@ displayPageHeader( "index" );
 <!--Products---------------------------------------------------------------->
   
 <div id="Products" class="padding-normal center-align">
- <h3 class="center-align header" style=" font-family: 'Acme';">Our products</h3>
+ <h3 class="center-align header" style=" font-family: 'Acme';" id="our_products">Our products</h3>
  <p class="center-align" style=" font-family: 'Acme';font-size: 22px;">Agricultural Products,Fertilizer, tools and equipments companies can also sell their products
 </p>
 
@@ -34,21 +34,43 @@ displayPageHeader( "index" );
   <!-- card for agricultural products --------------------------------->
 
   <a href="products.php#Agricultural">
-    <div class="col s12 m5 l4" >
-    <div class="card hoverable"style="box-shadow: 0 16px 24px 2px rgba(0, 55, 8, 0.14), 0 6px 30px 5px rgba(0, 55, 8, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);">
-    <div style="height: 300px;width:300;" class="product-category card-image waves-effect waves-block waves-light">
-      <!--img class="activator" src="images/2446.jpg"  height="240px"-->
-      <div class="slider" style="height: 200px;width:300;" >
-        <ul class="slides carousel-fixed-item center" >
+   <div class="col s12 m5 l4">
+    <div class="card hoverable" style="background:#005508;">
+    <div style="height: 300px" class="product-category card-image waves-effect waves-block waves-light">
+      <!--img class="activator" src="images/fertilizer.jpg"  height="240px"-->
+      <div class="slider">
+        <ul class="slides">
+<?php
+  $query = "select * from product where category like 'agricultural%' and status=1;";
+  $ret = mysqli_query ($con,$query);          
+  $noRows=mysqli_num_rows($ret);
+  
+  if($noRows>0){
+  for($i=0;$i<$noRows;$i++){
+    ?>
           <li>
-            <img src="images/products/685cf17e3ad356f67071c977cbd39a8c.jpg">
+            <?php 
+            $row=mysqli_fetch_array($ret);
+             $array = explode(',', $row["p_image"]);
+              $url = $array[0]; 
+            echo "<img src='".$url."' width='300px'";
+            ?>
           </li>
-          <li>
+          <!--li>
             <img src="images/products/43816391-delicious-durian-fruit-isolated.jpg">
           </li>
           <li>
             <img src="images/products/Business_Model_Canvas.png">
-          </li>
+          </li-->
+          <?php
+        }
+      } else{
+        ?><li>
+        <img src="images/products/43816391-delicious-durian-fruit-isolated.jpg">
+      </li>
+       <?php
+      }
+        ?>
         </ul> 
       </div>   
     </div></a>
@@ -59,41 +81,26 @@ displayPageHeader( "index" );
       <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
        <div class="collection">
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4 m8 l9">
+            
                 <p class="title">Grocerry</p>
-
-              </div>
+           
 
             </div>
-        </div>
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
+           
+            
                 <p class="title">Stable</p>
-              </div>
+           
 
             </div>
+
+        
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
-        </div>
+        
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
-                <p class="title">Fruits</p>
-              </div>
-
-            </div>
+            <p class="title">Fruits</p>
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
@@ -114,15 +121,38 @@ displayPageHeader( "index" );
       <!--img class="activator" src="images/fertilizer.jpg"  height="240px"-->
       <div class="slider">
         <ul class="slides">
+          <?php
+  $query = "select * from product where category like 'fertilizers%' and status=1;";
+  $ret = mysqli_query ($con,$query);          
+  $noRows=mysqli_num_rows($ret);
+  
+  if($noRows>0){
+  for($i=0;$i<$noRows;$i++){
+    ?>
           <li>
-             <img src="images/products/Activating-a-Plant-s-Immune-System-Protein.jpg">
+            <?php 
+            $row=mysqli_fetch_array($ret);
+             $array = explode(',', $row["p_image"]);
+              $url = $array[0]; 
+            echo "<img src='".$url."' width='300px'";
+            ?>
+          </li>
+          <!--li>
+            <img src="images/products/43816391-delicious-durian-fruit-isolated.jpg">
           </li>
           <li>
-             <img src="images/products/Best-Price-Quick-Effective-Agriculture-Liquid-Fertilizer.jpg">
-          </li>
-          <li>
-            <img src="images/products/GDM-Bio-Organic-Fertilizer-for-Agriculture.jpg_640x640 (1).jpg">
-          </li>
+            <img src="images/products/Business_Model_Canvas.png">
+          </li-->
+          <?php
+        }
+      } else{
+        ?>
+        <li>
+        <img src="images/products/Best-Price-Quick-Effective-Agriculture-Liquid-Fertilizer.jpg">
+      </li>
+       <?php
+      }
+        ?>
         </ul>
       </div>   </a>
     </div>
@@ -134,41 +164,26 @@ displayPageHeader( "index" );
       <span class="card-title grey-text text-darken-4">Fertilizers<i class="material-icons right">close</i></span>
          <div class="collection">
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4 m8 l9">
-                <p class="title">SubCategory Name</p>
-
-              </div>
+            
+                <p class="title">Potassium</p>
+           
 
             </div>
-        </div>
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/fertilizer.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
-                <p class="title">SubCategory Name</p>
-              </div>
+           
+            
+                <p class="title">Nitrogen</p>
+           
 
             </div>
+
+        
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
-        </div>
+        
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
-                <p class="title">SubCategory Name</p>
-              </div>
-
-            </div>
+            <p class="title">phosphorous</p>
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
@@ -189,13 +204,37 @@ displayPageHeader( "index" );
       <!--img class="activator" src="images/products/20160725114016.jpg"  height="240px"-->
       <div class="activator slider" height="240px">
         <ul class="slides">
-         <li>
-             <img src="images/products/20160725114016.jpg" height="200px">
-          </li><li>
-             <img src="images/products/20160725114026.jpg" height="200px">
-          </li><li>
-             <img src="images/products/20161011111930.jpg"height="200px">
+        <?php
+  $query = "select * from product where category like 'equipments%' and status=1;";
+  $ret = mysqli_query ($con,$query);          
+  $noRows=mysqli_num_rows($ret);
+  
+  if($noRows>0){
+  for($i=0;$i<$noRows;$i++){
+    ?>
+          <li>
+            <?php 
+            $row=mysqli_fetch_array($ret);
+             $array = explode(',', $row["p_image"]);
+              $url = $array[0]; 
+            echo "<img src='".$url."' width='300px'";
+            ?>
           </li>
+          <!--li>
+            <img src="images/products/43816391-delicious-durian-fruit-isolated.jpg">
+          </li>
+          <li>
+            <img src="images/products/Business_Model_Canvas.png">
+          </li-->
+          <?php
+        }
+      }
+      else{
+        ?>
+        <img src="images/products/20160725114016.jpg">
+       <?php
+      }
+        ?>
         </ul>
       </div>   
     </div></a>
@@ -205,49 +244,34 @@ displayPageHeader( "index" );
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Equipments<i class="material-icons right">close</i></span>
-        <div class="collection">
+         <div class="collection">
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4 m8 l9">
-                <p class="title">SubCategory Name</p>
-
-              </div>
+            
+                <p class="title">Cultipacker</p>
+           
 
             </div>
-        </div>
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
-                <p class="title">SubCategory Name</p>
-              </div>
+           
+            
+                <p class="title">Roller</p>
+           
 
             </div>
+
+        
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
-        </div>
+        
         <div class="collection-item">
-            <div class="row collection-item avatar">
-              <div class="col s2">
-              <img src="images/Equipments.jpg" alt="" class="circle">
-              </div>
-              <div class="col s4">
-                <p class="title">SubCategory Name</p>
-              </div>
-
-            </div>
+            <p class="title">Harrow</p>
             <!--div class="row">
             <h6>Our mission is profitable growth through superior customer service, innovation, quality and commitment</h6>
             </div--> 
         </div>
          
-        </div >    </div>
+        </div>    </div>
     </div>
     </div>
 
