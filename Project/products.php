@@ -88,6 +88,7 @@ function showProducts($category){
             <i class='material-icons right'>close</i>
             </span>
             <p><?php echo $row2['p_description'];?></p>
+            <p><?php echo "Price :".$row2['price']." per ".$row2['UNIT'];?></p>
           </div>
         </div>
         <?php
