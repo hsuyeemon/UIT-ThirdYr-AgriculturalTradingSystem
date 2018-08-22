@@ -119,7 +119,7 @@ function displayNavBuyer(){
         id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">UserName
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">User
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 

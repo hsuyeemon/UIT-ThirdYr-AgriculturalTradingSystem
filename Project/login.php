@@ -135,19 +135,20 @@ elseif(strcmp($rdvalue, 'admin') == 0){
    }
   
    session_write_close();
-   header('Location: admin_product.php');
+    if (headers_sent()) {
+    //die("Redirect failed. Please click on this link: <a href=...>");
+    }
+    else{
+    exit( header('Location: index.php'));
+    }
+
+   
    exit();
 }
 
 }
  session_write_close();
- if (headers_sent()) {
-    die("Redirect failed. Please click on this link: <a href=...>");
-}
-else{
-    exit( header('Location: index.php'));
-}
-
+header('Location: index.php');
 
 ?>
 

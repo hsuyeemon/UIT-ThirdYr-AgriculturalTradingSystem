@@ -45,9 +45,9 @@ function showProducts($category){
   <div class='card padding-normal'>
     <div>
       <h4>".$row['subCatagory']."</h4>
-      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:320px;overflow:hidden;visibility:hidden;'>
+      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:340px;overflow:hidden;visibility:hidden;'>
         
-        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:240px;overflow:hidden;padding: 8px;'>";
+        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:260px;overflow:hidden;padding: 8px;'>";
 
         $subCatagory = $row['subCatagory'];
         
@@ -79,7 +79,7 @@ function showProducts($category){
           <span class='card-title activator white-text text-darken-4' style=" white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis">
-             <?php echo $row2['pname']; ?><i class='material-icons right' style="position: fixed;right: 2">more_vert</i>
+             <?php echo $row2['pname']."<br>".$row2['price']." per ".$row2['UNIT']; ?><i class='material-icons right' style="position: fixed;right: 2">more_vert</i>
           </span>
           </div>
           <div class='card-reveal'>
