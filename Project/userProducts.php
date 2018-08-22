@@ -379,7 +379,7 @@ else {echo mysql_error();}
 </form>
    </td>
   <td>
-  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
+  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancel
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -390,36 +390,20 @@ else {echo mysql_error();}
   </div>
 </div>
 <!--deleteProductsForm-->
-<div id="deleteProducts" class="modal fade" role="dialog">
-    <div class="padding-normal modal-dialog">
-      <h3>Delete your Products</h3>
-
-    </div>
-  <div>
-    <table border="0">
-      <tr>
-         <td>
-           <form method="post" action="userProducts.php">
-       <button class="btn green white-text" type="submit" name="confirm" >Confirm
-        <i class="material-icons right">update</i>
-       </button>
-       </form>
-     </td>
-   
-    <td>
-    <form method="post" action="userProducts.php">
-  <button class="btn green white-text" type="submit" name="cancel">Cancel<i class="material-icons right">cancel</i>
-  </button>
-</form>
-</td>
-</tr>
-</table>
-</div>
 
 
-     
+   <?php 
+   if(isset($_POST['delete'])){
+    echo "<script> alert('delete');</script>";
+  $productid=$_POST['productId'];
+$sql2 = "DELETE FROM product WHERE pid='$productid'";
+       $result2=mysqli_query($con,$sql2);
+       }
+else {echo mysqli_error($con);
+}
+    
+    ?>
 
-</div>
 
 <?php
 
@@ -504,16 +488,39 @@ function showProducts($category){
 
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
-          <button  href='#deleteProducts'class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+          <div class='col s6'>
+            <form id="deleteF" action="userProducts.php" method="post">
+          <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
+          <button onclick="conf()" name="delete" class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+        </form>
           </div>
           </div>
           </div>
         </div>
+        <script>
+          function smt(){
+            $_SESSION['tempId']=$row2['pid'];
+          }
+        function conf(){
+          var del=confirm("Are you sure you want to delete this record?");
+          if(del == true){
+            var de=document.getElementById("deleteF");
+            alert ("record deleted");
+           
+            del.submit();
+          }
+          else{
+            alert ("record not delete");
+          }
+         }
+        </script>
 
         <?php
             }
             ?>
       </div>
+
+    
         <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
 
           <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
@@ -691,15 +698,7 @@ else
    <!--script type="text/javascript">jssor_2_slider_init();</script>
     <script type="text/javascript">jssor_3_slider_init();</script-->
 
-  <script type="text/javascript">
-            function delnews(newsID)
-            {
-            if (confirm("Are you sure you want to delete '"))
-            {
-            window.location.href = 'userProducts.php';
-              }
-                }
-            </script>
+  
             <script type="text/javascript">
     $(document).ready(function(){
   $('.modal').modal();
