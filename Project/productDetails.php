@@ -69,7 +69,7 @@ $phone = $rows2['s_phoneno'];
         <?php echo $pname;?>  
       </h3>
       <br><br>
-    <div class="col s5 padding-normal">
+    <div class="col s4 padding-normal">
       
       <p class="details" id="productPrice" name="price">
         <img src = "images/price.svg">
@@ -84,7 +84,7 @@ $phone = $rows2['s_phoneno'];
 
     
     </div>
-    <div class="carousel col s6" style="margin:0px;height: 200px;">
+    <div class="carousel col s8" style="margin:0px;height: 200px;">
 <br><br>
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
@@ -94,6 +94,7 @@ $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
 while($row3 = mysqli_fetch_assoc($res3)){
 //echo $row3["p_image"]; 
+  $u = $row3["p_image"];
 $array = explode(',', $row3["p_image"]);
 //echo sizeof($array);
 if(sizeof($array)>0){
@@ -102,15 +103,15 @@ foreach ($array as $url) {
   $imageData = base64_encode(file_get_contents($url));
   $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
   //echo $src;
-    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='300px' width='400px'></a>";
+    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='300px' width='300px'></a>";
   }
 }
 else{
   # code...
-  $imageData = base64_encode(file_get_contents($url));
+  $imageData = base64_encode(file_get_contents($u));
   $src = 'data: '.mime_content_type($row3["p_image"]).';base64,'.$imageData;
   //echo $src;
-    echo "<a class='carousel-item modal-trigger' href='#mymodal3'><img src='".$src."' height='500px' width='500px'></a>";
+    echo "<a><img src='".$src."' height='500px' width='500px'></a>";
 
 }
 }

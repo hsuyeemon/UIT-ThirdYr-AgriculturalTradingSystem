@@ -238,7 +238,7 @@ else {echo mysql_error();}
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
-  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
+  <button class="btn white green-text modal-close" type="submit" name="cancel">Cancel
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -481,20 +481,22 @@ function showProducts($category){
 
     ?>
 
-        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);'>
+        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
           <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
             <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
-          <span class='card-title activator grey-text text-darken-4'>
+          <span class='card-title activator white-text text-darken-4'  style=" white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis">
             <?php echo $row2['pname']; ?>
           </span>
           <div class='row'>
              <div class='col s6'>
 
-           <button href = '#editProducts' class='btn green modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
+           <button href = '#editProducts' class='btn white green-text modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
           </div>
          
           
@@ -502,7 +504,7 @@ function showProducts($category){
 
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
-          <button  href='#deleteProducts'class='btn green modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+          <button  href='#deleteProducts'class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
           </div>
           </div>
           </div>
@@ -542,33 +544,45 @@ else
 
   ?>
 <div class="content padding-normal">
-  <div>
-  <a href="#">Category/</a>
-  <a href="#">SubCategory/</a>
-  </div>
-
 
 <div id="Agricultural">
-  <h3>Agricultural</h3>
+  <div class="card green darken-4">
+   
+  <h4 style=" font-family: 'Acme';position:relative;" class="white-text padding-normal">Agricultural Products</h4>
+</div>
+
+<div style="overflow-y:  scroll;max-height: 800px;">
    <?php
     showProducts("agricultural");
     ?>
-</div>
+  </div>
+ </div>
+
 
 <div id="fertilizer">
-  <h3>Fertilizer</h3>
-   <?php
+   <div class="card green darken-4">
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Fertilizer</h3>
+</div>
+<div style="overflow-y: scroll;max-height: 800px;">
+ <?php
     showProducts("fertilizers");
     ?>
 </div>
+   
+</div>
 
 <div id="Equipments">
-  <h3>Equipments</h3>
+   <div class="card green darken-4">
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal" >Equipments</h3>
+</div>
+<div style="overflow-y: scroll;max-height: 800px;">
    <?php
     showProducts("equipments");
     ?>
 </div>
+</div>
 
+</div>
 <div class="fixed-action-btn padding-normal">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">mode_edit</i>
@@ -576,7 +590,7 @@ else
   <ul>
     <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons">add</i></a></li>
     
-    <li><a class="btn-floating blue" href="dash_board.php"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating blue" href="dash_board.php"><i class="material-icons">dashboard</i></a></li>
   </ul>
 </div>
 </div>

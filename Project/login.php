@@ -49,8 +49,13 @@ else{
     echo "<script>alert('No Account Matched.');</script>";
    }
    session_write_close();
-   header('Location: index.php');
-  exit();
+    if (headers_sent()) {
+    //die("Redirect failed. Please click on this link: <a href=...>");
+}
+else{
+    exit( header('Location: index.php'));
+}
+
 
     
 }elseif(strcmp($rdvalue, 'buyer') == 0){
@@ -86,8 +91,13 @@ else{
    //echo $_SESSION['login'];
    //include("index.php");
    //exit();
-   header('Location: index.php');
-   exit();
+    if (headers_sent()) {
+    //die("Redirect failed. Please click on this link: <a href=...>");
+}
+else{
+    exit( header('Location: index.php'));
+}
+
 
 }
 
@@ -131,8 +141,12 @@ elseif(strcmp($rdvalue, 'admin') == 0){
 
 }
  session_write_close();
-   header('Location: index.php');
-   exit();
+ if (headers_sent()) {
+    die("Redirect failed. Please click on this link: <a href=...>");
+}
+else{
+    exit( header('Location: index.php'));
+}
 
 
 ?>

@@ -48,64 +48,15 @@ function displayNavSeller(){
     <li class="divider"></li>
     <li><a href="index.php?lan_flag=0" id="english">English</a></li>
   </ul>
-<!--Login Form------------>
-  <div id="login" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="padding: 48px;">
-      <h3>Login To Your Account</h3>
-    <form action="login.php" method="post" class="col s12">
-
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate" required="required" 
-          name="logemail">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="input-field col s12 ">
-          <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate" required="required" name="logpwd">
-          <label for="password">Password</label>
-        </div>
-        <label style='float: right;'>
-        <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-        </label>
-      </div>
-      <div>
-        <p>
-          <label>
-            <input class="with-gap" name="group3" value="seller" type="radio" required="required" />
-            <span>Seller</span>
-          </label>
-        </p>
-        <p>
-          <label>
-            <input class="with-gap" name="group3"  value="buyer" type="radio" required="required" />
-            <span>Buyer</span>
-          </label>
-        </p>
-        <p>
-          <label>
-            <input class="with-gap" name="group3" type="radio" required="required" value ="admin"/>
-            <span>Admin Account</span>
-          </label>
-        </p>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary green white-text">Login</button>
-    </form>
-    </div>
-  </div>
 
  
 <!---Navigation-->
+  <!---Navigation-->
   <div class="navbar-fixed">
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <h2><a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a></h2>
-    <ul id="nav-mobile" class="right hide-on-med-and-down" style="max-width: 60%">
-
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
 
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
@@ -144,7 +95,8 @@ function displayNavSeller(){
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
   </div>
-</nav></div>
+</nav>
+</div>
 <?php
 }
 ?>
