@@ -91,7 +91,7 @@ function displayNavAdmin(){
  
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 

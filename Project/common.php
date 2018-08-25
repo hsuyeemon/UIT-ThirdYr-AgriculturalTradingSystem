@@ -18,6 +18,7 @@ function displayPageHeader( $pageTitle ) {
 <head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -76,11 +77,13 @@ function displayPageHeader( $pageTitle ) {
   </ul>
 
   <!---Navigation-->
-<nav style="margin-bottom: 0px;height: 80px;">
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+    <div class="navbar-fixed">
+<nav style="margin-bottom: 0px;height: 80px;position: fixed;
+  ">
+  <div class="nav-wrapper" >
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="max-width: 70%">
+      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language" >Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
       <li><a href="index.php#aboutus" id="about_us">About Us</a></li>
@@ -117,7 +120,7 @@ function displayPageHeader( $pageTitle ) {
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
   </div>
-</nav>
+</nav></div>
 <?php
 }
 }
@@ -143,9 +146,9 @@ function displayPageHeader( $pageTitle ) {
           <input id="password" type="password" class="validate" required="required" name="logpwd">
           <label for="password">Password</label>
         </div>
-        <label style='float: right;'>
+        <!--label style='float: right;'>
         <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-        </label>
+        </label-->
       </div>
       <div>
         <p>
@@ -179,14 +182,14 @@ function displayPageHeader( $pageTitle ) {
  <div id="signup" class="modal fade large" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
-      <h3>Create an Account</h3>
+      <h3 id="textid">Create an Account</h3>
     <form class="col s12" action="" method="" id="form1" enctype="multipart/form-data">
       
       <div class="row">      
         <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="name" type="text" class="validate" required="required" name="username">
-          <label for="icon_prefix">Name</label>
+          <label for="icon_prefix" id='myanName'>Name</label>
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
@@ -303,15 +306,17 @@ function displayPageHeader( $pageTitle ) {
 </div>
 
 
-
+<!--script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
+</script-->
 <?php
 
 function displayPageFooter() {
 ?>
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
-
-
 
 <!-----Script to Import---------------------->
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>  
@@ -337,6 +342,15 @@ function displayPageFooter() {
      $('.datepicker').datepicker();
 
     });
+
+     $('.pushpin-demo-nav').each(function() {
+    var $this = $(this);
+    var $target = $('#' + $(this).attr('data-target'));
+    $this.pushpin({
+      top: $target.offset().top,
+      bottom: $target.offset().top + $target.outerHeight() - $this.height()
+    });
+  });
       
   </script>
  
@@ -456,8 +470,13 @@ $lan_flag=$_SESSION['lan_flag'];
      document.getElementById("my_product").innerHTML= "ေၾကာ္ျငာထားေသာပစၥည္းမ်ား"; 
     }
 
+if(document.getElementById("textid")!=null){
+     document.getElementById("textid").innerHTML="အေကာင့္ ဝင္ရန္ "; 
+    }
 
-  
+  if(document.getElementById("myanName")!=null){
+     document.getElementById("myanName").innerHTML="အမည္"; 
+    }
    
   }  
 </script> 

@@ -1,3 +1,29 @@
+<style>
+
+/*
+td {
+    border-bottom: : 1px solid #ddd;
+    padding: 8px;
+    max-width:  100px;
+    min-width: 20px;
+    height: 50px;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    max-width:  200px;
+    min-width: 10px;
+}
+</style>   
 <?php
 
 include 'common.php';
@@ -43,13 +69,10 @@ $pending_num_rows = mysqli_num_rows($pending_product_result);
     
 ?>
 <div class="content padding-normal">
-       <h4  id="pending_orders">Pending Orders</h4>
+       <h4  style=" font-family: 'Acme';" id="pending_orders">Pending Orders</h4>
 <table>
 <tr><th>product name</th>
-      <th>seller address</th>
-      <th>pick up address</th>
       <th>expected delivery date</th>
-      <th>ordered time</th>
       <th>quantity</th>
       <th>cost</th><th></th><tr>
 <?php
@@ -60,6 +83,7 @@ echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
 
+/*
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";
@@ -67,14 +91,17 @@ echo "</td>";
 echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
+*/
 
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
 
+/*
 echo "<td>";
 echo $row['order_time'];
 echo "</td>";
+*/
 
 echo "<td>";
 echo $row['quantity'];
@@ -88,7 +115,7 @@ echo $row['cost'];
       <a class='btn btn-default' onclick='delivery()'>pending</a>
       <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form-->
-  <a class='btn btn-default modal-trigger' href="#myModal">pending</a>
+  <a class='btn btn-default modal-trigger green white-text' href="#myModal">pending</a>
 
 </td>
 
@@ -108,15 +135,12 @@ $delivered_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_produ
 
 $delivered_num_rows = mysqli_num_rows($delivered_product_result);
 ?>
-<br> <h4  id="delivered_order">Delivered Orders</h4>
+<br> <h4  style=" font-family: 'Acme'" id="delivered_order">Delivered Orders</h4>
  <?php
 
 echo "<table>";
 echo "<tr><th>product name</th>
-      <th>seller address</th>
-      <th>pick up address</th>
       <th>expected delivery date</th>
-      <th>ordered time</th>
       <th>quantity</th>
       <th>cost</th><th></th><tr>";
 
@@ -127,7 +151,7 @@ while($row = mysqli_fetch_array($delivered_product_result))
 echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
-
+/*
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";
@@ -135,14 +159,16 @@ echo "</td>";
 echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
-
+*/
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
 
+/*
 echo "<td>";
 echo $row['order_time'];
 echo "</td>";
+*/
 
 echo "<td>";
 echo $row['quantity'];
@@ -156,6 +182,7 @@ echo "</td>";
 </td><td>
 <!--<form id="delivered" method="" action="">-->
       <a class='btn btn-default modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" >Comment/Rate</a>
+
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form--></td>
 </tr>
@@ -170,9 +197,9 @@ echo "</td>";
         <meta itemprop="bestRating" content="5">
         <meta itemprop="reviewCount" content="1">
         <div class="row">
-          <div class="score col s12">
+          <!--div class="score col s12">
             5
-          </div>
+          </div-->
           <div class="rating-stars col s12">
             <input type="radio" name="stars" id="star-null">
             <input type="radio" name="stars" id="star-1" saving="1" data-start="1" checked="">
@@ -208,12 +235,12 @@ echo "</td>";
               </label>
             </section>
           </div>
-          <div class="reviews-stats col s12">
+          <!--div class="reviews-stats col s12">
             <span class="reviewers-small"></span>
             <span class="reviews-num">
                  1
               </span> total
-          </div>
+          </div-->
         </div>
       </div>
   <div class="modal-dialog" >
@@ -302,6 +329,11 @@ echo "</table>";
                   alert("fail delivered");
             }
       }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
 </script>
 <?php
 displayPageFooter();

@@ -1,9 +1,47 @@
+<style>
+
+/*
+td {
+    border-bottom: : 1px solid #ddd;
+    padding: 8px;
+    max-width:  100px;
+    min-width: 20px;
+    height: 50px;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    max-width:  200px;
+    min-width: 10px;
+}
+</style>
 
   <?php
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveBuyer.php");
-            $sql="select bid,bname,b_phoneno,b_email from buyer where status=0";
+            if(isset($_SESSION['login'])){
+    $loginStatus = $_SESSION['login'];
+  }
+  else
+    $loginStatus = "normal";
+
+  if($loginStatus!="admin"){
+    echo "<script>alert('please log in first');
+    location.replace('index.php');</script>";
+    //header('Location: index.php');
+    exit(); 
+  } 
+            $sql="select bid,bname,b_phoneno,b_email from buyer where b_status=0";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);
             echo "<div class='content padding-normal'>";
@@ -45,10 +83,11 @@
   	}
   	echo '</tbody>
   	</table>';
-    echo "</div>";
-    echo "<button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
+    
+    echo "<br><button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
     echo "</button>";
     echo "</form>";
+    echo "</div>";
   	?>
      <?php
 displayPageFooter();
