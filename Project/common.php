@@ -334,7 +334,7 @@ function displayPageFooter() {
     //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.carousel').carousel();
-    $('.modal').modal();
+    //$('.modal').modal();
     $('select').formSelect();
     $('.slider').slider();
     $('.sidenav').sidenav();
