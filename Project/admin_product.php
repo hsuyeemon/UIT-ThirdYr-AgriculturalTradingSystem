@@ -1,20 +1,3 @@
-<?php
-include("common.php");
-include("dblink.php");
-displayPageHeader("admin_product.php");
-if(isset($_SESSION['login'])){
-    $loginStatus = $_SESSION['login'];
-  }
-  else
-    $loginStatus = "normal";
-
-  if($loginStatus!="admin"){
-    echo "<script>alert('please log in first');
-    location.replace('index.php');</script>";
-    //header('Location: index.php');
-    exit(); 
-  } 
-?>
 <style>
 
 /*
@@ -42,12 +25,16 @@ th {
 }
 </style>
 <?php
+include("common.php");
+include("dblink.php");
+displayPageHeader("admin_product.php");
 
 $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.pid=p.pid and o.DELIVERED=0");
 
 $pending_num_rows = mysqli_num_rows($pending_product_result);
-echo "<div class='content padding-normal' style='overflow-x:auto'>";
-echo "<table class='responsive-table'>";
+echo "<div class='content padding-normal'>";
+  if($pending_num_rows>0){
+echo "<table>";
 echo "<tr><th>product name</th>
       <th>seller address</th>
       <th>pick up address</th>
@@ -55,7 +42,7 @@ echo "<tr><th>product name</th>
       <th>ordered time</th>
       <th>quantity</th>
       <th>cost</th><tr>";
-      if($pending_num_rows>0){
+    
 while($row = mysqli_fetch_array($pending_product_result))
 {
 echo "<tr><td>";
@@ -88,12 +75,19 @@ echo "</td>";
 
 echo "</tr>";
 }
-}
-else{
-      echo "<tr><td>you haven't order anything yet!!</td></tr>";
-}
+
 echo "</table>";
-echo "</div>";
+}
+ if($pending_num_rows==0){
+    ?>
+    
+             <table border="300">
+      <tr>
+          <th align="right">No file to approve or decline</th>
+      </tr>
+      </table>
+<?php
+            }
 
 ?>
 <?php

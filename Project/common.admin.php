@@ -81,14 +81,13 @@ function displayNavAdmin(){
 
   
 
-  <!--Language------------------>
+ <!--Language------------------>
   <ul id="font" class="dropdown-content">
-    <li><a href="#" id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
+    <li><a href="index.php?lan_flag=1"  id="myanmar">ျမန္မာစာ</a></li>
     <li class="divider"></li>
-    <li><a href="#" id="english" onclick="">English</a></li>
+    <li><a href="index.php?lan_flag=0" id="english">English</a></li>
   </ul>
 
- 
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>

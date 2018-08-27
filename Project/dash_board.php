@@ -110,12 +110,17 @@ displayPageHeader( "Dashboard" );
 
                 //$ret = mysqli_query ($con,$query);
 
-
-                $query= "select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = 2) as res using(pid) group by (res.pname);";
+                $sid=$_SESSION['sid'];
+                $query= "select res.pname,sum(quantity) as amount from order_product inner join (select pid,pname from product where sid = $sid) as res using(pid) group by (res.pname);";
                 $ret = mysqli_query ($con,$query);
 
 
                 $noRows=mysqli_num_rows($ret);
+                if($noRows<=0){
+                ?>
+                <p>There is no data yet</p>
+                <?php
+                }
 
 
                 for($i=1;$i<=$noRows;$i++){
@@ -133,7 +138,7 @@ displayPageHeader( "Dashboard" );
 
             <?php
 
-                $query1 = "select month(order_time) as Month,count(*) as pcount from order_product inner join (select pname,pid from product where sid=2)as res using (pid) group by month(order_time)";
+                $query1 = "select month(order_time) as Month,count(*) as pcount from order_product inner join (select pname,pid from product where sid=$sid)as res using (pid) group by month(order_time)";
                 $ret1 = mysqli_query ($con,$query1);
 
                 $noRows1=mysqli_num_rows($ret1);

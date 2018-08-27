@@ -1,11 +1,12 @@
 <?php    
 session_start(); 
 session_destroy();
+if(isset($_SERVER['HTTP_REFERER'])) {
 
 echo "<script>alert('logged out');</script>";
-if(isset($_SERVER['HTTP_REFERER'])) {
  header('Location: '.$_SERVER['HTTP_REFERER']);  
-} else {
+} 
+else {
 	echo "<script>alert('logged out');</script>";
  header('Location: index.php');  
  exit();

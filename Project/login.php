@@ -41,20 +41,26 @@ if (strcmp($rdvalue, 'seller') == 0) {
 
   }
 else{
-   echo "<script>alert('User name or password incorrect');</script>";
-  }
-
+  echo "<script>
+alert('Wrong Password');
+location='index.php';
+</script>";
+}
    }
    else{
-    echo "<script>alert('No Account Matched.');</script>";
-   }
-   session_write_close();
+  echo "<script>
+alert('No account Matched');
+location='index.php';
+</script>";
+}
+ /*  session_write_close();
     if (headers_sent()) {
     //die("Redirect failed. Please click on this link: <a href=...>");
 }
 else{
     exit( header('Location: index.php'));
 }
+*/
 
 
     
@@ -78,15 +84,18 @@ else{
  include("index.php");
  
 }else{
-  echo "<script>alert('User name or password incorrect');</script>";
+  echo "<script>
+alert('Wrong Password');
+location='index.php';
+</script>";
 }
 
    }
    else{
-    echo "<script>alert('No Account Matched.');</script>";
+    echo "<script>alert('No Account Matched.');location='index.php';</script>";
     //include("index.php");
    }   
-
+/*
    session_write_close();
    //echo $_SESSION['login'];
    //include("index.php");
@@ -97,12 +106,13 @@ else{
 else{
     exit( header('Location: index.php'));
 }
+*/
 
 
 }
 
 elseif(strcmp($rdvalue, 'admin') == 0){
-  echo "<script>alert('HI Admin');</script>";
+  
   //echo "admin";
   $info=mysqli_query($con," SELECT admin_id,password FROM admin where user_name='$regemail'");
   while($row=mysqli_fetch_assoc($info)){
@@ -124,31 +134,40 @@ elseif(strcmp($rdvalue, 'admin') == 0){
   
   
  
-}else{
-  echo "<script>alert('User name or password incorrect');</script>";
+}
+else{
+  //echo "<script>alert('User name or password incorrect');</script>";
+  echo "<script>
+alert('Wrong Password');
+location='index.php';
+</script>";
 }
 
-   }
-   else{
-    echo "<script>alert('No Account Matched.');</script>";
+}
+else{
+echo "<script>alert('No Account Matched.');location='index.php';
+</script>";
     //include("index.php");
-   }
-  
-   session_write_close();
+}
+
+/*session_write_close();
     if (headers_sent()) {
     //die("Redirect failed. Please click on this link: <a href=...>");
     }
     else{
+    echo "<script>alert('No Account Matched.');</script>";
+
     exit( header('Location: index.php'));
     }
 
    
    exit();
+   */
 }
 
 }
- session_write_close();
-header('Location: index.php');
+ //session_write_close();
+//header('Location: index.php');
 
 ?>
 

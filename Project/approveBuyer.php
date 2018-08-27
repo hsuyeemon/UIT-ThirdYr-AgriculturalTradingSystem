@@ -24,26 +24,14 @@ th {
     min-width: 10px;
 }
 </style>
-
   <?php
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveBuyer.php");
-            if(isset($_SESSION['login'])){
-    $loginStatus = $_SESSION['login'];
-  }
-  else
-    $loginStatus = "normal";
-
-  if($loginStatus!="admin"){
-    echo "<script>alert('please log in first');
-    location.replace('index.php');</script>";
-    //header('Location: index.php');
-    exit(); 
-  } 
             $sql="select bid,bname,b_phoneno,b_email from buyer where b_status=0";
             $result=mysqli_query($con,$sql);
             $num_rows = mysqli_num_rows($result);
+            if ($num_rows>0){
             echo "<div class='content padding-normal'>";
   echo '<table border="300">
   	<thead>
@@ -83,12 +71,23 @@ th {
   	}
   	echo '</tbody>
   	</table>';
-    
-    echo "<br><button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
+   
+    echo "<button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
     echo "</button>";
+     echo "</div>";
     echo "</form>";
-    echo "</div>";
-  	?>
+  }
+   if($num_rows==0){
+    ?>
+    
+             <table border="300">
+      <tr>
+          <th align="right">No file to approve or decline</th>
+      </tr>
+      </table>
+<?php
+            } ?>
+  	
      <?php
 displayPageFooter();
 ?>

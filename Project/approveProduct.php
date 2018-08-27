@@ -28,23 +28,10 @@ th {
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveProduct.php");
-            if(isset($_SESSION['login'])){
-    $loginStatus = $_SESSION['login'];
-  }
-  else
-    $loginStatus = "normal";
-
-  if($loginStatus!="admin"){
-    echo "<script>alert('please log in first');
-    location.replace('index.php');</script>";
-    //header('Location: index.php');
-    exit(); 
-  } 
             $sql="select pid,pname,sname,price,UNIT,min_amount,max_amount from product P inner join seller S using(sid) where P.status=0";
             $result=mysqli_query($con,$sql);
-            $num_rows = mysqli_num_rows($result);
-            
-
+             $num_rows = mysqli_num_rows($result);
+             if ($num_rows>0){
 echo "<div class='content padding-normal'>";
 
   echo '<table border="300">
@@ -93,7 +80,18 @@ echo "<div class='content padding-normal'>";
     echo "</button>";
     echo "</form>";
     echo "</div>";
+  }
+  if($num_rows==0){
     ?>
+    
+             <table border="300">
+      <tr>
+          <th align="right">No file to approve or decline</th>
+      </tr>
+      </table>
+<?php
+            } ?>
+    
     
        
          <?php
