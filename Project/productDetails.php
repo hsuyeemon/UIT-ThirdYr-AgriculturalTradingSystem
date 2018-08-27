@@ -5,6 +5,7 @@ include( "dblink.php" );
 displayPageHeader( "productDetails" );
 ?>
 
+
 <?php 
 //global $pid;
 
@@ -34,11 +35,7 @@ $pid = $_GET['productId'];
 
 
  <div class="content padding-normal-sync">
-  <div>
-  <a href="#">Category/</a>
-  <a href="#">SubCategory/</a>
-  <a href="#">ProductName/</a>
-  </div>
+
 
  <?php
 //Product Details
@@ -61,23 +58,35 @@ $rows2 =mysqli_fetch_array($res2);
 $seller = $rows2['sname'];
 $phone = $rows2['s_phoneno'];
 
-
 ?>
 
 <div class="row ">
     <div class="col s3 padding-normal">
-      <h3 id="productName" name="pname">
+      
+    
+
+  <h3 id="productName" name="pname">
         <?php echo $pname;?>  
       </h3>
+      <br><br>
+    <div class="col s4 padding-normal">
+      
       <p class="details" id="productPrice" name="price">
-      <?php echo $price ." ". $currency ." per ". $unit?></p>
-      <p class="details" id="productVendor"><a> <?php echo "Seller :$seller"; ?> </a></p><br>
-        <?php echo $phone;?>
-        <a class="btn green white-text" href="tel:
-        <?php echo $phone;?>" id="call">Call to Vendor</a>
+        <img src = "images/price.svg">
+      <?php echo "Price :".$price ." ". $currency ." per ". $unit?></p>
+
+      <p class="details" id="productVendor"><i class="material-icons left">account_circle</i> <?php echo "Seller :$seller"; ?> </a></p>
+      <p class="details" id = "phone"><i class="material-icons left">call</i>
+        Phone :<?php echo "<a href='tel:".$phone."' id='call'>".$phone."</a>"?></p>
+        
+        <p class="details"><i class="material-icons left">assignment</i>Description :<?php echo $des;?> </p>
+<p class="details"><i class="material-icons left">stars</i><?php echo "Qualification : ".$Qualification;?> </p>
+
     
     </div>
-    <div class="carousel col s9" style="margin:0px;height: 200px; ">
+    <div class="carousel col s8" style="margin:0px;height: 200px;">
+<br><br>
+
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
@@ -86,6 +95,8 @@ $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
 while($row3 = mysqli_fetch_assoc($res3)){
 //echo $row3["p_image"]; 
+
+  $u = $row3["p_image"];
 $array = explode(',', $row3["p_image"]);
 //echo sizeof($array);
 if(sizeof($array)>0){
@@ -94,15 +105,19 @@ foreach ($array as $url) {
   $imageData = base64_encode(file_get_contents($url));
   $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
   //echo $src;
-    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='500px' width='500px'></a>";
+
+    echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='300px' width='300px'></a>";
+
   }
 }
 else{
   # code...
-  $imageData = base64_encode(file_get_contents($url));
+
+  $imageData = base64_encode(file_get_contents($u));
   $src = 'data: '.mime_content_type($row3["p_image"]).';base64,'.$imageData;
   //echo $src;
-    echo "<a class='carousel-item modal-trigger' href='#mymodal3'><img src='".$src."' height='500px' width='500px'></a>";
+    echo "<a><img src='".$src."' height='500px' width='500px'></a>";
+
 
 }
 }
@@ -111,11 +126,14 @@ else{
 </div>
 </div>
 <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
- <p class="details"><b>Product Description: </b><?php echo $des;?> </p>
- <p class="details"><b>Product Qualification: </b><?php echo $Qualification;?> </p>
  
- <a class="btn green white-text modal-trigger" 
+<a class="btn green white-text modal-trigger" 
  href="#myModal2" id="order">Order<i class="material-icons right">send</i></a>
+ 
+ <a class="btn green white-text modal-trigger" href="cart.php?
+     pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
+   </div>
+
 
  <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
@@ -128,6 +146,7 @@ else{
           $n3 = mysqli_fetch_array($res3);
 
           ?>
+
   <h4>Order Your Items</h4>
   
   <!---Items--------------------------->
@@ -297,70 +316,7 @@ if($result) {
               </label>
             </section>
           </div>
-          <div class="reviews-stats col s12">
-            <span class="reviewers-small"></span>
-            <span class="reviews-num">
-                 1
-              </span> total
-          </div>
-        </div>
-      </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
+
       </div>
     </div>
      <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/></form>
@@ -383,15 +339,26 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
  <!-----Rating------------------------>
   
        <div class="container padding-normal">
+
+
+        <h3 style="text-align: center;">Reviews & Rating</h3>
   <div class="hreview-aggregate">
     <div class="row">
-      <div class="col s12 m6 l6">
+      <div class="col s3">
+      </div>
+      <div class="col s6 m6 l6" >
+        <?php 
+    $r ="SELECT *,count(*) as cot FROM  order_product AS o, comment AS c WHERE o.pid=$pid AND c.oid=o.oid";
+   $result = mysqli_query($con,$r) or die(mysqli_error($con));
+   $rating  = mysqli_fetch_array($result);
+    ?>
         <meta itemprop="worstRating" content="1">
         <meta itemprop="bestRating" content="5">
         <meta itemprop="reviewCount" content="1">
-        <div class="row">
-          <div class="score col s12">
-            5
+        <div class="row" >
+          <div class="score" style="text-align: center;">
+            <?php echo $rating['rating'];?>
+
           </div>
           <div class="rating-stars col s12">
             <input type="radio" name="stars" id="star-null">
@@ -431,96 +398,67 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
           <div class="reviews-stats col s12">
             <span class="reviewers-small"></span>
             <span class="reviews-num">
-                 1
+
+
+               <?php 
+    $r1 ="select count(*) as cot from comment where oid in (select oid from order_product where pid=$pid) group by (oid)";
+   $result1 = mysqli_query($con,$r1) or die(mysqli_error($con));
+   $rating1 = mysqli_fetch_array($result1);
+   echo $rating1['cot'];?>
+
               </span> total
           </div>
         </div>
       </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                             <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              <?php echo $rating;?>
-                              </span>
-        </div>
+
+      <div class="col s3">
+      </div>
+
       </div>
     </div>
  
   </div>
-</div>
+
 
 
   <!----------------Review Hightlight----------------->
   <section id="reviews" class="comments container">
+
+    
     <?php 
-    $cmt ="SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid";
+    $cmt ="SELECT o.oid,b.*, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=$pid AND b.bid=o.bid AND c.oid=o.oid";
+
    $result = mysqli_query($con,$cmt) or die(mysql_error());
      while ($rows  = mysqli_fetch_array($result)) 
      { 
       $text = $rows['cmt_text'];
       $time = $rows['cmt_time'];
       $buyer= $rows['bname'];
-    echo  '<article class="comment">
+
+      $url = $rows['b_profile_image'];
+
+  # code...
+  $imageData = base64_encode(file_get_contents($url));
+  $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+
+      ?>
+    <article class="comment">
     <a class="comment-img" href="#non">
-      <img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50" />
+      <img src="<?php echo $src;?>" alt="" width="50" height="50" />
+
     </a>
       
     <div class="comment-body">
       <div class="text">
-        <p>' .$text. '</p>
+
+        <!--p>' .$text. '</p-->
+        <p><?php echo "$text";?></p>
       </div>
-      <p class="attribution">by <a href="#non"></a> <a href="#non">' .$buyer.'</a>' ." at " .$time. '</p>
+      <p class="attribution">by <a href="#non"></a> <a href="#non"><?php echo "$buyer";?></a>at <?php echo " ".$time;?></p>
     </div>
-  </article>';
+  </article>
+  <?php
+
     }
 ?>
 
@@ -551,8 +489,11 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 </script>
  
 
-
-
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
+</script>
 
  <?php
 }

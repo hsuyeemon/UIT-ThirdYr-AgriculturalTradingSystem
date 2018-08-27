@@ -18,6 +18,9 @@ function displayPageHeader( $pageTitle ) {
 <head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
+
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -54,7 +57,8 @@ function displayPageHeader( $pageTitle ) {
   else{
   ?>
      
-  <!--Login-->
+
+  <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
     <li><a href="#login" class="modal-trigger " id="login_dropdown">Login</a></li>
     <li class="divider"></li>
@@ -62,25 +66,29 @@ function displayPageHeader( $pageTitle ) {
     <li class="divider"></li>
   </ul>
 
-   <!--Product-->
+
+   <!--Product--------------------->
   <ul id="product" class="dropdown-content">
     <li><a href="products.php" class="modal-trigger " id="product_dropdown">Products</a></li>
     
   </ul>
- 
-  <!--Language-->
-  <ul id="font" class="dropdown-content">
+
+  <!--Language------------------>
+ <ul id="font" class="dropdown-content">
     <li><a href="index.php?lan_flag=1"  id="myanmar" onclick="language()">ျမန္မာစာ</a></li>
     <li class="divider"></li>
     <li><a href="index.php?lan_flag=0" id="english" onclick="language()">English</a></li>
   </ul>
 
   <!---Navigation-->
-<nav style="margin-bottom: 0px;height: 80px;">
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
+
+    <div class="navbar-fixed">
+<nav style="margin-bottom: 0px;height: 80px;position: fixed;
+  ">
+  <div class="nav-wrapper" >
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="max-width: 70%">
+      <li><a class="dropdown-trigger" href="#!" data-target="font" id="language" >Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
       <li><a href="index.php#aboutus" id="about_us">About Us</a></li>
@@ -91,6 +99,7 @@ function displayPageHeader( $pageTitle ) {
       
 
       <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="login2">Login
+
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -112,12 +121,18 @@ function displayPageHeader( $pageTitle ) {
     <li><a href="products.php">Products</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
+
     <li><a class="waves-effect" href="#login" class="modal-trigger" id="login2">login</a></li>
+
+
+    
+   
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
 <!-- end of mobile nav  -->
   </div>
-</nav>
+
+</nav></div>
 <?php
 }
 }
@@ -127,6 +142,7 @@ function displayPageHeader( $pageTitle ) {
   <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
       <h3 id="login1">Login To Your Account</h3>
+
     <form action="login.php" method="post" class="col s12">
 
       <div class="row ">
@@ -141,17 +157,21 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
           <input id="password" type="password" class="validate" required="required" name="logpwd">
+
           <label for="password" id="PW">Password</label>
         </div>
         <label style='float: right;'>
         <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
         </label>
+
       </div>
       <div>
         <p>
           <label>
             <input class="with-gap" name="group3" value="seller" type="radio" required="required" />
+
             <span id="seller" >Seller</span>
+
           </label>
         </p>
         <p>
@@ -169,6 +189,7 @@ function displayPageHeader( $pageTitle ) {
       </div>
       <br>
       <button type="submit" class="btn btn-primary green white-text" id="login">Login</button>
+
     </form>
     </div>
   </div>
@@ -190,8 +211,10 @@ function displayPageHeader( $pageTitle ) {
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
+
           <input id="tel" type="tel" class="validate" required="required" name="telph">
           <label for="icon_prefix" id='tele'>Telephone</label>
+
         </div>
       </div>
 
@@ -199,8 +222,10 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
           <input id="email" type="email" class="validate" required="required" name="em">
+
           <label for="email" id="Email1">Email</label>
          </div>
+
       </div>
     
       
@@ -208,30 +233,38 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s4">
           <i class="material-icons prefix">home</i>
           <input id="home" type="text" class="validate" required="required" name="no">
+
           <label for="home" id="Home">Home No.</label>
+
         </div>
    
         <div class="input-field col s4">
          
           <input id="Street" type="text" class="validate" required="required" name="street">
+
           <label for="Street" id="street" >Street</label>
+
         </div>
      
         <div class="input-field col s4">
          
           <input id="Quarter" type="text" class="validate" required="required" name="quarter">
+
           <label for="Quarter" id="quarter">Quarter</label>
+
         </div>
       </div>
     <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">home</i>
           <input id="Township" type="text" class="validate" required="required" name="township">
+
           <label for="Township" id="township" >Township</label>
         </div>
       
         <div class="input-field col s6">
           <input id="Division" type="text" class="validate" required="required" name="division">
+
           <label for="Division" id="division">Division</label>
         </div>
       </div>
@@ -242,7 +275,9 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
            <i class="material-icons prefix">credit_card</i>
           <input id="nrc" type="text" class="validate" name="nrcname">
+
           <label for="nrc" id="NRC">NRC</label>
+
         </div>
       </div>
       
@@ -250,7 +285,9 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
           <input id="pw" type="password" class="validate" required="required" name="pwname">
+
           <label for="pw" id="PW1">Password</label>
+
         </div>
       </div>
 
@@ -258,7 +295,9 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
           <input id="cpw" type="password" class="validate" required="required" name="cpwname">
+
           <label for="cpw" id="CPW">Comfirm Password</label>
+
         </div>
       </div>
      
@@ -266,7 +305,9 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
         <textarea id="brief" class="materialize-textarea validate" name="briefName"></textarea>
+
         <label for="brief" id="Brief">Brief description</label>
+
         </div>
       </div>
 
@@ -284,14 +325,18 @@ function displayPageHeader( $pageTitle ) {
     <br>
     <p>
       <label>
+
         <input class="with-gap" value="buyer" name="group3" type="radio" checked   />
         <span id="buyer1">User Account:BUYER</span>
+
       </label>
     </p>
     <p>
       <label>
         <input class="with-gap" value="seller" name="group3" type="radio" checked />
+
         <span id="seller1" >User Account:SELLER</span>
+
       </label>
     </p>
     
@@ -304,13 +349,18 @@ function displayPageHeader( $pageTitle ) {
 
 
 
+<!--script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
+</script-->
+
 <?php
 
 function displayPageFooter() {
 ?>
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
-
 
 
 <!-----Script to Import---------------------->
@@ -322,14 +372,17 @@ function displayPageFooter() {
   
 
 
-<!--Script in Index.html-->
+
+<!------------Script in Index.html--------------->
   <script>
 
     $(document).ready(function(){
     //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.carousel').carousel();
+
     $('.modal').modal();
+
     $('select').formSelect();
     $('.slider').slider();
     $('.sidenav').sidenav();
@@ -337,6 +390,7 @@ function displayPageFooter() {
      $('.datepicker').datepicker();
 
     });
+
       
   </script>
  
@@ -414,13 +468,12 @@ $lan_flag=$_SESSION['lan_flag'];
 
     document.getElementById('language').innerHTML="ဘာသာစကား";
     document.getElementById("home1").innerHTML="ပင္မ စာမ်က္ႏွာ";
+
     document.getElementById("about_us").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
     document.getElementById("contact_us").innerHTML="ဆက္သြယ္ရန္";
     document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
     
    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-     //document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
-    
 
     if(document.getElementById("username")!=null){
      document.getElementById("username").innerHTML="အမည္"; 
@@ -457,12 +510,14 @@ $lan_flag=$_SESSION['lan_flag'];
     }
 
 if(document.getElementById("textid")!=null){
+
      document.getElementById("textid").innerHTML="အေကာင့္အသစ္ဖြင့္ရန္"; 
     }
 
   if(document.getElementById("myanName")!=null){
      document.getElementById("myanName").innerHTML="အမည္"; 
     }
+
    if(document.getElementById("tele")!=null){
      document.getElementById("tele").innerHTML="ဖုန္းနံပါတ္ "; 
     }
@@ -706,6 +761,7 @@ if(document.getElementById("Market")!=null){
   if(document.getElementById("equipments2")!=null){
     document.getElementById("equipments2").innerHTML="လယ္ယာသံုးစက္ပစၥည္းမ်ား";
   }
+
   }  
 </script> 
   <?php

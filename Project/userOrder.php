@@ -1,3 +1,30 @@
+
+<style>
+
+/*
+td {
+    border-bottom: : 1px solid #ddd;
+    padding: 8px;
+    max-width:  100px;
+    min-width: 20px;
+    height: 50px;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    max-width:  200px;
+    min-width: 10px;
+}
+</style>   
 <?php
 
 include 'common.php';
@@ -18,6 +45,8 @@ displayPageHeader( "User order" );
   }
 
 $bid = $_SESSION['bid'];
+
+
 $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=0");
 $pending_num_rows = mysqli_num_rows($pending_product_result);
 
@@ -28,16 +57,24 @@ $pending_num_rows = mysqli_num_rows($pending_product_result);
    SET delivered=1 where oid='".$_POST['orderid']."'");
    echo "<script>alert('update successful');</script>";
       } 
+      if(isset($_POST['setcomment'])){
+  //echo $_POST['oid'];
+        //$date = date('Y-m-d h:i:s', time());
+
+        $oid = $_POST['oid'];
+
+  $comment ="INSERT into comment (cmt_text,oid) values ('".$_POST["cmt"]."', '".$oid."')";
+  $res1 = mysqli_query($con,$comment) or die(mysqli_error($con));
+   echo "<script>alert('Comment have been recorded');</script>";
+      } 
+
     
 ?>
 <div class="content padding-normal">
-       <h4  id="pending_orders">Pending Orders</h4>
+       <h4  style=" font-family: 'Acme';" id="pending_orders">Pending Orders</h4>
 <table>
 <tr><th>product name</th>
-      <th>seller address</th>
-      <th>pick up address</th>
       <th>expected delivery date</th>
-      <th>ordered time</th>
       <th>quantity</th>
       <th>cost</th><th></th><tr>
 <?php
@@ -48,6 +85,9 @@ echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
 
+
+/*
+
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";
@@ -56,13 +96,16 @@ echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
 
+*/
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
 
+/*
 echo "<td>";
 echo $row['order_time'];
 echo "</td>";
+*/
 
 echo "<td>";
 echo $row['quantity'];
@@ -76,7 +119,9 @@ echo $row['cost'];
       <a class='btn btn-default' onclick='delivery()'>pending</a>
       <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form-->
-  <a class='btn btn-default modal-trigger' href="#myModal">pending</a>
+
+  <a class='btn btn-default modal-trigger green white-text' href="#myModal">pending</a>
+
 
 </td>
 
@@ -91,19 +136,20 @@ else{
 echo "</table>";
 
 $bid = $_SESSION['bid'];
+
 $delivered_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=1");
 
 $delivered_num_rows = mysqli_num_rows($delivered_product_result);
 ?>
-<br> <h4  id="delivered_order">Delivered Orders</h4>
+
+<br> <h4  style=" font-family: 'Acme'" id="delivered_order">Delivered Orders</h4>
+
  <?php
 
 echo "<table>";
 echo "<tr><th>product name</th>
-      <th>seller address</th>
-      <th>pick up address</th>
+
       <th>expected delivery date</th>
-      <th>ordered time</th>
       <th>quantity</th>
       <th>cost</th><th></th><tr>";
 
@@ -115,6 +161,7 @@ echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
 
+/*
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";
@@ -123,13 +170,17 @@ echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
 
+*/
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
 
+
+/*
 echo "<td>";
 echo $row['order_time'];
 echo "</td>";
+*/
 
 echo "<td>";
 echo $row['quantity'];
@@ -142,42 +193,27 @@ echo "</td>";
 ?>
 </td><td>
 <!--<form id="delivered" method="" action="">-->
-      <a class='btn btn-default modal-trigger' href="#myModal2">Comment/Rate</a>
+
+      <a class='btn btn-default modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" >Comment/Rate</a>
+
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form--></td>
 </tr>
-<div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="padding: 48px;">
 
-      <h2 id="review">Review</h2>
-
-     <div class="row">
-
-      <form id="comment" action="userOrder.php" method="post">
-        <input type="text" name="nn" value="<?php echo $row['oid'];?>">
-    <div class="input-field col s12">
-      <!--If not used prefix class the icon overflow the textarea-->
-      <i class="material-icons prefix">comment</i>
-      <textarea id="txta1" class="materialize-textarea" maxlength="400"></textarea>
-      <label for="txta1">Textarea</label>
-
-    </div>
-     <input type="submit" class="btn btn-success right green white-text" value="Submit" id="review"  onclick=""/>
-  </div>
-      <!--Rating-->
-
-      <!-----Rating------------------------>
+<div id="myModal2" class="modal fade" role="dialog" style="width: 550">
   
-  <div class="hreview-aggregate">
+  <div class="hreview-aggregate" style="padding: 48px; width: 500px;">
+    <h2 id="review">Review</h2>
     <div class="row">
-      <div class="col s12 m6 l6">
+      <div class="col3 s6 m6 l6">
         <meta itemprop="worstRating" content="1">
         <meta itemprop="bestRating" content="5">
         <meta itemprop="reviewCount" content="1">
         <div class="row">
-          <div class="score col s12">
+
+          <!--div class="score col s12">
             5
-          </div>
+          </div-->
           <div class="rating-stars col s12">
             <input type="radio" name="stars" id="star-null">
             <input type="radio" name="stars" id="star-1" saving="1" data-start="1" checked="">
@@ -213,70 +249,39 @@ echo "</td>";
               </label>
             </section>
           </div>
-          <div class="reviews-stats col s12">
+
+          <!--div class="reviews-stats col s12">
+
             <span class="reviewers-small"></span>
             <span class="reviews-num">
                  1
               </span> total
-          </div>
+
+          </div-->
         </div>
       </div>
-      <div class="rating-histogram col s12 m6 l6">
-        <div class="rating-bar-container five">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 5
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container four">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 4
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container tree">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 3
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container two">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 2
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
-        <div class="rating-bar-container one">
-          <span class="bar-label">
-                                  <span class="star-tiny">
-                                </span> 1
-          </span>
-          <span class="bar">
-                              </span>
-          <span class="bar-number">
-                              1
-                              </span>
-        </div>
+  <div class="modal-dialog" >
+
+      
+
+     <div class="row">
+
+      <form id="comment" action="userOrder.php" method="post">
+        <input type="hidden" name="oid" id="nom">
+    <div class="input-field col3 s6">
+      <!--If not used prefix class the icon overflow the textarea-->
+      <i class="material-icons prefix">comment</i>
+      <textarea id="txta1" class="materialize-textarea" maxlength="400" name="cmt"></textarea>
+      
+      <label for="txta1">Textarea</label>
+
+    </div>
+     <input type="submit" name="setcomment" class="btn btn-success right green white-text" value="Submit" id="review"  onclick=""/>
+  </div>
+      <!--Rating-->
+
+      <!-----Rating------------------------>
+ 
       </div>
     </div>
   </div>
@@ -306,11 +311,22 @@ echo "</table>";
     </div>
   </div>
 
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
 
+<script type="text/javascript">
+  
 
+  $('.modal').modal({
+    ready: function(modal, trigger) {
+        
+        modal.find('input[name="oid"]').val(trigger.data('oid'))
 
-
+    }
+});
+</script>
 <script type="text/javascript">
       function delivery(){
             var a = confirm("Does your order delivered?");
@@ -327,6 +343,12 @@ echo "</table>";
                   alert("fail delivered");
             }
       }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
 </script>
 <?php
 displayPageFooter();

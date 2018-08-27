@@ -7,7 +7,7 @@ if(!isset($_SESSION))
 
 function displayNavBuyer(){
 
-?>
+  ?>
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
      <?php
@@ -24,6 +24,9 @@ function displayNavBuyer(){
       ?>
       <li class="divider"></li>
       <li><a href="logout.php" id="switch_account">Switch account</a></li>
+
+      <li><a href="logout.php" href="#login" id="switch_account">Switch account</a></li>
+
       <li class="divider"></li>
       <li><a href="logout.php" id="logout">Logout</a></li>
   </ul>
@@ -60,7 +63,8 @@ function displayNavBuyer(){
             <span>Seller</span>
           </label>
         </p>
-        <p>
+
+        <p>3
           <label>
             <input class="with-gap" name="group3"  value="buyer" type="radio" required="required" />
             <span>Buyer</span>
@@ -101,9 +105,12 @@ function displayNavBuyer(){
   </ul>
 
   <!---Navigation-->
+
+  <div class="navbar-fixed">
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;">AgriculturalTradingSystem</a>
+    <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
+
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -111,14 +118,19 @@ function displayNavBuyer(){
         id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
-      <li><a href="index.php#aboutus" id="about_us">About Us</a></li>
-      <li><a href="index.php#contactus" id="contact_us">Contact</a></li-->
+
+      <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.php#contactus" id="contact">Contact</a></li-->
+
       
        <li><a class="dropdown-trigger" href="#!" data-target="product" 
         id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">UserName
+
+
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">User
+
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -132,11 +144,12 @@ function displayNavBuyer(){
       <a href="#name"><span class="white-text name">John Doe</span></a>
       <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
     </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>language</a>
+
+    <li><a href="#!"><i class="material-icons">cloud</i>language</a></li>
     <ul>
       <li><a href="#!">Myanmar</a></li>
       <li><a href="#!">English</a></li>
-    </ul></li>
+    </ul>
     <li><a href="#!">Products</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
@@ -146,10 +159,24 @@ function displayNavBuyer(){
 <!-- end of mobile nav  -->
   </div>
 </nav>
+
+</div>
 <?php
 }
 
+  //session_start(); 
+if(isset($_GET['lan_flag'])){
+$_SESSION['lan_flag']=$_GET['lan_flag'];
+}
+$lan_flag=null;
+//echo $_SESSION['lan_flag'];
+if(isset($_SESSION['lan_flag'])){
+$lan_flag=$_SESSION['lan_flag'];
+}
 
+  if ($lan_flag) {
+ ?>
 
-
+  <?php
+}
 ?>

@@ -1,8 +1,46 @@
 
+<style>
+
+/*
+td {
+    border-bottom: : 1px solid #ddd;
+    padding: 8px;
+    max-width:  100px;
+    min-width: 20px;
+    height: 50px;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    max-width:  200px;
+    min-width: 10px;
+}
+</style>
   <?php
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveMember.php");
+            if(isset($_SESSION['login'])){
+    $loginStatus = $_SESSION['login'];
+  }
+  else
+    $loginStatus = "normal";
+
+  if($loginStatus!="admin"){
+    echo "<script>alert('please log in first');
+    location.replace('index.php');</script>";
+    //header('Location: index.php');
+    exit(); 
+
             $sql="select sid,sname,s_phoneno,s_email from seller where s_status=0;
             ";
             $result=mysqli_query($con,$sql);
