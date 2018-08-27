@@ -6,6 +6,7 @@ if(!isset($_SESSION))
   }
 
 function displayNavBuyer(){
+
   ?>
   <!--Login--------------------->
   <ul id="authentication" class="dropdown-content">
@@ -22,7 +23,10 @@ function displayNavBuyer(){
       }
       ?>
       <li class="divider"></li>
+      <li><a href="logout.php" id="switch_account">Switch account</a></li>
+
       <li><a href="logout.php" href="#login" id="switch_account">Switch account</a></li>
+
       <li class="divider"></li>
       <li><a href="logout.php" id="logout">Logout</a></li>
   </ul>
@@ -59,6 +63,7 @@ function displayNavBuyer(){
             <span>Seller</span>
           </label>
         </p>
+
         <p>3
           <label>
             <input class="with-gap" name="group3"  value="buyer" type="radio" required="required" />
@@ -100,10 +105,12 @@ function displayNavBuyer(){
   </ul>
 
   <!---Navigation-->
+
   <div class="navbar-fixed">
 <nav style="margin-bottom: 0px;height: 80px;">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
+
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -111,15 +118,19 @@ function displayNavBuyer(){
         id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
+
       <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
       <li><a href="index.php#contactus" id="contact">Contact</a></li-->
+
       
        <li><a class="dropdown-trigger" href="#!" data-target="product" 
         id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       
 
 
+
       <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">User
+
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -133,6 +144,7 @@ function displayNavBuyer(){
       <a href="#name"><span class="white-text name">John Doe</span></a>
       <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
     </div></li>
+
     <li><a href="#!"><i class="material-icons">cloud</i>language</a></li>
     <ul>
       <li><a href="#!">Myanmar</a></li>
@@ -147,10 +159,10 @@ function displayNavBuyer(){
 <!-- end of mobile nav  -->
   </div>
 </nav>
+
 </div>
 <?php
 }
-
 
   //session_start(); 
 if(isset($_GET['lan_flag'])){
@@ -164,31 +176,7 @@ $lan_flag=$_SESSION['lan_flag'];
 
   if ($lan_flag) {
  ?>
-<script type="text/javascript">
-  language();
-  function language(){
-   
-    document.getElementById('home1').innerHTML="ပင္မ စာမ်က္ႏွာ";
-    document.getElementById('language').innerHTML="ဘာသာစကား";  
-    document.getElementById("product").innerHTML="ကုန္ပစၥည္း မ်ား ";
-    document.getElementById("about_as").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-    document.getElementById("contact").innerHTML="ဆက္သြယ္ရန္";
-    document.getElementById("login1").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("login_dropdown").innerHTML="အေကာင့္ ဝင္ရန္ ";
-    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-    document.getElementById("my_product").innerHTML="မွာယူထားေသာပစၥည္းမ်ား";
-    document.getElementById("my_order").innerHTML="မွာယူရန္စာရင္း";
-    document.getElementById("cart").innerHTML="ေၾကာ္ျငာထားေသာပစၥည္းမ်ား";
 
-    
-    document.getElementById("user_name").innerHTML="အမည္";
-    document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္";
-    document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္";
-    document.getElementById("contact_us").innerHTML="ဆက္သြယ္ရန္";
-    document.getElementById("about_as1").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
-
-  }  
-</script> 
   <?php
 }
 ?>

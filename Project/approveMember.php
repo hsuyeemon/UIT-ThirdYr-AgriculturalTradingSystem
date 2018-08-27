@@ -1,3 +1,4 @@
+
 <style>
 
 /*
@@ -39,7 +40,7 @@ th {
     location.replace('index.php');</script>";
     //header('Location: index.php');
     exit(); 
-  } 
+
             $sql="select sid,sname,s_phoneno,s_email from seller where s_status=0;
             ";
             $result=mysqli_query($con,$sql);

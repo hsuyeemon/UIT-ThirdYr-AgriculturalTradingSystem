@@ -29,6 +29,7 @@ th {
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveBuyer.php");
+
             if(isset($_SESSION['login'])){
     $loginStatus = $_SESSION['login'];
   }
@@ -83,6 +84,7 @@ th {
   	}
   	echo '</tbody>
   	</table>';
+
     
     echo "<br><button name='loopcontroller' value='$num_rows' class='btn green white-text' type='submit' >UPDATE <i class='material-icons right'>update</i>";
     echo "</button>";

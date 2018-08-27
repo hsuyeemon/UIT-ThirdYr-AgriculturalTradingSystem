@@ -5,6 +5,7 @@ include 'dblink.php';
 
 displayPageHeader( "product" );
 ?>
+
 <style type="text/css">
   font-family: 'Acme';
   
@@ -13,7 +14,7 @@ displayPageHeader( "product" );
 <?php
 
 static $jssor = 0;
-  //$sid = $_SESSION['sid'];  
+
 
             $sliderCount= "select count(distinct(category))as ct from product";
       
@@ -34,12 +35,16 @@ function showProducts($category){
   $noRows=mysqli_num_rows($ret);
   //echo $noRows;
   if($noRows>0){
+
   echo "<table style='overflow-y:scroll;max-height:500px' >";
+
   for($i=0;$i<$noRows;$i++){
   
   $jssor +=1;
   $row=mysqli_fetch_array($ret); 
   //echo $jssor;
+
+
   echo "
 
   <div class='card padding-normal'>
@@ -48,6 +53,7 @@ function showProducts($category){
       <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:340px;overflow:hidden;visibility:hidden;'>
         
         <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:260px;overflow:hidden;padding: 8px;'>";
+
 
         $subCatagory = $row['subCatagory'];
         
@@ -69,17 +75,21 @@ function showProducts($category){
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
     ?>
 
+
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
+
           <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
             <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
+
           <span class='card-title activator white-text text-darken-4' style=" white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis">
              <?php echo $row2['pname']."<br>".$row2['price']." per ".$row2['UNIT']; ?><i class='material-icons right' style="position: fixed;right: 2">more_vert</i>
+
           </span>
           </div>
           <div class='card-reveal'>
@@ -88,7 +98,9 @@ function showProducts($category){
             <i class='material-icons right'>close</i>
             </span>
             <p><?php echo $row2['p_description'];?></p>
+
             <p><?php echo "Price :".$row2['price']." per ".$row2['UNIT'];?></p>
+
           </div>
         </div>
         <?php
@@ -117,8 +129,7 @@ function showProducts($category){
 
   }
   echo "</table>";
-
-}
+  }
 
 else
 {
@@ -161,10 +172,10 @@ else
   <h3 style=" font-family: 'Acme';" class="white-text padding-normal" >Equipments</h3>
 </div>
 <div style="overflow-y: scroll;max-height: 800px;">
+
    <?php
     showProducts("equipments");
     ?>
-</div>
 </div>
 
 </div>
@@ -223,6 +234,7 @@ else
             ScaleSlider();
         };
     </script>
+
     <script type="text/javascript">
       // When the user scrolls the page, execute myFunction 
 window.onscroll = function() {myFunction()};
@@ -242,6 +254,7 @@ function myFunction() {
   }
 }
     </script>
+
 
    <script type="text/javascript">jssor_slider_init();</script>
 <?php

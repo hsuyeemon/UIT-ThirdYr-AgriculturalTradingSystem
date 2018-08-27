@@ -4,12 +4,7 @@ include( "common.php" );
 include( "dblink.php" );
 displayPageHeader( "productDetails" );
 ?>
-<!--style type="text/css">
-  
-    .carousel .carousel-item {
-width:300px !important;
-height:300px !important}
-</style-->
+
 
 <?php 
 //global $pid;
@@ -40,6 +35,8 @@ $pid = $_GET['productId'];
 
 
  <div class="content padding-normal-sync">
+
+
  <?php
 //Product Details
 $productDetails = "SELECT * FROM product WHERE pid='$pid'";
@@ -60,11 +57,14 @@ $res2 = mysqli_query($con,$seller) or die(mysqli_error());
 $rows2 =mysqli_fetch_array($res2);
 $seller = $rows2['sname'];
 $phone = $rows2['s_phoneno'];
-//$phone="09448500348";
 
 ?>
 
 <div class="row ">
+    <div class="col s3 padding-normal">
+      
+    
+
   <h3 id="productName" name="pname">
         <?php echo $pname;?>  
       </h3>
@@ -86,6 +86,7 @@ $phone = $rows2['s_phoneno'];
     </div>
     <div class="carousel col s8" style="margin:0px;height: 200px;">
 <br><br>
+
 <?php
 $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
@@ -94,6 +95,7 @@ $res3 = mysqli_query($con,$productDetails) or die(mysql_error());
 
 while($row3 = mysqli_fetch_assoc($res3)){
 //echo $row3["p_image"]; 
+
   $u = $row3["p_image"];
 $array = explode(',', $row3["p_image"]);
 //echo sizeof($array);
@@ -103,15 +105,19 @@ foreach ($array as $url) {
   $imageData = base64_encode(file_get_contents($url));
   $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
   //echo $src;
+
     echo "<a class='carousel-item' href='#one!'><img src='".$src."' height='300px' width='300px'></a>";
+
   }
 }
 else{
   # code...
+
   $imageData = base64_encode(file_get_contents($u));
   $src = 'data: '.mime_content_type($row3["p_image"]).';base64,'.$imageData;
   //echo $src;
     echo "<a><img src='".$src."' height='500px' width='500px'></a>";
+
 
 }
 }
@@ -127,6 +133,7 @@ else{
  <a class="btn green white-text modal-trigger" href="cart.php?
      pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
    </div>
+
 
  <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
@@ -219,6 +226,9 @@ else{
 
     </div>
 
+ <a class="btn green white-text modal-trigger" href="cart.php?
+     pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">send</i></a>
+
 
   <br><br>
     <div style="display:none"><a class="btn green white-text  modal-trigger" href="#myModal" id="call">Comment and rating</a></div>
@@ -306,7 +316,7 @@ if($result) {
               </label>
             </section>
           </div>
-          
+
       </div>
     </div>
      <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/></form>
@@ -330,6 +340,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
   
        <div class="container padding-normal">
 
+
         <h3 style="text-align: center;">Reviews & Rating</h3>
   <div class="hreview-aggregate">
     <div class="row">
@@ -347,6 +358,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
         <div class="row" >
           <div class="score" style="text-align: center;">
             <?php echo $rating['rating'];?>
+
           </div>
           <div class="rating-stars col s12">
             <input type="radio" name="stars" id="star-null">
@@ -387,35 +399,42 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
             <span class="reviewers-small"></span>
             <span class="reviews-num">
 
+
                <?php 
     $r1 ="select count(*) as cot from comment where oid in (select oid from order_product where pid=$pid) group by (oid)";
    $result1 = mysqli_query($con,$r1) or die(mysqli_error($con));
    $rating1 = mysqli_fetch_array($result1);
    echo $rating1['cot'];?>
+
               </span> total
           </div>
         </div>
       </div>
+
       <div class="col s3">
       </div>
-      
+
       </div>
     </div>
  
   </div>
 
 
+
   <!----------------Review Hightlight----------------->
   <section id="reviews" class="comments container">
+
     
     <?php 
     $cmt ="SELECT o.oid,b.*, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=$pid AND b.bid=o.bid AND c.oid=o.oid";
+
    $result = mysqli_query($con,$cmt) or die(mysql_error());
      while ($rows  = mysqli_fetch_array($result)) 
      { 
       $text = $rows['cmt_text'];
       $time = $rows['cmt_time'];
       $buyer= $rows['bname'];
+
       $url = $rows['b_profile_image'];
 
   # code...
@@ -426,10 +445,12 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
     <article class="comment">
     <a class="comment-img" href="#non">
       <img src="<?php echo $src;?>" alt="" width="50" height="50" />
+
     </a>
       
     <div class="comment-body">
       <div class="text">
+
         <!--p>' .$text. '</p-->
         <p><?php echo "$text";?></p>
       </div>
@@ -437,6 +458,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
     </div>
   </article>
   <?php
+
     }
 ?>
 
@@ -466,11 +488,13 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
       
 </script>
  
+
 <script type="text/javascript">
     $(document).ready(function(){
   $('.modal').modal();
     });
 </script>
+
  <?php
 }
 displayPageFooter();

@@ -1,3 +1,4 @@
+
 <style>
 
 /*
@@ -45,6 +46,7 @@ displayPageHeader( "User order" );
 
 $bid = $_SESSION['bid'];
 
+
 $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=0");
 $pending_num_rows = mysqli_num_rows($pending_product_result);
 
@@ -83,7 +85,9 @@ echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
 
+
 /*
+
 echo "<td>";
 echo $row['from_addr'];
 echo "</td>";
@@ -91,8 +95,8 @@ echo "</td>";
 echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
-*/
 
+*/
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
@@ -115,7 +119,9 @@ echo $row['cost'];
       <a class='btn btn-default' onclick='delivery()'>pending</a>
       <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form-->
+
   <a class='btn btn-default modal-trigger green white-text' href="#myModal">pending</a>
+
 
 </td>
 
@@ -135,11 +141,14 @@ $delivered_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_produ
 
 $delivered_num_rows = mysqli_num_rows($delivered_product_result);
 ?>
+
 <br> <h4  style=" font-family: 'Acme'" id="delivered_order">Delivered Orders</h4>
+
  <?php
 
 echo "<table>";
 echo "<tr><th>product name</th>
+
       <th>expected delivery date</th>
       <th>quantity</th>
       <th>cost</th><th></th><tr>";
@@ -151,6 +160,7 @@ while($row = mysqli_fetch_array($delivered_product_result))
 echo "<tr><td><a href='productDetails.php?productId=".$row['pid']."'>";
 echo $row['pname'];
 echo "</a></td>";
+
 /*
 echo "<td>";
 echo $row['from_addr'];
@@ -159,10 +169,12 @@ echo "</td>";
 echo "<td>";
 echo $row['to_addr'];
 echo "</td>";
+
 */
 echo "<td>";
 echo $row['expect_delivery_date'];
 echo "</td>";
+
 
 /*
 echo "<td>";
@@ -181,6 +193,7 @@ echo "</td>";
 ?>
 </td><td>
 <!--<form id="delivered" method="" action="">-->
+
       <a class='btn btn-default modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" >Comment/Rate</a>
 
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
@@ -197,6 +210,7 @@ echo "</td>";
         <meta itemprop="bestRating" content="5">
         <meta itemprop="reviewCount" content="1">
         <div class="row">
+
           <!--div class="score col s12">
             5
           </div-->
@@ -235,11 +249,14 @@ echo "</td>";
               </label>
             </section>
           </div>
+
           <!--div class="reviews-stats col s12">
+
             <span class="reviewers-small"></span>
             <span class="reviews-num">
                  1
               </span> total
+
           </div-->
         </div>
       </div>
@@ -264,8 +281,7 @@ echo "</td>";
       <!--Rating-->
 
       <!-----Rating------------------------>
-  
-      
+ 
       </div>
     </div>
   </div>
@@ -294,8 +310,6 @@ echo "</table>";
 </form> 
     </div>
   </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
@@ -330,6 +344,7 @@ echo "</table>";
             }
       }
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
   $('.modal').modal();

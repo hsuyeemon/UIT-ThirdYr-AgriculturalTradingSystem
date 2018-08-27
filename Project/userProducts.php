@@ -106,13 +106,17 @@ else {echo mysql_error();}
 
     <div id="addProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
-      <h3>Add your Products</h3>
+
+      <h3 id="addProducts">Add your Products</h3>
+
  <div class="row">
     <form id="form" action="userProducts.php" class="col s12" method="post" enctype="multipart/form-data">
       <div class="row ">
         <div class="input-field col s12 ">
           <input id="pname" name="pname" type="text" class="validate" required="#">
-          <label for="pname">Product name</label>
+
+          <label for="pname" id="">Product name</label>
+
          
         </div>
       </div>
@@ -122,13 +126,14 @@ else {echo mysql_error();}
        <div class="row ">
         <div class="input-field inline col s3">
           <input id="price" name="price" type="number" class="validate" required="required">
-          <label for="price">Price</label>
+
+          <label for="price" id="Price">Price</label>
         </div>
          <div class="input-field inline col s1 row s4">
         <select class="browser-default green lighten-3" id="currency" name="currency" required="#">
-    <option value=""  disabled selected>currency</option>
-    <option value="Dollar">Dollar</option>
-    <option value="Kyat">Kyat</option>
+    <option value=""  disabled selected id="currency">currency</option>
+    <option value="Dollar" id="dollar">Dollar</option>
+    <option value="Kyat" id="kyat">Kyat</option>
     
   </select>
 </div>
@@ -136,7 +141,9 @@ else {echo mysql_error();}
         <div class="input-field inline col s2 row s4">
           
   <select class="browser-default green lighten-3" id="unit" name="unit" required="#">
-    <option value=""  disabled selected>Unit</option>
+
+    <option value=""  disabled selected id="unit">Unit</option>
+
     <option value="Gram">Gram</option>
     <option value="Bag">Bag</option>
     <option value="Basket">Basket</option>
@@ -153,7 +160,8 @@ else {echo mysql_error();}
       <div class="row">
         <div class="input-field col s6">
           <input id="min" name="min" type="number" class="validate" required="required">
-          <label for="min">Minimum buyable amount</label>
+
+          <label for="min" id="min_amount">Minimum buyable amount</label>
           
         </div>
      
@@ -163,7 +171,9 @@ else {echo mysql_error();}
       
         <div class="input-field col s6">
           <input id="max" name="max" type="number" class="validate" required="required">
-          <label for="max">Maximum buyable amount</label>
+
+          <label for="max" id="max_amount">Maximum buyable amount</label>
+
           
         </div>
       </div>
@@ -174,25 +184,31 @@ else {echo mysql_error();}
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
         <textarea id="brief" name="brief"  class="materialize-textarea validate"></textarea>
-        <label for="brief">Brief description of the product</label>
+
+        <label for="brief" id="productDescri">Brief description of the product</label>
+
         </div>
       </div>
       <div class="input-field inline col s5">
         <br><br>
-<label>Category</label>
+
+<label id="cate">Category</label>
 
 <select class="browser-default green lighten-2" id="selectitem" name="selectitem" onchange="changeData()">
-  <option value="" disabled selected>Choose your option</option>
-  <option value="agricultural">agricultural products</option>
-  <option value="fertilizers">fertilizers</option>
-  <option value="equipments">equipments</option>
+  <option value="" disabled selected id="Choose">Choose your option</option>
+  <option value="agricultural" id="agriProduct">agricultural products</option>
+  <option value="fertilizers" id="fertilizers1">fertilizers</option>
+  <option value="equipments" id="equipments1">equipments</option>
+
 </select>
 </div>
 <div class="input-field inline col s5">
    <br><br>
 <label>Brand</label> 
 <select class="browser-default green lighten-2" id="selectedsub" name="selectedsub" onchange="changeData()">
-  <option value="" disabled selected>Choose your option</option>
+
+  <option value="" disabled selected id="Choose1">Choose your option</option>
+
   <option value="fruits" id="0">fruits</option>
   <option value="grocery" id="1" >grocery</option>
   <option value="stable" id="2">stable foods</option>
@@ -234,11 +250,13 @@ else {echo mysql_error();}
 
     <br>
     <br><div>
-<table><tr><td></td><td><button class="btn green white-text" type="submit" name="save">ADD
+
+<table><tr><td></td><td><button class="btn green white-text" type="submit" name="save" id="ADD">ADD
     <i class="material-icons right">send</i>
   </button> </td>
   <td>
-  <button class="btn white green-text modal-close" type="submit" name="cancel">Cancel
+  <button class="btn green white-text modal-close" type="submit" name="cancel" id="cancel">Cancle
+
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -253,13 +271,17 @@ else {echo mysql_error();}
   <!--editProductsForm-->
 <div id="editProducts" class="modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
-      <h3>Edit your Products</h3>
+
+      <h3 id="edit">Edit your Products</h3>
+
  <div class="row">
     <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
           <input  name="pname" type="text" value="<?php echo $row["pname"]?>" class="validate">
-          <label for="pname">Product name</label>
+
+          <label for="pname" id="p_name2">Product name</label>
+
         </div>
       </div>
 
@@ -268,7 +290,9 @@ else {echo mysql_error();}
        <div class="row ">
         <div class="input-field inline col s5">
           <input  name="price" type="number" value="<?php echo $row["price"]?>" class="validate">
-          <label for="price">Price</label>
+
+          <label for="price" id="Price1">Price</label>
+
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
@@ -288,7 +312,9 @@ else {echo mysql_error();}
        <div class="row">
         <div class="input-field col s5">
           <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $row["min_amount"]?>">
-          <label for="min">Minimum buyable amount</label>
+
+          <label for="min" id="min_amount1">Minimum buyable amount</label>
+
           
         </div>
      
@@ -298,7 +324,9 @@ else {echo mysql_error();}
       
         <div class="input-field col s5">
           <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $row["max_amount"]?>">
-          <label for="max">Maximum buyable amount</label>
+
+          <label for="max" id="max_amount1">Maximum buyable amount</label>
+
           
         </div>
       </div>
@@ -309,7 +337,9 @@ else {echo mysql_error();}
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
         <textarea class="materialize-textarea validate" name="brief" value="<?php echo $row["p_description"]?>" ></textarea>
-        <label for="brief">Brief description of the product</label>
+
+        <label for="brief" id="productDescri1">Brief description of the product</label>
+
         </div>
       </div>
       <div class="input-field inline col s5">
@@ -379,7 +409,9 @@ else {echo mysql_error();}
 </form>
    </td>
   <td>
-  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancel
+
+  <button class="btn green white-text modal-close" type="submit" name="cancel">Cancle
+
     <i class="material-icons right">cancel</i>
   </button></td></tr></table>
 </div>
@@ -390,6 +422,7 @@ else {echo mysql_error();}
   </div>
 </div>
 <!--deleteProductsForm-->
+
 
 
    <?php 
@@ -403,6 +436,7 @@ else {echo mysqli_error($con);
 }
     
     ?>
+
 
 
 <?php
@@ -466,21 +500,26 @@ function showProducts($category){
     ?>
 
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
+
           <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
             <img src='<?php echo "$src";?>'height='160px' width='160px'>
             </div>
           </a>
           <div class='card-content'>
+
           <span class='card-title activator white-text text-darken-4'  style=" white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis">
+
             <?php echo $row2['pname']; ?>
           </span>
           <div class='row'>
              <div class='col s6'>
 
+
            <button href = '#editProducts' class='btn white green-text modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
+
           </div>
          
           
@@ -488,6 +527,7 @@ function showProducts($category){
 
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
+
           <div class='col s6'>
             <form id="deleteF" action="userProducts.php" method="post">
           <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
@@ -520,7 +560,6 @@ function showProducts($category){
             ?>
       </div>
 
-    
         <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
 
           <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
@@ -550,7 +589,7 @@ else
 }
 
   ?>
-<div class="content padding-normal">
+
 
 <div id="Agricultural">
   <div class="card green darken-4">
@@ -587,17 +626,16 @@ else
     showProducts("equipments");
     ?>
 </div>
-</div>
 
-</div>
 <div class="fixed-action-btn padding-normal">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">mode_edit</i>
   </a>
   <ul>
-    <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons">add</i></a></li>
+    <li><a class="btn-floating red modal-trigger" href="#addProducts"><i class="material-icons" id="add1">add</i></a></li>
     
-    <li><a class="btn-floating blue" href="dash_board.php"><i class="material-icons">dashboard</i></a></li>
+    <li><a class="btn-floating blue" href="dash_board.php"><i class="material-icons">insert_chart</i></a></li>
+
   </ul>
 </div>
 </div>

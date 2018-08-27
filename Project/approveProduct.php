@@ -1,3 +1,4 @@
+
 <style>
 
 /*
@@ -28,6 +29,7 @@ th {
             include('common.php');
             include('dblink.php');
             displayPageHeader("approveProduct.php");
+
             if(isset($_SESSION['login'])){
     $loginStatus = $_SESSION['login'];
   }

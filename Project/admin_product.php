@@ -2,6 +2,7 @@
 include("common.php");
 include("dblink.php");
 displayPageHeader("admin_product.php");
+
 if(isset($_SESSION['login'])){
     $loginStatus = $_SESSION['login'];
   }
@@ -48,6 +49,7 @@ $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product
 $pending_num_rows = mysqli_num_rows($pending_product_result);
 echo "<div class='content padding-normal' style='overflow-x:auto'>";
 echo "<table class='responsive-table'>";
+
 echo "<tr><th>product name</th>
       <th>seller address</th>
       <th>pick up address</th>

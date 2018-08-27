@@ -49,6 +49,7 @@ function displayNavSeller(){
     <li><a href="index.php?lan_flag=0" id="english">English</a></li>
   </ul>
 
+
  
 <!---Navigation-->
   <!---Navigation-->
@@ -58,6 +59,7 @@ function displayNavSeller(){
     <a href="#" class="brand-logo" style="margin-left: 16px;padding: 4px;font-family: 'Acme'">AgriculturalTradingSystem</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
+
       <li><a class="dropdown-trigger" href="#!" data-target="font" id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
@@ -66,9 +68,9 @@ function displayNavSeller(){
 
       
        <li><a class="dropdown-trigger" href="#!" data-target="product" id="products">Products<i class="material-icons right">arrow_drop_down</i></a></li>
-      
 
-      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">User
+      <li><a class="dropdown-trigger" href="#!" data-target="authentication" id="username">UserName
+
         <i class="material-icons right">arrow_drop_down</i></a></li>  
     </ul>
 
@@ -96,6 +98,7 @@ function displayNavSeller(){
 <!-- end of mobile nav  -->
   </div>
 </nav>
+
 </div>
 <?php
 }

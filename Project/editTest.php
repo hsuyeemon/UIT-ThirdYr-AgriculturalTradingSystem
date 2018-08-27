@@ -35,6 +35,7 @@ while($row=mysqli_fetch_array($productsQuery)){
         <br><br>
 
 
+
 <div id="modalEditClient" class="modal m1">
     <div class="modal-content">
         Product Name<input type="text" name="pname" id="nom">
