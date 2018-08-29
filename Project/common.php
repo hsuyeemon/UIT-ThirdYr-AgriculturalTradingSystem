@@ -428,13 +428,13 @@ $lan_flag=$_SESSION['lan_flag'];
 
     document.getElementById('language').innerHTML="ဘာသာစကား";
     document.getElementById("home1").innerHTML="ပင္မ စာမ်က္ႏွာ";
-    document.getElementById("about_us")
-    .innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    document.getElementById("about_us").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
     document.getElementById("contact_us").innerHTML="ဆက္သြယ္ရန္";
     document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
     
    document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-   
+     //document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
+    
 
     if(document.getElementById("username")!=null){
      document.getElementById("username").innerHTML="အမည္"; 
@@ -471,13 +471,258 @@ $lan_flag=$_SESSION['lan_flag'];
     }
 
 if(document.getElementById("textid")!=null){
-     document.getElementById("textid").innerHTML="အေကာင့္ ဝင္ရန္ "; 
+     document.getElementById("textid").innerHTML="အေကာင့္အသစ္ဖြင့္ရန္"; 
     }
 
   if(document.getElementById("myanName")!=null){
      document.getElementById("myanName").innerHTML="အမည္"; 
     }
+   if(document.getElementById("tele")!=null){
+     document.getElementById("tele").innerHTML="ဖုန္းနံပါတ္ "; 
+    }
+     if(document.getElementById("Email")!=null){
+     document.getElementById("Email").innerHTML="အီးလ္ေမး "; 
+    }
+     if(document.getElementById("Email1")!=null){
+     document.getElementById("Email1").innerHTML="အီးလ္ေမး "; 
+    }
+    
+     if(document.getElementById("seller")!=null){
+     document.getElementById("seller").innerHTML="ေရာင္းသူ"; 
+    }
+ if(document.getElementById("seller1")!=null){
+     document.getElementById("seller1").innerHTML="ေရာင္းသူ"; 
+    }
+
+if(document.getElementById("Email")!=null){
+     document.getElementById("Email").innerHTML=" အီးလ္ေမး"; 
+    }
+     if(document.getElementById("buyer")!=null){
+     document.getElementById("buyer").innerHTML=" ဝယ္သူ "; 
+    }
+      if(document.getElementById("buyer1")!=null){
+     document.getElementById("buyer1").innerHTML=" ဝယ္သူ "; 
+    }
+    if(document.getElementById("Home")!=null){
+     document.getElementById("Home").innerHTML=" အိမ္အမွတ္"; 
+    }
+    if(document.getElementById("street")!=null){
+     document.getElementById("street").innerHTML="လမ္းအမည္"; 
+    }
+    if(document.getElementById("quarter")!=null){
+     document.getElementById("quarter").innerHTML="ရပ္ကြက္"; 
+    }
+    if(document.getElementById("township")!=null){
+     document.getElementById("township").innerHTML="ၿမိဳ႕နယ္ "; 
+    }
+    if(document.getElementById("division")!=null){
+     document.getElementById("division").innerHTML=" တိုင္းေဒသႀကီး "; 
+    }
+    if(document.getElementById("NRC")!=null){
+     document.getElementById("NRC").innerHTML="မွတ္ပံုတင္အမွတ္"; 
+    }
+     if(document.getElementById("PW")!=null){
+     document.getElementById("PW").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+    }
+    if(document.getElementById("PW1")!=null){
+     document.getElementById("PW1").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+    }
+     if(document.getElementById("CPW")!=null){
+     document.getElementById("CPW").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+    }
+    if(document.getElementById("Brief")!=null){
+     document.getElementById("Brief").innerHTML="ေဖာ္ျပခ်က္"; 
+    }
+if(document.getElementById("product_p")!=null){
+     document.getElementById("product_p").innerHTML="ေရာင္းခ်ေသာကုန္ပစၥည္းမ်ား"; 
+    }
+
+    if(document.getElementById("login2")!=null){
+    document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
+  }
+  if(document.getElementById("AU")!=null){
+    document.getElementById("AU").style.fontSize="18px";
+    document.getElementById("AU").style.lineHeight="2";
+    document.getElementById("AU").innerHTML="ကြၽႏု္ပ္တို႔ ပေရာဂ်က္ကို သတင္းအခ်က္အလက္နည္းပညာတကၠသိုလ္မွ ေက်ာင္းသား ေက်ာင္းသူ ၇ ဦးျဖင့္လုပ္ေဆာင္ထားပါတယ္။ကြၽန္ုပ္တို႔ရည္႐ြယ္ခ်က္ကေတာ့ B2B လို႔ေခၚတဲ့ စီးပြားေရးလုပ္ငန္းအခ်င္းခ်င္း စိုက္ပ်ိဳးေရးလုပ္ငန္းသုံး ထုတ္ကုန္ေတြကိုျဖန႔္ေဝရာမွာ တစ္ဖက္တစ္လမ္းမွအကူအညီေပးႏိုင္ဖို႔ျဖစ္ပါတယ္။ေရာင္းသူႏွင့္ ဝယ္သူၾကား ကုန္ပစၥည္းပို႔ေဆာင္ရာမွာ ယခုအခါ အဆင့္ဆင့္ပို႔ေဆာင္ျခင္းျဖင့္ အခက္အခဲေတြရွိေနပါတယ္။အထူးသျဖင့္ ကုန္စည္ဒိုင္မ်ားႏွင့္ဆက္သြယ္ေဆာင္႐ြက္တဲ့အခါ ေဈးႏူန္းျမင့္တက္ျခင္းမ်ားျဖစ္ေပၚေလ့ရွိပါတယ္။အဆင့္ဆင့္ပို႔ေဆာင္ရျခင္းမွာ ေဈးႏူန္းမ်ားမွာ ယခင္မူလထပ္ ၂ ဆ ၃ ဆ ျမင့္တက္လာပါတယ္။ကြၽႏု္ပ္တို႔၏ စီမံခ်က္စနစ္မွာ ထိုျပသနာကို အတက္ႏိုင္ဆုံး ေလွ်ာ့ခ်ႏိုင္ဖို႔ ရည္႐ြယ္ေဆာင္႐ြက္ထားပါတယ္။ ကြၽန္ုပ္တို႔၏ ဝက္ဆိုက္ မွာ ေရာင္းသူႏွင့္ဝယ္သူၾကား ကုန္စည္စလယ္ပို႔ေဆာင္ေရးကိုအထူးေထာက္ပံ့ကူညီထားပါတယ္။ေရာင္းသူႏွင့္ဝယ္သူၾကား ၾကားအဆင့္မ်ားမခံပဲ တိုက္႐ိုက္ေရာင္းဝယ္ႏိုင္ျခင္းအားျဖင့္ အပိုကုန္က်စရိတ္မ်ားကိုေလွ်ာ့ခ်ႏိုင္မွာျဖစ္ၿပီး အခ်ိန္ကုန္သက္သာေစမွာျဖစ္ပါတယ္။ အဓိကအက်ိဳးေက်းဇူးအေနနဲ႔ စားသုံးဝယ္ယူသူမ်ားက ယခင္ကထပ္ ပိုမိုသက္သာေသာ ေဈးႏူန္းျဖင့္ ဝယ္ယူႏိုင္ျခင္းျဖစ္ပါတယ္။.";
+
+  }
+   if(document.getElementById("contact")!=null){
+    document.getElementById("contact").innerHTML=" ဆက္သြယ္ရန္";
+  }
+  if(document.getElementById("freeContact")!=null){
+    document.getElementById("freeContact").innerHTML=" အခက္အခဲတစ္စံုတစ္ရာ႐ွိလ်ွင္လြတ္လပ္စြာဆက္သြယ္ေမးျမန္းႏိုင္ပါသည္။";
+  }
+  if(document.getElementById("para")!=null){
+    document.getElementById("para").innerHTML="လယ္ယာထြက္ပစၥည္းကုမၸဏီမ်ား၊ဓာတ္ေျမျသဇာကုမၸဏီမ်ား၊လယ္ယာသံုးစက္ပစၥည္းကုမၸဏီမ်ားမွကုန္ပၥည္းမ်ားကိုလာေရာက္ေရာင္းခ်ႏိုင္ပါသည္။";
+    document.getElementById("para").style.fontSize="24px";
+  }
+  if(document.getElementById("logistic")!=null){
+    document.getElementById("logistic").innerHTML=" ေထာက္ပ့ံပို႔ေဆာင္ေရးဝန္ေဆာင္မႈ";
+  }
+  if(document.getElementById("logicPara")!=null){
+    document.getElementById("logicPara").innerHTML="ကြၽႏု္ပ္တို႔၏အဓိကလုပ္ငန္းမွာေထာက္ပံ့ပို႔ေဆာင္ေရးဝန္ေဆာင္မႈျဖစ္ပါသည္။";
+  }
+
+if(document.getElementById("Market")!=null){
+    document.getElementById("Market").innerHTML=" လယ္ယာလုပ္ငန္းေစ်းကြက္";
+  }
+  if(document.getElementById("marketPara")!=null){
+    document.getElementById("marketPara").innerHTML="";
+  }
+  if(document.getElementById("call")!=null){
+    document.getElementById("call").innerHTML=" ထင္ျမင္ခ်က္ေပးရန္";
+  }
+  if(document.getElementById("AddCart")!=null){
+    document.getElementById("AddCart").innerHTML="ျခင္းထဲသို႔ထည့္မည္";
+  }
+  if(document.getElementById("send")!=null){
+    document.getElementById("send").innerHTML=" ပို႔မည္";
+  }
+  if(document.getElementById("order")!=null){
+    document.getElementById("order").innerHTML="ဝယ္ယူမည္";
+  }
+  if(document.getElementById("send1")!=null){
+    document.getElementById("send1").innerHTML="ပို႔မည္";
+  }
+  if(document.getElementById("Description")!=null){
+    document.getElementById("Description").innerHTML="ကုန္ပစၥည္းအေၾကာင္း";
+  }
+  if(document.getElementById("Qualification ")!=null){
+    document.getElementById("Qualification ").innerHTML="ကုန္ပစၥည္းအရည္အေသြး";
+  }
+  if(document.getElementById("orderItem")!=null){
+    document.getElementById("orderItem").innerHTML="ကုန္ပစၥည္းမွာယူပါ";
+  }
+  if(document.getElementById("agricultural ")!=null){
+    document.getElementById("agricultural ").innerHTML=" လယ္ယာထြက္ကုန္မ်ား";
+  }
+  if(document.getElementById("fertilizers ")!=null){
+    document.getElementById("fertilizers ").innerHTML=" ဓာတ္ေျမျသဇာမ်ား";
+    
+  }
+  if(document.getElementById("equipments")!=null){
+    document.getElementById("equipments").innerHTML="လယ္ယာသံုးစက္ပစၥည္းမ်ား";
+  }
+  if(document.getElementById("p_name")!=null){
+    document.getElementById("p_name").innerHTML=" ကုန္ပစၥည္းအမည္";
+  }
+  if(document.getElementById("sellerAddr ")!=null){
+    document.getElementById("sellerAddr ").innerHTML="ေရာင္းသူလိပ္စာ";
+  }
+  if(document.getElementById("pickup")!=null){
+    document.getElementById("pickup").innerHTML="လာေရာက္ယူေဆာင္ရန္လိပ္စာ";
+  }
+  if(document.getElementById("deliDate")!=null){
+    document.getElementById("deliDate").innerHTML="ပို႔ေဆာင္လိုေသာရက္";
+  }
+  if(document.getElementById("add1")!=null){
+    document.getElementById("add1").innerHTML="ေပါင္းထည့္မည္";
+  }
+  if(document.getElementById("orderTime")!=null){
+    document.getElementById("orderTime").innerHTML="မွာယူေသာအခ်ိန္";
+  }
+  if(document.getElementById("quantity")!=null){
+    document.getElementById("quantity").innerHTML="အေရအတြက္";
+  }
+  if(document.getElementById("cost")!=null){
+    document.getElementById("cost").innerHTML=" က်သင့္ေငြ";
+  }
+  if(document.getElementById("pending")!=null){
+    document.getElementById("pending").innerHTML=" ေဆာင္ရြက္ဆဲ";
+  }
+  if(document.getElementById("delivered_order")!=null){
+    document.getElementById("delivered_order").innerHTML=" ပို႔ေဆာင္ၿပီးေသာေအာ္ဒါမ်ား";
+  }
+  if(document.getElementById("comment")!=null){
+    document.getElementById("comment").innerHTML=" ထင္ျမင္ခ်က္ေပးရန္";
+  }
+  if(document.getElementById("addProducts")!=null){
+    document.getElementById("addProducts").innerHTML=" ကုန္ပစၥည္းထပ္ထည့္ရန္";
+  }
+  if(document.getElementById("p_name1")!=null){
+    document.getElementById("p_name1").innerHTML=" ကုန္ပစၥည္းအမည္";
+  }
+  if(document.getElementById("Price")!=null){
+    document.getElementById("Price").innerHTML=" ေစ်ႏႈန္း";
+  }
+  if(document.getElementById("currency")!=null){
+    document.getElementById("currency").innerHTML=" ေငြေၾကး";
+  }
+  if(document.getElementById("dollar")!=null){
+    document.getElementById("dollar").innerHTML="ေဒၚလာ";
+  }
+  if(document.getElementById("kyat")!=null){
+    document.getElementById("kyat").innerHTML="က်ပ္";
+  }
+  if(document.getElementById("unit")!=null){
+    document.getElementById("unit").innerHTML="အတိုင္းအတာ";
+  }
+  if(document.getElementById("min_amount")!=null){
+    document.getElementById("min_amount").innerHTML="အနည္းဆံုးဝယ္ယူႏိုင္ေသာပမာဏ";
+  }
+  if(document.getElementById("max_amount")!=null){
+    document.getElementById("max_amount").innerHTML=" အမ်ားဆံုးဝယ္ယူႏိုင္ေသာပမာဏ";
+  }
+  if(document.getElementById("productDescri")!=null){
+    document.getElementById("productDescri").innerHTML="ကုန္ပစၥည္းေဖာ္ျပခ်က္";
+  }
+  if(document.getElementById("cate")!=null){
+    document.getElementById("cate").innerHTML=" အမ်ိဳးအစား";
+  }
+  if(document.getElementById("Choose ")!=null){
+    document.getElementById("Choose ").innerHTML=" ကုန္ပစၥည္းအမ်ိဳးအစားေရြးခ်ယ္ပါ";
+  }
+  if(document.getElementById("agriProduct ")!=null){
+    document.getElementById("agriProduct ").innerHTML="လယ္ယာထြက္ပစၥည္းမ်ား";
+  }
+  if(document.getElementById("fertilizers1")!=null){
+    document.getElementById("fertilizers1").innerHTML=" ဓာတ္ေျမျသဇာမ်ား";
+  }
+    if(document.getElementById("equipments1")!=null){
+    document.getElementById("equipments1").innerHTML="လယ္ယာသံုးစက္ပစၥည္းမ်ား";
+  }
+  if(document.getElementById("Choose1")!=null){
+    document.getElementById("Choose1").innerHTML="ကုန္ပစၥည္းအမ်ိဳးအစားေရြးခ်ယ္ပါ";
+  }
+  if(document.getElementById("Add")!=null){
+    document.getElementById("Add").innerHTML="ေပါင္းထည့္မည္";
+  }
+  if(document.getElementById("cancel")!=null){
+    document.getElementById("cancel").innerHTML="ပယ္ဖ်က္မည္";
+  }
+  if(document.getElementById("edit")!=null){
+    document.getElementById("edit").innerHTML=" ျပင္ဆင္မည္";
+  }
+  if(document.getElementById("p_name2")!=null){
+    document.getElementById("p_name2").innerHTML="ကုန္ပစၥည္းအမည္";
+     }
+ 
+  if(document.getElementById("Price1")!=null){
+    document.getElementById("Price1").innerHTML="ေစ်းႏႈန္း";
+    
+  }
+   if(document.getElementById("min_amount1")!=null){
+    document.getElementById("min_amount1").innerHTML="အနည္းဆံုးဝယ္ယူႏိုင္ေသာပမာဏ";
+  }
+   if(document.getElementById("max_amount1")!=null){
+    document.getElementById("max_amount1").innerHTML="အမ်ားဆံုးဝယ္ယူႏိုင္ေသာပမာဏ";
+  }
    
+   if(document.getElementById("productDescri1")!=null){
+    document.getElementById("productDescri1").innerHTML="ကုန္ပစၥည္းေဖာ္ျပခ်က္";
+  }
+  if(document.getElementById("delete")!=null){
+    document.getElementById("delete").innerHTML=" ဖ်က္မည္";
+  }
+  if(document.getElementById("agricultural2")!=null){
+    document.getElementById("agricultural2").innerHTML="လယ္ယာထြက္ပစၥည္းမ်ား";
+  }
+  if(document.getElementById("fertilizers2")!=null){
+    document.getElementById("fertilizers2").innerHTML=" ဓာတ္ေျမျသဇာမ်ား";
+  }
+  if(document.getElementById("equipments2")!=null){
+    document.getElementById("equipments2").innerHTML="လယ္ယာသံုးစက္ပစၥည္းမ်ား";
+  }
   }  
 </script> 
   <?php

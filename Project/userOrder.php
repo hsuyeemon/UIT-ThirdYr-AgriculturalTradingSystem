@@ -181,7 +181,7 @@ echo "</td>";
 ?>
 </td><td>
 <!--<form id="delivered" method="" action="">-->
-      <a class='btn btn-default modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" >Comment/Rate</a>
+      <a class='btn btn-default green modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" >Comment/Rate</a>
 
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
 </form--></td>
