@@ -10,7 +10,38 @@
       <link href="css/style.css" rel="stylesheet" /> 
 </head>
 <body>
+<?php 
+require ("dblink.php"); 
 
+ $product    = "SELECT * FROM product WHERE pid='1'";
+   $result = mysql_query($product) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+   $pname = $rows['pname'];
+   $price = $rows['price'];
+   $des = $rows['p_description'];
+ 
+  }
+  /*$cmt = "SELECT * FROM comment WHERE oid='1'";
+  $result = mysql_query($cmt) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+   $commentText = $rows['CMT_TEXT'];
+   $time = $rows['CMT_TIME'];
+   
+  }*/
+  $sell ='SELECT * FROM seller LEFT OUTER JOIN product USING(sid) WHERE pid = "1"  ';
+   $result = mysql_query($sell) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+      $seller = $rows['sname'];
+      $phone = $rows['s_phoneno'];
+    }
+    
+    $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid=1 AND c.oid=o.oid)";
+   $result = mysql_query($rating) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) { 
+      $rating = $rows['rating'];
+     
+    }
+?>
 <!---Navigation------------------------------------->
   
   <!-- Dropdown Structure -->
@@ -217,24 +248,28 @@
 
   <div class="row ">
     <div class="col s3 padding-normal">
-      <h3 id="productName">Fertilizer</h3>
-      <p class="details" id="productPrice">7000 Kyats per item</p>
-      <p class="details" id="productVendor"><a>Myanma Awba</a></p><br>
-        <a class="btn green white-text"  id="call">Call to Vendor<i class="material-icons right">phone</i></a>
+      <h3 id="productName" name="pname"><?php echo "$pname"; ?></h3>
+      <p class="details" id="productPrice" name="price"><?php echo "$price"; ?> Kyats per item</p>
+      <p class="details" id="productVendor"><a> <?php echo "$seller"; ?> </a></p><br>
+        
+        <a class="btn green white-text" href="tel:<?php echo $phone; ?>" id="call">Call to Vendor</a>
       
        
    </div>
-     <div class="carousel col s9 l7" style="margin:0px;height: 200px; ">
-    <a class="carousel-item l6" href="#one!"><img src="images/fertilizer.jpg" width="80%"></a>
-    <a class="carousel-item" href="#two!"><img src="images/fertilizer.jpg" width="80%"></a>
-    <a class="carousel-item" href="#three!"><img src="images/fertilizer.jpg" width="80%"></a>
-    <a class="carousel-item" href="#four!"><img src="images/fertilizer.jpg" width="80%"></a>
-    <a class="carousel-item" href="#five!"><img src="images/fertilizer.jpg" width="80%"></a>
+    <div class="carousel col s9" style="margin:0px;height: 200px; ">
+      <?php 
+       $result = mysql_query($product) or die(mysql_error());
+      $filearray=array();
+
+while($row = mysql_fetch_assoc($result)){ 
+
+    echo '<a class="carousel-item" href="#one!"><img src="images/' .$row['p_image']. '" ></a>';
+     } ?>
     </div>
       </div>
       
       <!--img src="images/fertilizer.jpg" height="200px" width="200px"-->
-    In this study, six local wholesalers were interviewed to determine the fertilizer marketing functions and marketing channels in Tatkon Township. Business sizes of local wholesalers were distinguished according to the annual sale amounts of fertilizers (Table 1). In the fertilizer market, Tatkon Township, local wholesalers were marketing only registered urea fertilizers, and additional selling of both registered and unregistered compound fertilizers. Based on the survey data, the amounts of total </p>
+   <p><?php echo "$des"; ?>  </p>
  <a class="btn green white-text modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
      <a class="btn green white-text modal-trigger">Add to Cart<i class="material-icons right">send</i></a>
 
@@ -306,7 +341,7 @@
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container four">
@@ -317,7 +352,7 @@
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                             <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container tree">
@@ -328,7 +363,7 @@
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container two">
@@ -339,7 +374,7 @@
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
         <div class="rating-bar-container one">
@@ -350,7 +385,7 @@
           <span class="bar">
                               </span>
           <span class="bar-number">
-                              1
+                              <?php echo $rating;?>
                               </span>
         </div>
       </div>
@@ -359,46 +394,29 @@
 </div>
   <!----------------Review Hightlight----------------->
   <section id="reviews" class="comments container">
-  <article class="comment">
+    <?php 
+    $cmt ="SELECT o.oid,b.bname,b.bid, c.* FROM buyer AS b, order_product AS o, comment AS c WHERE o.pid=1 AND b.bid=o.bid AND c.oid=o.oid";
+   $result = mysql_query($cmt) or die(mysql_error());
+     while ($rows  = mysql_fetch_array($result)) 
+     { 
+      $text = $rows['cmt_text'];
+      $time = $rows['cmt_time'];
+      $buyer= $rows['bname'];
+    echo  '<article class="comment">
     <a class="comment-img" href="#non">
       <img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50" />
     </a>
       
     <div class="comment-body">
       <div class="text">
-        <p>Hello, this is an example comment</p>
+        <p>' .$text. '</p>
       </div>
-      <p class="attribution">by <a href="#non">Joe Bloggs</a> at 2:20pm, 4th Dec 2012</p>
+      <p class="attribution">by <a href="#non"></a> <a href="#non">' .$buyer.'</a>' ." at " .$time. '</p>
     </div>
-  </article>
-  
-  <article class="comment">
-    <a class="comment-img" href="#non">
-    <img src="http://lorempixum.com/50/50/people/7" alt="" width="50" height="50">
-    </a>
-      
-    <div class="comment-body">
-      <div class="text">
-        <p>This is a much longer one that will go on for a few lines.</p>
-        <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
-      </div>
-    <p class="attribution">by <a href="#non">Joe Bloggs</a> at 2:23pm, 4th Dec 2012</p>
-    </div>
-  </article>
-    
-  <article class="comment">
-    <a class="comment-img" href="#non">
-    <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/572942_100000672487970_422966851_q.jpg" alt="" width="50" height="50">
-    </a>
-      
-    <div class="comment-body">
-      <div class="text">
-        <p>Originally from <a href="https://cssdeck.com/item/301/timeline-style-blog-comments#comment_289">cssdeck.com</a> this presentation has been updated 
-        to looks more precisely to the facebook timeline</p>
-      </div>
-    <p class="attribution">by <a href="https://www.facebook.com/luky.TikTek">Luky Vj</a> at 2:44pm, 14th Apr 2012</p>
-    </div>
-  </article>
+  </article>';
+    }
+    ?>
+
 </section>​
 
 

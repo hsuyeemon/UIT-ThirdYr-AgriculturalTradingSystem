@@ -106,6 +106,7 @@ echo $row['cost'];
 echo "</td>";
 
 echo "</tr>";
+echo "<button onclick='formpopup();'>confirm delivery<button>";
 }
 }
 else{
@@ -115,5 +116,16 @@ echo "</table>";
 
 ?>
 
+<form action="confirm_delivery.php" method="post" >
+      enter your orderid<input type="text" name="orderid">
+</form>
+
+<script type="text/javascript">
+      
+ 
+      function formpopup(){
+
+}
+      </script>
 </body>
 </html>

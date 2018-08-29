@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="1">
+	<div id="2">
+		<p id="3">hi</p>
+	</div>
+</div>
+<button type='button' onclick="getvalue();">order</button>
+
+<script type="text/javascript">
+	var divnum=0;
+	function getvalue(){
+	for (var i = 0; i <=document.getElementById('1').childElementCount; i++) {
+			if(document.getElementById('1').child.tagName=='div')
+				{  
+					divnum=divnum+1;
+				}
+
+
+	}
+	alert(divnum);
+}
+</script>
+</body>
+</html>
