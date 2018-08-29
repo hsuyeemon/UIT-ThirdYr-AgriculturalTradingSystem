@@ -25,7 +25,7 @@ displayPageHeader( "index" );
 <!--Products---------------------------------------------------------------->
   
 <div id="Products" class="padding-normal center-align">
- <h3 class="center-align header" style=" font-family: 'Acme';" id="our_products">Our products</h3>
+ <h3 class="center-align header" style=" font-family: 'Acme';" id="product_p">Our products</h3>
  <p class="center-align" style=" font-family: 'Acme';font-size: 22px;">Agricultural Products,Fertilizer, tools and equipments companies can also sell their products
 </p>
 
@@ -292,18 +292,18 @@ displayPageHeader( "index" );
         <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center green-text"><i class="material-icons">transfer_within_a_station</i></h2>
-            <h5 class="center">Logistic service </h5>
+            <h5 class="center" id="logistic">Logistic service </h5>
 
-            <p class="light" style="text-align: center;">Our system especially provided logistic service.By using our system,you don't  need worry about your products transportation.And ever no more warehouse charges.</p>
+            <p id="logicPara" class="light" style="text-align: center;">Our system especially provided logistic service.By using our system,you don't  need worry about your products transportation.And ever no more warehouse charges.</p>
           </div>
         </div>
 
         <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center green-text"><i class="material-icons">shop</i></h2>
-            <h5 class="center">MarketPlace</h5>
+            <h5 id="Market" class="center">MarketPlace</h5>
 
-            <p class="light">Our system is created to fullfill your needs.You can both sell and buy a wide variety of products within one place.
+            <p id="marketPara" class="light">Our system is created to fullfill your needs.You can both sell and buy a wide variety of products within one place.
 If you wish,you can consult with your customer.</p>
           </div>
         </div>

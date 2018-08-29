@@ -124,7 +124,7 @@ else{
 <a class="btn green white-text modal-trigger" 
  href="#myModal2" id="order">Order<i class="material-icons right">send</i></a>
  
- <a class="btn green white-text modal-trigger" href="cart.php?
+ <a class="btn green white-text modal-trigger" href="cartTest.php?
      pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
    </div>
 
