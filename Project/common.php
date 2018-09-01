@@ -304,13 +304,6 @@ function displayPageHeader( $pageTitle ) {
   </form>
   </div>
 </div>
-
-
-<!--script type="text/javascript">
-    $(document).ready(function(){
-  $('.modal').modal();
-    });
-</script-->
 <?php
 
 function displayPageFooter() {
@@ -334,7 +327,7 @@ function displayPageFooter() {
     //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.carousel').carousel();
-    $('.modal').modal();
+    //$('.modal').modal();
     $('select').formSelect();
     $('.slider').slider();
     $('.sidenav').sidenav();

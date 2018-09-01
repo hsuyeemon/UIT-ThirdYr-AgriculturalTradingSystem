@@ -1,3 +1,12 @@
+ <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+ 
+      <link rel="stylesheet" href="css/styleRating.css">
+      <style type="text/css">
+        .selected > i.fa {
+        color:#FF912C;
+        }
+
+      </style>
 <?php
 
 include( "common.php" );
@@ -240,82 +249,6 @@ if($result) {
   else mysql_errno();
 }
 ?>
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="padding: 48px;">
-
-      <h2 id="review">Review</h2>
-
-     <div class="row">
-    <div class="input-field col s12">
-      <!--If not used prefix class the icon overflow the textarea-->
-      <form method="post">
-      <i class="material-icons prefix">comment</i>
-      <label for="txta1">Comment</label>
-      <textarea id="txt" name="comment" class="materialize-textarea" maxlength="400" required="required"></textarea>
-      
-
-    </div>
-    
-  </div>
-      <!--Rating-->
-
-      <!-----Rating------------------------>
-  
-  <div class="hreview-aggregate">
-    <div class="row">
-      <div class="col s12 m6 l6">
-        <meta itemprop="worstRating" content="1">
-        <meta itemprop="bestRating" content="5">
-        <meta itemprop="reviewCount" content="1">
-        <div class="row">
-          <div class="score col s12">
-            5
-          </div>
-          <div class="rating-stars col s12">
-            <input type="radio" name="stars" id="star-null">
-            <input type="radio" name="stars" id="star-1" saving="1" data-start="1" checked="">
-            <input type="radio" name="stars" id="star-2" saving="2" data-start="2" checked="">
-            <input type="radio" name="stars" id="star-3" saving="3" data-start="3" checked="">
-            <input type="radio" name="stars" id="star-4" saving="4" data-start="4" checked="">
-            <input type="radio" name="stars" id="star-5" saving="5" checked="">
-            <section>
-              <label for="star-1">
-                <svg width="255" height="240" viewBox="0 0 51 48">
-                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                </svg>
-            </label>
-<label for="star-2">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-3">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-4">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-5">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-            </section>
-          </div>
-          
-      </div>
-    </div>
-     <input type="submit" class="btn btn-success right green white-text" name="commentSubmit" value="Submit" id="review"  onclick=""/></form>
-  </div>
-    </div>
-</div>
-</div>
-   
-  <br><hr>
 
 <?php
 $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid AND c.oid=o.oid AND c.cmt_time>=(SELECT MAX(c.cmt_time) FROM order_product AS o,comment AS c WHERE o.pid='$pid' AND c.oid=o.oid)";
@@ -331,58 +264,90 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
        <div class="container padding-normal">
 
         <h3 style="text-align: center;">Reviews & Rating</h3>
+        <?php 
+    $r ="SELECT * FROM  ratings where pid= $pid";
+   $result = mysqli_query($con,$r) or die(mysqli_error($con));
+   $rating  = mysqli_fetch_array($result);
+  ?>
   <div class="hreview-aggregate">
+          <div class="score" style="text-align: center;">
+            <h3>
+            <?php echo $rating['total'];?></h3>
+          </div>
+             
+          <?php
+       echo $rating['total'];
+   if($rating['total']>=5){
+    ?>
+    <script type="text/javascript">
+      $('#star5').addClass('selected');
+    </script>
+    <?php
+   }
+   else if($rating['total']>=4){
+   ?>
+   <script type="text/javascript">
+    alert("4");
+      $('#star4').addClass('selected');
+    </script>
+   <?php
+   }
+   else if($rating['total']>=3){
+   ?> 
+   <script type="text/javascript">
+      $('#star3').addClass('selected');
+    </script>
+
+   <?php
+   }
+   else if($rating['total']>=2){
+   ?> 
+   <script type="text/javascript">
+      $('#star2').addClass('selected');
+    </script>
+   <?php
+   }
+   else if($rating['total']>=1){
+   ?> 
+   <script type="text/javascript">
+      $('#star1').addClass('selected');
+    </script>
+    <?php
+  }
+    ?>
     <div class="row">
       <div class="col s3">
       </div>
+      
       <div class="col s6 m6 l6" >
-        <?php 
-    $r ="SELECT *,count(*) as cot FROM  order_product AS o, comment AS c WHERE o.pid=$pid AND c.oid=o.oid";
-   $result = mysqli_query($con,$r) or die(mysqli_error($con));
-   $rating  = mysqli_fetch_array($result);
-    ?>
-        <meta itemprop="worstRating" content="1">
-        <meta itemprop="bestRating" content="5">
-        <meta itemprop="reviewCount" content="1">
-        <div class="row" >
-          <div class="score" style="text-align: center;">
-            <?php echo $rating['rating'];?>
-          </div>
-          <div class="rating-stars col s12">
-            <input type="radio" name="stars" id="star-null">
-            <input type="radio" name="stars" value="1" id="star-1" saving="1" data-start="1" checked="">
-            <input type="radio" name="stars" value="2" id="star-2" saving="2" data-start="2" checked="">
-            <input type="radio" name="stars" value="3" id="star-3" saving="3" data-start="3" checked="">
-            <input type="radio" name="stars" value="4" id="star-4" saving="4" data-start="4" checked="">
-            <input type="radio" name="stars" value="5" id="star-5" saving="5" checked="">
-            <section>
-              <label for="star-1">
-                <svg width="255" height="240" viewBox="0 0 51 48">
-                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                </svg>
-            </label>
-<label for="star-2">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-3">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-4">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-<label for="star-5">
-                  <svg width="255" height="240" viewBox="0 0 51 48">
-                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"></path>
-                  </svg>
-              </label>
-            </section>
-          </div>
+        
+         <div class='rating-stars'>
+    <ul id='stars'>
+      <li id="star1" class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li id="star2" class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li id="star3" class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li id="star4" class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li id="star5" class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      </ul>
+      </div>
+       <div class="col s3">
+      </div>
+    </div>
+     
+      </div>
+
+       
+        
           <div class="reviews-stats col s12">
             <span class="reviewers-small"></span>
             <span class="reviews-num">
@@ -394,13 +359,8 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
    echo $rating1['cot'];?>
               </span> total
           </div>
-        </div>
+        </div>      
       </div>
-      <div class="col s3">
-      </div>
-      
-      </div>
-    </div>
  
   </div>
 
@@ -444,6 +404,13 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 </section>​
 
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+
   <script>
 
   function orderline(){
@@ -465,7 +432,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
  
       
 </script>
- 
+  <script  src="js/rating.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
   $('.modal').modal();
