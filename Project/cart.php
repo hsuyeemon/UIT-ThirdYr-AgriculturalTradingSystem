@@ -1,3 +1,29 @@
+<style>
+
+/*
+td {
+    border-bottom: : 1px solid #ddd;
+    padding: 8px;
+    max-width:  100px;
+    min-width: 20px;
+    height: 50px;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    max-width:  200px;
+    min-width: 10px;
+}
+</style>  
 <?php
 
 //include( "common.buyer.php" );
@@ -17,45 +43,22 @@ displayPageHeader( "Cart" );
     exit(); 
   } 
 
+//removing last ','
+  if(isset($_SESSION['pids'])){
+$pids=rtrim($_SESSION['pids'], ",");
 
-//$_SESSION['pid1Incart']=null;
-$token=null;
-$result=null;
-if(isset($_GET['pid'])){
-  if(isset($_SESSION['pid1Incart'])){
-$_SESSION['pid1Incart'].=$_GET['pid'].",";
-    }
-else
-  $_SESSION['pid1Incart']=$_GET['pid'].",";
-}
+//echo "SELECT * FROM product where pid IN ($pids)";
 
-if(isset($_SESSION['pid1Incart'])){
-$token = strtok($_SESSION['pid1Incart'], ",");
-}
-$i=0;
-while ($token !== false)
-{
-$pids[$i]=$token;
-$token = strtok(",");
-$i++;
-}
-if($pids[0]!=null){
+ $result = mysqli_query($con,"SELECT * FROM product where pid IN ($pids)");
+ //echo ' the error is :'.mysqli_error($con);
 
-
-
-$result = mysqli_query($con,"SELECT * FROM product where pid IN (".implode(',',$pids).")");
 
 $itid=1;
-$sum = 0;
-
 $num_rows = mysqli_num_rows($result);
-//echo "<span id='num_row'>$num_rows</span>";
-//echo "<span id='num_row'>$num_rows</span>";
+echo "<span id='num_row'>$num_rows</span>";
 ?>
 
 <div class="content padding-normal">
-  <button type="button" onclick="getvalue();">getvalue</button>
-
   <!---Items--------------------------->
   <h4  id="your_items">Your Items</h4>
 
@@ -65,338 +68,275 @@ $num_rows = mysqli_num_rows($result);
       <th>Product Name</th>
       <th>Quantity</th>
       <th>Price</th>
-      <th>Total</th><th></th>
+      <th>Total</th>
+      <th></th>
     </tr>
 
 <?php
 while($row = mysqli_fetch_array($result))
 {
-
- //echo "<input type='button' onclick='removediv($itid)' value='removeelement'>";
-  
-$image = $row['p_image'];
+$array = explode(',', $row['p_image']);
+    $image = $array[0];
 $imageData = base64_encode(file_get_contents($image));
 
 
 // Format the image SRC:  data:{mime};base64,{data};
 $src = 'data: '.mime_content_type($image).';base64,'.$imageData;
+echo "<tr id='div$itid' onchange='calculateTotal'>";
+echo "<input id='pid$itid' type='hidden' value=".$row['pid'].">";
+echo "<td id='pname$itid'><img src=".$src.'height="100px" width="100px"></td>';
+echo "<td id='pname$itid'>".$row['pname'].'</td>';
 ?>
+<td >
+<input id='quantity<?php echo $itid?>' type='number' value='1' onchange='calculate(<?php echo $itid?>)'>
+</td>
+<td id='price<?php echo $itid?>'><?php echo $row['price']?></td>
 
-    <tr id ='<?php echo "div$itid"; ?>'>
-      <td><img src='<?php echo $src;?>' height="100px" width="100px"></td>
-      <td id='<?php echo "pid$itid";?>'><?php echo $row['pname'];?></td>
-      <td  >
-        <div class="input-field">
-           <input id='<?php echo "quantity$itid";?>' class="validate" type="number" value="1" onchange='calculate(<?php echo $itid;?>)'>
 
-           <input type="hidden" id='<?php echo "price$itid";?>' value='<?php echo $row["price"];?>'>
 
-        <label for="quantity">Quantity</label>
-        </div></td>
-       <script type="text/javascript">
+<?php
+echo "<td id='total$itid'>".$row['price'].'</td>';
+echo "<td><button class='btn circle green' onclick='removediv($itid)'><i class='material-icons'>cancel</i></button></td>";
+
+$itid++;
+}
+?>
+<script type="text/javascript">
 
   function calculate(id) {
     // body...
+    //alert(id);
     
     var i = document.getElementById('<?php echo "quantity'+id+'";?>').value;
-    var price = document.getElementById('<?php echo "price'+id+'";?>').value;
-      document.getElementById('<?php echo "cost'+id+'";?>').innerHTML = i*price;
+    //alert(i);
+    var price = document.getElementById('<?php echo "price'+id+'";?>').innerHTML;
+    //alert(i*price);
+     document.getElementById('<?php echo "total'+id+'";?>').innerHTML= i*price;
     }
 
 </script>
 
-      <td id='<?php echo "cost$itid";?>'>
-        <?php echo $row['price']?>
-          
-        </td>
-
-      <td><a href="#" class="btn btn-default waves-effect  white
-         green-text" onclick='removediv(<?php echo $itid?>)'><i class="material-icons">delete</i></a> </td>
-       </tr>
-<?php
-$itid++;
-}
-?>
-
 </table>
 <?php
-echo $itid;
+//echo "haha".$itid;
 echo mysqli_error($con);
 ?>
 
       <!--Cash -------------->
-      <div class="col s2">
+      <div class="row">
+      <div class="col s6">
      	<label>Payment Method</label>
   		<select class="browser-default">
     	<option value="1" id="cash_on_delivery">Cash On Delivery</option>
-    	</select></div><br>
+    	</select></div>
+      <div class="col s6">
+        <label>Total cost</label>
+        <input type="text" id="totalCost" name="totalCost" >
+        <script type="text/javascript">
+          calc();
 
-              <!--button class="btn green darken-3" type="submit" name="action" 
-         onclick="show_alert()";>Order
-      <i class="material-icons right">send</i> </button-->
-      <a class="btn green white-text modal-trigger" href="#myModal" id="order">Order<i class="material-icons right">send</i></a>
-     
-     <div id="myModal" class="modal fade" role="dialog">
+          function calc(){
+            var sum = 0;
+            var a;
+            for(a=1;a<=<?php echo $itid?>;a++){
+            if(document.getElementById("total"+a)!=null){ 
+              sum =sum+parseInt(document.getElementById("total"+a).innerHTML, 10);  
+              }
+            }
+            document.getElementById("totalCost").value=sum;
+          }
+    
+ 
+</script>
+      </div>
+    </div><br>
+
+             <br>
+
+
+<button class="btn green white-text"  onclick="getvalue();" id="order" name="action">Order<i class="material-icons right">send</i>
+      </button>
+      <?php
+      }
+      else{
+      ?>
+      <br>
+    <table class="padding-normal">
+      <tr>
+      <th>There are no products in your cart</th>
+    </tr>
+    </table>
+    <?php
+  }
+  ?>
+<div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
-  <h4 id="order_your_items">Order Your Items</h4>
+     <?php
+        if (isset($_SESSION['bid'])) {
+          $buyerInfo = "SELECT * FROM buyer where bid='".$_SESSION['bid']."'";
+
+          $res3 = mysqli_query($con,$buyerInfo) or die(mysqli_error($con));
+
+          $n3 = mysqli_fetch_array($res3);
+
+          ?>
+
+  <h4>Order Your Items</h4>
+
+
+  <input type="hidden" name="phidden" value="">
   
   <!---Items--------------------------->
-    <form class="col" action="" method="" onsubmit=<form onsubmit="return show_alert();" onsubmit="vlaidOrder()">
-  
-    <div class="row">
+    <form id="order_form" class="col" action="" method="">
+          <input type="text" id="pidInput" name="pidInput" value="">
+          <input type="text" id="quantityInput" name="quantityInput">
+          <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
+          <input type="hidden" name="to_addr" value="<?php echo $n3['b_address'];?>">
+          <!--input type="hidden" name="from_addr" value="<?php echo $rows2['s_address'];?>"-->
+          <input type="hidden" name="price" value="<?php echo $price?>">
+
+           <div class="row">
+
+      <div class="input-field col s12 ">
+          <input id="phoneno" type="text" class="validate" value="<?php echo $n3['b_phoneno'];?>" required>
+          <label for="phoneno">PhoneNo</label>
+        </div>
         
-        <div class="input-field col s10 ">
-          <input id="phNo" type="text" class="validate" disabled="disabled" value="09448500348" required>
-          <label for="phNo">PhoneNo</label>
-        </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text"><i class="material-icons">edit</i></a>  
-        </div>
       </div>
       <div class="row">
         
-        <div class="input-field col s10 ">
-          <input id="email" type="email" class="validate" disabled="disabled" value="hsuyeemon@uit.edu.mm" required="required">
+        <div class="input-field col s12 ">
+          <input id="emailBuyer" type="email" class="validate" value="<?php echo $n3['b_email'];?>" required="required">
           <label for="email">Email</label>
         </div>
-        <div class="input-field col s2">
-          <a href="#" class="btn green white-text "><i class="material-icons">edit</i></a>  
-        </div>
+        
       </div>
      
     <div class="row">
       <div class="input-field col s4 ">
-          <input id="sAdd" type="text" class="validate" required="required">
-          <label for="sAdd">Street Address</label>
+          <input id="street" type="text" class="validate" required="required">
+          <label for="street">Street Address</label>
         </div>
 
         <div class="input-field col s4 ">
           <input id="city" type="text" class="validate" required="required">
           <label for="city">City</label>
         </div>
-        <div class="input-field col s4" required="required">
-    <select id="state">
-      <option value="1">Yangon</option>
-      <option value="2">Manadalay</option>
-      <option value="3">Magway</option>
-    </select>
-    <label for="state" id="state_region">State/Region</label>
-  </div>
-    </div>
+      <div class="input-field col s4 ">
+          <input id="region" type="text" class="validate" required="required">
+          <label for="Region">Region</label>
+        </div>
+      </div>
+
     <div class="row">
-      <input id="date" type="text" class="datepicker">
+      <input id="datepicker" name="expect_delivery_date" type="text">
       <label for="date" id="date_label">Pick the preferred date</label>
     </div>
      <div class="row">
-        <button class="modal-close btn green white-text" type="submit" name="action"
-         onclick="show_alert()";>Confirm Order
+    
+      <button class="btn green white-text" name="order1" onclick="orderline()">Confirm Order
       <i class="material-icons right">send</i>
       </button>
-      <button class="modal-close btn green white-text" type="submit" name="action">Cancel<i class="material-icons right">cancel</i>
+      <button class="modal-close btn green white-text"  name="action">Cancel<i class="material-icons right">cancel</i>
       </button>
 
       </div>
-    </form>
+      
 
-   </div>
+        
+        
+    </form>
+    <?php
+
+  }
+
+      
+        else{
+          ?>
+         <h4>Please Login first</h4>
+         <?php
+        }
+        ?>
+
+    <!--div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div--></div>
 
     </div>
-
-
-</div></div></div>
-<?php
+<!--button type='button' onclick="getvalue();">order</button-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  //getvalue();
+  if(document.getElementById('num_row')!=null){
+var divnum=document.getElementById('num_row').innerHTML;
 }
-?>
-<!--button type="button" onclick="getvalue();">getvalue</button-->
-<script type="text/javascript">
-alert("calculate");
-           // var cost = document.getElementById('<?php echo "quantity$itid";?>//').innerHTML;
-             function calculate(){
-              alert("calculate");
-              var quantity=document.getElementById('<?php echo "quantity$itid";
-               ?>').innerHTML;
-              var cost = (int)quantity*(int)cost;
-              alert(cost);
-             }
-             document.write('<td id=>'+cost+'</td>');
-                        </script>
-
-
-<script type="text/javascript">
-//alert("script");
-  var cart=new Array();
- // function getvalue(){
-    //alert("getvalue");
-  var totalrow=document.getElementById('num_row').innerHTML;
-  var i=0;
-    var getpid='pid'+(i+1);
-    var getprice='price'+(i+1);
-    alert(document.getElementById(getpid).innerHTML);
-  //  cart.push(document.getElementById(getprice).innerHTML);
-    
-  
-  //cart.toString();
-   // alert(cart);
-  //}
-  
-
-   // var cart= ["Apple",2.00,2,"orange",2.00,2,"pineapple",2.00,2,"Apple",2.00,2] ;
-  //var jsonString = JSON.stringify(cart);
-
-
-//  $.ajax({
-//   url: "receiveFromJS.php",
-//   type: "POST",
-//   data:{data : jsonString}
-
-// }).done(function(data) {
-//      console.log(data);
-// });
-//  alert(value);
-// }
-</script>
-
-
-<script type="text/javascript">
-
-  var cart=new Array();
-  function getvalue(){
-  var totalrow=document.getElementById('num_row').innerHTML;
-  var i=0;
-    var getpid='pid'+(i+1);
-    var getprice='price'+(i+1);
-    alert(document.getElementById(getpid).innerHTML);
-  //  cart.push(document.getElementById(getprice).innerHTML);
-    
-  
-  //cart.toString();
-   // alert(cart);
-  }
-  
-</script>
-
-
-<script type="text/javascript">
-  
-  var cart = new Array();
+  var pidCart=new Array();
+  var quantityCart=new Array();
   function removediv(divid){
-    var elementName ="div".concat(divid);
-    document.getElementById(elementName).remove();
-      }
+    document.getElementById('div'.concat(divid)).remove();
+    pidCart.splice(divid-1, divid-1);
+    quantityCart.splice(divid-1, divid-1);
+    calc();
 
-     /*    function getValue(){
-        var totalrow = document.getElementByTagName("div").length;
-        var i=0;
-        var getpid = 'pid'+(i+1);
-        var getprice = 'price'+(i+1);
-     alert(document.getElementById(getpid).innerHTML);
-      }
-
-      for (i =1; i <=totalrow; i++) {
-  if(document.getElementById('div'.concat(i)).innerHTML==null)
-  {
-    continue;
   }
 
-    cart.push(document.getElementById('pid'.concat(i)).innerHTML);
-    cart.push(document.getElementById('pname'.concat(i)).innerHTML);
-    cart.push(document.getElementById('price'.concat(i)).innerHTML);
+  function getvalue(){
+    pidCart = [];
+    quantityCart = [];
+  //alert("divnum"+divnum);
 
-  
+  for (i =1; i <=divnum; i++) {
+
+    if(document.getElementById('div'.concat(i))!=null
+      && document.getElementById('div'.concat(i))!=="undefined"){
+   //var myEle = document.getElementById('div'.concat(i));
+   pidCart.push(document.getElementById('pid'.concat(i)).value);
+    quantityCart.push(document.getElementById('quantity'.concat(i)).value);
+
+     console.log(pidCart.toString());
+     console.log(quantityCart.toString());
+  }  
+  }
+  //pidCart.toString();
+  //quantityCart.toString();
+   //alert("quantity"+quantityCart+"pid"+pidCart);
+ 
+   document.getElementById('pidInput').value=pidCart.join();
+   document.getElementById('quantityInput').value=quantityCart.join();
+   
+   
+    $('#myModal2').modal('open'); 
     
-  }
-  //cart.toString();
-   //alert(cart);
-   var jsonString = JSON.stringify(cart);
-
-
- $.ajax({
-  url: "receiveFromJS.php",
-  type: "POST",
-  data:{data : jsonString}
-
-}).done(function(data) {
-     console.log(data);
-});
-
-}
-*/
-function getvalue(){
-    alert(document.getElementById('div'));
-  var totalrow=document.getElementsByTagName('div').length;
-  alert(totalrow);
-
-for (i =1; i <=totalrow; i++) {
-  if(document.getElementById('div'.concat(i)).innerHTML==null)
-  {
-    continue;
-  }
-
-
-    cart.push(document.getElementById('pid'.concat(i)).innerHTML);
-    cart.push(document.getElementById('pname'.concat(i)).innerHTML);
-    cart.push(document.getElementById('price'.concat(i)).innerHTML);
-
-     // alert(cart.toString());
-    
-  }
-  cart.toString();
-  alert(cart);
-   var jsonString = JSON.stringify(cart);
-
-
- $.ajax({
-  url: "receiveFromJS.php",
-  type: "POST",
-  data:{data : jsonString}
-
-}).done(function(data) {
-     console.log(data);
-});
 }
 </script>
+ <script>
+
+  function orderline(){
+   
+
+   var a = confirm("Are you sure to confirm the order?");
+    if(a==true){
+    var form = document.getElementById('order_form');
+    form.method="post";
+    form.action="order.php";
+    
+    form.submit();
+  }
+  }
+ 
 
 
-
-                <script type="text/javascript">
-                  
-                  function vlaidOrder()
-                  {
-                  var phNo=document.getElementById("phNo").value;
-                  var sAdd=document.getElementById("sAdd").value;
-                  var city=document.getElementById("city").value;
-
-                  var phNoReg=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-                  var sAddReg=/^[A-Za-z\s]+$/;
-
-                  var cityReg=/^[A-Za-z\s]+$/;
-
-                  if (phNo.match(phNoReg))
-                  {
-                    if (sAdd.match(sAddReg))
-                    {
-                       if (city.match(cityReg))
-                       {
-                         alert("Success");
-                         return false;
-                        
-                       }else{
-                        alert ("Invalid city");
-                        return false;
-                       }
-                    }else{
-                      alert ("Invalid Street Address");
-                      return false;
-                    }
-
-                  }else{
-                    alert ("Invalid Phone Number");
-                    return false;
-                  }
-                }
-
-                </script>
-
+  $(document).ready(function(){
+  $('.modal').modal();
+    });
+ $( "#datepicker" ).datepicker();
+    $.datepicker.setDefaults({
+     dateFormat: 'yy-mm-dd'
+});
+</script>
+</script>
 <?php
 displayPageFooter();
 ?>

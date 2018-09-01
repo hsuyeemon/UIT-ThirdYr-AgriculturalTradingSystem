@@ -6,10 +6,12 @@
 
 include 'dblink.php';
   $date = date('Y-m-d h:i:s', time());
- // echo $date;
+ 
 
-  echo "<script>alert(".$date.")</script>";
-  $ordernum = "SELECT    *
+  if(isset($_POST['quantityInput'])){
+  $quantityArray = explode(',',$_POST['quantityInput']);
+  $pidArray = explode(',',$_POST['pidInput']);
+   $ordernum = "SELECT    *
 FROM      order_product
 ORDER BY  oid DESC
 LIMIT     1;";
@@ -18,12 +20,6 @@ LIMIT     1;";
 
    $r=mysqli_fetch_array($result);
   $oid =$r['oid']+1;
-  $quantityArray = explode(',',$_POST['quantityInput']);
-
-
- 
-
-  $pidArray = explode(',',$_POST['pidInput']);
   if(sizeof($pidArray)>0){
 	for($i=0;$i<sizeof($pidArray);$i++){
 
@@ -36,6 +32,15 @@ LIMIT     1;";
 		$orderQuery = "INSERT INTO order_product (oid,order_time,from_addr,to_addr,quantity,cost,expect_delivery_date,pid,bid,delivered) VALUES ($oid,'".$date."','".$from_addr."','".$_POST['to_addr']."',".$quantityArray[$i].",".$cost.",'".$_POST['expect_delivery_date']."',".$pidArray[$i].",".$_POST['bid'].",0);";
 		$res1 = mysqli_query($con,$orderQuery) or die(mysqli_error($con));
 	}
+}
+}
+else{
+ $orderQuery = "INSERT INTO order_product (order_time,from_addr,to_addr,quantity,cost,expect_delivery_date,pid,bid,delivered) VALUES ('".$date."','".$_POST['from_addr']."','".$_POST['to_addr']."',1,".$_POST['price'].",'".$_POST['expect_delivery_date']."',".$_POST['pid'].",".$_SESSION['bid'].",0);";
+
+ //echo $orderQuery;
+
+ $res1 = mysqli_query($con,$orderQuery) or die(mysqli_error($con));
+
 }
 //unset($_SESSION['pids']);
 //session_write_close();

@@ -127,7 +127,7 @@ function displayPageHeader( $pageTitle ) {
 ?>
  
   <!--Login Form------------>
-  <div id="login" class="modal fade" role="dialog">
+  <div id="login" class="modal simple fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
       <h3>Login To Your Account</h3>
     <form action="login.php" method="post" class="col s12">
@@ -179,7 +179,7 @@ function displayPageHeader( $pageTitle ) {
 
  
   <!---Sign Up-------------------->
- <div id="signup" class="modal fade large" role="dialog">
+ <div id="signup" class="modal simple fade large" role="dialog">
 
     <div class="modal-dialog" style="padding: 48px;">
       <h3 id="textid">Create an Account</h3>
@@ -304,6 +304,7 @@ function displayPageHeader( $pageTitle ) {
   </form>
   </div>
 </div>
+
 <?php
 
 function displayPageFooter() {
@@ -322,19 +323,39 @@ function displayPageFooter() {
 
 <!------------Script in Index.html--------------->
   <script>
+       
+  $('.modal.m1').modal({
+    ready: function(modal, trigger) {
+        
+        modal.find('input[name="pname"]').val(trigger.data('pname'))
+        modal.find('input[name="price"]').val(trigger.data('price'))
+        modal.find('input[name="currency"]').val(trigger.data('currency'))
+        modal.find('input[name="description"]').val(trigger.data('description'))
+        modal.find('input[name="unit"]').val(trigger.data('unit'))
+        modal.find('input[name="max"]').val(trigger.data('max'))
+        modal.find('input[name="min"]').val(trigger.data('min'))
+        modal.find('input[name="qualification"]').val(trigger.data('qualification'))
+        modal.find('input[name="category"]').val(trigger.data('category'))
+        modal.find('input[name="prenom"]').val(trigger.data('prenom'))
+    }
+});
 
     $(document).ready(function(){
     //drop dowm
     $(".dropdown-trigger").dropdown({ hover: true });
     $('.carousel').carousel();
-    //$('.modal').modal();
+    $('.modal.simple').modal();
+    $('.modal.addProducts').modal();
     $('select').formSelect();
     $('.slider').slider();
     $('.sidenav').sidenav();
     $('.fixed-action-btn').floatingActionButton();
-     $('.datepicker').datepicker();
+    // $('.datepicker').datepicker();
+   
+
 
     });
+
 
     
 
@@ -412,33 +433,31 @@ $lan_flag=$_SESSION['lan_flag'];
   language();
   function language(){
 
+    //all pages
+    if(document.getElementById('language')!=null){
     document.getElementById('language').innerHTML="ဘာသာစကား";
-    document.getElementById("home1").innerHTML="ပင္မ စာမ်က္ႏွာ";
-    document.getElementById("about_us").innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    }
+
+    if(document.getElementById("home1")!=null){
+      document.getElementById("home1").innerHTML="ပင္မ စာမ်က္ႏွာ";
+    }
+    
+    if(document.getElementById('about_us')!=null){
+    document.getElementById('about_us').innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    }
+  
+    if(document.getElementById("contact_us")!=null){
     document.getElementById("contact_us").innerHTML="ဆက္သြယ္ရန္";
-    document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+    }
     
-   document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
-     //document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
+    if(document.getElementById("products")!=null){
+      document.getElementById("products").innerHTML="ကုန္ပစၥည္း မ်ား ";
+    }
     
-
-    if(document.getElementById("username")!=null){
-     document.getElementById("username").innerHTML="အမည္"; 
+    //index for normal
+    if(document.getElementById("product_dropdown")!=null){
+       document.getElementById("product_dropdown").innerHTML="ကုန္ပစၥည္း မ်ား";
     }
-    if(document.getElementById("my_order")!=null){
-     document.getElementById("my_order").innerHTML="ဝယ္ယူထားေသာပစၥည္းမ်ား"; 
-    }
-    if(document.getElementById("cart")!=null){
-     document.getElementById("cart").innerHTML="မွာယူရန္စာရင္း"; 
-    }
-
-    if(document.getElementById("switch_account")!=null){
-     document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္"; 
-    }
-    if(document.getElementById("logout")!=null){
-     document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္"; 
-    }
-
 
     if(document.getElementById("sign_up")!=null){
      document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္"; 
@@ -452,15 +471,10 @@ $lan_flag=$_SESSION['lan_flag'];
      document.getElementById("login_dropdown").innerHTML= "အေကာင့္ ဝင္ရန္ "; 
     }
     
-    if(document.getElementById("my_product")!=null){
-     document.getElementById("my_product").innerHTML= "ေၾကာ္ျငာထားေသာပစၥည္းမ်ား"; 
-    }
-
-if(document.getElementById("textid")!=null){
+    if(document.getElementById("textid")!=null){
      document.getElementById("textid").innerHTML="အေကာင့္အသစ္ဖြင့္ရန္"; 
     }
-
-  if(document.getElementById("myanName")!=null){
+    if(document.getElementById("myanName")!=null){
      document.getElementById("myanName").innerHTML="အမည္"; 
     }
    if(document.getElementById("tele")!=null){
@@ -474,7 +488,7 @@ if(document.getElementById("textid")!=null){
     }
     
      if(document.getElementById("seller")!=null){
-     document.getElementById("seller").innerHTML="ေရာင္းသူ"; 
+     document.getElementById("seller").innerHTML="ေရာင္းသူ :"; 
     }
  if(document.getElementById("seller1")!=null){
      document.getElementById("seller1").innerHTML="ေရာင္းသူ"; 
@@ -526,6 +540,38 @@ if(document.getElementById("product_p")!=null){
     if(document.getElementById("login2")!=null){
     document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
   }
+    
+    //index for buyer and seller
+    if(document.getElementById("username")!=null){
+     document.getElementById("username").innerHTML="အသံုးျပဳသူ"; 
+    }
+
+    if(document.getElementById("switch_account")!=null){
+     document.getElementById("switch_account").innerHTML="အေကာင့္ခ်ိန္းရန္"; 
+    }
+    if(document.getElementById("logout")!=null){
+     document.getElementById("logout").innerHTML="အေကာင့္ထြက္ရန္"; 
+    }
+
+
+    //buyer
+    if(document.getElementById("my_order")!=null){
+     document.getElementById("my_order").innerHTML="ဝယ္ယူထားေသာပစၥည္းမ်ား"; 
+    }
+    if(document.getElementById("cart")!=null){
+     document.getElementById("cart").innerHTML="မွာယူရန္စာရင္း"; 
+    }
+
+    
+    //seller
+    if(document.getElementById("my_product")!=null){
+     document.getElementById("my_product").innerHTML= "ေၾကာ္ျငာထားေသာပစၥည္းမ်ား"; 
+    }
+
+
+
+  
+  //index.php
   if(document.getElementById("AU")!=null){
     document.getElementById("AU").style.fontSize="18px";
     document.getElementById("AU").style.lineHeight="2";
@@ -549,17 +595,20 @@ if(document.getElementById("product_p")!=null){
     document.getElementById("logicPara").innerHTML="ကြၽႏု္ပ္တို႔၏အဓိကလုပ္ငန္းမွာေထာက္ပံ့ပို႔ေဆာင္ေရးဝန္ေဆာင္မႈျဖစ္ပါသည္။";
   }
 
+ if(document.getElementById("agricultural1")!=null){
+    document.getElementById("agricultural1").innerHTML=" လယ္ယာထြက္ကုန္မ်ား";
+  }
 if(document.getElementById("Market")!=null){
     document.getElementById("Market").innerHTML=" လယ္ယာလုပ္ငန္းေစ်းကြက္";
   }
   if(document.getElementById("marketPara")!=null){
     document.getElementById("marketPara").innerHTML="";
   }
-  if(document.getElementById("call")!=null){
-    document.getElementById("call").innerHTML=" ထင္ျမင္ခ်က္ေပးရန္";
+  if(document.getElementById("phoneno")!=null){
+    document.getElementById("phoneno").innerHTML="ဖုန္းနံပါတ္ :";
   }
-  if(document.getElementById("AddCart")!=null){
-    document.getElementById("AddCart").innerHTML="ျခင္းထဲသို႔ထည့္မည္";
+  if(document.getElementById("addcart")!=null){
+    document.getElementById("addcart").innerHTML="ျခင္းထဲသို႔ထည့္မည္";
   }
   if(document.getElementById("send")!=null){
     document.getElementById("send").innerHTML=" ပို႔မည္";
@@ -571,19 +620,17 @@ if(document.getElementById("Market")!=null){
     document.getElementById("send1").innerHTML="ပို႔မည္";
   }
   if(document.getElementById("Description")!=null){
-    document.getElementById("Description").innerHTML="ကုန္ပစၥည္းအေၾကာင္း";
+    document.getElementById("Description").innerHTML="ကုန္ပစၥည္းအေၾကာင္း :";
   }
-  if(document.getElementById("Qualification ")!=null){
-    document.getElementById("Qualification ").innerHTML="ကုန္ပစၥည္းအရည္အေသြး";
+  if(document.getElementById("qualification")!=null){
+    document.getElementById("qualification").innerHTML="ကုန္ပစၥည္းအရည္အေသြး :";
   }
   if(document.getElementById("orderItem")!=null){
     document.getElementById("orderItem").innerHTML="ကုန္ပစၥည္းမွာယူပါ";
   }
-  if(document.getElementById("agricultural ")!=null){
-    document.getElementById("agricultural ").innerHTML=" လယ္ယာထြက္ကုန္မ်ား";
-  }
-  if(document.getElementById("fertilizers ")!=null){
-    document.getElementById("fertilizers ").innerHTML=" ဓာတ္ေျမျသဇာမ်ား";
+ 
+  if(document.getElementById("fertilizers")!=null){
+    document.getElementById("fertilizers").innerHTML=" ဓာတ္ေျမျသဇာမ်ား";
     
   }
   if(document.getElementById("equipments")!=null){
@@ -628,8 +675,8 @@ if(document.getElementById("Market")!=null){
   if(document.getElementById("p_name1")!=null){
     document.getElementById("p_name1").innerHTML=" ကုန္ပစၥည္းအမည္";
   }
-  if(document.getElementById("Price")!=null){
-    document.getElementById("Price").innerHTML=" ေစ်ႏႈန္း";
+  if(document.getElementById("price")!=null){
+    document.getElementById("price").innerHTML=" ေစ်ႏႈန္း :";
   }
   if(document.getElementById("currency")!=null){
     document.getElementById("currency").innerHTML=" ေငြေၾကး";
@@ -655,8 +702,8 @@ if(document.getElementById("Market")!=null){
   if(document.getElementById("cate")!=null){
     document.getElementById("cate").innerHTML=" အမ်ိဳးအစား";
   }
-  if(document.getElementById("Choose ")!=null){
-    document.getElementById("Choose ").innerHTML=" ကုန္ပစၥည္းအမ်ိဳးအစားေရြးခ်ယ္ပါ";
+  if(document.getElementById("Choose")!=null){
+    document.getElementById("Choose").innerHTML=" ကုန္ပစၥည္းအမ်ိဳးအစားေရြးခ်ယ္ပါ";
   }
   if(document.getElementById("agriProduct ")!=null){
     document.getElementById("agriProduct ").innerHTML="လယ္ယာထြက္ပစၥည္းမ်ား";

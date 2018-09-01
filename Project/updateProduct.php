@@ -44,3 +44,10 @@ else{
 }
 
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
+
+   
+</script>

@@ -21,26 +21,6 @@ height:300px !important}
 </style-->
 
 <?php 
-//global $pid;
-
-if(isset($_POST['order1'])){
-
-  $date = date('Y-m-d h:i:s', time());
- // echo $date;
-
-  echo "<script>alert(".$date.")</script>";
-
- $orderQuery = "INSERT INTO order_product (order_time,from_addr,to_addr,quantity,cost,expect_delivery_date,pid,bid,delivered) VALUES ('".$date."','".$_POST['from_addr']."','".$_POST['to_addr']."',1,".$_POST['price'].",'".$_POST['expect_delivery_date']."',".$_GET['productId'].",".$_SESSION['bid'].",0);";
-
- //echo $orderQuery;
-
- $res1 = mysqli_query($con,$orderQuery) or die(mysqli_error($con));
-
-echo "<script>alert('Your have ordered your item')</script>";
-  
-
-
-}
 if(isset($_GET['productId'])){
 $pid = $_GET['productId'];
 //$sid = $_SESSION['sid'];
@@ -82,14 +62,16 @@ $phone = $rows2['s_phoneno'];
       
       <p class="details" id="productPrice" name="price">
         <img src = "images/price.svg">
-      <?php echo "Price :".$price ." ". $currency ." per ". $unit?></p>
+        <span id="price">Price :</span>
+      <?php echo $price ." ". $currency ." per ". $unit?></p>
 
-      <p class="details" id="productVendor"><i class="material-icons left">account_circle</i> <?php echo "Seller :$seller"; ?> </a></p>
-      <p class="details" id = "phone"><i class="material-icons left">call</i>
-        Phone :<?php echo "<a href='tel:".$phone."' id='call'>".$phone."</a>"?></p>
+      <p class="details" id="productVendor"><i class="material-icons left">account_circle</i><span id="seller">Seller :</span><?php echo "$seller"; ?> </a></p>
+      <p class="details"><i class="material-icons left">call</i>
+       <span id="phoneno">Phone :</span><?php echo "<a href='tel:".$phone."' >".$phone."</a>"?></p>
         
-        <p class="details"><i class="material-icons left">assignment</i>Description :<?php echo $des;?> </p>
-<p class="details"><i class="material-icons left">stars</i><?php echo "Qualification : ".$Qualification;?> </p>
+        <p class="details"><i class="material-icons left">assignment</i><span id="Description">Description :</span><?php echo $des;?> </p>
+
+<p class="details"><i class="material-icons left">stars</i><span id="qualification">Qualification :</span><?php echo $Qualification;?></p>
 
     
     </div>
@@ -133,8 +115,9 @@ else{
 <a class="btn green white-text modal-trigger" 
  href="#myModal2" id="order">Order<i class="material-icons right">send</i></a>
  
- <a class="btn green white-text modal-trigger" href="cartTest.php?
-     pid=<?php echo $pid;?>">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
+ <a class="btn green white-text modal-trigger" href="cart.php?
+
+     pid=<?php echo $pid;?>" id="addcart">Add to Cart<i class="material-icons right">add_shopping_cart</i></a>
    </div>
 
  <div id="myModal2" class="modal fade" role="dialog">
@@ -153,9 +136,6 @@ else{
   
   <!---Items--------------------------->
     <form id="order_Form" class="col" action="" method="">
-            
-
-   
           <input type="hidden" name="pid" value="<?php echo $pid;?>">
           <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
           <input type="hidden" name="to_addr" value="<?php echo $n3['b_address'];?>">
@@ -195,8 +175,8 @@ else{
         </div>
       </div>
 
-    <div class="row">
-      <input id="date" name="expect_delivery_date" type="text" class="datepicker">
+       <div class="row">
+      <input id="datepicker" name="expect_delivery_date" type="text">
       <label for="date" id="date_label">Pick the preferred date</label>
     </div>
      <div class="row">
@@ -227,6 +207,7 @@ else{
     </div--></div>
 
     </div>
+
 
 
   <br><br>
@@ -287,7 +268,6 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
    else if($rating['total']>=4){
    ?>
    <script type="text/javascript">
-    alert("4");
       $('#star4').addClass('selected');
     </script>
    <?php
@@ -405,11 +385,17 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 </section>​
 
 
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script type="text/javascript">
 
+ // $(document).ready(function(){
+  $( "#datepicker" ).datepicker();
+    $.datepicker.setDefaults({
+     dateFormat: 'yy-mm-dd'
+  });
+ //   });
+ 
+</script>
 
   <script>
 
@@ -421,22 +407,21 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
      // alert(a);
     var form = document.getElementById('order_Form');
     form.method="post";
-    form.action="productDetails.php?productId="+<?php echo $pid;?>;
-    
+    form.action="order.php";
     form.submit();
-  }
-  else{
-    alert("no");
   }
   }
  
       
 </script>
+
   <script  src="js/rating.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
   $('.modal').modal();
     });
+
+   
 </script>
  <?php
 }

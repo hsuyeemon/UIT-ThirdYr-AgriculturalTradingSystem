@@ -104,7 +104,7 @@ else {echo mysql_error();}
 
     ?>
 
-    <div id="addProducts" class="modal fade" role="dialog">
+    <div id="addProducts" class="modal addProducts fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Add your Products</h3>
  <div class="row">
@@ -249,16 +249,195 @@ else {echo mysql_error();}
   </div>
 </div>
 
+
+<!--deleteProductsForm-->
+
+
+   <?php 
+   if(isset($_POST['delete'])){
+    echo "<script> alert('delete');</script>";
+  $productid=$_POST['productId'];
+$sql2 = "DELETE FROM product WHERE pid='$productid'";
+       $result2=mysqli_query($con,$sql2);
+       }
+else {echo mysqli_error($con);
+}
+    
+    ?>
+
+
+<?php
+
+static $jssor = 0;
+$sid = $_SESSION['sid'];
+
+            $sliderCount= "select count(distinct(category))as ct from product where sid='$sid' and status=1";
+      
+            $result = mysqli_query ($con,$sliderCount);          
+           
+            $r=mysqli_fetch_array($result);
+            $count = $r['ct'];
+
+function showProducts($category){
+
+  global $jssor;
+  $length = strlen($category);
+  $length=$length+2;
+
+ include("dblink.php");
+  $sid = $_SESSION['sid'];
+//$sid=1;
+
+  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid='$sid' and status=1;";
+      
+  $ret = mysqli_query ($con,$query);          
+  $noRows=mysqli_num_rows($ret);
+  //echo $noRows;
+  if($noRows>0){
+  for($i=0;$i<$noRows;$i++){
+  
+  $jssor +=1;
+  $row=mysqli_fetch_array($ret); 
+  //echo $jssor;
+
+  echo "
+  <div class='card padding-normal'>
+    <div>
+      <h4>".$row['subCatagory']."</h4>
+      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:280px;overflow:hidden;visibility:hidden;'>
+        
+        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:300px;overflow:hidden;padding: 8px;'>";
+
+        $subCatagory = $row['subCatagory'];
+        
+  $query2 = "select * from product where category like '$category%$subCatagory' and sid='$sid' and status=1";
+
+  $ret2 = mysqli_query ($con,$query2);          
+  $noRows2=mysqli_num_rows($ret2);
+
+  for($j=0;$j<$noRows2;$j++){
+    $row2=mysqli_fetch_array($ret2); 
+      $array = explode(',', $row2["p_image"]);
+    $url = $array[0];
+        $imageData = base64_encode(file_get_contents($url));
+
+    // Format the image SRC:  data:{mime};base64,{data};
+    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+      $pid=$row2["pid"];
+
+    ?>
+
+        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
+          <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
+            <div class='card-image'>
+            <img src='<?php echo "$src";?>'height='160px' width='160px'>
+            </div>
+          </a>
+          <div class='card-content'>
+          <span class='card-title activator white-text text-darken-4'  style=" white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis">
+            <?php echo $row2['pname']; ?>
+          </span>
+          <div class='row'>
+             <div class='col s6'>
+
+              <?php
+              $products = "SELECT * FROM PRODUCT where pid=$pid";
+              $productsQuery = mysqli_query($con,$products);
+$num_rows = mysqli_num_rows($productsQuery);
+while($pidrow=mysqli_fetch_array($productsQuery)){
+
+?>
+
+           
+           <a  id="test" data-target="editProducts" href="#editProducts" class='btn white green-text modal-trigger'
+         data-pname="<?php echo $pidrow['pname'];?>" 
+         data-price="<?php echo $pidrow['price'];?>"
+         data-unit="<?php echo $pidrow['UNIT'];?>"
+         data-currency="<?php echo $pidrow['currency'];?>"
+         data-description="<?php echo $pidrow['p_description'];?>"
+         data-min="<?php echo $pidrow['min_amount'];?>"
+         data-max="<?php echo $pidrow['max_amount'];?>"
+         data-qualification="<?php echo $pidrow['qualification'];?>"
+         data-category="<?php echo $pidrow['category'];?>"
+
+        >Edit<i class='material-icons right'>edit</i></a>
+
+        <?php
+      }
+      ?>
+          </div>
  
-  <!--editProductsForm-->
-<div id="editProducts" class="modal fade" role="dialog">
+    
+          
+          <div class='col s6'>
+
+          <!--input type="hidden" name="productId" 
+            value="<?php echo $row2['pid'];?>"-->
+          <div class='col s6'>
+            <form id="deleteF" action="userProducts.php" method="post">
+          <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
+          <button onclick="conf()" name="delete" class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
+        </form>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <script>
+          function smt(){
+            $_SESSION['tempId']=$row2['pid'];
+          }
+        function conf(){
+          var del=confirm("Are you sure you want to delete this record?");
+          if(del == true){
+            var de=document.getElementById("deleteF");
+            alert ("record deleted");
+           
+            del.submit();
+          }
+          else{
+            alert ("record not delete");
+          }
+         }
+        </script>
+</div>
+        <?php
+
+            }
+            ?>
+      
+
+    
+        <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
+
+          <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
+
+            <path class='a' d='M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z'></path>
+
+          </svg>
+
+        </div>
+
+        <div data-u='arrowright' class='jssora073' style='width:50px;height:50px;top:0px;right:30px;' data-autocenter='2' data-scale='0.75' data-scale-right='0.75'>
+            <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
+                <path class='a' d='M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z'></path>
+            </svg>
+        </div>
+      </div>
+  </div></div></div>
+
+
+ <!--editProductsForm-->
+<div id="editProducts" class="modal m1 fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Edit your Products</h3>
  <div class="row">
     <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" value="<?php echo $row["pname"]?>" class="validate">
+          <input  name="pname" type="text" value="" class="validate">
           <label for="pname">Product name</label>
         </div>
       </div>
@@ -266,15 +445,19 @@ else {echo mysql_error();}
       <!-- for price per unit -->
 
        <div class="row ">
-        <div class="input-field inline col s5">
-          <input  name="price" type="number" value="<?php echo $row["price"]?>" class="validate">
+        <div class="input-field inline col s3">
+          <input  name="price" type="number" value="" class="validate">
           <label for="price">Price</label>
+        </div>
+        <div class="input-field inline col s3">
+          <input  name="currency" type="text" value="" class="validate">
+          <label for="price">Currency</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
   <select class="browser-default green lighten-3" name="unit" required="#">
-    <option value="<?php echo $row["UNIT"];?>"  disabled selected><?php echo $row["UNIT"];?></option>
+    <option value=""  disabled selected></option>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Gram</option>
     <option value="2">mililiter</option>
@@ -287,7 +470,7 @@ else {echo mysql_error();}
 
        <div class="row">
         <div class="input-field col s5">
-          <input id="min" name="min" type="number" class="validate" required="required" value="<?php echo $row["min_amount"]?>">
+          <input id="min" name="min" type="number" class="validate" required="required" value="">
           <label for="min">Minimum buyable amount</label>
           
         </div>
@@ -297,7 +480,7 @@ else {echo mysql_error();}
 
       
         <div class="input-field col s5">
-          <input id="max" name="max" type="number" class="validate" required="required" value="<?php echo $row["max_amount"]?>">
+          <input id="max" name="max" type="number" class="validate" required="required" value="">
           <label for="max">Maximum buyable amount</label>
           
         </div>
@@ -308,8 +491,8 @@ else {echo mysql_error();}
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
-        <textarea class="materialize-textarea validate" name="brief" value="<?php echo $row["p_description"]?>" ></textarea>
-        <label for="brief">Brief description of the product</label>
+        <textarea class="materialize-textarea validate" name="description" value="" ></textarea>
+        <label for="description">Brief description of the product</label>
         </div>
       </div>
       <div class="input-field inline col s5">
@@ -389,158 +572,7 @@ else {echo mysql_error();}
   </div>
   </div>
 </div>
-<!--deleteProductsForm-->
-
-
-   <?php 
-   if(isset($_POST['delete'])){
-    echo "<script> alert('delete');</script>";
-  $productid=$_POST['productId'];
-$sql2 = "DELETE FROM product WHERE pid='$productid'";
-       $result2=mysqli_query($con,$sql2);
-       }
-else {echo mysqli_error($con);
-}
-    
-    ?>
-
-
-<?php
-
-static $jssor = 0;
-$sid = $_SESSION['sid'];
-
-            $sliderCount= "select count(distinct(category))as ct from product where sid='$sid'";
-      
-            $result = mysqli_query ($con,$sliderCount);          
-           
-            $r=mysqli_fetch_array($result);
-            $count = $r['ct'];
-
-function showProducts($category){
-
-  global $jssor;
-  $length = strlen($category);
-  $length=$length+2;
-
- include("dblink.php");
-  $sid = $_SESSION['sid'];
-//$sid=1;
-
-  $query = "select distinct substring(category,$length) as subCatagory from product where category like '$category/%' and sid='$sid';";
-      
-  $ret = mysqli_query ($con,$query);          
-  $noRows=mysqli_num_rows($ret);
-  //echo $noRows;
-  if($noRows>0){
-  for($i=0;$i<$noRows;$i++){
-  
-  $jssor +=1;
-  $row=mysqli_fetch_array($ret); 
-  //echo $jssor;
-
-  echo "
-  <div class='card padding-normal'>
-    <div>
-      <h4>".$row['subCatagory']."</h4>
-      <div id='jssor_".$jssor."' style='position:relative;margin:0 auto;top:0px;left:0px;width:1000px;height:280px;overflow:hidden;visibility:hidden;'>
-        
-        <div data-u='slides' style='cursor:default;position:relative;top:0px;left:2px;width:1000px;height:300px;overflow:hidden;padding: 8px;'>";
-
-        $subCatagory = $row['subCatagory'];
-        
-  $query2 = "select * from product where category like '$category%$subCatagory' and sid='$sid'";
-
-  $ret2 = mysqli_query ($con,$query2);          
-  $noRows2=mysqli_num_rows($ret2);
-
-  for($j=0;$j<$noRows2;$j++){
-    $row2=mysqli_fetch_array($ret2); 
-      $array = explode(',', $row2["p_image"]);
-    $url = $array[0];
-        $imageData = base64_encode(file_get_contents($url));
-
-    // Format the image SRC:  data:{mime};base64,{data};
-    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
-
-    ?>
-
-        <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
-          <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
-            <div class='card-image'>
-            <img src='<?php echo "$src";?>'height='160px' width='160px'>
-            </div>
-          </a>
-          <div class='card-content'>
-          <span class='card-title activator white-text text-darken-4'  style=" white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis">
-            <?php echo $row2['pname']; ?>
-          </span>
-          <div class='row'>
-             <div class='col s6'>
-
-           <button href = '#editProducts' class='btn white green-text modal-trigger'>Edit<i class='material-icons right'>edit</i></button>
-          </div>
-         
-          
-          <div class='col s6'>
-
-          <!--input type="hidden" name="productId" 
-            value="<?php echo $row2['pid'];?>"-->
-          <div class='col s6'>
-            <form id="deleteF" action="userProducts.php" method="post">
-          <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
-          <button onclick="conf()" name="delete" class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
-        </form>
-          </div>
-          </div>
-          </div>
-        </div>
-        <script>
-          function smt(){
-            $_SESSION['tempId']=$row2['pid'];
-          }
-        function conf(){
-          var del=confirm("Are you sure you want to delete this record?");
-          if(del == true){
-            var de=document.getElementById("deleteF");
-            alert ("record deleted");
-           
-            del.submit();
-          }
-          else{
-            alert ("record not delete");
-          }
-         }
-        </script>
-
-        <?php
-            }
-            ?>
-      </div>
-
-    
-        <div data-u='arrowleft' class='jssora073' style='width:50px;height:50px;top:0px;left:30px;' data-autocenter='2' data-scale='0.75' data-scale-left='0.75'>
-
-          <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
-
-            <path class='a' d='M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z'></path>
-
-          </svg>
-
-        </div>
-
-        <div data-u='arrowright' class='jssora073' style='width:50px;height:50px;top:0px;right:30px;' data-autocenter='2' data-scale='0.75' data-scale-right='0.75'>
-            <svg viewbox='0 0 16000 16000' style='position:absolute;top:0;left:0;width:100%;height:100%;'>
-                <path class='a' d='M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z'></path>
-            </svg>
-        </div>
-      </div>
-  </div></div>
-
   <?php
-
   }
 }
 else
@@ -550,6 +582,7 @@ else
 }
 
   ?>
+  
 <div class="content padding-normal">
 
 <div id="Agricultural">
@@ -601,6 +634,7 @@ else
   </ul>
 </div>
 </div>
+
  <script type="text/javascript">
   function changeData() {
   var e = document.getElementById("selectitem");
@@ -695,16 +729,14 @@ else
         };
     </script>
 <script type="text/javascript">jssor_slider_init();</script>
+<script type="text/javascript">
+  
+
+</script>
    <!--script type="text/javascript">jssor_2_slider_init();</script>
     <script type="text/javascript">jssor_3_slider_init();</script-->
 
   
-            <script type="text/javascript">
-    $(document).ready(function(){
-  $('.modal').modal();
-    });
-</script>
-           
 <?php
 displayPageFooter();
 ?>

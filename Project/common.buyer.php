@@ -111,7 +111,7 @@ function displayNavBuyer(){
         id="language">Language<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="index.php" id="home1">Home</a></li>
       
-      <li><a href="index.php#aboutus" id="about_as">About Us</a></li>
+      <li><a href="index.php#aboutus" id="about_us">About Us</a></li>
       <li><a href="index.php#contactus" id="contact">Contact</a></li-->
       
        <li><a class="dropdown-trigger" href="#!" data-target="product" 

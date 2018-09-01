@@ -21,7 +21,7 @@ $regemail=$_POST["logemail"];
   //echo $rdvalue;
  
 if (strcmp($rdvalue, 'seller') == 0) {
-    $info=mysqli_query($con," SELECT sid,s_pwd FROM seller where s_email='$regemail'");
+    $info=mysqli_query($con," SELECT sid,s_pwd FROM seller where s_email='$regemail' and s_status=1");
     while($row=mysqli_fetch_assoc($info)){
         $fetchid=$row['sid'];
         $fetchpwd=$row['s_pwd'];
@@ -65,7 +65,7 @@ else{
 
     
 }elseif(strcmp($rdvalue, 'buyer') == 0){
-  $info=mysqli_query($con," SELECT bid,b_pwd FROM buyer where b_email='$regemail'");
+  $info=mysqli_query($con," SELECT bid,b_pwd FROM buyer where b_email='$regemail' and b_status=1");
   while($row=mysqli_fetch_assoc($info)){
         $fetchid=$row['bid'];
         $fetchpwd=$row['b_pwd'];

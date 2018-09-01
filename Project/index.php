@@ -395,7 +395,13 @@ The important benefit is that "Public can buy agricultural products cheeper than
     </div>
   </div>
 </footer>
+<script type="text/javascript">
+    $(document).ready(function(){
+  $('.modal').modal();
+    });
 
+   
+</script>
 <?php
 displayPageFooter();
 ?>

@@ -76,7 +76,9 @@ $itid++;
 
 ?>
 </table>
-<button type='button' onclick="getvalue();">order</button>
+<br>
+<button class="btn green white-text"  onclick="getvalue();" id="order" name="action">Order<i class="material-icons right">send</i>
+      </button>
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
      <?php
@@ -96,8 +98,8 @@ $itid++;
   
   <!---Items--------------------------->
     <form id="form1" class="col" action="order.php" method="post">
-          <input type="text" id="pidInput" name="pidInput" value="">
-          <input type="text" id="quantityInput" name="quantityInput">
+          <input type="hidden" id="pidInput" name="pidInput" value="">
+          <input type="hidden" id="quantityInput" name="quantityInput">
           <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
           <input type="hidden" name="to_addr" value="<?php echo $n3['b_address'];?>">
           <!--input type="hidden" name="from_addr" value="<?php echo $rows2['s_address'];?>"-->
@@ -174,7 +176,9 @@ $itid++;
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	//getvalue();
+  if(document.getElementById('num_row')!=null){
 var divnum=document.getElementById('num_row').innerHTML;
+}
 	var pidCart=new Array();
 	var quantityCart=new Array();
 	function removediv(divid){
@@ -187,7 +191,9 @@ var divnum=document.getElementById('num_row').innerHTML;
 
 	for (i =1; i <=divnum; i++) {
 
+    if(document.getElementById('div'.concat(i))!=null){
 	 var myEle = document.getElementById('div'.concat(i));
+  }
 	 if(myEle!=null){
         pidCart.push(document.getElementById('pid'.concat(i)).value);
 		quantityCart.push(document.getElementById('quantity'.concat(i)).value);
@@ -226,11 +232,15 @@ var divnum=document.getElementById('num_row').innerHTML;
   }
  
 
-$( "#datepicker" ).datepicker();
-//$( "#datepicker" ).datepicker( "dialog", "2012-12-30" );
-$.datepicker.setDefaults({
+
+  $(document).ready(function(){
+  $('.modal').modal();
+    });
+ $( "#datepicker" ).datepicker();
+    $.datepicker.setDefaults({
      dateFormat: 'yy-mm-dd'
 });
+</script>
 </script>
 <?php
 displayPageFooter();

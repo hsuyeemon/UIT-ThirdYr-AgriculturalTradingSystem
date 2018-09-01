@@ -133,7 +133,7 @@ else
 <div id="Agricultural">
   <div class="card green darken-4">
    
-  <h4 style=" font-family: 'Acme';position:relative;" class="white-text padding-normal">Agricultural Products</h4>
+  <h4 style=" font-family: 'Acme';position:relative;" class="white-text padding-normal" id="agricultural1">Agricultural Products</h4>
 </div>
 
 <div style="overflow-y:  scroll;max-height: 800px;">
@@ -146,7 +146,7 @@ else
 
 <div id="fertilizer">
    <div class="card green darken-4">
-  <h3 style=" font-family: 'Acme';" class="white-text padding-normal">Fertilizer</h3>
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal" id="fertilizers">Fertilizers</h3>
 </div>
 <div style="overflow-y: scroll;max-height: 800px;">
  <?php
@@ -158,7 +158,7 @@ else
 
 <div id="Equipments">
    <div class="card green darken-4">
-  <h3 style=" font-family: 'Acme';" class="white-text padding-normal" >Equipments</h3>
+  <h3 style=" font-family: 'Acme';" class="white-text padding-normal" id="equipments" >Equipments</h3>
 </div>
 <div style="overflow-y: scroll;max-height: 800px;">
    <?php

@@ -48,12 +48,15 @@ displayPageHeader( "User order" );
 
 $bid = $_SESSION['bid'];
 
-$pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=0");
+$pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=0 order by (o.order_time) desc");
 $pending_num_rows = mysqli_num_rows($pending_product_result);
 
 if(isset($_POST['s'])){
      echo "enter";
         $oid = $_POST['oid'];
+
+
+
         $pid = $_POST['pid'];
         $ratingstars = $_POST['rating'];
 
@@ -96,7 +99,7 @@ if(isset($_POST['s'])){
     
 ?>
 <div class="content padding-normal">
-       <h4  style=" font-family: 'Acme';" id="pending_orders">Pending Orders</h4>
+       <h4  style=" font-family: 'Acme';" id="pending">Pending Orders</h4>
 <table>
 <tr><th>product name</th>
       <th>expected delivery date</th>
@@ -138,8 +141,7 @@ echo "<td>";
 echo $row['cost'];
 ?>
 </td><td>
-
-  <a class='btn btn-default modal-trigger green white-text' href="#myModal">pending</a>
+  <a class='btn btn-default modal-trigger green white-text' href="#myModal" data-oid="<?php echo $row['oid'];?>" >pending</a>
 
 </td>
 
@@ -155,7 +157,7 @@ echo "</table>";
 
 $bid = $_SESSION['bid'];
 
-$delivered_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=1");
+$delivered_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product o,product p WHERE o.bid=$bid and o.pid=p.pid and o.DELIVERED=1 order by (o.order_time) desc");
 
 $delivered_num_rows = mysqli_num_rows($delivered_product_result);
 ?>
@@ -296,8 +298,18 @@ echo "</table>";
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog" style="padding: 48px;">
     <form action="userOrder.php" method="post">
-  type your order id <input type="text" name="orderid">
-  <input type="submit" name="submit">
+
+      <input type="hidden" name="qr" id="qr">
+       <img id='orderQr' src="" height="100px" width="100px" /><br>
+  <div class="input-field col3 s6">
+      
+    <input type="text" name="orderid">
+    <label for="orderid">type your order id </label>
+
+    </div>
+  
+ 
+  <input class="btn green white-text" type="submit" name="submit">
 </form> 
     </div>
   </div>
@@ -318,37 +330,25 @@ echo "</table>";
         
         modal.find('input[name="pid"]').val(trigger.data('pid'))
         modal.find('input[name="oid"]').val(trigger.data('oid'))
-
+        modal.find('input[name="qr"]').val(trigger.data('oid'))
+        showQr();
     }
 });
 </script>
-<!--script type="text/javascript">
-      function delivery(){
-            var a = confirm("Does your order delivered?");
-            var form = document.getElementById("pending");
-            if(a==true){
-                  //alert("delivered" +form);
-                  form.method="post";
-                  form.action="userOrder.php";
-                  form.submit();
-                  //TODO set delivered to 1
 
-            }
-            else{
-                  alert("fail delivered");
-            }
-      }
-</script-->
  <script  src="js/rating.js"></script>
  <script type="text/javascript">
+  function showQr(){
+    //alert(document.getElementById('qr').value);
+  document.getElementById('orderQr').src= "https://api.qrserver.com/v1/create-qr-code/?data=orderid="+
+  document.getElementById('qr').value+"&amp;size=50x50";
+  }
+  
   function submitRating(){
-    alert("submitRating");
-    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-    //alert(ratingValue);
+   var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
     document.getElementById('rating').value = ratingValue;
     //alert(document.getElementById('rating').value);
     var form1 = document.getElementById('cmtForm');
-    alert(form1);
     form1.method = "post";
     form1.action = "userOrder.php";
     form1.submit();
