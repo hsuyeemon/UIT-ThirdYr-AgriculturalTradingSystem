@@ -129,22 +129,23 @@ function displayPageHeader( $pageTitle ) {
   <!--Login Form------------>
   <div id="login" class="modal simple fade" role="dialog">
     <div class="modal-dialog" style="padding: 48px;">
-      <h3>Login To Your Account</h3>
+      <h3 id="login_id">Login To Your Account</h3>
     <form action="login.php" method="post" class="col s12">
 
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">account_circle</i>
-          <input id="email" type="text" class="validate" required="required" 
+          <input id="emailtext" type="text" class="validate" required="required" 
           name="logemail">
-          <label for="email">Email</label>
+
+          <label for="email" id="email">Email</label>
         </div>
       </div>
       <div class="row ">
         <div class="input-field col s12 ">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate" required="required" name="logpwd">
-          <label for="password">Password</label>
+          <input id="passwordtext" type="password" class="validate" required="required" name="logpwd">
+          <label for="password" id="password">Password</label>
         </div>
         <!--label style='float: right;'>
         <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
@@ -154,24 +155,24 @@ function displayPageHeader( $pageTitle ) {
         <p>
           <label>
             <input class="with-gap" name="group3" value="seller" type="radio" required="required" />
-            <span>Seller</span>
+            <span id="acc">Seller</span>
           </label>
         </p>
         <p>
           <label>
             <input class="with-gap" name="group3"  value="buyer" type="radio" required="required" />
-            <span>Buyer</span>
+            <span id="acc1">Buyer</span>
           </label>
         </p>
         <p>
           <label>
             <input class="with-gap" name="group3" type="radio" required="required" value ="admin"/>
-            <span>Admin Account</span>
+            <span id="acc2">Admin Account</span>
           </label>
         </p>
       </div>
       <br>
-      <button type="submit" class="btn btn-primary green white-text">Login</button>
+      <button type="submit" class="btn btn-primary green white-text" id="loginbut">Login</button>
     </form>
     </div>
   </div>
@@ -194,15 +195,15 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
           <input id="tel" type="tel" class="validate"required="required" name="telph">
-          <label for="tel">Telephone</label>
+          <label for="tel" id="tele">Telephone</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" required="required" name="em">
-          <label for="email">Email</label>
+          <input id="emailtext1" type="email" class="validate" required="required" name="em">
+          <label for="email" id="email1">Email</label>
         </div>
       </div>
     
@@ -211,31 +212,31 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s4">
           <i class="material-icons prefix">home</i>
           <input id="home" type="text" class="validate" required="required" name="no">
-          <label for="home">Home No.</label>
+          <label for="home" id="Home">Home No.</label>
         </div>
    
         <div class="input-field col s4">
          
           <input id="Street" type="text" class="validate" required="required" name="street">
-          <label for="Street" >Street</label>
+          <label for="Street" id="street" >Street</label>
         </div>
      
         <div class="input-field col s4">
          
           <input id="Quarter" type="text" class="validate" required="required" name="quarter">
-          <label for="Quarter" >Quarter</label>
+          <label for="Quarter" id="quarter" >Quarter</label>
         </div>
       </div>
     <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">home</i>
           <input id="Township" type="text" class="validate" required="required" name="township">
-          <label for="Township" >Township</label>
+          <label for="Township" id="township" >Township</label>
         </div>
       
         <div class="input-field col s6">
           <input id="Division" type="text" class="validate" required="required" name="division">
-          <label for="Division" >Division</label>
+          <label for="Division" id="division" >Division</label>
         </div>
       </div>
 
@@ -245,7 +246,7 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
            <i class="material-icons prefix">credit_card</i>
           <input id="nrc" type="text" class="validate" name="nrcname">
-          <label for="nrc">NRC</label>
+          <label for="nrc" id="NRC">NRC</label>
         </div>
       </div>
       
@@ -253,7 +254,7 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
           <input id="pw" type="password" class="validate" required="required" name="pwname">
-          <label for="pw">Password</label>
+          <label for="pw" id="password1">Password</label>
         </div>
       </div>
 
@@ -261,7 +262,7 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">lock</i>
           <input id="cpw" type="password" class="validate" required="required" name="cpwname">
-          <label for="cpw">Comfirm Password</label>
+          <label for="cpw" id="CPW">Comfirm Password</label>
         </div>
       </div>
      
@@ -269,13 +270,13 @@ function displayPageHeader( $pageTitle ) {
         <div class="input-field col s12">
           <i class="material-icons prefix">mode_edit</i>
         <textarea id="brief" class="materialize-textarea validate" name="briefName"></textarea>
-        <label for="brief">Brief description</label>
+        <label for="brief" id="Brief">Brief description</label>
         </div>
       </div>
 
       <div class="file-field input-field">
         <div class="btn green white-text">
-          <span>File</span>
+          <span id="file">File</span>
           <input type="file" name="files[]"/>
 
         </div>    
@@ -288,19 +289,19 @@ function displayPageHeader( $pageTitle ) {
     <p>
       <label>
         <input class="with-gap" value="buyer" name="group3" type="radio" checked />
-        <span>User Account:BUYER</span>
+        <span id="account">User Account:BUYER</span>
       </label>
     </p>
     <p>
       <label>
         <input class="with-gap" value="seller" name="group3" type="radio" checked />
-        <span>User Account:SELLER</span>
+        <span id="account1">User Account:SELLER</span>
       </label>
     </p>
     
     </div>
     <br>
-    <button type="submit" class="btn btn-primary green white-text" onclick="return validFunction()">Sign Up</button>
+    <button type="submit" class="btn btn-primary green white-text" onclick="return validFunction()" id="signbut">Sign Up</button>
   </form>
   </div>
 </div>
@@ -451,10 +452,10 @@ if(document.getElementById('back')!=null){
     }
     
     if(document.getElementById('about_us')!=null){
-    document.getElementById('about_us').innerHTML="ကြ်ႏ္ုပ္တို႔အေၾကာင္း";
+    document.getElementById('about_us').innerHTML="ကြၽႏ္​ုပ္​တို႔အေၾကာင္း";
     }
     if(document.getElementById('about_us1')!=null){
-    document.getElementById('about_us1').innerHTML="ကြ်ႏ္ုပ္တို႔အေၾကာင္း";
+    document.getElementById('about_us1').innerHTML="ကြၽႏ္​ုပ္​တို႔အေၾကာင္း";
     }
   
     if(document.getElementById("contact_us")!=null){
@@ -473,13 +474,21 @@ if(document.getElementById('back')!=null){
     if(document.getElementById("sign_up")!=null){
      document.getElementById("sign_up").innerHTML="အေကာင့္ ဖြင့္ရန္"; 
     }
-
+if(document.getElementById("signbut")!=null){
+     document.getElementById("signbut").innerHTML="အေကာင့္ ဖြင့္ရန္"; 
+    }
     if(document.getElementById("login1")!=null){
      document.getElementById("login1").innerHTML= "အေကာင့္ ဝင္ရန္ "; 
+    }
+    if(document.getElementById("loginbut")!=null){
+     document.getElementById("loginbut").innerHTML= "အေကာင့္ ဝင္ရန္ "; 
     }
 
     if(document.getElementById("login_dropdown")!=null){
      document.getElementById("login_dropdown").innerHTML= "အေကာင့္ ဝင္ရန္ "; 
+    }
+     if(document.getElementById("login_id")!=null){
+     document.getElementById("login_id").innerHTML= "အေကာင့္ ဝင္ရန္ "; 
     }
     
     if(document.getElementById("textid")!=null){
@@ -491,12 +500,13 @@ if(document.getElementById('back')!=null){
    if(document.getElementById("tele")!=null){
      document.getElementById("tele").innerHTML="ဖုန္းနံပါတ္ "; 
     }
-     if(document.getElementById("Email")!=null){
-     document.getElementById("Email").innerHTML="အီးလ္ေမး "; 
+     if(document.getElementById("email")!=null){
+     document.getElementById("email").innerHTML="အီးလ္ေမး "; 
     }
-     if(document.getElementById("Email1")!=null){
-     document.getElementById("Email1").innerHTML="အီးလ္ေမး "; 
+    if(document.getElementById("email1")!=null){
+     document.getElementById("email1").innerHTML="အီးလ္ေမး "; 
     }
+    
     
      if(document.getElementById("seller")!=null){
      document.getElementById("seller").innerHTML="ေရာင္းသူ :"; 
@@ -505,9 +515,7 @@ if(document.getElementById('back')!=null){
      document.getElementById("seller1").innerHTML="ေရာင္းသူ"; 
     }
 
-if(document.getElementById("Email")!=null){
-     document.getElementById("Email").innerHTML=" အီးလ္ေမး"; 
-    }
+
      if(document.getElementById("buyer")!=null){
      document.getElementById("buyer").innerHTML=" ဝယ္သူ "; 
     }
@@ -532,18 +540,37 @@ if(document.getElementById("Email")!=null){
     if(document.getElementById("NRC")!=null){
      document.getElementById("NRC").innerHTML="မွတ္ပံုတင္အမွတ္"; 
     }
-     if(document.getElementById("PW")!=null){
-     document.getElementById("PW").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+     if(document.getElementById("password")!=null){
+     document.getElementById("password").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
     }
-    if(document.getElementById("PW1")!=null){
-     document.getElementById("PW1").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+    if(document.getElementById("password1")!=null){
+     document.getElementById("password1").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
     }
      if(document.getElementById("CPW")!=null){
-     document.getElementById("CPW").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္"; 
+     document.getElementById("CPW").innerHTML=" လ်ိဳ႕ဝွက္နံပါတ္ျပန္​႐ိုက္​ရန္​a"; 
     }
     if(document.getElementById("Brief")!=null){
      document.getElementById("Brief").innerHTML="ေဖာ္ျပခ်က္"; 
     }
+    if(document.getElementById("file")!=null){
+     document.getElementById("file").innerHTML="ဖိုင္​"; 
+    }
+    if(document.getElementById("account1")!=null){
+     document.getElementById("account1").innerHTML="ေရာင္​းသူအ​ေကာင္​့"; 
+    }
+    if(document.getElementById("acc")!=null){
+     document.getElementById("acc").innerHTML="ေရာင္​းသူအ​ေကာင္​့"; 
+    }
+    if(document.getElementById("account")!=null){
+     document.getElementById("account").innerHTML="ဝယ္​ယူသူအ​ေကာင္​့"; 
+    }
+    if(document.getElementById("acc1")!=null){
+     document.getElementById("acc1").innerHTML="ဝယ္​ယူသူအ​ေကာင္​့"; 
+    }
+    if(document.getElementById("acc2")!=null){
+     document.getElementById("acc2").innerHTML="ထိန္​းခ်ဳပ္​သူ"; 
+    }
+   
 if(document.getElementById("product_p")!=null){
      document.getElementById("product_p").innerHTML="ေရာင္းခ်ေသာကုန္ပစၥည္းမ်ား"; 
     }
@@ -590,7 +617,7 @@ if(document.getElementById("whatwedo")!=null){
   if(document.getElementById("AU")!=null){
     document.getElementById("AU").style.fontSize="18px";
     document.getElementById("AU").style.lineHeight="2";
-    document.getElementById("AU").innerHTML="ကြၽႏု္ပ္တို႔ ပေရာဂ်က္ကို သတင္းအခ်က္အလက္နည္းပညာတကၠသိုလ္မွ ေက်ာင္းသား ေက်ာင္းသူ ၇ ဦးျဖင့္လုပ္ေဆာင္ထားပါတယ္။ကြၽန္ုပ္တို႔ရည္႐ြယ္ခ်က္ကေတာ့ B2B လို႔ေခၚတဲ့ စီးပြားေရးလုပ္ငန္းအခ်င္းခ်င္း စိုက္ပ်ိဳးေရးလုပ္ငန္းသုံး ထုတ္ကုန္ေတြကိုျဖန႔္ေဝရာမွာ တစ္ဖက္တစ္လမ္းမွအကူအညီေပးႏိုင္ဖို႔ျဖစ္ပါတယ္။ေရာင္းသူႏွင့္ ဝယ္သူၾကား ကုန္ပစၥည္းပို႔ေဆာင္ရာမွာ ယခုအခါ အဆင့္ဆင့္ပို႔ေဆာင္ျခင္းျဖင့္ အခက္အခဲေတြရွိေနပါတယ္။အထူးသျဖင့္ ကုန္စည္ဒိုင္မ်ားႏွင့္ဆက္သြယ္ေဆာင္႐ြက္တဲ့အခါ ေဈးႏူန္းျမင့္တက္ျခင္းမ်ားျဖစ္ေပၚေလ့ရွိပါတယ္။အဆင့္ဆင့္ပို႔ေဆာင္ရျခင္းမွာ ေဈးႏူန္းမ်ားမွာ ယခင္မူလထပ္ ၂ ဆ ၃ ဆ ျမင့္တက္လာပါတယ္။ကြၽႏု္ပ္တို႔၏ စီမံခ်က္စနစ္မွာ ထိုျပသနာကို အတက္ႏိုင္ဆုံး ေလွ်ာ့ခ်ႏိုင္ဖို႔ ရည္႐ြယ္ေဆာင္႐ြက္ထားပါတယ္။ ကြၽန္ုပ္တို႔၏ ဝက္ဆိုက္ မွာ ေရာင္းသူႏွင့္ဝယ္သူၾကား ကုန္စည္စလယ္ပို႔ေဆာင္ေရးကိုအထူးေထာက္ပံ့ကူညီထားပါတယ္။ေရာင္းသူႏွင့္ဝယ္သူၾကား ၾကားအဆင့္မ်ားမခံပဲ တိုက္႐ိုက္ေရာင္းဝယ္ႏိုင္ျခင္းအားျဖင့္ အပိုကုန္က်စရိတ္မ်ားကိုေလွ်ာ့ခ်ႏိုင္မွာျဖစ္ၿပီး အခ်ိန္ကုန္သက္သာေစမွာျဖစ္ပါတယ္။ အဓိကအက်ိဳးေက်းဇူးအေနနဲ႔ စားသုံးဝယ္ယူသူမ်ားက ယခင္ကထပ္ ပိုမိုသက္သာေသာ ေဈးႏူန္းျဖင့္ ဝယ္ယူႏိုင္ျခင္းျဖစ္ပါတယ္။.";
+    document.getElementById("AU").innerHTML="ကြၽႏ္​ုပ္​တို႔ ပေရာဂ်က္ကို သတင္းအခ်က္အလက္နည္းပညာတကၠသိုလ္မွ ေက်ာင္းသား ေက်ာင္းသူ ၇ ဦးျဖင့္လုပ္ေဆာင္ထားပါတယ္။ကြၽန္ုပ္တို႔ရည္႐ြယ္ခ်က္ကေတာ့ B2B လို႔ေခၚတဲ့ စီးပြားေရးလုပ္ငန္းအခ်င္းခ်င္း စိုက္ပ်ိဳးေရးလုပ္ငန္းသုံး ထုတ္ကုန္ေတြကိုျဖန႔္ေဝရာမွာ တစ္ဖက္တစ္လမ္းမွအကူအညီေပးႏိုင္ဖို႔ျဖစ္ပါတယ္။ေရာင္းသူႏွင့္ ဝယ္သူၾကား ကုန္ပစၥည္းပို႔ေဆာင္ရာမွာ ယခုအခါ အဆင့္ဆင့္ပို႔ေဆာင္ျခင္းျဖင့္ အခက္အခဲေတြရွိေနပါတယ္။အထူးသျဖင့္ ကုန္စည္ဒိုင္မ်ားႏွင့္ဆက္သြယ္ေဆာင္႐ြက္တဲ့အခါ ေဈးႏူန္းျမင့္တက္ျခင္းမ်ားျဖစ္ေပၚေလ့ရွိပါတယ္။အဆင့္ဆင့္ပို႔ေဆာင္ရျခင္းမွာ ေဈးႏူန္းမ်ားမွာ ယခင္မူလထပ္ ၂ ဆ ၃ ဆ ျမင့္တက္လာပါတယ္။ကြၽႏု္ပ္တို႔၏ စီမံခ်က္စနစ္မွာ ထိုျပသနာကို အတက္ႏိုင္ဆုံး ေလွ်ာ့ခ်ႏိုင္ဖို႔ ရည္႐ြယ္ေဆာင္႐ြက္ထားပါတယ္။ ကြၽန္ုပ္တို႔၏ ဝက္ဆိုက္ မွာ ေရာင္းသူႏွင့္ဝယ္သူၾကား ကုန္စည္စလယ္ပို႔ေဆာင္ေရးကိုအထူးေထာက္ပံ့ကူညီထားပါတယ္။ေရာင္းသူႏွင့္ဝယ္သူၾကား ၾကားအဆင့္မ်ားမခံပဲ တိုက္႐ိုက္ေရာင္းဝယ္ႏိုင္ျခင္းအားျဖင့္ အပိုကုန္က်စရိတ္မ်ားကိုေလွ်ာ့ခ်ႏိုင္မွာျဖစ္ၿပီး အခ်ိန္ကုန္သက္သာေစမွာျဖစ္ပါတယ္။ အဓိကအက်ိဳးေက်းဇူးအေနနဲ႔ စားသုံးဝယ္ယူသူမ်ားက ယခင္ကထပ္ ပိုမိုသက္သာေသာ ေဈးႏူန္းျဖင့္ ဝယ္ယူႏိုင္ျခင္းျဖစ္ပါတယ္။.";
 
   }
    if(document.getElementById("contact")!=null){
