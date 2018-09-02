@@ -602,7 +602,7 @@ if(document.getElementById("whatwedo")!=null){
   }
   if(document.getElementById("para")!=null){
     document.getElementById("para").innerHTML="လယ္ယာထြက္ပစၥည္းကုမၸဏီမ်ား၊ဓာတ္ေျမျသဇာကုမၸဏီမ်ား၊လယ္ယာသံုးစက္ပစၥည္းကုမၸဏီမ်ားမွကုန္ပၥည္းမ်ားကိုလာေရာက္ေရာင္းခ်ႏိုင္ပါသည္။";
-    document.getElementById("para").style.fontSize="24px";
+    document.getElementById("para").style.fontSize="18px";
   }
   if(document.getElementById("logistic")!=null){
 
