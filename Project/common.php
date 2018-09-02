@@ -798,6 +798,9 @@ if(document.getElementById("Market")!=null){
   if(document.getElementById("equipments2")!=null){
     document.getElementById("equipments2").innerHTML="လယ္ယာသံုးစက္ပစၥည္းမ်ား";
   }
+   if(document.getElementById("marketplacetitle")!=null){
+    document.getElementById("marketplacetitle").innerHTML="စိုက္ပ်ိဳးေရးက႑ထုတ္ကုန္ေစ်းကြက္";
+  }
   }  
 </script> 
   <?php
