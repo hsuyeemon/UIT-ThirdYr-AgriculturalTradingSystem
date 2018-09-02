@@ -24,6 +24,12 @@ height:300px !important}
 if(isset($_GET['productId'])){
 $pid = $_GET['productId'];
 //$sid = $_SESSION['sid'];
+if(isset($_SESSION["pids"])){
+  $_SESSION["pids"] .= $pid.',';
+}
+else{
+  $_SESSION["pids"] = $pid.',';
+}
 
 ?>
 
@@ -106,6 +112,7 @@ else{
 
 }
 }
+
 ?>
 
 </div>
@@ -256,45 +263,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
             <?php echo $rating['total'];?></h3>
           </div>
              
-          <?php
-       echo $rating['total'];
-   if($rating['total']>=5){
-    ?>
-    <script type="text/javascript">
-      $('#star5').addClass('selected');
-    </script>
-    <?php
-   }
-   else if($rating['total']>=4){
-   ?>
-   <script type="text/javascript">
-      $('#star4').addClass('selected');
-    </script>
-   <?php
-   }
-   else if($rating['total']>=3){
-   ?> 
-   <script type="text/javascript">
-      $('#star3').addClass('selected');
-    </script>
-
-   <?php
-   }
-   else if($rating['total']>=2){
-   ?> 
-   <script type="text/javascript">
-      $('#star2').addClass('selected');
-    </script>
-   <?php
-   }
-   else if($rating['total']>=1){
-   ?> 
-   <script type="text/javascript">
-      $('#star1').addClass('selected');
-    </script>
-    <?php
-  }
-    ?>
+          
     <div class="row">
       <div class="col s3">
       </div>
@@ -303,7 +272,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
         
          <div class='rating-stars'>
     <ul id='stars'>
-      <li id="star1" class='star' title='Poor' data-value='1'>
+      <li id="star1" class='star ' title='Poor' data-value='1'>
         <i class='fa fa-star fa-fw'></i>
       </li>
       <li id="star2" class='star' title='Fair' data-value='2'>
@@ -323,7 +292,61 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
        <div class="col s3">
       </div>
     </div>
-     
+     <?php
+       echo $rating['total'];
+   if($rating['total']>=5){
+    ?>
+    <script type="text/javascript">
+       document.getElementById("star5").classList.add("selected");
+          document.getElementById("star4").classList.add("selected");
+       document.getElementById("star3").classList.add("selected");
+      document.getElementById("star2").classList.add("selected");
+      document.getElementById("star1").classList.add("selected");
+   </script>
+    <?php
+   }
+   else if($rating['total']>=4){
+   ?>
+   <script type="text/javascript">
+    document.getElementById("star5").classList.remove("hover");
+       
+    document.getElementById("star4").classList.add("selected");
+       document.getElementById("star3").classList.add("selected");
+      document.getElementById("star2").classList.add("selected");
+      document.getElementById("star1").classList.add("selected");
+   
+    </script>
+   <?php
+   }
+   else if($rating['total']>=3){
+   ?> 
+   <script type="text/javascript">
+      document.getElementById("star5").classList.remove("hover");
+       
+      document.getElementById("star3").classList.add("selected");
+      document.getElementById("star2").classList.add("selected");
+      document.getElementById("star1").classList.add("selected");
+   
+    </script>
+
+   <?php
+   }
+   else if($rating['total']>=2){
+   ?> 
+   <script type="text/javascript">
+     document.getElementById("star2").classList.add("selected");
+      document.getElementById("star1").classList.add("selected");
+    </script>
+   <?php
+   }
+   else if($rating['total']>=1){
+   ?> 
+   <script type="text/javascript">
+      document.getElementById("star1").classList.add("selected");
+    </script>
+    <?php
+  }
+    ?>
       </div>
 
        

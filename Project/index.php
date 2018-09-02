@@ -283,7 +283,7 @@ displayPageHeader( "index" );
 
 <!--Features-->
 <div class="feature padding-normal #c8e6c9 padding-normal-sync" id="feature">
-  <h3 class="center-align header" style=" font-family: 'Acme';">What we do</h3>
+  <h3 id="whatwedo" class="center-align header" style=" font-family: 'Acme';">What we do</h3>
 
    
 
@@ -311,18 +311,18 @@ If you wish,you can consult with your customer.</p>
         <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center green-text""><i class="material-icons">shop</i></h2>
-            <h5 class="center">One-stop service</h5>
+            <h5 class="center" id="onestop">One-stop service</h5>
 
-            <p class="light">In here,you can buy agriculture products as well as sell your farming products if you're a farmer or your agriculture equipment if you're trademan.One are in one place.</p>
+            <p class="light" id="onestoppara">In here,you can buy agriculture products as well as sell your farming products if you're a farmer or your agriculture equipment if you're trademan.One are in one place.</p>
           </div>
         </div>
 
         <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center green-text"><i class="circle material-icons">settings</i></h2>
-            <h5 class="center">Statistics Recording</h5>
+            <h5 class="center" id="statistics">Statistics Recording</h5>
 
-            <p class="light">You can check your statistics about your products in and out anytime.
+            <p class="light" id="statisticspara">You can check your statistics about your products in and out anytime.
 You can know the situation of your products and therefore you can mange your products yourself effectively.</p>
           </div>
         </div>
@@ -335,7 +335,7 @@ You can know the situation of your products and therefore you can mange your pro
   <div class="row padding-normal container" id="aboutus">
 
 
-      <h3 class="white-text" id="about_as1" style="text-align: center;padding: 16px;font-family: 'Acme'">About Us</h3>
+      <h3 class="white-text" id="about_us1" style="text-align: center;padding: 16px;font-family: 'Acme'">About Us</h3>
       <div class="col s12">
       <p id="AU" class="grey-text text-lighten-4 center-align">
 
@@ -384,7 +384,7 @@ The important benefit is that "Public can buy agricultural products cheeper than
         <li>Hsu Yee Mon- Coordinator and analyst<br>
             email- hsuyeemon@uit.edu.mm</li>   
       </ul>
-      <h4 style="font-family: 'Acme'">"If you have any conflicts or problems feel free to contact us"</h4>
+      <h4 style="font-family: 'Acme'" id="freeContact">"If you have any conflicts or problems feel free to contact us"</h4>
 </div>
       
     

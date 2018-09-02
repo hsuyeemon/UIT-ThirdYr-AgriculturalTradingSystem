@@ -433,6 +433,10 @@ $lan_flag=$_SESSION['lan_flag'];
   language();
   function language(){
 
+
+if(document.getElementById('back')!=null){
+    document.getElementById('back').innerHTML="ေနာက္သို႔";
+    }
     //all pages
     if(document.getElementById('language')!=null){
     document.getElementById('language').innerHTML="ဘာသာစကား";
@@ -444,6 +448,9 @@ $lan_flag=$_SESSION['lan_flag'];
     
     if(document.getElementById('about_us')!=null){
     document.getElementById('about_us').innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    }
+    if(document.getElementById('about_us1')!=null){
+    document.getElementById('about_us1').innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
     }
   
     if(document.getElementById("contact_us")!=null){
@@ -540,7 +547,11 @@ if(document.getElementById("product_p")!=null){
     if(document.getElementById("login2")!=null){
     document.getElementById("login2").innerHTML=" အေကာင့္ ဝင္ရန္";
   }
-    
+   
+if(document.getElementById("whatwedo")!=null){
+     document.getElementById("whatwedo").innerHTML="၀န္ေဆာင္မႈမ်ား"; 
+    }
+
     //index for buyer and seller
     if(document.getElementById("username")!=null){
      document.getElementById("username").innerHTML="အသံုးျပဳသူ"; 
@@ -582,6 +593,11 @@ if(document.getElementById("product_p")!=null){
     document.getElementById("contact").innerHTML=" ဆက္သြယ္ရန္";
   }
   if(document.getElementById("freeContact")!=null){
+      document.getElementById("freeContact").style.fontSize="24px";
+      document.getElementById("freeContact").style.lineHeight="1.5";
+    
+   
+   
     document.getElementById("freeContact").innerHTML=" အခက္အခဲတစ္စံုတစ္ရာ႐ွိလ်ွင္လြတ္လပ္စြာဆက္သြယ္ေမးျမန္းႏိုင္ပါသည္။";
   }
   if(document.getElementById("para")!=null){
@@ -589,20 +605,46 @@ if(document.getElementById("product_p")!=null){
     document.getElementById("para").style.fontSize="24px";
   }
   if(document.getElementById("logistic")!=null){
+
+    document.getElementById("logistic").style.fontSize="18px";
+   
     document.getElementById("logistic").innerHTML=" ေထာက္ပ့ံပို႔ေဆာင္ေရးဝန္ေဆာင္မႈ";
   }
   if(document.getElementById("logicPara")!=null){
-    document.getElementById("logicPara").innerHTML="ကြၽႏု္ပ္တို႔၏အဓိကလုပ္ငန္းမွာေထာက္ပံ့ပို႔ေဆာင္ေရးဝန္ေဆာင္မႈျဖစ္ပါသည္။";
+    document.getElementById("logicPara").innerHTML="ကြၽႏုပ္တို႔၏ ဝက္ဆိုက္က ေထာက္ပ့ံပုို႔ေဆာင္ေရးကိုအဓိကထားတာေၾကာင့္ ထုတ္ကုန္မ်ားရဲ႕ သယ္ယူပို႔ေဆာင္ေရးအတြက္ ထပ္မံမလိုအပ္ေတာ့ပါဘူး။ ကုန္စည္ဒိုင္အတြက္ကုန္က်စရိတ္ကိုလည္းေလ်ွာ့ခ်ႏိုင္မွာျဖစ္ပါတယ္။";
   }
 
  if(document.getElementById("agricultural1")!=null){
     document.getElementById("agricultural1").innerHTML=" လယ္ယာထြက္ကုန္မ်ား";
   }
 if(document.getElementById("Market")!=null){
+
+    document.getElementById("Market").style.fontSize="18px";
+   
     document.getElementById("Market").innerHTML=" လယ္ယာလုပ္ငန္းေစ်းကြက္";
   }
   if(document.getElementById("marketPara")!=null){
-    document.getElementById("marketPara").innerHTML="";
+    document.getElementById("marketPara").innerHTML="လူႀကီးမင္းရဲလိုအပ္ခ်က္မ်ားကိုျဖည့္ဆည္းဖို႔ ဒီဝက္ဆိုက္မွာကုန္ပစၥည္းေတြကိုတစ္ေနရာထဲမွာေရာင္းဝယ္ႏိုင္ေအာင္လို႔စီစဥ္ထားပါတယ္။ ကုိယ့္ရဲ႕ေရာင္းသူ ဝယ္သူနဲ႔လည္းတိုက္႐ိုက္ဆက္သြယ္ႏိုင္ပါတယ္။";
+  }
+
+  if(document.getElementById("onestop")!=null){
+   
+    document.getElementById("onestop").style.fontSize="18px";
+   
+    document.getElementById("onestop").innerHTML=" လံုးခ်င္းၿပီးဝန္ေဆာင္မႈ";
+  }
+  if(document.getElementById("onestoppara")!=null){
+    document.getElementById("onestoppara").innerHTML="လယ္ယာလုပ္ကိုင္သူမ်ားအေနနဲ႔ မိမိလိုအပ္တဲ့ပစၥည္းမ်ားကို ဝယ္ယူႏိုင္မွာျဖစ္ၿပီး လယ္ယာထြက္ကုန္မ်ားကိုလည္းတစ္ေနရာတည္းမွာေကာင္းခ်ႏိုင္မွာျဖစ္လို႔ တစ္ေနရာတည္းမွာအၿပီးအစီးေဆာင္ရြက္ႏိုင္မွာျဖစ္ပါတယ္။";
+  }
+
+  if(document.getElementById("statistics")!=null){
+   
+    document.getElementById("statistics").style.fontSize="18px";
+   
+    document.getElementById("statistics").innerHTML=" စာရင္းဇယား ထိန္းသိမ္းထား႐ွိျခင္း";
+  }
+  if(document.getElementById("statisticspara")!=null){
+    document.getElementById("statisticspara").innerHTML="မိမိလိုအပ္တဲ့အခ်ိန္တိုင္း မိမိထြက္ကုန္မ်ားရဲ႕ ေရာင္းခ်ရမႈစာရင္းကိုၾကည့္႐ႈစစ္ေဆးႏိုင္မွာျဖစ္ပါတယ္။ဒါေၾကာင့္ကိုယ့္ကုန္ပစၥည္းေတြကိုအေကာင္းဆံုးစီမံခန္႔ခြဲေရာင္းခ်ႏိုင္မွာျဖစ္ပါတယ္။";
   }
   if(document.getElementById("phoneno")!=null){
     document.getElementById("phoneno").innerHTML="ဖုန္းနံပါတ္ :";
@@ -669,8 +711,8 @@ if(document.getElementById("Market")!=null){
   if(document.getElementById("comment")!=null){
     document.getElementById("comment").innerHTML=" ထင္ျမင္ခ်က္ေပးရန္";
   }
-  if(document.getElementById("addProducts")!=null){
-    document.getElementById("addProducts").innerHTML=" ကုန္ပစၥည္းထပ္ထည့္ရန္";
+  if(document.getElementById("addProducts1")!=null){
+    document.getElementById("addProducts1").innerHTML=" ကုန္ပစၥည္းထပ္ထည့္ရန္";
   }
   if(document.getElementById("p_name1")!=null){
     document.getElementById("p_name1").innerHTML=" ကုန္ပစၥည္းအမည္";

@@ -46,7 +46,7 @@ displayPageHeader( "Cart" );
 //removing last ','
   if(isset($_SESSION['pids'])){
 $pids=rtrim($_SESSION['pids'], ",");
-
+//echo $pids;
 //echo "SELECT * FROM product where pid IN ($pids)";
 
  $result = mysqli_query($con,"SELECT * FROM product where pid IN ($pids)");
@@ -76,15 +76,14 @@ echo "<span id='num_row'>$num_rows</span>";
 while($row = mysqli_fetch_array($result))
 {
 $array = explode(',', $row['p_image']);
-    $image = $array[0];
-$imageData = base64_encode(file_get_contents($image));
+ $url = $array[0];
+        $imageData = base64_encode(file_get_contents($url));
 
-
-// Format the image SRC:  data:{mime};base64,{data};
-$src = 'data: '.mime_content_type($image).';base64,'.$imageData;
-echo "<tr id='div$itid' onchange='calculateTotal'>";
+    // Format the image SRC:  data:{mime};base64,{data};
+    $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
+echo "<tr id='div$itid'>";
 echo "<input id='pid$itid' type='hidden' value=".$row['pid'].">";
-echo "<td id='pname$itid'><img src=".$src.'height="100px" width="100px"></td>';
+echo "<td id='pname$itid'><img src='".$src."'height='100px' width='100px'></td>";
 echo "<td id='pname$itid'>".$row['pname'].'</td>';
 ?>
 <td >
@@ -112,6 +111,8 @@ $itid++;
     var price = document.getElementById('<?php echo "price'+id+'";?>').innerHTML;
     //alert(i*price);
      document.getElementById('<?php echo "total'+id+'";?>').innerHTML= i*price;
+
+     calc();
     }
 
 </script>
@@ -156,6 +157,7 @@ echo mysqli_error($con);
 
 <button class="btn green white-text"  onclick="getvalue();" id="order" name="action">Order<i class="material-icons right">send</i>
       </button>
+      <a href="products.php" id="back" class="btn green white-text"><i class="material-icons right">arrow_back</i>Back</a>
       <?php
       }
       else{
