@@ -75,10 +75,10 @@ displayPageHeader( "index" );
       </div>   
     </div></a>
     <div class="card-content z-depth-5" style="background:#005508;">
-        <span  class="card-title activator white-text text-darken-4">Agricultural<i class="material-icons right">more_vert</i></span>
+        <span  class="card-title activator white-text text-darken-4">Agricultural Products<i class="material-icons right">more_vert</i></span>
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Agricultural<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Agricultural Products<i class="material-icons right">close</i></span>
        <div class="collection">
         <div class="collection-item">
             
