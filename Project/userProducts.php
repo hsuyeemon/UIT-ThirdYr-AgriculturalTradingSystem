@@ -20,15 +20,22 @@ displayPageHeader("product");
     //header('Location: index.php');
     exit(); 
   } 
-?>
 
-<?php
+   if(isset($_POST['delete'])){
+   
+  $productid=$_POST['productId'];
+  echo "<script> alert($productid);</script>";
+$sql2 = "DELETE FROM product WHERE pid='$productid'";
+       $result2=mysqli_query($con,$sql2);
+        echo "<script> alert('sucdelete');</script>";
+       mysqli_error($con);
+       }
+    
 $result = mysqli_query($con,"SELECT * FROM product");
 $num_rows = mysqli_num_rows($result);
 $total=++$num_rows;
 
 // Full Name must be letters, dash and spaces only
-     
 
 if(isset($_POST['save'])){
   
@@ -195,7 +202,7 @@ else {echo mysql_error();}
   <option value="" disabled selected>Choose your option</option>
   <option value="fruits" id="0">fruits</option>
   <option value="grocery" id="1" >grocery</option>
-  <option value="stable" id="2">stable foods</option>
+  <option value="stable food" id="2">stable foods</option>
 
   <option value="hello" id="3" style="display:none;">stable foods</option>
   <option value="hello" id="4" style="display:none;">stable foods</option>
@@ -253,19 +260,6 @@ else {echo mysql_error();}
 <!--deleteProductsForm-->
 
 
-   <?php 
-   if(isset($_POST['delete'])){
-    echo "<script> alert('delete');</script>";
-    echo $_POST['productId'];
-  $productid=$_POST['productId'];
-$sql2 = "DELETE FROM product WHERE pid='$productid'";
-       $result2=mysqli_query($con,$sql2);
-       mysqli_error($con);
-       }
-else {mysqli_error($con);
-}
-    
-    ?>
 
 
 <?php
@@ -372,7 +366,8 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
           <div class='col s6'>
-            <form id="deleteF" action="" method="">
+            <form id="deleteF" action="" method="post">
+            <!--?php echo $row2['pid'];?-->
           <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
           <button onclick="conf()" name="delete" class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
         </form>
@@ -389,8 +384,6 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
           var del=confirm("Are you sure you want to delete this record?");
           if(del == true){
             var de=document.getElementById("deleteF");
-            alert ("record deleted");
-            de.method="post";
             de.action="userProducts.php";
             de.submit();
           }
@@ -435,8 +428,8 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
     <form id="form1" action="userProducts.php" class="col s12" method="post" >
       <div class="row ">
         <div class="input-field col s12 ">
-          <input  name="pname" type="text" value="" class="validate">
-          <label for="pname">Product name</label>
+          <input  name="pname1" type="text" value="" class="validate">
+          <label for="pname1">Product name</label>
         </div>
       </div>
 
@@ -444,17 +437,17 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 
        <div class="row ">
         <div class="input-field inline col s3">
-          <input  name="price" type="number" value="" class="validate">
-          <label for="price">Price</label>
+          <input  name="price1" type="number" value="" class="validate">
+          <label for="price1">Price</label>
         </div>
         <div class="input-field inline col s3">
-          <input  name="currency" type="text" value="" class="validate">
+          <input  name="currency1" type="text" value="" class="validate">
           <label for="price">Currency</label>
         </div>
         <span class="col s1">per</span>
         <div class="input-field inline col s3 row s5">
           
-  <select class="browser-default green lighten-3" name="unit" required="#">
+  <select class="browser-default green lighten-3" name="unit1" required="#">
     <option value=""  disabled selected></option>
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Gram</option>
@@ -468,7 +461,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 
        <div class="row">
         <div class="input-field col s5">
-          <input id="min" name="min" type="number" class="validate" required="required" value="">
+          <input id="min" name="min1" type="number" class="validate" required="required" value="">
           <label for="min">Minimum buyable amount</label>
           
         </div>
@@ -478,7 +471,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 
       
         <div class="input-field col s5">
-          <input id="max" name="max" type="number" class="validate" required="required" value="">
+          <input id="max" name="max1" type="number" class="validate" required="required" value="">
           <label for="max">Maximum buyable amount</label>
           
         </div>
@@ -526,7 +519,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 --><div class="input-field inline col s10">
 <br><br>
      <label>Qualification</label> 
-  <select class="browser-default green lighten-2" id="qualification"  name="qualification">
+  <select class="browser-default green lighten-2" id="qualification"  name="qualification1">
     <option value="" disabled selected>Choose your option</option>
     <option value="1">Option 1</option>
     <option value="2">Option 2</option>
@@ -540,7 +533,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
       <div class="btn green white-text">
         
         <span>File</span>
-        <input type="file" name="image" id="image" multiple>
+        <input type="file" name="image1" id="image" multiple>
 
       </div>
       <div class="file-path-wrapper">
@@ -727,26 +720,6 @@ else
         };
     </script>
 <script type="text/javascript">jssor_slider_init();</script>
-<script type="text/javascript">
-       
-  $('.modal.m1').modal({
-    ready: function(modal, trigger) {
-        
-        modal.find('input[name="pname"]').val(trigger.data('pname'))
-        modal.find('input[name="price"]').val(trigger.data('price'))
-        modal.find('input[name="currency"]').val(trigger.data('currency'))
-        modal.find('input[name="description"]').val(trigger.data('description'))
-        modal.find('input[name="unit"]').val(trigger.data('unit'))
-        modal.find('input[name="max"]').val(trigger.data('max'))
-        modal.find('input[name="min"]').val(trigger.data('min'))
-        modal.find('input[name="qualification"]').val(trigger.data('qualification'))
-        modal.find('input[name="category"]').val(trigger.data('category'))
-        modal.find('input[name="prenom"]').val(trigger.data('prenom'))
-    }
-});
-
-
-</script>
    <!--script type="text/javascript">jssor_2_slider_init();</script>
     <script type="text/javascript">jssor_3_slider_init();</script-->
 

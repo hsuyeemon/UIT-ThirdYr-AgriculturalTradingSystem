@@ -323,22 +323,6 @@ function displayPageFooter() {
 
 <!------------Script in Index.html--------------->
   <script>
-       
-  $('.modal.m1').modal({
-    ready: function(modal, trigger) {
-        
-        modal.find('input[name="pname"]').val(trigger.data('pname'))
-        modal.find('input[name="price"]').val(trigger.data('price'))
-        modal.find('input[name="currency"]').val(trigger.data('currency'))
-        modal.find('input[name="description"]').val(trigger.data('description'))
-        modal.find('input[name="unit"]').val(trigger.data('unit'))
-        modal.find('input[name="max"]').val(trigger.data('max'))
-        modal.find('input[name="min"]').val(trigger.data('min'))
-        modal.find('input[name="qualification"]').val(trigger.data('qualification'))
-        modal.find('input[name="category"]').val(trigger.data('category'))
-        modal.find('input[name="prenom"]').val(trigger.data('prenom'))
-    }
-});
 
     $(document).ready(function(){
     //drop dowm
@@ -360,7 +344,27 @@ function displayPageFooter() {
     
 
   </script>
- 
+ <script type="text/javascript">
+       
+  $('.modal.m1').modal({
+    ready: function(modal, trigger) {
+        
+        modal.find('input[name="pname1"]').val(trigger.data('pname'))
+        modal.find('input[name="price1"]').val(trigger.data('price'))
+        modal.find('input[name="currency1"]').val(trigger.data('currency'))
+        modal.find('input[name="description1"]').val(trigger.data('description'))
+        modal.find('input[name="unit1"]').val(trigger.data('unit'))
+        modal.find('input[name="max1"]').val(trigger.data('max'))
+        modal.find('input[name="min1"]').val(trigger.data('min'))
+        modal.find('input[name="qualification1"]').val(trigger.data('qualification'))
+        modal.find('input[name="category1"]').val(trigger.data('category'))
+        
+    }
+});
+
+
+</script>
+
   <script>
      function validFunction()
      {
@@ -447,10 +451,10 @@ if(document.getElementById('back')!=null){
     }
     
     if(document.getElementById('about_us')!=null){
-    document.getElementById('about_us').innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    document.getElementById('about_us').innerHTML="ကြ်ႏ္ုပ္တို႔အေၾကာင္း";
     }
     if(document.getElementById('about_us1')!=null){
-    document.getElementById('about_us1').innerHTML="ကြၽႏုပ္တို႔ အေၾကာင္း";
+    document.getElementById('about_us1').innerHTML="ကြ်ႏ္ုပ္တို႔အေၾကာင္း";
     }
   
     if(document.getElementById("contact_us")!=null){

@@ -190,12 +190,10 @@ echo mysqli_error($con);
   
   <!---Items--------------------------->
     <form id="order_form" class="col" action="" method="">
-          <input type="text" id="pidInput" name="pidInput" value="">
-          <input type="text" id="quantityInput" name="quantityInput">
+          <input type="hidden" id="pidInput" name="pidInput" value="">
+          <input type="hidden" id="quantityInput" name="quantityInput">
           <input type="hidden" name="bid" value="<?php echo $n3['bid'];?>">
           <input type="hidden" name="to_addr" value="<?php echo $n3['b_address'];?>">
-          <!--input type="hidden" name="from_addr" value="<?php echo $rows2['s_address'];?>"-->
-          <input type="hidden" name="price" value="<?php echo $price?>">
 
            <div class="row">
 
@@ -231,9 +229,12 @@ echo mysqli_error($con);
       </div>
 
     <div class="row">
-      <input id="datepicker" name="expect_delivery_date" type="text">
+      <input id="datepicker" name="expect_delivery_date" type="text"
+      onchange="testDate()">
       <label for="date" id="date_label">Pick the preferred date</label>
     </div>
+    <input type="hidden" name="price" value="<?php echo $row['price']?>">
+
      <div class="row">
     
       <button class="btn green white-text" name="order1" onclick="orderline()">Confirm Order
@@ -338,7 +339,23 @@ var divnum=document.getElementById('num_row').innerHTML;
      dateFormat: 'yy-mm-dd'
 });
 </script>
-</script>
+<script type="text/javascript">
+         alert("fuction");
+        function testDate(){
+          alert("fuction");
+          var dateString = document.getElementById("datepicker").value;
+          var fromDate = new Date(dateString);
+          var date1 = new Date(fromDate).toDateString("yyyy-MM-dd");
+
+          if( (Math.floor((Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24))<1){
+            alert("invalid date");
+          }
+          else{
+            alert("invalid date");
+          }
+        }
+      </script>
+
 <?php
 displayPageFooter();
 ?>

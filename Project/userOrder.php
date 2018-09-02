@@ -52,9 +52,9 @@ $pending_product_result=mysqli_query($con,"SELECT o.*,p.pname FROM order_product
 $pending_num_rows = mysqli_num_rows($pending_product_result);
 
 if(isset($_POST['s'])){
-     echo "enter";
+     
         $oid = $_POST['oid'];
-
+echo "oid".$oid;
 
 
         $pid = $_POST['pid'];
@@ -90,7 +90,7 @@ if(isset($_POST['s'])){
   //echo $_POST['oid'];
   $setDelivered = mysqli_query($con,"UPDATE order_product
    SET delivered=1 where oid='".$_POST['orderid']."'");
-   echo "<script>alert('update successful');</script>";
+   echo "<script>alert('update successful');location='userOrder.php';</script>";
   }
 
 
@@ -207,7 +207,8 @@ echo "</td>";
 ?>
 </td><td>
 <!--<form id="delivered" method="" action="">-->
-      <a class='btn btn-default green modal-trigger' href="#myModal2" data-oid="<?php echo $row['oid'];?>" 
+      <a class='btn btn-default green modal-trigger' href="#myModal2" 
+      data-oid="<?php echo $row['oid'];?>" 
         data-pid="<?php echo $row['pid'];?>">Comment/Rate</a>
 
      <!-- <input type='hidden' value="<--?php echo $row['oid'];?>" name='oid'>
@@ -230,7 +231,7 @@ echo "</table>";
 <div class="hreview-aggregate" style="padding: 48px; width: 500px;">
   <div class="modal-dialog" >
     <h2 id="review">Review</h2>
-    <form id="cmtForm" action="" method="">
+    <form id="cmtForm" action="" method="post">
     <div class="row">
      
       <div class="col s12 padding-normal">
@@ -349,7 +350,7 @@ echo "</table>";
     document.getElementById('rating').value = ratingValue;
     //alert(document.getElementById('rating').value);
     var form1 = document.getElementById('cmtForm');
-    form1.method = "post";
+    //form1.method = "post";
     form1.action = "userOrder.php";
     form1.submit();
 

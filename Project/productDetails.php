@@ -293,7 +293,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
       </div>
     </div>
      <?php
-       echo $rating['total'];
+     //  echo $rating['total'];
    if($rating['total']>=5){
     ?>
     <script type="text/javascript">
@@ -322,7 +322,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
    ?> 
    <script type="text/javascript">
       document.getElementById("star5").classList.remove("hover");
-       
+    
       document.getElementById("star3").classList.add("selected");
       document.getElementById("star2").classList.add("selected");
       document.getElementById("star1").classList.add("selected");
@@ -406,6 +406,23 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
 
 
 </section>​
+<script type="text/javascript">
+         alert("function");
+        function testDate(){
+          alert("fuction");
+          var dateString = document.getElementById("datepicker").value;
+          var fromDate = new Date(dateString);
+          var date1 = new Date(fromDate).toDateString("yyyy-MM-dd");
+
+          if( (Math.floor((Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24))<1){
+            alert("invalid date");
+          }
+          else{
+            alert("invalid date");
+          }
+        }
+      </script>
+
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -419,6 +436,7 @@ $rating ="SELECT c.rating FROM order_product AS o,comment AS c WHERE o.pid=$pid 
  //   });
  
 </script>
+
 
   <script>
 
