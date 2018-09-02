@@ -60,7 +60,7 @@ $filenames=$_FILES['product']['name'][$i];
 
         $qualification = isset($_POST['qualification'])?$_POST['qualification']:"";    
         $sid = $_SESSION['sid'];
-        echo $sid; 
+       // echo $sid; 
 
         $sql = "INSERT INTO product(pname, price, currency, p_image,p_description, status, min_amount, max_amount, UNIT, qualification, category,sid) VALUES ('".$_POST["pname"]."','".$_POST["price"]."','".$_POST["currency"]."','".$arr."','".$_POST["brief"]."','0','".$_POST["min"]."','".$_POST["max"]."','".$_POST["unit"]."','".$qualification."','$seleced_cata',".$sid.")";
 
@@ -90,11 +90,11 @@ echo $row["UNIT"];
 
 //$sql3 ="UPDATE product set pname=$_POST['pname'],price=$_POST['pname'],p_image=,$_POST['p_image'],p_description=$_POST['description'], 
      // min_amount=$_POST['min'], max_amount=$_POST['max'], UNIT=$_POST['unit'], qualification=$_POST['qualification'] WHERE pid='1'";
-$sql3 ="UPDATE product set pname='".$_POST['pname']."',price='".$_POST['pname']."',p_image='".$_POST['image']."',p_description='".$_POST['brief']."', 
+$sql3 ="UPDATE product set pname='".$_POST['pname']."',price='".$_POST['price']."',p_image='".$_POST['image']."',p_description='".$_POST['description']."', 
       min_amount='".$_POST['min']."', max_amount='".$_POST['max']."', UNIT='".$_POST['unit']."', qualification='".$_POST['qualification']."' WHERE pid='11'";
 
 
-       $result3=mysql_query($sql3);
+       $result3=mysqli_query($con,$sql3);
        if($result3) {echo ("<script LANGUAGE='JavaScript'>
     window.alert('Succesfully update');
     </script>");}
@@ -256,11 +256,13 @@ else {echo mysql_error();}
    <?php 
    if(isset($_POST['delete'])){
     echo "<script> alert('delete');</script>";
+    echo $_POST['productId'];
   $productid=$_POST['productId'];
 $sql2 = "DELETE FROM product WHERE pid='$productid'";
        $result2=mysqli_query($con,$sql2);
+       mysqli_error($con);
        }
-else {echo mysqli_error($con);
+else {mysqli_error($con);
 }
     
     ?>
@@ -324,9 +326,14 @@ function showProducts($category){
     // Format the image SRC:  data:{mime};base64,{data};
     $src = 'data: '.mime_content_type($url).';base64,'.$imageData;
       $pid=$row2["pid"];
+              $products = "SELECT * FROM PRODUCT where pid=$pid";
+              $productsQuery = mysqli_query($con,$products);
+$num_rows = mysqli_num_rows($productsQuery);
+while($pidrow=mysqli_fetch_array($productsQuery)){
+  //echo $pidrow['pid'];
+?>
 
-    ?>
-
+  
         <div class='card' style='border:1px solid black;box-shadow: 100px 50px 50px 50px rgba(0,0,0,0);background:#005508;'>
           <a href="productDetails.php?productId=<?php echo $row2['pid'];?>">
             <div class='card-image'>
@@ -342,16 +349,8 @@ function showProducts($category){
           <div class='row'>
              <div class='col s6'>
 
-              <?php
-              $products = "SELECT * FROM PRODUCT where pid=$pid";
-              $productsQuery = mysqli_query($con,$products);
-$num_rows = mysqli_num_rows($productsQuery);
-while($pidrow=mysqli_fetch_array($productsQuery)){
-
-?>
-
            
-           <a  id="test" data-target="editProducts" href="#editProducts" class='btn white green-text modal-trigger'
+          <a  id="test" data-target="editProducts" href="#editProducts" class='btn white green-text modal-trigger'
          data-pname="<?php echo $pidrow['pname'];?>" 
          data-price="<?php echo $pidrow['price'];?>"
          data-unit="<?php echo $pidrow['UNIT'];?>"
@@ -364,9 +363,6 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 
         >Edit<i class='material-icons right'>edit</i></a>
 
-        <?php
-      }
-      ?>
           </div>
  
     
@@ -376,7 +372,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
           <!--input type="hidden" name="productId" 
             value="<?php echo $row2['pid'];?>"-->
           <div class='col s6'>
-            <form id="deleteF" action="userProducts.php" method="post">
+            <form id="deleteF" action="" method="">
           <input type="hidden" name="productId"  value="<?php echo $row2['pid'];?>">
           <button onclick="conf()" name="delete" class='btn white green-text modal-trigger'>Delete<i class='material-icons right'>delete</i></button>
         </form>
@@ -394,18 +390,20 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
           if(del == true){
             var de=document.getElementById("deleteF");
             alert ("record deleted");
-           
-            del.submit();
+            de.method="post";
+            de.action="userProducts.php";
+            de.submit();
           }
           else{
-            alert ("record not delete");
+            //alert ("record not delete");
           }
          }
         </script>
 </div>
         <?php
 
-            }
+          }
+          }
             ?>
       
 
@@ -430,7 +428,7 @@ while($pidrow=mysqli_fetch_array($productsQuery)){
 
 
  <!--editProductsForm-->
-<div id="editProducts" class="modal m1 fade" role="dialog">
+<div id="editProducts" class="m1 modal fade" role="dialog">
     <div class="padding-normal modal-dialog">
       <h3>Edit your Products</h3>
  <div class="row">
@@ -730,7 +728,23 @@ else
     </script>
 <script type="text/javascript">jssor_slider_init();</script>
 <script type="text/javascript">
-  
+       
+  $('.modal.m1').modal({
+    ready: function(modal, trigger) {
+        
+        modal.find('input[name="pname"]').val(trigger.data('pname'))
+        modal.find('input[name="price"]').val(trigger.data('price'))
+        modal.find('input[name="currency"]').val(trigger.data('currency'))
+        modal.find('input[name="description"]').val(trigger.data('description'))
+        modal.find('input[name="unit"]').val(trigger.data('unit'))
+        modal.find('input[name="max"]').val(trigger.data('max'))
+        modal.find('input[name="min"]').val(trigger.data('min'))
+        modal.find('input[name="qualification"]').val(trigger.data('qualification'))
+        modal.find('input[name="category"]').val(trigger.data('category'))
+        modal.find('input[name="prenom"]').val(trigger.data('prenom'))
+    }
+});
+
 
 </script>
    <!--script type="text/javascript">jssor_2_slider_init();</script>
