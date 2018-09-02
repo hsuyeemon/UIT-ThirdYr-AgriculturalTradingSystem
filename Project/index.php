@@ -11,9 +11,9 @@ displayPageHeader( "index" );
   <div class = "transparent">
     <div class="white-text center-align" style="
         padding: 64px;margin: 0px;">
-       <h3 id="para" style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;font-family: 'Acme';color:white">
+       <h3 id="" style ="text-shadow: 3px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;font-family: 'Acme';color:white">
          <!--ကၽြနု္ပ္တုိ႔သည္ ယူေကမွ သင္ၾကားေရးအခြင့္အလမ္းမ်ားႏွင့္ ထိုးထြင္းတီထြင္တတ္ေသာစိတ္ကူးအေတြးအေခၚမ်ားအား အမ်ားျပည္သူတို႕ထံ ေဆာင္က်ဥ္းေပးပါသည္။ -->
-           Marketplace for people in agricultural sector
+           Marketplace for  agricultural sector
          </h3>
          <br><br>
          <a href="index.php#feature" class="btn btn-default waves-effect pulse white green-text">View how it works</a>
@@ -26,7 +26,7 @@ displayPageHeader( "index" );
   
 <div id="Products" class="padding-normal center-align">
  <h3 class="center-align header" style=" font-family: 'Acme';" id="product_p">Our products</h3>
- <p class="center-align" style=" font-family: 'Acme';font-size: 22px;">Agricultural Products,Fertilizer, tools and equipments companies can also sell their products
+ <p class="center-align" style=" font-family: 'Acme';font-size: 22px;" id="para">Agricultural Products,Fertilizer, tools and equipments companies can also sell their products
 </p>
 
   <div class="row"  style="padding-top: 16px;">
