@@ -1,0 +1,17 @@
+imutils
+	A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying Matplotlib images easier with OpenCV and both Python 2.7 and Python 3.
+
+argparse
+	The argparse module makes it easy to write user-friendly command-line interfaces. The program defines what arguments it requires, and argparse will figure out how to parse those out of sys.argv. 
+
+datetime
+	The datetime module supplies classes for manipulating dates and times in both simple and complex ways. While date and time arithmetic is supported, the focus of the implementation is on efficient attribute extraction for output formatting and manipulation.
+
+Collection
+	Collections in Python are containers that are used to store collections of data, for example, list, dict, set, tuple, deque etc. These are built-in collections.
+
+Deque
+	The deque is a list optimized for inserting and removing items.
+
+Thread
+	 A Python Thread  instance to use when writing videos to file (to avoid costly I/O latency delays).
